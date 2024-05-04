@@ -52,7 +52,7 @@ _valid_objects select {(getPos _x) select 2 < -0.1} apply {
 
 	private _pos = getPos _x;
 
-	_x setPos [_pos # 0, _pos # 1, 0];
+	_x setPos [_pos # 0, _pos # 1, 0.1];
 
 	diag_log format [
 		"Sites: ZFixer: fixing Z-pos: obj=%1 startPos=%2 endPos=%3",
