@@ -83,17 +83,6 @@ if(_tunnel isEqualTo 0)then {_tunnelAlpha=0};
 	//Teardown code
 	{
 		params ["_siteStore"];
-
-		{
-			deleteMarker _x;
-		} forEach (_siteStore getVariable "markers");
-
-		{
-			deleteVehicle _x;
-		} forEach ((_siteStore getVariable "vehicles") + (_siteStore getVariable "units"));
-
-		{
-			[_x] call para_s_fnc_ai_obj_finish_objective;
-		} forEach (_siteStore getVariable ["aiObjectives", []]);
+		[_siteStore] call vn_mf_fnc_sites_utils_std_teardown;
 	}
 ] call vn_mf_fnc_sites_create_site;
