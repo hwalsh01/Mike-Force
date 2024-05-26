@@ -903,7 +903,7 @@ All classes here use a naming convention following this pattern: locking_type_su
 please add additional subtypes can be added at the end, e.g. unlocked_utility_airport_light
 */
 
-class parent_grnd_light_transport {
+class parent_grnd_transport_light {
 	name = "Ground Transport (Light)";
 	class categories {
 		class m151 {
@@ -1248,7 +1248,7 @@ class spawn_point_types {
 		RESPAWN_MEDIUM;
 		lockTeams[] = UNLOCKED;
 	};
-	class unlocked_grnd_light_transport: parent_grnd_light_transport {
+	class unlocked_grnd_light_transport: parent_grnd_transport_light {
 		RESPAWN_SHORT;
 		lockTeams[] = UNLOCKED;
 	};
@@ -1321,7 +1321,7 @@ class spawn_point_types {
 		RESPAWN_LONG;
 		lockTeams[] = LOCKED_633RD;
 	};
-	class 633rd_air_transport {
+	class 633rd_air_transport_custom {
 		name = "Transport Helicopters (633rd)";
 		RESPAWN_SHORT;
 		lockTeams[] = LOCKED_633RD;
@@ -1334,7 +1334,7 @@ class spawn_point_types {
 			};
 		};
 	};
-	class 633rd_air_dustoff_medical {
+	class 633rd_air_dustoff_medical_custom {
 		name = "Dust-off and Medevac Helicopters (633rd)";
 		RESPAWN_SHORT;
 		lockTeams[] = LOCKED_633RD;
@@ -1360,7 +1360,7 @@ class spawn_point_types {
 		RESPAWN_MEDIUM;
 		lockTeams[] = LOCKED_7THCAV;
 	};
-	class 7thcav_grnd_light_transport: parent_grnd_light_transport {
+	class 7thcav_grnd_transport_light: parent_grnd_transport_light {
 		RESPAWN_SHORT;
 		lockTeams[] = LOCKED_7THCAV;
 	};
@@ -1368,7 +1368,7 @@ class spawn_point_types {
 		WRECK_LONG;
 		lockTeams[] = LOCKED_7THCAV;
 	};
-	class 7th_air_transport {
+	class 7th_air_transport_custom {
 		name = "Tranport Helicopters (7th Cav)";
 		RESPAWN_SHORT;
 		lockTeams[] = LOCKED_7THCAV;
@@ -1396,7 +1396,7 @@ class spawn_point_types {
 
 	// arnv ////////////////////////////////////////////////////////////////////////////////
 
-	class arvn_grnd_patrol {
+	class arvn_grnd_patrol_custom {
 		name = "Patrol (ARVN)";
 		RESPAWN_MEDIUM;
                 lockTeams[] = LOCKED_ARVN;
@@ -1410,7 +1410,7 @@ class spawn_point_types {
 			};
 		};
 	};
-	class arvn_grnd_transport_heavy {
+	class arvn_grnd_transport_heavy_custom {
 		name = "Heavy transport (ARVN)";
 		RESPAWN_LONG;
 		lockTeams[] = LOCKED_ARVN;
@@ -1424,7 +1424,7 @@ class spawn_point_types {
 			};
 		};
 	};
-	class arvn_grnd_firesupport_light {
+	class arvn_grnd_firesupport_light_custom {
 		name = "Light fire support (ARVN)";
 		WRECK_SHORT;
 		lockTeams[] = LOCKED_ARVN;
@@ -1450,7 +1450,7 @@ class spawn_point_types {
 			};
 		};
 	};
-	class arvn_grnd_firesupport_heavy {
+	class arvn_grnd_firesupport_heavy_custom {
 		name = "Heavy fire support (ARVN)";
 		WRECK_LONG;
 		lockTeams[] = LOCKED_ARVN;
@@ -1488,7 +1488,7 @@ class spawn_point_types {
 		RESPAWN_MEDIUM;
 		lockTeams[] = LOCKED_ANZAC;
 	};
-	class anzac_grnd_transport_light {
+	class anzac_grnd_patrol_custom {
 		name = "Light Transport (ANZAC)";
 		RESPAWN_SHORT;
 		lockTeams[] = LOCKED_ANZAC;
@@ -1539,7 +1539,7 @@ class spawn_point_types {
 		RESPAWN_MEDIUM;
 		lockTeams[] = LOCKED_BLACKHORSE;
 	};
-	class blackhorse_statics_105s {
+	class blackhorse_statics_105s_custom {
 		name = "105 Artillery (Blackhorse)";
 		WRECK_LONG;
 		lockTeams[] = LOCKED_BLACKHORSE;
@@ -1580,7 +1580,7 @@ class spawn_point_types {
 
 	// military police ////////////////////////////////////////////////////////////////
 
-	class mp_grnd_patrol {
+	class mp_grnd_patrol_custom {
 		name = "Patrol (Military Police)";
 		RESPAWN_MEDIUM;
 		lockTeams[] = LOCKED_MILITARY_POLICE;
@@ -1659,7 +1659,7 @@ class spawn_point_types {
 		RESPAWN_MEDIUM;
 		lockTeams[] = LOCKED_MUSKETS;
 	};
-	class muskets_air_firesupport_all {
+	class muskets_air_firesupport_all_custom {
 		name = "Close Air Support Helicopters (Muskets)";
 		WRECK_LONG;
 		lockTeams[] = LOCKED_MUSKETS;
@@ -1700,7 +1700,7 @@ class spawn_point_types {
 
 	// satans angels /////////////////////////////////////////////////////////////////
 
-	class satansangels_air_jets_runway {
+	class satansangels_air_jets_runway_custom {
 		name = "Jets (Satan's Angels)";
 		WRECK_LONG;
 		lockTeams[] = LOCKED_SATANS_ANGELS;
@@ -1719,7 +1719,7 @@ class spawn_point_types {
 			};
 		};
 	};
-	class satansangels_air_jets_carrier {
+	class satansangels_air_jets_carrier_custom {
 		name = "Naval Jets (Satan's Angels)";
 		WRECK_LONG;
 		lockTeams[] = LOCKED_SATANS_ANGELS;
@@ -1818,7 +1818,7 @@ class spawn_point_types {
 
 	// usmc ///////////////////////////////////////////////////////////////////////
 
-	class usmc_grnd_transport_light {
+	class usmc_grnd_transport_light_custom {
 		name = "USMC Wheeled Vehicles";
 		RESPAWN_SHORT;
 		lockTeams[] = LOCKED_USMC;
@@ -1837,7 +1837,7 @@ class spawn_point_types {
 			};
 		};
 	};
-	class usmc_grnd_firesupport_heavy {
+	class usmc_grnd_firesupport_heavy_custom {
 		name = "USMC Armor Vehicles";
 		RESPAWN_SHORT;
 		lockTeams[] = LOCKED_USMC;
