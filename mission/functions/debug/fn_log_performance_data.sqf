@@ -19,14 +19,6 @@
 private _allPlayers = allPlayers;
 private _allUnits = allUnits;
 
-private _fnc_get_average = {
-    params ["_arr"];
-    private _av = 0;
-    _arr apply {_av = _av + _x};
-
-    _av / (count _arr)
-};
-
 private _fnc_get_sum = {
     params ["_arr"];
     private _v = 0;
@@ -34,6 +26,14 @@ private _fnc_get_sum = {
 
     _v
 };
+
+private _fnc_get_average = {
+    params ["_arr"];
+    private _sum = [_arr] call _fnc_get_sum;
+
+    _sum / (count _arr)
+};
+
 
 
 // server/headless performance
