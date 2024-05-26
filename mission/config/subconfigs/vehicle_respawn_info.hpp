@@ -1205,7 +1205,7 @@ or by creating a new spawner configuration from scratch
 Please read the following two notes. They will help you to find things quicker when someone complains
 about their whitelisting.
 
-*Code is read more often than it is written.*
+**Code is read more often than it is written.**
 
 A NOTE ON NAMING CONVENTIONS -------------------------------------------------------------------
 
@@ -1216,14 +1216,12 @@ All classes here use a naming convention following this pattern: locking_type_su
 - subtypes are: firesupport, transport, patrol, utility etc.
 - further subtypes are things like: custom, light, heavy, medium, airport etc.
 
-please add additional subtypes can be added at the end, e.g. unlocked_utility_airport_light
-
 A NOTE ON ORDERING -------------------------------------------------------------------
 
 each class is sorted in the following order
 
 1. whitelisting (unlocked first, then public-ish, then WLUs alphabetically)
-2. inherited from tempalte above first, then custom spawners
+2. inherited from template above first, then custom spawners
 3. ground -> air
 4. light -> heavy
 
@@ -1580,6 +1578,11 @@ class spawn_point_types {
 
 	// military police ////////////////////////////////////////////////////////////////
 
+	class mp_air_transport_medium: parent_air_transport_medium
+	{
+		RESPAWN_SHORT;
+		lockTeams[] = LOCKED_MILITARY_POLICE;
+	};
 	class mp_grnd_patrol_custom {
 		name = "Patrol (Military Police)";
 		RESPAWN_MEDIUM;
@@ -1598,11 +1601,6 @@ class spawn_point_types {
 				exclude[] = { { "armed","usmc","antitank","army" } };
 			};
 		};
-	};
-	class mp_air_transport_medium: parent_air_transport_medium
-	{
-		RESPAWN_SHORT;
-		lockTeams[] = LOCKED_MILITARY_POLICE;
 	};
 
 	// macv ///////////////////////////////////////////////////////////////////////////
