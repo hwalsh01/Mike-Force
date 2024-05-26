@@ -26,17 +26,22 @@ private _fnc_player_is_authorized = {
 	private _teamsVehicleIsLockedTo = _vehicle getVariable ["teamLock", []];
 	private _playerGroup = _player getVariable ["vn_mf_db_player_group", "FAILED"];
 
-	if (!(_teamsVehicleIsLockedTo isEqualTo [])) then {
-		_teamsVehicleIsLockedTo = _teamsVehicleIsLockedTo select 0;
+	// empty array is completely unlocked
+	if (_teamsVehicleIsLockedTo isEqualTo []) then {
+		_teamsVehicleIsLockedTo = [_playerGroup];
 	};
 
-	if (
-		_playerGroup in _teamsVehicleIsLockedTo
-		|| typeName _teamsVehicleIsLockedTo != "ARRAY"
-		|| count(_teamsVehicleIsLockedTo) isEqualTo 0
-	) exitWith {true};
+	private _result = false;
 
-	false
+	if (
+		typeName _teamsVehicleIsLockedTo == "ARRAY"
+		&& count _teamsVehicleIsLockedTo > 0
+		&& _playerGroup in _teamsVehicleIsLockedTo
+	) then {
+		_result = true;
+	};
+
+	_result
 };
 
 params ["_player", "_role", "_vehicle"];
@@ -59,4 +64,4 @@ if (_role == "driver" || _isCoPilot) exitWith {
 	[_vehicle, _player] call _fnc_player_is_authorized
 };
 
-true
+false
