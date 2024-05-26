@@ -25,6 +25,7 @@ private _spawnPointInfo = createHashMap;
 _spawnPointInfo set ["name", getText (_config >> "name")];
 _spawnPointInfo set ["respawnType", getText (_config >> "respawnType")];
 _spawnPointInfo set ["time", getNumber (_config >> "time")];
+_spawnPointInfo set ["lockTeams", getArray (_config >> "lockTeams")];
 
 private _vehicleConfigs = [] call vn_mf_fnc_veh_asset_load_vehicle_configs;
 private _vehicles = [];
