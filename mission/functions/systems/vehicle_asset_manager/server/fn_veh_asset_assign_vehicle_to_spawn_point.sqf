@@ -26,6 +26,6 @@ _spawnPoint set ["lastClassSpawned", typeOf _vehicle];
 
 _vehicle addEventHandler ["RopeAttach", {[_this # 2] call vn_mf_fnc_veh_asset_unlock_vehicle}];
 
-private _lockTeamArr = _spawnPoint getOrDefault ["lockTeams", []];
+private _lockTeamArr = _spawnPoint get "settings" getOrDefault ["lockTeams", []];
 
 [_vehicle, _lockTeamArr] call vn_mf_fnc_lock_vehicle_to_teams;
