@@ -32,9 +32,9 @@ if (isNull _vehicle) exitWith {
 ]] call vn_mf_fnc_veh_asset_set_global_variable;
 
 //@dijksterhuis: this is a custom BN thing
-// if it's in water send it to repair immediately
+// if it's underwater send it to repair immediately
 if (surfaceIsWater (position _vehicle)) exitWith {
-	[_id] call vn_mf_fnc_veh_asset_set_repairing;
+	[_spawnPoint] call vn_mf_fnc_veh_asset_set_repairing;
 };
 
 //Kaboom. We don't want TWO vehicles by accident.
