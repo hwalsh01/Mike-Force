@@ -24,27 +24,29 @@ private _allPlayers = allPlayers;
 private _allUnits = allUnits;
 
 private _fnc_get_sum = {
-    params ["_arr"];
-    private _v = 0;
-    _arr apply {_v = _v + _x};
-
-    _v
+  params ["_arr"];
+  private _v = 0;
+  _arr apply {_v = _v + _x};
+  _v
 };
 
 private _fnc_get_average = {
-    params ["_arr"];
-    private _sum = [_arr] call _fnc_get_sum;
+  params ["_arr"];
 
-    _sum / (count _arr)
+  private _sum = [_arr] call _fnc_get_sum;
+  private _c = count _arr;
+
+  if (c == 0) exitWith {nil};
+  _sum / _c
 };
 
 // server/headless performance
 
 private _headlessClients = _allPlayers select {(getUserInfo (getPlayerID _x)) select 7};
-private _headlessClientsDesyncMax = "n/a";
+private _headlessClientsDesyncs = [];
 
 if (count _headlessClients > 0) then {
-  _headlessClientsDesyncMax = selectMax _headlessClients apply {((getUserInfo (getPlayerID _x)) select 9) select 2};
+  _headlessClientsDesyncs = _headlessClients apply {((getUserInfo (getPlayerID _x)) select 9) select 2};
 };
 
 private _messageServer = format [
@@ -54,7 +56,7 @@ private _messageServer = format [
   diag_fps, // average server FPS over last 16 frames
   diag_activeScripts, // active scripts in THIS frame
   count _headlessClients,
-  _headlessClientsDesyncMax
+  _headlessClientsDesyncs
 ];
 
 ["INFO", _messageServer] call para_g_fnc_log;
