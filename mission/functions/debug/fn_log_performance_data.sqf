@@ -36,27 +36,23 @@ private _fnc_get_average = {
   private _sum = [_arr] call _fnc_get_sum;
   private _c = count _arr;
 
-  if (c == 0) exitWith {nil};
+  if (_c == 0) exitWith {selectMax []}; // hack: returns <null>
   _sum / _c
 };
 
 // server/headless performance
 
 private _headlessClients = _allPlayers select {(getUserInfo (getPlayerID _x)) select 7};
-private _headlessClientsDesyncs = [];
-
-if (count _headlessClients > 0) then {
-  _headlessClientsDesyncs = _headlessClients apply {((getUserInfo (getPlayerID _x)) select 9) select 2};
-};
+private _headlessClientsDesyncs = _headlessClients apply {((getUserInfo (getPlayerID _x)) select 9) select 2};
 
 private _messageServer = format [
-  "Server: UptimeMins:%1, FPSMin:%2, FPSAv:%3, Scripts:%4, HCs:%5, HCMaxDesync:%6",
+  "Server: UptimeMins:%1, FPSMin:%2, FPSAv:%3, Scripts:%4, HCs:%5, HCsDesync:%6",
   diag_tickTime / 60, // natural time since arma was started, not ingame time
   diag_fpsMin, // minimum server FPS over the last 16 frames
   diag_fps, // average server FPS over last 16 frames
   diag_activeScripts, // active scripts in THIS frame
-  count _headlessClients,
-  _headlessClientsDesyncs
+  _headlessClients,
+  _headlessClientsDesyncs // a value above 0 means that the HC has disconnected
 ];
 
 ["INFO", _messageServer] call para_g_fnc_log;
