@@ -913,7 +913,8 @@ class spawn_point_types {
 				name = "M113";
 				icon = VEHICLE_ICON_ARMOUR;
 				include[] = { { "m113", "transport" } };
-				exclude[] = { { "firesupport", "arvn", "pavn" } };
+				// Apparently this works, while {"firesupport", "arvn", "pavn"} does not
+				exclude[] = { { "firesupport" }, { "arvn" }, { "pavn" } };
 			};
 
 			class trucks {
@@ -934,7 +935,7 @@ class spawn_point_types {
 				name = "M113";
 				icon = VEHICLE_ICON_ARMOUR;
 				include[] = { { "m113", "transport","arvn" } };
-				exclude[] = { { "firesupport" } };
+				exclude[] = { { "firesupport", "pavn" } };
 			};
 		};
 	};
@@ -959,7 +960,7 @@ class spawn_point_types {
 
 		class categories {
 			class car {
-				name = "Cars";
+				name = "Ambulance";
 				icon = VEHICLE_ICON_CAR;
 				include[] = { { "car", "medical" } };
 				exclude[] = { { "pavn" } };
@@ -967,8 +968,9 @@ class spawn_point_types {
 			class truck {
 				name = "Trucks";
 				icon = VEHICLE_ICON_TRUCK;
-				include[] = { { "truck", "medical" } };
-				exclude[] = { { "pavn" } };
+				// no medical truck so just give them standard trucks
+				include[] = { { "truck", "transport" } };
+				exclude[] = { { "airport" }, { "armed" } };
 			};
 		};
 	};
@@ -1009,32 +1011,6 @@ class spawn_point_types {
 				icon = VEHICLE_ICON_CAR;
 				include[] = { { "m151a1","armed","antitank","arvn" } };
 				exclude[] = { { "transport","usmc","mp","army"} };
-			};
-			class armor {
-				name = "Armor";
-				icon = VEHICLE_ICON_ARMOUR;
-				include[] = { { "apc","firesupport","arvn" } };
-				exclude[] = { { "pavn" } };
-			};
-		};
-	};
-
-	class arvn_light_fire_support {
-		name = "Light fire support";
-		WRECK_SHORT;
-
-		class categories {
-			class m151 {
-				name = "M151A1";
-				icon = VEHICLE_ICON_CAR;
-				include[] = { { "m151a1","armed","antitank","arvn" } };
-				exclude[] = { { "transport","usmc","mp","army"} };
-			};
-			class trucks {
-				name = "Trucks";
-				icon = VEHICLE_ICON_TRUCK;
-				include[] = { { "truck", "firesupport","arvn" } };
-				exclude[] = { { "pavn" } };
 			};
 			class armor {
 				name = "Armor";
@@ -1204,7 +1180,6 @@ class spawn_point_types {
 				icon = VEHICLE_ICON_CAR;
 				include[] = { { "m151a1", "usmc" } };
 				exclude[] = { { "pavn", "arvn" } };
-				exclude[] = { { "pavn" } };
 			};
 		};
 	};
