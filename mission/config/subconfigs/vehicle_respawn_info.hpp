@@ -1044,7 +1044,7 @@ class spawn_point_types {
 				name = "M113";
 				icon = VEHICLE_ICON_ARMOUR;
 				include[] = { { "m113", "transport" } };
-				exclude[] = { { "firesupport" } };
+				exclude[] = { { "firesupport", "arvn" } };
 			};
 			class trucks {
 				name = "Trucks";
@@ -1075,7 +1075,7 @@ class spawn_point_types {
 				name = "Armor";
 				icon = VEHICLE_ICON_ARMOUR;
 				include[] = { { "apc", "firesupport" } };
-				exclude[] = { { "pavn" } };
+				exclude[] = { { "pavn", "arvn" } };
 			};
 		};
 	};
@@ -1561,7 +1561,7 @@ class spawn_point_types {
 				name = "M113";
 				icon = VEHICLE_ICON_ARMOUR;
 				include[] = { { "m113","firesupport" } };
-				exclude[] = { { "transport", "pavn" } };
+				exclude[] = { { "transport", "pavn", "arvn" } };
 			};
 			class trucks {
 				name = "Trucks";
@@ -1867,7 +1867,7 @@ class spawn_point_types {
 				name = "APC";
 				icon = VEHICLE_ICON_ARMOUR;
 				include[] = { { "m113","armed","firesupport","apc" } };
-				exclude[] = { { "artillery","pavn" } };
+				exclude[] = { { "artillery","pavn", "arvn" } };
 			};
 			class usmctank {
 				name = "Tanks";
