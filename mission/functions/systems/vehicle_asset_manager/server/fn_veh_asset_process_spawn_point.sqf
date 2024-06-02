@@ -54,6 +54,40 @@ if (!alive _vehicle && !((_spawnPoint get "status" get "state") in ["RESPAWNING"
 	};
 };
 
+/*
+@dijksterhuis: static weapon advanced logistics'd check
+
+`log_inventory_loaded` and `log_inventory_loaded_vehicle` are set by the
+advanced logistics module when the object is loaded into vehicle
+
+-----
+
+A note on static weapon wrecks...
+
+logistics'd vehicles are hidden and attached to player who loaded them.
+setting the vehicles to a wreck status won't work as markers etc. will be
+tracking an invisible object on the player.
+
+need to delete the vehicle to force a repair job.
+
+TODO: "unload" the statics out of the vehicle then set them to wrecked?
+*/
+if (
+	_vehicle getVariable ["log_inventory_loaded", false]
+	&& !alive (_vehicle getVariable ["log_inventory_loaded_vehicle", objNull])
+	&& !((_spawnPoint get "status" get "state") in ["RESPAWNING", "REPAIRING"])
+) then {
+	if (_respawnType == "WRECK") exitWith {
+		deleteVehicle _vehicle;
+		[_spawnPoint] call vn_mf_fnc_veh_asset_set_wrecked;
+	};
+
+	if (_respawnType == "RESPAWN") exitWith {
+		[_spawnPoint, _settings get "time"] call vn_mf_fnc_veh_asset_set_respawning;
+	};
+};
+
+
 if (!canMove _vehicle) then {
 	if ((_spawnPoint get "status" get "state") in ["ACTIVE", "IDLE"]) then {
 		[_spawnPoint] call vn_mf_fnc_veh_asset_set_disabled;
