@@ -65,6 +65,10 @@ isNil {
 	// Location override is only valid for 1 respawn.
 	_spawnPoint deleteAt "nextSpawnLocationOverride";
 	_vehicle enableSimulationGlobal true;
+
+	if (_vehicle isKindOf "StaticWeapon") then {
+		_vehicle enableWeaponDisassembly false;
+	};
 };
 
 //This restores UAV drivers. Shouldn't need it in VN, but better safe than sorry.
