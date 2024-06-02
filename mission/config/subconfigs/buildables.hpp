@@ -6156,7 +6156,7 @@ class vn_sign_town_d_11_01
 					};
 				};
 			};
-			spawnPositionModelSpace[] = {0,10,-2};
+			spawnPositionModelSpace[] = {0,10,0.5};
 			spawnDirectionModelSpace = 270;
 		};
 	};
