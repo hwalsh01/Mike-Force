@@ -64,4 +64,5 @@ if (_role == "driver" || _isCoPilot) exitWith {
 	[_vehicle, _player] call _fnc_player_is_authorized
 };
 
-false
+// not a static weapon, not a pilot or a copilot
+true
