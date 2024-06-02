@@ -26,12 +26,17 @@ private _spawnPoint = vn_mf_veh_asset_spawn_points_client get _spawnPointId;
 if (isNil "_spawnPoint") exitWith { "" };
 
 private _canChange = [_spawnPoint] call vn_mf_fnc_veh_asset_can_change_vehicle;
+private _canChangeResult = _canChange select 0;  // boolean result
+private _canChangeErrMessage = _canChange select 1;  // error message if failed
 
-if (!_canChange) exitWith {
+if !(_canChangeResult) exitWith {
 	[
 		[
 			"Cannot change vehicle",
-			"Make sure the vehicle is idle, near to the spawn point and has no players in",
+			format [
+				"Failed to respawn because: %1. Make sure the vehicle is idle, within range of the spawn point and has no players in.",
+				_canChangeErrMessage
+			],
 			"\A3\ui_f\data\map\mapcontrol\taskIconFailed_ca.paa",
 			[0, 0, 0],
 			[1, 0.3, 0.2]
