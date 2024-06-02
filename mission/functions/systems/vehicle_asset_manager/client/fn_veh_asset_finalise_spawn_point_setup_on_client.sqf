@@ -48,6 +48,50 @@ if (count _missingVariables > 0) exitWith {};
 // ----------------------
 // Wheel menu actions
 // ----------------------
+
+// Using spawner only config with vehicle class names
+private _vehicleCategories = _spawnPoint get "settings" getOrDefault ["categories", createHashMap];
+
+// if no categories loaded then we shouldn't create the menu
+if ((keys _vehicleCategories) isEqualTo []) exitwith {};
+
+{
+    private _category = _x;
+    private _vehicles = _y getOrDefault ["vehicles", []];
+    private _icon = _y getOrDefault ["icon", ""];
+
+    private _submenuActions = _vehicles apply {
+
+        private _vehicle = _x;
+        createHashMapFromArray [
+            ["text", getText (configFile >> "CfgVehicles" >> _vehicle >> "displayName")],
+            ["iconPath", _icon],
+            ["functionArguments", [_spawnPoint get "id", _vehicle]],
+            ["function", "vn_mf_fnc_veh_asset_request_vehicle_change_client"]
+        ]
+
+    };
+
+    private _categoryAction = createHashMapFromArray [
+        ["text", _category call para_c_fnc_localize],
+        ["iconPath", _icon],
+        ["submenuActions", _submenuActions]
+    ];
+
+    [
+        _spawnPoint get "object",
+        _categoryAction
+    ] call para_c_fnc_wheel_menu_add_obj_action;
+
+} forEach _vehicleCategories;
+
+
+// this is the original SGD implementation
+// i usually argue against leaving commented out code like this,
+// but it could propve helpful to others when it comes to merging
+// in later upstream changes
+
+/*
 private _vehicleCategories = _spawnPoint get "settings" get "categories";
 
 {
@@ -73,6 +117,7 @@ private _vehicleCategories = _spawnPoint get "settings" get "categories";
         _categoryAction
     ] call para_c_fnc_wheel_menu_add_obj_action;
 } forEach _vehicleCategories;
+*/
 
 //TODO Setup "return vehicle to spawn" action as zeus
 
