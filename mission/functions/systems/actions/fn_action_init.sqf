@@ -34,5 +34,5 @@ if (isNil "vn_mf_actions_initialized" || vn_mf_actions_player != player) then //
 	call vn_mf_fnc_action_lower_flag;
 	call vn_mf_fnc_action_reraise_flag;
 	"vn_holdActionAdd_layer" cutText ["","PLAIN"];
+	call vn_mf_fnc_action_macv_force_recover_wreck;
 };
-
