@@ -1128,7 +1128,16 @@ class spawn_point_types {
 
 	// TODO: Should Tiger Force have a mortar + flame thrower APC?
 	// TODO: Should tiger force have APCs at all?!
-	class tigerforce_grnd_firesupport_light {
+
+	// TODO: This has been hacked a bit to mostly replicate the grnd_transport_light 
+	// spawner so i can avoid messing around with the mission.sqm to avoid any merge
+	// conflicts with huckleberry. we'll deal with this one a little later, but have
+	// nerfed the available APCs too.
+	// after speaking to huck they weren't supposed to have APCs at all, and defo
+	// not the flame/mortar one. and we missed that. so leaving them with one
+	// transport APC before saying "hey do you even need APCs" seems like a sensible
+	// comprimise
+	class tigerforce_grnd_firesupport_light: unlocked_grnd_transport_light {
 
 		name = "Fire Support [Tiger Force]";
 		respawnType = SPAWN_TYPE_RESPAWN;
@@ -1136,30 +1145,15 @@ class spawn_point_types {
 		lockTeams[] = LOCKED_TIGER_FORCE;
 
 		class categories {
-			class m151a1 {
-				name = "M151A (Armed)";
-				icon = VEHICLE_ICON_CAR;
-				vehicles[] = {
-					"vn_b_wheeled_m151_mg_06",
-					"vn_b_wheeled_m151_mg_05",
-				};
-			};
-			class m54 {
-				name = "M54 Trucks (Armed)";
-				icon = VEHICLE_ICON_TRUCK;
-				vehicles[] = {
-					"vn_b_wheeled_m54_mg_03",
-					"vn_b_wheeled_m54_mg_01",
-					"vn_b_wheeled_m54_mg_02",
-				};
-			};
+			class m151_armed : m151_armed {};
+			class mule_armed : mule_armed {};
 			class apc {
 				name = "APC";
 				icon = VEHICLE_ICON_ARMOUR;
 				vehicles[] = {
-					"vn_b_armor_m132_01",
-					"vn_b_armor_m113_acav_06",
-					// "vn_b_armor_m125_01",  // disabled by @dijksterhuis
+					"vn_b_armor_m113_01",
+					// "vn_b_armor_m113_acav_06",  // disabled by @dijksterhuis after speaking to huck
+					// "vn_b_armor_m125_01",  // disabled by @dijksterhuis after speaking to huck
 				};
 			};
 		};
