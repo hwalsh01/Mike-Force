@@ -33,8 +33,6 @@
 // #define LOCKED_SCOUT_MG {"MACV", "DacCong", "7thCAV", "Muskets"}
 // #define LOCKED_ONLY_WLUS {"MACV", "DacCong", "3rdMEU", "MilitaryPolice", "QuarterHorse", "Frogmen", "Muskets", "SatansAngels", "633rdCSG", "7thCAV", "TigerForce", "SASR", "ARVN"}
 
-
-
 /*
 **Code is read more often than it is written.**
 

@@ -22,10 +22,26 @@
 params ["_spawnPoint", "_vehicleClass"];
 
 private _canChange = [_spawnPoint] call vn_mf_fnc_veh_asset_can_change_vehicle;
+private _canChangeResult = _canChange select 0;  // boolean result
+private _canChangeErrMessage = _canChange select 1;  // error message if failed
 
-if !(_canChange) exitWith {};
+if !(_canChangeResult) exitWith {
+    [
+        "ERROR",
+        "Attempted to spawn vehicle %1 from spawn point %2, but %3",
+        _vehicleClass,
+        _spawnPoint get "settings" get "name",
+        _canChangeErrMessage
+    ] call para_g_fnc_log;
+};
+
 if !(_vehicleClass in (_spawnPoint get "settings" get "vehicles")) exitWith {
-    ["ERROR", "Attempted to spawn invalid vehicle %1 from spawn point %2", _vehicleClass, _spawnPoint get "settings" get "name"] call para_g_fnc_log;
+    [
+        "ERROR",
+        "Attempted to spawn invalid vehicle %1 from spawn point %2",
+        _vehicleClass,
+        _spawnPoint get "settings" get "name"
+    ] call para_g_fnc_log;
 };
 
 _spawnPoint set ["lastClassSpawned", _vehicleClass];
