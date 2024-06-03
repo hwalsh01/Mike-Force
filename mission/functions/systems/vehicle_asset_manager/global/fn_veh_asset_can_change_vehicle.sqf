@@ -21,15 +21,15 @@
 params ["_spawnPoint"];
 
 // Vehicle must be in one of these states (e.g, no respawning or repairing)
-if !((_spawnPoint get "status" get "state") in ["ACTIVE", "IDLE", "DISABLED"]) exitWith { false };
+if !((_spawnPoint get "status" get "state") in ["ACTIVE", "IDLE", "DISABLED"]) exitWith { [false, "Vehicle already respawning/repairing"] };
 
 private _vehicle = _spawnPoint getOrDefault ["currentVehicle", objNull];
 private _spawnPos = _spawnPoint get "spawnLocation" get "pos";
 
 // Can't be too far from the spawn point
-if (getPosASL _vehicle distance2D _spawnPos > vn_mf_veh_asset_vehicle_change_max_distance) exitWith { false };
+if (getPosASL _vehicle distance2D _spawnPos > vn_mf_veh_asset_vehicle_change_max_distance) exitWith { [false, "Vehicle too far from spawn point"] };
 
 // Can't have an alive player in the vehicle
-if (crew _vehicle findIf {alive _x && isPlayer _x} > -1) exitWith { false };
+if (crew _vehicle findIf {alive _x && isPlayer _x} > -1) exitWith { [false, "Players are still in the vehicle"] };
 
-true
+[true, ""]
