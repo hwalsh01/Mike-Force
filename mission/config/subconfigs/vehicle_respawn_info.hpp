@@ -1141,8 +1141,11 @@ class spawn_point_types {
 		respawnType = SPAWN_TYPE_RESPAWN;
 		time = SPAWN_TIME_LONG;
 		lockTeams[] = LOCKED_TIGER_FORCE;
-
-		class categories {
+		
+		class categories : categories {
+			class m151_us {};
+			class m151_mp {};
+			class mule {};
 			class m151_armed : m151_armed {};
 			class mule_armed : mule_armed {};
 			class apc {
