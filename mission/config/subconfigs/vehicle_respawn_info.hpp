@@ -93,24 +93,24 @@ class spawn_point_types {
 					"vn_b_air_oh6a_01",
 				};
 			};
+
+			/*
+			classnames of unarmed *_uh1c_* are NOT UH-1C birds!
+			UH-1C is CAS designation!
+
+			tl;dr the cdlc classnames were wrong on release ;)
+			*/
+
 			class uh1b {
 				name = "UH-1B";
 				icon = VEHICLE_ICON_HELO;
 				vehicles[] = {
 					"vn_b_air_uh1b_01_09",
-				};
-			};
-			class uh1c {
-				name = "UH-1C";
-				icon = VEHICLE_ICON_HELO;
-				vehicles[] = {
+					"vn_i_air_uh1c_07_01",
 					"vn_b_air_uh1c_07_02",
-					"vn_b_air_uh1c_07_03",
-					"vn_b_air_uh1c_07_04",
 					"vn_b_air_uh1c_07_05",
 					"vn_b_air_uh1c_07_06",
 					"vn_b_air_uh1c_07_07",
-					"vn_i_air_uh1c_07_01",
 				};
 			};
 			class uh1d {
@@ -127,11 +127,13 @@ class spawn_point_types {
 					"vn_i_air_uh1d_02_01",
 				};
 			};
-			class uh1f {
-				name = "UH-1F";
+			class uh1ef {
+				name = "UH-1E/UH-1F";
 				icon = VEHICLE_ICON_HELO;
 				vehicles[] = {
 					"vn_b_air_uh1f_01_03",
+					"vn_b_air_uh1c_07_03",
+					"vn_b_air_uh1c_07_04",
 				};
 			};
 			class ch47 {
@@ -354,14 +356,14 @@ class spawn_point_types {
 			};
 			class trucks {
 				name = "Trucks (Airport)";
-				icon = VEHICLE_ICON_CAR;
+				icon = VEHICLE_ICON_TRUCK;
 				vehicles[] = {
 					"vn_b_wheeled_m54_01_airport",
 				};
 			};
 			class utility {
 				name = "Utility (Airport)";
-				icon = VEHICLE_ICON_CAR;
+				icon = VEHICLE_ICON_TRUCK;
 				vehicles[] = {
 					"vn_b_wheeled_m54_repair_airport",
 					"vn_b_wheeled_m54_ammo_airport",
@@ -381,7 +383,7 @@ class spawn_point_types {
 		class categories {
 			class m54 {
 			 	name = "M54 Trucks (US Army)";
-				icon = VEHICLE_ICON_CAR;
+				icon = VEHICLE_ICON_TRUCK;
 				vehicles[] = {
 					"vn_b_wheeled_m54_mg_01",
 					"vn_b_wheeled_m54_mg_02",
@@ -514,8 +516,6 @@ class spawn_point_types {
 					"vn_i_armor_m113_acav_01_fank_71",
 					"vn_i_armor_m113_acav_02_fank_71",
 					"vn_i_armor_m113_acav_03_fank_71",
-					"vn_i_armor_m113_acav_04_fank_71",
-					"vn_i_armor_m113_acav_05_fank_71",
 					"vn_i_armor_m113_acav_06_fank_71",
 				};
 			};
@@ -646,7 +646,6 @@ class spawn_point_types {
 				vehicles[] = {
 					"vn_b_air_uh1f_01_03",
 					"vn_b_air_uh1d_02_03",
-					"vn_b_air_uh1c_07_03",
 				};
 			};
 		};
@@ -702,12 +701,12 @@ class spawn_point_types {
 				name = "7th CAV";
 				icon = VEHICLE_ICON_HELO;
 				vehicles[] = {
+					"vn_b_air_oh6a_01",
+					"vn_b_air_oh6a_02",
 					"vn_b_air_ch47_01_02",
 					"vn_b_air_ch47_03_02",
 					"vn_b_air_uh1c_07_02",
 					"vn_b_air_uh1d_02_02",
-					"vn_b_air_ch47_03_02",
-					"vn_b_air_ch47_01_02",
 				};
 			};
 		};
@@ -839,9 +838,8 @@ class spawn_point_types {
 			};
 			class cayuse : cayuse {};
 			class uh1b {};
-			class uh1c {};
 			class uh1d {};
-			class uh1f {};
+			class uh1ef {};
 			class ch47 : ch47 {};
 			class ch34 : ch34 {};
 		};
@@ -994,9 +992,8 @@ class spawn_point_types {
 			};
 			class cayuse : cayuse {};
 			class uh1b : uh1b {};
-			class uh1c : uh1c {};
 			class uh1d : uh1d {};
-			class uh1f : uh1f {};
+			class uh1ef : uh1ef {};
 			class ch47 : ch47 {};
 			class ch34 : ch34 {};
 		};
@@ -1175,9 +1172,8 @@ class spawn_point_types {
 			};
 			class cayuse : cayuse {};
 			class uh1b {};
-			class uh1c {};
 			class uh1d {};
-			class uh1f {};
+			class uh1ef {};
 			class ch47 : ch47 {};
 			class ch34 {};
 		};
@@ -1205,9 +1201,8 @@ class spawn_point_types {
 			};
 			class cayuse : cayuse {};
 			class uh1b {};
-			class uh1c {};
 			class uh1d {};
-			class uh1f {};
+			class uh1ef {};
 			class ch47 : ch47 {};
 			class ch34 {};
 		};
