@@ -536,13 +536,13 @@ class TigerForce
 
 class SASR
 {
-    name = "SASR";
-    icon = "custom\taskroster\nzsas_HL.paa";
-    shortname = "SASR";
+    name = "ANZAC";
+    icon = "custom\taskroster\BN_ANZAC_HL.paa";
+    shortname = "ANZAC";
     unit = "vn_b_men_army_01";
     color = "ColorUNKNOWN";
     colorRGBA[] = {0.7,0.6,0,1};
-    description = "NZ-SAS are an New Zealand and Australian themed Small Unit Tactics (SUT) Offshoot of the SAS.";
+    description = "Bro-Nation ANZAC - 1st Australian Task Force is a whitelisted ground infantry unit that operates in Bro-Nation Mike Force 1 and other Bro-Nation servers. The unit consist of two elements, the ANZAC Mike Force (inspired by 1RAR) and the ANZAC Spike Team (inspired by SASR and NZSAS).";
     
     class rolelimits 
     {
