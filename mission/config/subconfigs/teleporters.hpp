@@ -37,12 +37,12 @@ class objects
 
 	class vn_mf_macv_WL1_teleporter
 	{
-		destinations[] = {"quarterhorse_base", "7th_cav_base", "3rdMEU_base",  "arvn_base", "633rd_base", "quarterhorse_fsb"};
+		destinations[] = {"quarterhorse_base", "7th_cav_base", "3rdMEU_base",  "arvn_base", "633rd_base", "militarypolice_base"};
 	};
 
 	class vn_mf_macv_WL2_teleporter
 	{
-		destinations[] = {"sa_base", "satansangels_base", "muskets_base", "sasr_base",  "frogmen_base", "tigerforce_base",  "militarypolice_base"};
+		destinations[] = {"sa_base", "satansangels_base", "muskets_base", "sasr_base",  "frogmen_base", "tigerforce_base"};
 	};
 
 	class vn_mf_quarterhorse_teleporter
