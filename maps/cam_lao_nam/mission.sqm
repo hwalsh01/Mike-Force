@@ -20,14 +20,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=24966;
+		nextID=25070;
 	};
 	class Camera
 	{
-		pos[]={16005.644,49.193531,7007.6626};
-		dir[]={0.61696494,-0.27614087,0.73704964};
-		up[]={0.17730437,0.96108377,0.21181557};
-		aside[]={0.76686436,1.4618854e-007,-0.64192152};
+		pos[]={15875.813,47.926865,7432.811};
+		dir[]={-0.32871315,-0.51345277,0.79276615};
+		up[]={-0.19668734,0.85806793,0.47435346};
+		aside[]={0.9238165,2.5239569e-007,0.38305357};
 	};
 };
 binarizationWanted=0;
@@ -400,8 +400,8 @@ class CustomAttributes
 		name="Multiplayer";
 		class Attribute0
 		{
-			property="ReviveRequiredItems";
-			expression="false";
+			property="SharedObjectives";
+			expression="if (isMultiplayer) then {[_value] spawn bis_fnc_sharedObjectives;};";
 			class Value
 			{
 				class data
@@ -451,8 +451,8 @@ class CustomAttributes
 		};
 		class Attribute4
 		{
-			property="SharedObjectives";
-			expression="if (isMultiplayer) then {[_value] spawn bis_fnc_sharedObjectives;};";
+			property="ReviveRequiredItems";
+			expression="false";
 			class Value
 			{
 				class data
@@ -19000,7 +19000,7 @@ class Mission
 							name="duty_officer_mikeforce";
 							type="mil_dot";
 							colorName="ColorWhite";
-							angle=1.7836159;
+							angle=1.7836158;
 							id=7545;
 							atlOffset=0.49795628;
 						};
@@ -19079,7 +19079,7 @@ class Mission
 							name="mf_respawn_3rdMEU";
 							text="@STR_vn_mf_respawn_3rdMEU";
 							type="Empty";
-							angle=7.0684581;
+							angle=7.0684576;
 							id=3618;
 							atlOffset=2.1330757;
 						};
@@ -19110,7 +19110,7 @@ class Mission
 							dataType="Object";
 							class PositionInfo
 							{
-								position[]={15830.71,15.075032,7503.3926};
+								position[]={15830.587,15.078076,7502.5781};
 								angles[]={0,1.7007279,0};
 							};
 							side="Empty";
@@ -19259,7 +19259,7 @@ class Mission
 							dataType="Object";
 							class PositionInfo
 							{
-								position[]={15830.762,14.976955,7503.1519};
+								position[]={15830.639,14.98,7502.3374};
 								angles[]={0,4.803278,0};
 							};
 							side="Empty";
@@ -19270,7 +19270,6 @@ class Mission
 							};
 							id=18592;
 							type="Land_vn_b_helipad_01";
-							atlOffset=-0.0030441284;
 							class CustomAttributes
 							{
 								class Attribute0
@@ -19551,7 +19550,7 @@ class Mission
 								position[]={15869.092,15.214999,7492.5762};
 								angles[]={0,2.685416,0};
 							};
-							init="['usmc_grnd_firesupport_heavy_custom', 0] call vn_mf_fnc_veh_asset_3DEN_spawn_point";
+							init="['usmc_grnd_combined_custom', 0] call vn_mf_fnc_veh_asset_3DEN_spawn_point";
 							id=18602;
 							type="Logic";
 							atlOffset=0.23499966;
@@ -19564,7 +19563,7 @@ class Mission
 								position[]={15869.71,15.214999,7504.0142};
 								angles[]={0,5.7572651,0};
 							};
-							init="['usmc_grnd_firesupport_heavy_custom', 0] call vn_mf_fnc_veh_asset_3DEN_spawn_point";
+							init="['usmc_grnd_combined_custom', 0] call vn_mf_fnc_veh_asset_3DEN_spawn_point";
 							id=18603;
 							type="Logic";
 							atlOffset=0.23499966;
@@ -19577,7 +19576,7 @@ class Mission
 								position[]={15868.18,15.214999,7472.7412};
 								angles[]={0,1.0953511,0};
 							};
-							init="['usmc_grnd_transport_light_custom', 0] call vn_mf_fnc_veh_asset_3DEN_spawn_point";
+							init="['usmc_grnd_combined_custom', 0] call vn_mf_fnc_veh_asset_3DEN_spawn_point";
 							id=18604;
 							type="Logic";
 							atlOffset=0.23499966;
@@ -19590,7 +19589,7 @@ class Mission
 								position[]={15868.853,15.214999,7481.9971};
 								angles[]={0,1.1530693,0};
 							};
-							init="['usmc_grnd_transport_light_custom', 0] call vn_mf_fnc_veh_asset_3DEN_spawn_point";
+							init="['usmc_grnd_combined_custom', 0] call vn_mf_fnc_veh_asset_3DEN_spawn_point";
 							id=18605;
 							type="Logic";
 							atlOffset=0.23499966;
@@ -21348,7 +21347,7 @@ class Mission
 							name="supply_officer_initial_6";
 							text="Supply Officer 6";
 							type="Empty";
-							angle=138.95795;
+							angle=138.95793;
 							id=15094;
 							atlOffset=-11.857793;
 						};
@@ -21601,7 +21600,7 @@ class Mission
 							class PositionInfo
 							{
 								position[]={15938.656,1.9939761,8147.2007};
-								angles[]={0,4.6683679,-0};
+								angles[]={0,4.6683679,0};
 							};
 							side="Empty";
 							flags=1;
@@ -21645,7 +21644,7 @@ class Mission
 						};
 					};
 					id=18321;
-					atlOffset=5.703064;
+					atlOffset=6.9571114;
 				};
 				class Item5
 				{
@@ -36135,7 +36134,7 @@ class Mission
 				};
 			};
 			id=18339;
-			atlOffset=1.4635077;
+			atlOffset=1.4636154;
 		};
 		class Item297
 		{

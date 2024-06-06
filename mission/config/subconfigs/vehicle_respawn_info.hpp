@@ -1270,9 +1270,9 @@ class spawn_point_types {
 
 	// usmc ///////////////////////////////////////////////////////////////////////
 
-	class usmc_grnd_transport_light_custom {
+	class usmc_grnd_combined_custom {
 
-		name = "Transport (Light/Trucks) [USMC]";
+		name = "Ground Vehicles [USMC]";
 		respawnType = SPAWN_TYPE_RESPAWN;
 		time = SPAWN_TIME_MEDIUM;
 		lockTeams[] = LOCKED_USMC;
@@ -1301,17 +1301,6 @@ class spawn_point_types {
 					"vn_b_wheeled_m151_mg_04_usmc",
 				};
 			};
-		};
-	};
-
-	class usmc_grnd_firesupport_heavy_custom {
-
-		name = "Armor [USMC]";
-		respawnType = SPAWN_TYPE_WRECK;
-		time = SPAWN_TIME_LONG;
-		lockTeams[] = LOCKED_USMC;
-
-		class categories {
 			class m113 {
 				name = "APC";
 				icon = VEHICLE_ICON_ARMOUR;
