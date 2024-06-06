@@ -8,7 +8,7 @@
 	{},	// Code executed when action starts
 	{},	// Code executed on every progress tick
 	{
-		[cursorObject] remoteExec ["vn_mf_fnc_reveal_supply_line", 2];
+		[cursorObject, player] remoteExec ["vn_mf_fnc_sites_remoteactions_reveal_intel", 2];
 	},// Code executed on completion
 	{},	// Code executed on interrupted
 	[],													// Arguments passed to the scripts as _this select 3

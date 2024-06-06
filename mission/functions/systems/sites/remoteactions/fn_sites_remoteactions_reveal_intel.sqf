@@ -1,4 +1,22 @@
-params ["_intel"];
+/*
+	File: sites_remoteactions_reveal_intel.sqf
+	Author: Cerebral
+	Modified: 'DJ' Dijksterhuis
+	Public: No
+	
+	Description:
+		Reveals all the site primary markers on map for a specific 'supply line'.
+	
+	Parameter(s): none
+	
+	Returns:
+	
+	Example(s):
+		[_object, _player] call vn_mf_fnc_sites_remoteactions_reveal_intel;
+*/
+
+
+params ["_intel", "_player"];
 
 private _intelType = typeOf _intel;
 private _sites = [];

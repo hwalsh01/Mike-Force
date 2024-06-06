@@ -29,7 +29,7 @@ params ["_pos"];
 		private _sitePos = getPos _siteStore;
 		private _spawnPos = _sitePos;
 
-		private _radarObjs = [_spawnPos] call vn_mf_fnc_create_radar_buildings;
+		private _radarObjs = [_spawnPos] call vn_mf_fnc_create_compositions_radar;
 		
 		{
 			if(_x isKindOf "StaticWeapon" || _x isKindOf "LandVehicle" || _x isKindOf "Air" || typeOf _x in ['Land_Net_Fence_Gate_F'] || _x isKindOf "Building") then {

@@ -18,7 +18,7 @@ if(_tunnel isEqualTo 0)then {_tunnelAlpha=0};
 		private _sitePos = getPos _siteStore;
 		private _spawnPos = _sitePos;
 
-		private _result = [_spawnPos] call vn_mf_fnc_create_tunnel_buildings;
+		private _result = [_spawnPos] call vn_mf_fnc_create_compositions_tunnel;
 		private _createdThings = _result select 0;
 
 		private _markerPos = _spawnPos getPos [10 + random 20, random 360];
