@@ -281,7 +281,7 @@ class CfgFunctions
 		}
 		
 		// compositions detailing all the objects at the site
-		class system_sites_compositions
+		class system_sites_create_compositions
 		{
 			file = "functions\systems\sites\create\compositions";
 			class sites_create_compositions_aa {};
@@ -298,7 +298,7 @@ class CfgFunctions
 		}
 
 		// creating individual sites using main sites code and compositions
-		class system_sites_createsite
+		class system_sites_create_site
 		{
 			file = "functions\systems\sites\create\site";
 
