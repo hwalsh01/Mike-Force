@@ -309,8 +309,11 @@ class CfgNotifications
 	{
 		title = $STR_vn_mf_notification_title_admin_log;
 		description = "%1";
-		priority = 8;
-		duration = 10;
+		// @dijksterhuis: Reduced priority because there are so many notifications
+		priority = 1;
+		sound = ""; // testing
+		soundClose = "";
+		duration = 3;
 		color[] = {0,0.8,0.8,1};
 		iconPicture = "\A3\ui_f\data\Map\Markers\Military\warning_ca.paa";
 	};
