@@ -158,6 +158,7 @@ class CfgFunctions
 		class system_actions {
 			file = "functions\systems\actions";
 			class action_init {};
+			class action_vehspawner_show_spawn_point {};
 			class action_destroy_respawn {};
 			class action_destroy_task {};
 			class action_gather_intel {};
