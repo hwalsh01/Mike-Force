@@ -703,10 +703,10 @@ class spawn_point_types {
 				vehicles[] = {
 					"vn_b_air_oh6a_01",
 					"vn_b_air_oh6a_02",
+					"vn_b_air_uh1c_07_02",
+					"vn_b_air_uh1d_02_02",					
 					"vn_b_air_ch47_01_02",
 					"vn_b_air_ch47_03_02",
-					"vn_b_air_uh1c_07_02",
-					"vn_b_air_uh1d_02_02",
 				};
 			};
 		};
@@ -1227,12 +1227,52 @@ class spawn_point_types {
 			};
 		};
 	};
+	class udt_boats_small {
+
+		name = "Small Boats [UDT]";
+		respawnType = SPAWN_TYPE_RESPAWN;
+		time = SPAWN_TIME_SHORT;
+		lockTeams[] = LOCKED_UDT;
+
+		class categories {
+			class pbr {
+				name = "PBR";
+				icon = VEHICLE_ICON_BOAT;
+				vehicles[] = {
+					"vn_b_boat_12_01",
+					"vn_b_boat_12_02",
+					"vn_b_boat_12_03",
+					"vn_b_boat_12_04",
+					"vn_b_boat_13_01",
+					"vn_b_boat_13_02",
+					"vn_b_boat_13_03",
+					"vn_b_boat_13_04",
+				};
+			};
+			class boat {
+				name = "Stab";
+				icon = VEHICLE_ICON_BOAT;
+				vehicles[] = {
+					"vn_b_boat_09_01",
+					"vn_b_boat_10_01",
+					"vn_b_boat_11_01",
+				};
+			};
+			class RHIB {
+				name = "RHIB";
+				icon = VEHICLE_ICON_BOAT;
+				vehicles[] = {
+					"B_Boat_Transport_01_F",
+				};
+			};
+		};
+	};
 
 	// usmc ///////////////////////////////////////////////////////////////////////
 
-	class usmc_grnd_transport_light_custom {
+	class usmc_grnd_combined_custom {
 
-		name = "Transport (Light/Trucks) [USMC]";
+		name = "Ground Vehicles [USMC]";
 		respawnType = SPAWN_TYPE_RESPAWN;
 		time = SPAWN_TIME_MEDIUM;
 		lockTeams[] = LOCKED_USMC;
@@ -1261,17 +1301,6 @@ class spawn_point_types {
 					"vn_b_wheeled_m151_mg_04_usmc",
 				};
 			};
-		};
-	};
-
-	class usmc_grnd_firesupport_heavy_custom {
-
-		name = "Armor [USMC]";
-		respawnType = SPAWN_TYPE_WRECK;
-		time = SPAWN_TIME_LONG;
-		lockTeams[] = LOCKED_USMC;
-
-		class categories {
 			class m113 {
 				name = "APC";
 				icon = VEHICLE_ICON_ARMOUR;
