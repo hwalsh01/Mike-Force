@@ -913,12 +913,12 @@ class spawn_point_types {
 
 	// berchesgarden extras
 	class blackhorse_grnd_transport_heavy: unlocked_grnd_transport_heavy {
-		name = "APCs/Trucks [Blackhorse]"
+		name = "APCs/Trucks [Blackhorse]";
 		lockTeams[] = LOCKED_BLACKHORSE;
 	};
 
 	class blackhorse_grnd_utility: unlocked_grnd_utility {
-		name = "Trucks (Utility/Transport) [Blackhorse]"
+		name = "Trucks (Utility/Transport) [Blackhorse]";
 		lockTeams[] = LOCKED_BLACKHORSE;
 	};
 
