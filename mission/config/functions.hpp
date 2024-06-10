@@ -64,6 +64,15 @@ class CfgFunctions
 			class update_channels {};
 		};
 
+		class core_teams_comms_switchers
+		{
+			file = "functions\core\teams\comms_switchers";
+			class teams_comms_switchers_onoff_air {};
+			class teams_comms_switchers_onoff_cff {};
+			class teams_comms_switchers_onoff_ground {};
+			class teams_comms_switchers_onoff {};
+		};
+
 		class core_workarounds
 		{
 			file = "functions\core\workarounds";

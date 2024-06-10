@@ -23,6 +23,7 @@ class para_keydown_open_wheel_menu
 	displayName = $STR_vn_mf_keybindings_selector;
 	access = 1;
 };
+/*
 class para_vote_1
 {
 	defaultKey = DIK_F1;
@@ -56,6 +57,7 @@ class para_vote_3
 	displayName = "Open Voting Menu";
 	access = 1;
 };
+*/
 class vn_mf_interactionOverlay_toggle
 {
 	defaultKey = DIK_7; // 7
@@ -146,5 +148,41 @@ class vn_mf_release_cargo
 	function = "vn_mf_fnc_release_cargo";
 	down = 0;
 	displayName = "Release Cargo (ADVSL)";
+	access = 1;
+};
+
+class vn_mf_channel_switcher_onoff_ground
+{
+	defaultKey = DIK_F1;
+	shift = "false";
+	ctrl = "false";
+	alt = "false";
+	function = "vn_mf_fnc_teams_comms_switchers_onoff_ground";
+	down = 0;
+	displayName = "Mute/Unmute 'Ground'";
+	access = 1;
+};
+
+class vn_mf_channel_switcher_onoff_air
+{
+	defaultKey = DIK_F2;
+	shift = "false";
+	ctrl = "false";
+	alt = "false";
+	function = "vn_mf_fnc_teams_comms_switchers_onoff_air";
+	down = 0;
+	displayName = "Mute/Unmute 'Air'";
+	access = 1;
+};
+
+class vn_mf_channel_switcher_onoff_cff
+{
+	defaultKey = DIK_F3;
+	shift = "false";
+	ctrl = "false";
+	alt = "false";
+	function = "vn_mf_fnc_teams_comms_switchers_onoff_cff";
+	down = 0;
+	displayName = "Mute/Unmute 'CFF'";
 	access = 1;
 };

@@ -1,3 +1,14 @@
+
+#define NOTIFY_COLOR_BLACK {0,0,0,1}
+#define NOTIFY_COLOR_WHITE {1,1,1,1}
+#define NOTIFY_COLOR_WHITE_DULL {0.9,0.9,0.9,1}
+#define NOTIFY_COLOR_ORANGE {0.8,0.5,0,1}
+#define NOTIFY_COLOR_RED {0.8,0.06,0,1}
+#define NOTIFY_COLOR_RED_HEAVY {1,0.3,0.2,1}
+#define NOTIFY_COLOR_GREEN {0.7,1,0.3,1}
+#define NOTIFY_COLOR_GREEN_HEAVY {0,1,0,0.6}
+
+
 class CfgNotifications
 {
 	#include "..\paradigm\Client\configs\notifications.hpp"
@@ -303,6 +314,26 @@ class CfgNotifications
 		duration = 10;
 		color[] = {1,0.3,0.2,1};
 		iconPicture = "\A3\ui_f\data\map\mapcontrol\taskIconFailed_ca.paa";
+	};
+
+	class CommsEnabled
+	{
+		title = "Comms";
+		description = "Enabled/Switched ::: %1";
+		sound = "";
+		soundClose = "";
+		priority = 9;
+		duration = 0.8;
+		color[] = NOTIFY_COLOR_WHITE_DULL;
+		iconPicture = "\A3\ui_f\data\map\markers\military\pickup_CA.paa";
+	};
+
+	class CommsDisabled : CommsEnabled
+	{
+		title = "Comms";
+		description = "Disabled ::: %1";
+		color[] = NOTIFY_COLOR_BLACK;
+		iconPicture = "\A3\ui_f\data\map\markers\military\pickup_CA.paa";
 	};
 
 	class AdminLog
