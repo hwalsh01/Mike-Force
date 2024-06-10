@@ -71,6 +71,7 @@ class CfgFunctions
 			class teams_comms_switchers_onoff_cff {};
 			class teams_comms_switchers_onoff_ground {};
 			class teams_comms_switchers_onoff {};
+			class teams_comms_switchers_off_all {};
 		};
 
 		class core_workarounds
