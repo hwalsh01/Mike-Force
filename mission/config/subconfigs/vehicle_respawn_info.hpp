@@ -736,7 +736,7 @@ class spawn_point_types {
 	class arvn_grnd_firesupport_light_custom {
 
 		name = "Fire Support [ARVN]";
-		respawnType = SPAWN_TYPE_WRECK;
+		respawnType = SPAWN_TYPE_RESPAWN;
 		time = SPAWN_TIME_MEDIUM;
 		lockTeams[] = LOCKED_ARVN;
 
@@ -755,7 +755,7 @@ class spawn_point_types {
 
 	class arvn_grnd_firesupport_heavy_custom {
 		name = "Fire Support (Heavy) [ARVN]";
-		respawnType = SPAWN_TYPE_WRECK;
+		respawnType = SPAWN_TYPE_RESPAWN;
 		time = SPAWN_TIME_LONG;
 		lockTeams[] = LOCKED_ARVN;
 		class categories {
