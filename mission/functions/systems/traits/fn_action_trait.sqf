@@ -25,7 +25,12 @@ private _allTraits = "true" configClasses (missionConfigFile >> "Gamemode" >> "T
 private _airSupport = ["enable_air_support", 1] call BIS_fnc_getParamValue;
 private _artySupport = ["enable_arty_support", 1] call BIS_fnc_getParamValue;
 {
+
 	private _agent = _x;
+	// reset any existing client-side wheel menu options
+	// doing this means we can reload the wheel menu with the correct roles
+	// once a player changes team etc.
+	_agent setVariable ["para_wheel_menu_dyn_actions", []];
 	{
         private _traitConfig = _x; 
         private _trait = configName _traitConfig;
