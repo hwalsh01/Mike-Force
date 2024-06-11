@@ -1,4 +1,105 @@
 // limits and vanilla/custom trait values
+
+/*
+
+// this is used in A LOT of places as a look up. Choose the name wisely.
+class TeamName
+{
+    // long display name in the UI
+    name = "Mike Force [Infantry]";
+
+    // Picture shown in the UI
+    icon = "\vn\ui_f_vietnam\ui\taskroster\img\logos\Logo_MikeForce_HL.paa";
+
+    // short display name in the UI
+    shortname = "Mike Force";
+
+    // default unit players load in with
+    unit = "vn_b_men_army_01";
+
+    // color shown as on map
+    color = "ColorBlue";
+
+    // RGBA values for color... not sure where this is used.
+    colorRGBA[] = {0, 0, 1, 1};
+
+    // description text shown in the UI
+    description = "Sweep and clear areas; assault objectives and defend friendly positions.";
+
+    // how many players can take these roles at a duty officer
+    class rolelimits
+    {
+        medic = 40;
+        engineer = 40;
+        explosiveSpecialist = 10;
+        vn_artillery = 0;
+    };
+
+    // default traits that get assigned to the player when switching to this team
+    // for information on base game traits, see here:
+    // https://community.bistudio.com/wiki/setUnitTrait
+    class defaultTraits
+    {
+        // A lower value means the unit is harder to spot by AI
+        camouflageCoef = 0.8;
+
+        // A lower value means the unit is harder to hear by AI
+        audibleCoef = 0.6;
+
+        // Equipment weight multiplier affecting fatigue and stamina
+        // The higher the value for the loadCoef the less stamina a unit has.
+        // Negative values will dramatically increase the stamina actually to
+        // a point where it extends the stamina bar.
+        loadCoef = 1;
+
+        // Ability to partially repair vehicles with toolkit
+        // Can also use the paradigm building system
+        engineer = false;
+
+        // Ability to defuse mines with toolkit
+        explosiveSpecialist = false;
+
+        // Ability to treat self and others with medikit
+        // Can also withstand without any firstaid kits
+        medic = false;
+
+        // Ability to hack enemy and frendly drones
+        // not used in Mike Force, but required for scripting purposes
+        UAVHacker = false;
+
+        // can use the SOG PF artillery/air support module.
+        // We've diabled this in bro nation as it causes gameplay issues.
+        // do not enable for anyone
+        vn_artillery = false;
+
+        // whether tracker teams should be sent out to harass these players
+        harassable = true;
+
+        // can use the scout feature to find sites in base Mike Force
+        // for bro-nation, can use the scout function to find the intel at
+        // HQ/Factory sites
+        // site scouting is ignored for bro-nation, as the feature is over
+        // powered.
+        scout = true;
+
+        // can use the scout feature to find multiple sites in base Mike Force
+        // ignored for bro-nation, the scout feature is over powered.
+        scoutMultiple = true;
+
+        // players can building objects via paradigm build system in 3 hits
+        // instead of 5.
+        // players can destroy objects via paradigm build system in 3 hits
+        // instead of 5.
+        increasedBuildRate = false;
+    };
+
+    //Function Calls on team Join.
+    // not used.
+    onJoin = "";
+    onLeave = "";
+};
+*/
+
 class MikeForce
 {
     name = "Mike Force [Infantry]";
