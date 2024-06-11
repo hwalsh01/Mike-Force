@@ -144,7 +144,7 @@ class CfgNotifications
 	class TrainingFailedOneTraitPerTeam
 	{
 		title = $STR_vn_mf_notification_title_training;
-		description = $STR_vn_mf_onetraitperteam;
+		description = "%1 is limited to %2 player(s) with this role and %3 player(s) already have it.";
 		priority = 8;
 
 		color[] = {1,0.3,0.2,1};
@@ -155,6 +155,16 @@ class CfgNotifications
 	{
 		title = $STR_vn_mf_notification_title_training;
 		description = $STR_vn_mf_onetraitperplayer;
+		priority = 8;
+
+		color[] = {1,0.3,0.2,1};
+		iconPicture = "\A3\ui_f\data\map\mapcontrol\taskIconFailed_ca.paa";
+	};
+
+	class TrainingFailedTeamNotAllowedTrait
+	{
+		title = $STR_vn_mf_notification_title_training;
+		description = "%1 is not allowed to select this role.";
 		priority = 8;
 
 		color[] = {1,0.3,0.2,1};

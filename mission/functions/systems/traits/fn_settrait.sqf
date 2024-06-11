@@ -42,7 +42,8 @@ if !(vn_mf_duty_officers inAreaArray [getPos _player, 20, 20, 0, false, 20] isEq
 	private _group_ID = _player getVariable ["vn_mf_db_player_group", "FAILED"];
 	// check if group is over limit for trait
 	private _limit = getNumber (missionConfigFile >> "gamemode" >> "teams" >> _group_ID >> "rolelimits" >> _trait);
-	private _allowed = (count (_selected_traits select {_x getVariable ["vn_mf_db_player_group", "FAILED"] isEqualTo _group_ID}) < _limit);
+	private _count = count (_selected_traits select {_x getVariable ["vn_mf_db_player_group", "FAILED"] isEqualTo _group_ID});
+	private _allowed = _count < _limit;
 
 	_player_current_trait = _player getVariable ["vn_mf_dyn_trait_set", ""];
 
@@ -104,7 +105,13 @@ if !(vn_mf_duty_officers inAreaArray [getPos _player, 20, 20, 0, false, 20] isEq
 	}
 	else
 	{
-		{["TrainingFailedOneTraitPerTeam"] call para_c_fnc_show_notification} remoteExecCall ["call",_player];
+		private _teamName = getText (missionConfigFile >> "gamemode" >> "teams" >> _group_ID >> "shortname");
+		if (_limit < 1) then {
+			["TrainingFailedTeamNotAllowedTrait", [_teamName]] remoteExecCall ["para_c_fnc_show_notification", _player];
+		} else {
+			private _args = [_teamName, format ["%1", _limit], format ["%1", _count]];
+			["TrainingFailedOneTraitPerTeam", _args] remoteExecCall ["para_c_fnc_show_notification", _player];
+		};
 	};
 
 	[_trait,_allowed] call BIS_fnc_log;
