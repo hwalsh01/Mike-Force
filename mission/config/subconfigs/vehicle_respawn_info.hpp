@@ -598,7 +598,7 @@ class spawn_point_types {
 			};
 		};
 	};
-
+/*
 	class 633rd_air_transport_heavy {
 
 		name = "Helicopters (Heavy) [633rd]";
@@ -631,26 +631,49 @@ class spawn_point_types {
 			};
 		};
 	};
-
+*/
 	class 633rd_air_transport_custom {
 
-		name = "Helicopters (Transport) [633rd]";
+		name = "Helicopters [633rd]";
 		respawnType = SPAWN_TYPE_RESPAWN;
 		time = SPAWN_TIME_MEDIUM;
 		lockTeams[] = LOCKED_633RD;
 
 		class categories {
-			class 633rd {
-				name = "633rd CSG";
+			class utility {
+				name = "Utility Lift";
 				icon = VEHICLE_ICON_HELO;
 				vehicles[] = {
-					"vn_b_air_uh1f_01_03",
+					"vn_b_air_oh6a_01",
 					"vn_b_air_uh1d_02_03",
+					"vn_b_air_uh1f_01_03",
+				};
+			};		
+			class medical {
+				name = "Medical Lift";
+				icon = VEHICLE_ICON_HELO;
+				vehicles[] = {
+					"vn_b_air_uh1b_01_03",
+					"vn_b_air_uh1d_01_03",
+					"vn_b_air_ch47_02_01",
 				};
 			};
+			class heavy {
+				name = "Heavy Lift";
+				icon = VEHICLE_ICON_HELO;
+				vehicles[] = {
+					"vn_b_air_ch47_01_01",
+					"vn_b_air_ch47_03_01",
+					"vn_b_air_ch47_04_01",
+					"vn_i_air_ch34_01_02",
+					"vn_i_air_ch34_02_02",
+					"vn_b_air_ch34_01_01",
+					"vn_b_air_ch34_03_01",
+				};
+			};	
 		};
 	};
-
+/*
 	class 633rd_air_dustoff_medical_custom {
 
 		name = "Helicopters (Dust-off/Medevac) [633rd]";
@@ -675,7 +698,7 @@ class spawn_point_types {
 				};
 			};
 		};
-	};
+	};*/
 
 	// 7th cav //////////////////////////////////////////////////////////////////////////
 
