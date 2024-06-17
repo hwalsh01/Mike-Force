@@ -714,6 +714,26 @@ class spawn_point_types {
 
 	// arvn ////////////////////////////////////////////////////////////////////////////////
 
+	class arvn_statics_custom {
+
+		name = "Static Weapons [ARVN]";
+		respawnType = SPAWN_TYPE_RESPAWN;
+		time = SPAWN_TIME_SHORT;
+		lockTeams[] = LOCKED_ARVN;
+
+		class categories {
+			class static {
+				name = "Static Weapons";
+				icon = VEHICLE_ICON_CAR;
+				vehicles[] = {
+					"vn_i_static_m45",
+					"vn_i_static_tow",
+					"vn_i_static_m101_01",
+				};
+			};
+		};
+	};
+
 	class arvn_grnd_transport_light {
 
 		name = "Transport (Light) [ARVN]";
