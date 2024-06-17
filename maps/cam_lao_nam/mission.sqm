@@ -5,14 +5,14 @@ class EditorData
 	angleGridStep=0.2617994;
 	scaleGridStep=0.1;
 	autoGroupingDist=10;
-	toggles=1610;
+	toggles=586;
 	mods[]=
 	{
 		"3denEnhanced"
 	};
 	class ItemIDProvider
 	{
-		nextID=18742;
+		nextID=18755;
 	};
 	class MarkerIDProvider
 	{
@@ -20,14 +20,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=25174;
+		nextID=25278;
 	};
 	class Camera
 	{
-		pos[]={15468.723,127.54588,6827.7939};
-		dir[]={0.91734082,-0.23317632,0.32268545};
-		up[]={0.2199671,0.97243321,0.077376053};
-		aside[]={0.33183157,-8.4910425e-008,-0.94334352};
+		pos[]={15500.362,140.98941,6846.4482};
+		dir[]={0.88175386,-0.25915,0.39415416};
+		up[]={0.23658986,0.96583676,0.1057583};
+		aside[]={0.40809569,-8.3877239e-008,-0.91294259};
 	};
 };
 binarizationWanted=0;
@@ -400,8 +400,8 @@ class CustomAttributes
 		name="Multiplayer";
 		class Attribute0
 		{
-			property="ReviveRequiredItems";
-			expression="false";
+			property="SharedObjectives";
+			expression="if (isMultiplayer) then {[_value] spawn bis_fnc_sharedObjectives;};";
 			class Value
 			{
 				class data
@@ -451,8 +451,8 @@ class CustomAttributes
 		};
 		class Attribute4
 		{
-			property="SharedObjectives";
-			expression="if (isMultiplayer) then {[_value] spawn bis_fnc_sharedObjectives;};";
+			property="ReviveRequiredItems";
+			expression="false";
 			class Value
 			{
 				class data
@@ -4957,7 +4957,7 @@ class Mission
 							};
 							id=16872;
 							type="Land_Billboard_F";
-							atlOffset=-0.66499996;
+							atlOffset=-0.66500092;
 							class CustomAttributes
 							{
 								class Attribute0
@@ -6693,11 +6693,11 @@ class Mission
 						};
 					};
 					id=18329;
-					atlOffset=0.25417233;
+					atlOffset=0.29567719;
 				};
 			};
 			id=686;
-			atlOffset=71.359627;
+			atlOffset=85.813644;
 		};
 		class Item74
 		{
@@ -19033,7 +19033,7 @@ class Mission
 							name="duty_officer_mikeforce";
 							type="mil_dot";
 							colorName="ColorWhite";
-							angle=1.7836157;
+							angle=1.7836151;
 							id=7545;
 							atlOffset=0.49795628;
 						};
@@ -20034,7 +20034,7 @@ class Mission
 					name="UDT";
 					class Entities
 					{
-						items=68;
+						items=70;
 						class Item0
 						{
 							dataType="Object";
@@ -21290,7 +21290,7 @@ class Mission
 							dataType="Logic";
 							class PositionInfo
 							{
-								position[]={15903.087,-0.0004234314,8053.8369};
+								position[]={15898.807,-0.0004234314,8057.2368};
 								angles[]={0,6.2417769,0};
 							};
 							areaSize[]={10.703,0,22.496};
@@ -21298,7 +21298,7 @@ class Mission
 							flags=1;
 							id=18258;
 							type="ModuleHideTerrainObjects_F";
-							atlOffset=3.0181985;
+							atlOffset=3.4292374;
 							class CustomAttributes
 							{
 								class Attribute0
@@ -21333,13 +21333,13 @@ class Mission
 						class Item50
 						{
 							dataType="Marker";
-							position[]={15966.071,12.260254,7985.4336};
+							position[]={15962.349,12.260254,7982.4502};
 							name="mf_respawn_frogmen";
 							text="@STR_vn_mf_respawn_frogmen";
 							type="Empty";
-							angle=359.94183;
+							angle=74.192497;
 							id=4473;
-							atlOffset=-3.8146973e-006;
+							atlOffset=0.010865211;
 						};
 						class Item51
 						{
@@ -21675,9 +21675,55 @@ class Mission
 							type="Logic";
 							atlOffset=6.835;
 						};
+						class Item68
+						{
+							dataType="Marker";
+							position[]={15915.553,2.507,8025.0703};
+							name="mf_respawn_dock";
+							text="Boat Dock";
+							type="Empty";
+							angle=359.94193;
+							id=18742;
+							atlOffset=0.57476974;
+						};
+						class Item69
+						{
+							dataType="Object";
+							class PositionInfo
+							{
+								position[]={15939.204,1.8381877,8161.4487};
+								angles[]={0.013334315,6.2195506,0.00143117};
+							};
+							side="Empty";
+							class Attributes
+							{
+								name="vn_mf_dock_teleporter";
+								disableSimulation=1;
+							};
+							id=18743;
+							type="Land_vn_b_prop_mapstand_01";
+							atlOffset=7.681838;
+							class CustomAttributes
+							{
+								class Attribute0
+								{
+									property="allowDamage";
+									expression="_this allowdamage _value;";
+									class Value
+									{
+										class data
+										{
+											singleType="BOOL";
+											value=0;
+										};
+									};
+								};
+								nAttributes=1;
+							};
+						};
 					};
 					id=18321;
-					atlOffset=6.9571114;
+					atlOffset=0.32703948;
 				};
 				class Item5
 				{
@@ -36211,7 +36257,7 @@ class Mission
 				};
 			};
 			id=18339;
-			atlOffset=1.4659882;
+			atlOffset=1.4659662;
 		};
 		class Item297
 		{
