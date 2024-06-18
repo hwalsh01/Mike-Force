@@ -404,4 +404,21 @@ class CfgNotifications
 		iconPicture = "\A3\ui_f\data\map\mapcontrol\taskIconDone_ca.paa";
 	};
 
+	class NoDriverForSpawnerLocator
+	{
+		title = "Locating Vehicle Spawner";
+		description = "You cannot locate a vehicle's spawner if you are not the driver.";
+		priority = 1;
+		sound = "";
+		soundClose = "";
+		duration = 3;
+		color[] = NOTIFY_COLOR_RED_HEAVY;
+		iconPicture = "\A3\ui_f\data\map\mapcontrol\taskIconFailed_ca.paa";
+	};
+
+	class NoVehicleForSpawnerLocator : NoDriverForSpawnerLocator
+	{
+		description = "Cannot locate vehicle's spawner because you are not in a vehicle.";
+	};
+
 };
