@@ -55,11 +55,15 @@ if (_state isEqualTo "REPAIRING") exitWith {
 };
 
 if (_state isEqualTo "RESPAWNING") exitWith {
-	format ["The vehicle is currently respawning, and will be finished in %1.", call _fnc_getTimeRemaining];
+	format ["The %1 will begin respawning in %2.", _vehicleName, call _fnc_get_timeRemaining];
 };
 
 if (_state isEqualTo "WRECKED") exitWith {
 	format ["The %1 is currently wrecked. Bringing the wreck to recovery point at the main base or a FOB. %2", _vehicleName, _vehiclePosDisplay];
+};
+
+if (_state isEqualTo "QUEUED") exitWith {
+	format ["The %1 is in the spawner queue and will appear shortly.", _vehicleName];
 };
 
 if (_state isEqualTo "DISABLED") exitWith {

@@ -199,4 +199,6 @@ if (
 	{(_spawnPoint get "status" getOrDefault ["finishesAt", 0]) < serverTime}
 ) then {
 	vn_mf_spawn_points_to_respawn pushBackUnique (_spawnPoint get "id");
+	// guarantee delivery exactly once to avoid attempting multiple vehicle spawns and lots of explosions.
+	[_spawnPoint] call vn_mf_fnc_veh_asset_set_queued;
 };
