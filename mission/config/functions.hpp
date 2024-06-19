@@ -64,6 +64,16 @@ class CfgFunctions
 			class update_channels {};
 		};
 
+		class core_teams_comms_switchers
+		{
+			file = "functions\core\teams\comms_switchers";
+			class teams_comms_switchers_onoff_air {};
+			class teams_comms_switchers_onoff_cff {};
+			class teams_comms_switchers_onoff_ground {};
+			class teams_comms_switchers_onoff {};
+			class teams_comms_switchers_off_all {};
+		};
+
 		class core_workarounds
 		{
 			file = "functions\core\workarounds";
@@ -158,6 +168,7 @@ class CfgFunctions
 		class system_actions {
 			file = "functions\systems\actions";
 			class action_init {};
+			class action_vehspawner_show_spawn_point {};
 			class action_destroy_respawn {};
 			class action_destroy_task {};
 			class action_gather_intel {};

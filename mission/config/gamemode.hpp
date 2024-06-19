@@ -88,10 +88,6 @@ class gamemode
 	{
 		#include "subconfigs\rehandler.hpp"
 	};
-	class vehicle_lock_info
-	{
-		#include "subconfigs\vehicle_lock_info.hpp"
-	};
 	class vehicle_respawn_info
 	{
 		#include "subconfigs\vehicle_respawn_info.hpp"

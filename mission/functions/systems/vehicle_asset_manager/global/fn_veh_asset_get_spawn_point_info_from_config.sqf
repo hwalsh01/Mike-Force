@@ -25,6 +25,67 @@ private _spawnPointInfo = createHashMap;
 _spawnPointInfo set ["name", getText (_config >> "name")];
 _spawnPointInfo set ["respawnType", getText (_config >> "respawnType")];
 _spawnPointInfo set ["time", getNumber (_config >> "time")];
+_spawnPointInfo set ["lockTeams", getArray (_config >> "lockTeams")];
+
+private _categoryConfigs = "true" configClasses (_config >> "categories");
+
+private _fnc_get_name = {
+    params ["_conf"];
+    getText (_x >> "name")
+};
+
+private _fnc_get_icon_from_config = {
+    params ["_conf"];
+    getText (_x >> "icon")
+};
+
+private _fnc_get_category_vehicles_from_config = {
+    params ["_conf"];
+    getArray (_x >> "vehicles")
+};
+
+private _categoriesHmap = createHashMap;
+
+_categoryConfigs select {
+    // ignore anything with empty name field or no vehicles
+    // probably an inherited class set to empty
+    private _hasName = !((getText (_x >> "name")) isEqualTo "");
+    private _hasVehicles = !((getArray (_x >> "vehicles")) isEqualTo []);
+
+    _hasName && _hasVehicles
+
+} apply {
+
+    // load the configs into a hashmap then load that into
+    // the top level hashmap
+    private _hmapCategory = createHashMap;
+
+    _hmapCategory set ["icon", getText (_x >> "icon")];
+    _hmapCategory set ["vehicles", getArray (_x >> "vehicles")];
+
+    _categoriesHmap set [getText (_x >> "name"), _hmapCategory];
+};
+
+_spawnPointInfo set ["categories", _categoriesHmap];
+
+private _vehicles = [];
+{(_y get "vehicles") apply {_vehicles pushBackUnique _x}} forEach (_spawnPointInfo get "categories");
+
+_spawnPointInfo set ["vehicles", _vehicles];
+
+_spawnPointInfo
+
+// ORIGINAL SGD IMPLENTATION
+
+/*
+params ["_config"];
+
+private _spawnPointInfo = createHashMap;
+
+_spawnPointInfo set ["name", getText (_config >> "name")];
+_spawnPointInfo set ["respawnType", getText (_config >> "respawnType")];
+_spawnPointInfo set ["time", getNumber (_config >> "time")];
+_spawnPointInfo set ["lockTeams", getArray (_config >> "lockTeams")];
 
 private _vehicleConfigs = [] call vn_mf_fnc_veh_asset_load_vehicle_configs;
 private _vehicles = [];
@@ -76,3 +137,5 @@ _spawnPointInfo set ["categories", _categories];
 _spawnPointInfo set ["vehicles", keys (_vehicles createHashMapFromArray [])];
 
 _spawnPointInfo
+
+*/

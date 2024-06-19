@@ -30,6 +30,9 @@ private _vehicleName = getText (configFile >> "CfgVehicles" >> _vehicleType >> "
 
 private _status = _spawnPoint getOrDefault ["status", createHashMap];
 private _state = _status getOrDefault ["state", "UNKNOWN"];
+private _vehiclePos = getPos _vehicle;
+private _vehiclePosDisplay = format ["Grid: %1 %2", floor ((_vehiclePos select 0) / 100), floor ((_vehiclePos select 1) / 100)];
+
 
 private _fnc_getTimeRemaining = {
 	private _endTime = _status getOrDefault ["finishesAt", 0];
@@ -44,7 +47,7 @@ private _fnc_getTimeRemaining = {
 };
 
 if (_state isEqualTo "IDLE") exitWith {
-	format ["%1 is currently deployed and not in use.", _vehicleName]
+	format ["%1 is currently deployed and not in use. %2", _vehicleName, _vehiclePosDisplay]
 };
 
 if (_state isEqualTo "REPAIRING") exitWith {
@@ -56,15 +59,15 @@ if (_state isEqualTo "RESPAWNING") exitWith {
 };
 
 if (_state isEqualTo "WRECKED") exitWith {
-	format ["The %1 is currently wrecked. The wreck needs bringing to a wreck recovery point at the main base or a FOB.", _vehicleName];
+	format ["The %1 is currently wrecked. Bringing the wreck to recovery point at the main base or a FOB. %2", _vehicleName, _vehiclePosDisplay];
 };
 
 if (_state isEqualTo "DISABLED") exitWith {
-	format ["The %1 is currently deployed. However, it's disabled and needs repairs from an engineer.", _vehicleName];
+	format ["The %1 is currently disabled, needs repairs from an engineer. %2", _vehicleName, _vehiclePosDisplay];
 };
 
 if (_state isEqualTo "ACTIVE") exitWith {
-	format ["The %1 is currently deployed and in use.", _vehicleName];
+	format ["The %1 is currently deployed and in use. %2", _vehicleName, _vehiclePosDisplay];
 };
 
 if (_state isEqualTo "ADMINLOCKED") exitWith {

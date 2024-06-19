@@ -26,14 +26,6 @@ _spawnPoint set ["lastClassSpawned", typeOf _vehicle];
 
 _vehicle addEventHandler ["RopeAttach", {[_this # 2] call vn_mf_fnc_veh_asset_unlock_vehicle}];
 
-//Handle vehicle team locking
-private _lockTeamArr = [];
-private _lockTeamConfig = missionConfigFile >> "gamemode" >> "vehicle_lock_info" >> typeOf _vehicle;
-if (isClass (_lockTeamConfig)) then {
-	private _lockTeam = getArray (_lockTeamConfig >> "lockTeam");
-	if !(count(_lockTeam) == 0) then {
-		_lockTeamArr pushBack _lockTeam;
-	};
-};
+private _lockTeamArr = _spawnPoint get "settings" getOrDefault ["lockTeams", []];
 
 [_vehicle, _lockTeamArr] call vn_mf_fnc_lock_vehicle_to_teams;
