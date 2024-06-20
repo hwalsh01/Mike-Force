@@ -407,7 +407,7 @@ class CfgNotifications
 	class NoDriverForSpawnerLocator
 	{
 		title = "Locating Vehicle Spawner";
-		description = "You cannot locate a vehicle's spawner if you are not the driver.";
+		description = "Cannot locate vehicle's spawner -- you are not the driver / pilot / co-pilot.";
 		priority = 1;
 		sound = "";
 		soundClose = "";
@@ -418,7 +418,7 @@ class CfgNotifications
 
 	class NoVehicleForSpawnerLocator : NoDriverForSpawnerLocator
 	{
-		description = "Cannot locate vehicle's spawner because you are not in a vehicle.";
+		description = "Cannot locate vehicle's spawner -- you are not driving a spawned vehicle.";
 	};
 
 };

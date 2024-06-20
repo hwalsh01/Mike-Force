@@ -19,14 +19,15 @@
 
 private _playerInVehicle = (vehicle player != player);
 private _playerIsDriver = ((assignedVehicleRole player select 0) == 'driver');
+private _playerIsCopilot = (getNumber ([_vehicle, _vehicle unitTurret _player] call BIS_fnc_turretConfig >> "isCopilot") > 0);
 private _vehicleIsVehAssetManaged = !(((vehicle player) getVariable ['veh_asset_spawnPointId', false]) isEqualTo false);
 private _draw3DInactive = ((player getVariable ['veh_asset_spawnPoint_draw3d_active', false]) isEqualTo false);
 
 // player not in a vehicle etc
-if !(_playerInVehicle && _vehicleIsVehAssetManaged) exitWith {["NoVehicleForSpawnerLocator", []] call para_c_show_notification}; 
+if !(_playerInVehicle && _vehicleIsVehAssetManaged) exitWith {["NoVehicleForSpawnerLocator", []] call para_c_fnc_show_notification}; 
 
 // player is not driver
-if !(_playerIsDriver) exitWith {["NoDriverForSpawnerLocator", []] call para_c_show_notification}; 
+if !(_playerIsDriver || _playerIsCopilot) exitWith {["NoDriverForSpawnerLocator", []] call para_c_fnc_show_notification}; 
 
 // icon currently drawn on screen, don't let players spam it
 if !(_draw3DInactive) exitWith {false};
@@ -41,27 +42,25 @@ player setVariable ["veh_asset_spawnPoint_draw3d_active", true];
 // spawn so we can sleep
 private _scriptHandle = [getPos player, _iconPos] spawn {
 
-	private _icon = "\A3\ui_f\data\map\markers\handdrawn\end_CA.paa";
-	private _colorRGBA = [1, 1, 1, 0.6];
-	private _posAGL = _thisArgs select 1;
-	private _iconWidth = 1;
-	private _iconAngle = 0,
-	private _iconText = "Vehicle's Spawn Point";
-	private _iconShadow = 2;
-	private _textSize = 0.035;
-	private _textFont = "RobotoCondensed";
-	private _textAlign = "center";
-	private _iconSideArrows = true;
-	private _textOffsetX = 0;
-	private _textOffsetY = 0;
-
 	private _eventHandlerId = addMissionEventHandler [
 		"draw3D",
 		{
+
 			drawIcon3D [
-				_icon, _colorRGBA, _posAGL, _iconWidth, _iconAngle,
-				_iconText, _iconShadow, _textSize, _textFont, _textAlign,
-				_iconSideArrows, _textOffsetX, _textOffsetY
+				"\A3\ui_f\data\map\markers\handdrawn\end_CA.paa",  // icon
+				[1, 1, 1, 0.6],  // color rgb-a
+				_thisArgs select 1,  // AGL position
+				1,  // width
+				1,  // height
+				0,  // angle
+				"Vehicle's Spawn Point",  // text
+				2,  // 0 - noshadow, 1 - shadow, 2 - outline
+				0.035,  // text size
+				"RobotoCondensed",  // font
+				"center",  // text align
+				true,  // drawSideArrows
+				0,  // text offset x
+				0  // text offset y
 			];
 		},
 		[_this select 0, _this select 1]
@@ -69,9 +68,10 @@ private _scriptHandle = [getPos player, _iconPos] spawn {
 	// wait then remove the event handler -- remove the icon from display
 	sleep 15;
 	removeMissionEventHandler ["draw3D", _eventHandlerId];
+	player setVariable ["veh_asset_spawnPoint_draw3d_active", false];
 };
 
 // once script is executed let player draw icon in ui again
-waitUntil { scriptDone _scriptHandle };
-player setVariable ["veh_asset_spawnPoint_draw3d_active", false];
+// waitUntil { scriptDone _scriptHandle };
+// player setVariable ["veh_asset_spawnPoint_draw3d_active", false];
 
