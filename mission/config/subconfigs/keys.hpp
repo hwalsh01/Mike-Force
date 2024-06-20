@@ -238,3 +238,15 @@ class vn_mf_toggle_hud
 	displayName = "Toggle HUD (Strimmer mode)";
 	access = 1;
 };
+
+class vn_mf_emotes
+{
+	defaultKey = DIK_F8;
+	shift = "false";
+	ctrl = "false";
+	alt = "false";
+	function = "vn_mf_fnc_emotes_dancing";
+	down = 0;
+	displayName = "Dance Party";
+	access = 1;
+};

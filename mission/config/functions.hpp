@@ -243,6 +243,11 @@ class CfgFunctions
 			class earplugs_toggle {};
 		};
 
+		class system_emotes {
+			file = "functions\systems\emotes";
+			class emotes_dancing {};
+		};
+
 		class system_player_markers
 		{
 			file = "functions\systems\player_markers";
