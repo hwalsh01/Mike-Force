@@ -19,7 +19,7 @@ respawnButton = 1;
 respawnOnStart = -1;
 respawnTemplates[] = { "MenuPosition" };
 onPauseScript = "";
-onLoadMission = QUOT(Mike Force (VN_MF_VERSION));
+onLoadMission = QUOT(Mike Force (VN_MF_VERSION) - BRO-NATION Edition);
 OnLoadIntro = "Welcome to Mike Force";
 loadScreen = "\vn\missions_f_vietnam\data\img\mikeforce\mission.jpg";
 OnLoadIntroTime = 0;
@@ -76,6 +76,11 @@ wreckLimit = 2;
 wreckRemovalMinTime = 60;
 wreckRemovalMaxTime = 360;
 
+/*
+// @dijksterhuis: disabled as part of https://github.com/Bro-Nation/Mike-Force/pull/343
+// description.ext showHUD setting disables the ability to toggle HUD in game
+// https://community.bistudio.com/wiki/showHUD
+
 showHUD[] =
 {
 	true,	// Scripted HUD (same as showHUD command)
@@ -88,6 +93,7 @@ showHUD[] =
 	true,	// HUD Weapon Cursors
 	true	// Vehicle display panels
 };
+*/
 
 // Enable CBA settings loading
 cba_settings_hasSettingsFile = 1;
