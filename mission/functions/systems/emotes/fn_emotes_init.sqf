@@ -79,36 +79,45 @@ Read config data located at mission\config\subconfigs\emotes.hpp
 */
 private _fnc_create_categories_from_config = {
 	params ["_configName"];
-	private _config = "isClass(_x)" configClasses (missionConfigFile >> "gamemode" >> "emotes" >> _configName);
+	private _config = missionConfigFile >> "gamemode" >> "emotes" >> _configName;
 
-	private _results = [];
+	private _categorySubData = [];
 
-	(_config) apply {
+	("isClass(_x)" configClasses (_config)) apply {
 
 		private _cls = _x;
 
-		private _options = getArray (_cls >> "options");
-		private _catName = getText (_cls >> "title");
-		private _catIcon = getText (_cls >> "icon");
+		private _categorySubOptions = getArray (_cls >> "options");
+		private _categorySubName = getText (_cls >> "title");
+		private _categorySubIcon = getText (_cls >> "icon");
+
 		// maximum 9 options
-		_options resize (9 min (count _options));
+		_categorySubOptions resize (9 min (count _categorySubOptions));
 
-		private _submenuActions = _options select {(_x isEqualType []) && (count _x == 2) } apply {
-			private _actionName = _x select 0;
-			private _actionStr = _x select 1;
-
-			private _act = [_actionName, _configName, _actionStr, _catIcon] call _fnc_setup_action;
-			_act
+		private _categorySubActions = _categorySubOptions select {
+			(_x isEqualType []) && (count _x == 2)
+		} apply {
+			[_x select 0, _configName, _x select 1, _categorySubIcon] call _fnc_setup_action
 		};
 
-		private _submenuActionsSorted = [_submenuActions, [], {_x get "text"}, "DESCEND"] call BIS_fnc_sortBy;
-		private _cat = [_catName, _submenuActionsSorted, _catIcon] call _fnc_setup_category;
+		private _categorySubActionsSorted = [_categorySubActions, [], {_x get "text"}, "DESCEND"] call BIS_fnc_sortBy;
 
-		if (count _results >= 9) exitWith {false};
-		_results pushBackUnique _cat;
+		if (count _categorySubData >= 9) exitWith {false};
+		_categorySubData pushBackUnique (
+			[_categorySubName, _categorySubActionsSorted, _categorySubIcon] call _fnc_setup_category
+		);
 	};
 
-	[_results, [], {_x get "text"}, "DESCEND"] call BIS_fnc_sortBy
+	private _categorySubDataSorted = [_categorySubData, [], {_x get "text"}, "DESCEND"] call BIS_fnc_sortBy;
+
+	private _catMainName = getText (_config >> "title");
+	private _catMainIcon = getText (_config >> "icon");
+
+	[
+		_catMainName,
+		_categorySubDataSorted,
+		_catMainIcon
+	] call _fnc_setup_category
 };
 
 private _looped = ["loop"] call _fnc_create_categories_from_config;
@@ -124,19 +133,7 @@ private _actionInitial = [
 	[[1,0,0,0.4], [1,0,0,1]]
 ] call _fnc_setup_action;
 
-private _loopedCategory = [
-	"Looped Animations",
-	_looped,
-	"\A3\ui_f\data\map\markers\nato\respawn_unknown_ca.paa"
-] call _fnc_setup_category;
-
-private _seqdCategory = [
-	"Single Animations",
-	_seqd,
-	"\A3\ui_f\data\map\markers\nato\respawn_motor_ca.paa"
-] call _fnc_setup_category;
-
 uiNamespace setVariable [
 	"vn_mf_bn_emotes_menu_actions",
-	[_actionInitial, _loopedCategory, _seqdCategory]
+	[_actionInitial, _looped, _seqd]
 ];

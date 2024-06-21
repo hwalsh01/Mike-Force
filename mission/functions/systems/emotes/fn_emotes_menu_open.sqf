@@ -19,12 +19,17 @@
 */
 
 private _isIncapacitated = [player] call para_g_fnc_unit_is_incapacitated;
-if (_isIncapacitated) exitWith { false };
+if (_isIncapacitated) exitWith {false};
+
+// player in a vehicle
+if (vehicle player != player) exitWith {
+    ["ErrorInVehicleForEmotes", []] call para_c_fnc_show_notification;
+};
 
 private _actions = uiNamespace getVariable ["vn_mf_bn_emotes_menu_actions", []];
 
-if (count _actions < 1) exitWith {
-	diag_log format ["Emote Menu actions not set up correctly."];
+if (count _actions < 1 || !(_actions isEqualType []) ) exitWith {
+	diag_log format ["ERROR: Emote Menu actions not set up correctly."];
 };
 
 [_actions, player, false] call para_c_fnc_wheel_menu_open;

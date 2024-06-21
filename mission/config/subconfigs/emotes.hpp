@@ -1,5 +1,8 @@
 /*
 
+maximum of 9 child category classes per parent class.
+maximum of 9 options at any time.
+
 ### seq
 
 the `seq` class contains emotes that have chained animations playing in a sequence.
@@ -17,9 +20,13 @@ these are executed with switchMove and can only have one animation string. there
 */
 
 class seq {
+
+	title = "Non Looping Animations";
+	icon = "\A3\ui_f\data\map\markers\nato\respawn_motor_ca.paa";
+
 	class misc {
 		title = "Miscellaneous";
-		icon = "\A3\ui_f\data\map\markers\handdrawn\unknown_CA.paa"
+		icon = "\A3\ui_f\data\map\markers\handdrawn\unknown_CA.paa";
 		options[] = {
 			{"Drop Weapon", {"Acts_Ambient_Rifle_Drop"}},
 			{"Stretch", {"Acts_Ambient_Stretching"}},
@@ -28,6 +35,7 @@ class seq {
 			{"About this big...", {"Act_Alien_Gesture"}},
 			{"Fly By!", {"Acts_Calling_Out_Jets_in_loop"}},
 			{"Urinate", {"Acts_AidlPercMstpSlowWrflDnon_pissing"}},
+			{"Salute", {"AmovPercMstpSrasWrflDnon_SaluteOut"}},
 			{"Dramatic Grenade Throw", {
 					"AwopPercMstpSgthWnonDnon_start",
 					"AwopPercMstpSgthWnonDnon_throw",
@@ -52,7 +60,7 @@ class seq {
 
 	class responses {
 		title = "Responses";
-		icon = "\A3\ui_f\data\map\markers\military\box_CA.paa"
+		icon = "\A3\ui_f\data\map\markers\military\box_CA.paa";
 		options[] = {
 			{"Agree", {"Acts_Ambient_Agreeing"}},
 			{"Disagree", {"Acts_Ambient_Disagreeing"}},
@@ -152,9 +160,13 @@ class seq {
 
 
 class loop {
+
+	title = "Looping Animations";
+	icon = "\A3\ui_f\data\map\markers\nato\respawn_unknown_ca.paa";
+
 	class misc {
 		title = "Miscellaneous";
-		icon = "\A3\ui_f\data\map\markers\handdrawn\unknown_CA.paa"
+		icon = "\A3\ui_f\data\map\markers\handdrawn\unknown_CA.paa";
 		options[] = {
 			{"Dancing 1", "Acts_Dance_01"},
 			{"Dancing 2", "Acts_Dance_02"},
@@ -169,7 +181,7 @@ class loop {
 
 	class waiting {
 		title = "Idle";
-		icon = "\A3\ui_f\data\map\markers\military\end_CA.paa"
+		icon = "\A3\ui_f\data\map\markers\military\end_CA.paa";
 		options[] = {
 			{"1", "Acts_AidlPercMstpSloWWrflDnon_warmup_1_loop"},
 			{"2", "Acts_AidlPercMstpSloWWrflDnon_warmup_2_loop"},

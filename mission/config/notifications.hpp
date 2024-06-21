@@ -421,4 +421,16 @@ class CfgNotifications
 		description = "Cannot locate vehicle's spawner -- you are not driving a spawned vehicle.";
 	};
 
+	class ErrorInVehicleForEmotes
+	{
+		title = "Emotes Menu";
+		description = "Cannot use emotes while in a vehicle.";
+		priority = 1;
+		sound = "";
+		soundClose = "";
+		duration = 3;
+		color[] = NOTIFY_COLOR_RED_HEAVY;
+		iconPicture = "\A3\ui_f\data\map\mapcontrol\taskIconFailed_ca.paa";
+	};
+
 };
