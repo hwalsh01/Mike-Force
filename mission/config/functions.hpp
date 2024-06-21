@@ -245,7 +245,6 @@ class CfgFunctions
 
 		class system_emotes {
 			file = "functions\systems\emotes";
-			class emotes_dancing {};
 			class emotes_init {};
 			class emotes_emote_toggle {};
 			class emotes_menu_open {};
