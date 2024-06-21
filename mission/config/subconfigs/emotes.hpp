@@ -1,5 +1,19 @@
 /*
-TODO: DOCS
+
+### seq
+
+the `seq` class contains emotes that have chained animations playing in a sequence.
+
+A single array `seq` class is basiclaly a "one-shot" animation (play it once and then end).
+
+uses playMove to build the queue of animations, so valid animation sequence rules apply.
+
+### loop
+
+`loop` classes are for animations that force the player into a loop that does not end.
+
+these are executed with switchMove and can only have one animation string. there is no queuing.
+
 */
 
 class seq {
