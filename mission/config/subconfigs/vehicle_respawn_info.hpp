@@ -988,7 +988,7 @@ class spawn_point_types {
 
 	class mp_grnd_transport_light {
 
-		name = "Transport (Light) [Military Police]";
+		name = "Transport [Military Police]";
 		respawnType = SPAWN_TYPE_RESPAWN;
 		time = SPAWN_TIME_MEDIUM;
 		lockTeams[] = LOCKED_MILITARY_POLICE;
@@ -1009,6 +1009,14 @@ class spawn_point_types {
 				vehicles[] = {
 					"vn_b_wheeled_m151_01_mp",
 					"vn_b_wheeled_m151_02_mp",
+				};
+			};
+			class transport {
+				name = "M54 Transport";
+				icon = VEHICLE_ICON_CAR;
+				vehicles[] = {
+					"vn_b_wheeled_m54_01",
+					"vn_b_wheeled_m54_02",
 				};
 			};
 		};
