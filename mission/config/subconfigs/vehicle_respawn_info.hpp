@@ -1011,7 +1011,7 @@ class spawn_point_types {
 					"vn_b_wheeled_m151_02_mp",
 				};
 			};
-			class transport {
+			class truck {
 				name = "M54 Transport";
 				icon = VEHICLE_ICON_CAR;
 				vehicles[] = {
