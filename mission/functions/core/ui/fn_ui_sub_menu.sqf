@@ -89,7 +89,25 @@ if !(_interactedItem isEqualTo []) then
 	    };
     };
 
-    ["DEBUG: _interactActions %1",_interactActions] call BIS_fnc_logFormat;
+    private _chemlightsAttach = getArray (
+        _mainMissionConfig >> "AttachmentsChemlights" >> "interactActions"
+    );
+
+    private _flashlightsAttach = getArray (
+        _mainMissionConfig >> "AttachmentsFlashlights" >> "interactActions"
+    );
+
+    // light source attachments -- see: functions\systems\attachments
+
+    if ((toLower _thisItem) find "chemlight" > -1) then {
+        {_interactActions pushBack _x} forEach _chemlightsAttach;
+    };
+
+    if (_thisItem in ["vn_mx991", "vn_mx991_red"]) then {
+        {_interactActions pushBack _x} forEach _flashlightsAttach;
+    };
+
+   ["DEBUG: _interactActions %1", _interactActions] call BIS_fnc_logFormat;
 
     // build menu
     if !(_interactActions isEqualTo []) then

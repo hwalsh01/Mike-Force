@@ -200,6 +200,21 @@ class CfgFunctions
 			class arsenal_trash_cleanup {};
 		};
 
+		class system_attachments {
+			file = "functions\systems\attachments";
+			class attachments_client_attach_flashlight {};
+			class attachments_client_attach_chemlight {};
+			class attachments_server_attach_flashlight {};
+			class attachments_server_attach_chemlight {};
+			class attachments_global_delete_all {};
+		};
+
+		class system_attachments_lightsources {
+			file = "functions\systems\attachments\lightsources\create";
+			class attachments_lightsources_flashlight {};
+			class attachments_lightsources_chemlight {};
+		};
+
 		class system_awards {
 			file = "functions\systems\awards";
 			class player_award {};

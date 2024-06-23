@@ -404,4 +404,12 @@ class CfgNotifications
 		iconPicture = "\A3\ui_f\data\map\mapcontrol\taskIconDone_ca.paa";
 	};
 
+	class ErrLightsourceAttachChemlightNotPermitted {
+		title = "Light Source Attachment";
+		description = "Your team is not allowed to attach chemlights. Only Spike Team units can do that (either Public or WLU).";
+		priority = 6;
+		color[] = NOTIFY_COLOR_RED_HEAVY;
+		iconPicture = "\A3\ui_f\data\map\mapcontrol\taskIconFailed_ca.paa";
+	};
+
 };
