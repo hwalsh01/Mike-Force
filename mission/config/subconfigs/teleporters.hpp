@@ -42,7 +42,7 @@ class objects
 
 	class vn_mf_macv_WL2_teleporter
 	{
-		destinations[] = {"sa_base", "satansangels_base", "muskets_base", "sasr_base",  "frogmen_base", "tigerforce_base"};
+		destinations[] = {"sa_base", "satansangels_base", "muskets_base", "sasr_base", "frogmen_base", "boat_dock", "tigerforce_base"};
 	};
 
 	class vn_mf_quarterhorse_teleporter
@@ -72,9 +72,14 @@ class objects
 	
 	class vn_mf_frogmen_teleporter
 	{
-		destinations[] = {"mikeforce_base", "acav_base", "spiketeam_base", "greenhornets_base", "macv_base"};
+		destinations[] = {"mikeforce_base", "acav_base", "spiketeam_base", "greenhornets_base", "macv_base", "boat_dock"};
 	};
-	
+
+	class vn_mf_dock_teleporter
+	{
+		destinations[] = {"mikeforce_base", "acav_base", "spiketeam_base", "greenhornets_base", "macv_base", "frogmen_base"};
+	};
+
 	// class vn_mf_montagnard_teleporter
 	// {
 	// 	destinations[] = {"mikeforce_base", "spiketeam_base", "greenhornets_base", "acav_base", "macv_base"};
@@ -322,6 +327,12 @@ class destinations
 	{
 		image = "custom\taskroster\frogmen_HL.paa"; 
 		position_marker = "mf_respawn_frogmen";
+	};
+
+	class boat_dock
+	{
+		image = "custom\taskroster\frogmen_HL.paa"; 
+		position_marker = "mf_respawn_dock";
 	};
 
 	class arvn_base
