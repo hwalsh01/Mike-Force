@@ -1,5 +1,5 @@
 /*
-    File: fn_reveal_radiotap_nearest_sites.sqf
+    File: fn_sites_remoteactions_reveal_radiotap.sqf
     Author: DJ Dijksterhuis
     Public: No
 
@@ -14,7 +14,7 @@
     
     Example(s):
         // execute only on the server
-        [_myRadioObj] remoteExec ["vn_mf_fnc_reveal_radiotap_nearest_sites", 2];
+        [_myRadioObj] remoteExec ["vn_mf_fnc_sites_remoteactions_reveal_radiotap", 2];
         
 */
 

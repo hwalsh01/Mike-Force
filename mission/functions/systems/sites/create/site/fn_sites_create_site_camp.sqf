@@ -29,7 +29,7 @@ params ["_pos"];
 		private _sitePos = getPos _siteStore;
 		private _spawnPos = _sitePos;
 
-		private _campObjs = [_spawnPos] call vn_mf_fnc_create_camp_buildings;
+		private _campObjs = [_spawnPos] call vn_mf_fnc_create_compositions_camp;
 
 		{
 			if(_x isKindOf "StaticWeapon" || _x isKindOf "Building" || _x isKindOf "House" || _x isKindOf "LandVehicle" || _x isKindOf "Air") then {

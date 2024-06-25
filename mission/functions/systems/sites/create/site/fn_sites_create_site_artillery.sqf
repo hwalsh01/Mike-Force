@@ -29,7 +29,7 @@ params ["_pos"];
 		private _sitePos = getPos _siteStore;
 		private _spawnPos = _sitePos;
 
-		private _artyObjs = [_spawnPos] call vn_mf_fnc_create_mortar_buildings;
+		private _artyObjs = [_spawnPos] call vn_mf_fnc_create_compositions_mortar;
 		{
 			if(_x isKindOf "StaticWeapon" || _x isKindOf "Building" || _x isKindOf "House" || _x isKindOf "LandVehicle" || _x isKindOf "Air") then {
 				[_x, true] call para_s_fnc_enable_dynamic_sim;

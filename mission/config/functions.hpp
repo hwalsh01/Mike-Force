@@ -261,6 +261,8 @@ class CfgFunctions
 			class unit_to_rank {};
 		};
 
+		// main sites code for handling creating a "site" during the
+		// primary capture phase
 		class system_sites
 		{
 			file = "functions\systems\sites";
@@ -272,47 +274,61 @@ class CfgFunctions
 			class sites_teardown_site {};
 			class sites_delete_all_active_sites {};
 			class sites_delete_active_site {};
-
-			//Specific types of site
-			class sites_create_aa_site {};
-			class sites_create_artillery_site {};
-			class sites_create_camp_site {};
-			class sites_create_water_supply_site {};
-			class sites_create_tunnel {};
-			class sites_create_tunnel_site {};
-			class sites_create_hq {};
-			class sites_create_factory {};
-			class sites_create_radar {};
-
-			// Composition and entity spawning
-			class create_aa_buildings {};
-			class create_camp_buildings {};
-			class create_hq_buildings {};
-			class create_factory_buildings {};
-			class create_mortar_buildings {};
-			class create_radar_buildings {};
-			class create_tunnel_buildings {};
-
-			//Supporting functions
 			class sites_aa_reveal_targets {};
-
-			//Marker Discovery
-			class scout_action {};
-			class sites_subsystem_client_init {};
-			class sites_discovery_job {};
-
-			// Placement functions
 			class sites_get_safe_location {};
 			class sites_find_area_gradient {};
 			class sites_objmapper_dynamic_grass {};
-
-			class destroy_task {};
-
-			class reveal_supply_line {};
-			class reveal_radiotap_nearest_sites {};
 			class sites_hide_unsafe_terrain_objects {};
+			class sites_subsystem_client_init {};
+			class sites_discovery_job {};
 		};
 
+		// remote actions that can be performed at sites
+		// destroying objects etc
+		class system_sites_remoteactions
+		{
+			file = "functions\systems\sites\remoteactions";
+			class sites_remoteactions_destroy_task {};
+			// class sites_remoteactions_burn_shelter {}; // @dijksterhuis: TODO
+			class sites_remoteactions_reveal_radiotap {};
+			class sites_remoteactions_reveal_intel {};
+			class sites_remoteactions_reveal_scout {};
+		}
+		
+		// compositions detailing all the objects at the site
+		class system_sites_create_compositions
+		{
+			file = "functions\systems\sites\create\compositions";
+			class sites_create_compositions_aa {};
+			class sites_create_compositions_camp {};
+			class sites_create_compositions_factory {};
+			class sites_create_compositions_hq {};
+			class sites_create_compositions_mortar {};
+			class sites_create_compositions_radar {};
+			class sites_create_compositions_tunnel {};
+			class sites_create_compositions_water_supply {};
+			// old not used
+			class sites_create_tunnel {};
+			class sites_create_camp {};
+		}
+
+		// creating individual sites using main sites code and compositions
+		class system_sites_create_site
+		{
+			file = "functions\systems\sites\create\site";
+
+			//Specific types of site
+			class sites_create_site_aa {};
+			class sites_create_site_artillery {};
+			class sites_create_site_camp {};
+			class sites_create_site_water_supply {};
+			class sites_create_site_tunnel {};
+			class sites_create_site_hq {};
+			class sites_create_site_factory {};
+			class sites_create_site_radar {};
+		}
+
+		// utility functions to simplify/DRY the existing site code
 		class system_sites_utils
 		{
 			file = "functions\systems\sites\utils";
@@ -321,6 +337,12 @@ class CfgFunctions
 			class sites_utils_normalise_object_placement {};
 		}
 
+		// simple scheduled utility job to make triple sure that critical
+		// site objects cannot fall through the ground.
+		// much simpler than the paradigm fall through world check.
+		// I might be remembering it wrong, but I also think the paradigm 
+		// fallthrough world checker only performs adjustments once on an
+		// object then releases it from checks (which doesn't always work)
 		class system_sites_object_zfixer
 		{
 			file = "functions\systems\sites\object_zfixer";
