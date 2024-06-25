@@ -54,7 +54,7 @@ params ["_pos"];
 			"Land_Map_unfolded_F"
 		];
 
-		private _hqObjects = [_spawnPos] call vn_mf_fnc_create_compositions_hq;
+		private _hqObjects = [_spawnPos] call vn_mf_fnc_sites_create_compositions_hq;
 		vn_site_objects append _hqObjects;
 
 		private _fnc_dynSimKindOfChecker = {
