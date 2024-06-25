@@ -64,6 +64,16 @@ class CfgFunctions
 			class update_channels {};
 		};
 
+		class core_teams_comms_switchers
+		{
+			file = "functions\core\teams\comms_switchers";
+			class teams_comms_switchers_onoff_air {};
+			class teams_comms_switchers_onoff_cff {};
+			class teams_comms_switchers_onoff_ground {};
+			class teams_comms_switchers_onoff {};
+			class teams_comms_switchers_off_all {};
+		};
+
 		class core_workarounds
 		{
 			file = "functions\core\workarounds";
@@ -158,6 +168,7 @@ class CfgFunctions
 		class system_actions {
 			file = "functions\systems\actions";
 			class action_init {};
+			class action_vehspawner_show_spawn_point {};
 			class action_destroy_respawn {};
 			class action_destroy_task {};
 			class action_gather_intel {};
@@ -169,6 +180,10 @@ class CfgFunctions
 			class action_eat_food {};
 			class action_lower_flag {};
 			class action_reraise_flag {};
+			class action_curator_force_recover_wrecked_vehicle {};
+			class action_curator_force_reset_idle_vehicle {};
+			class action_curator_lock_spawner {};
+			class action_curator_unlock_spawner {};
 		};
 
 		class system_actives {
@@ -246,6 +261,8 @@ class CfgFunctions
 			class unit_to_rank {};
 		};
 
+		// main sites code for handling creating a "site" during the
+		// primary capture phase
 		class system_sites
 		{
 			file = "functions\systems\sites";
@@ -257,52 +274,81 @@ class CfgFunctions
 			class sites_teardown_site {};
 			class sites_delete_all_active_sites {};
 			class sites_delete_active_site {};
-
-			//Specific types of site
-			class sites_create_aa_site {};
-			class sites_create_artillery_site {};
-			class sites_create_camp_site {};
-			class sites_create_water_supply_site {};
-			class sites_create_tunnel {};
-			class sites_create_tunnel_site {};
-			class sites_create_hq {};
-			class sites_create_factory {};
-			class sites_create_radar {};
-
-			// Composition and entity spawning
-			class create_aa_buildings {};
-			class create_camp_buildings {};
-			class create_hq_buildings {};
-			class create_factory_buildings {};
-			class create_mortar_buildings {};
-			class create_radar_buildings {};
-			class create_tunnel_buildings {};
-
-			//Supporting functions
 			class sites_aa_reveal_targets {};
-
-			//Marker Discovery
-			class scout_action {};
-			class sites_subsystem_client_init {};
-			class sites_discovery_job {};
-
-			// Placement functions
 			class sites_get_safe_location {};
 			class sites_find_area_gradient {};
 			class sites_objmapper_dynamic_grass {};
-
-			class destroy_task {};
-
-			class reveal_supply_line {};
-			class reveal_radiotap_nearest_sites {};
 			class sites_hide_unsafe_terrain_objects {};
+			class sites_subsystem_client_init {};
+			class sites_discovery_job {};
 		};
 
+		// remote actions that can be performed at sites
+		// destroying objects etc
+		class system_sites_remoteactions
+		{
+			file = "functions\systems\sites\remoteactions";
+			class sites_remoteactions_destroy_task {};
+			// class sites_remoteactions_burn_shelter {}; // @dijksterhuis: TODO
+			class sites_remoteactions_reveal_radiotap {};
+			class sites_remoteactions_reveal_intel {};
+			class sites_remoteactions_reveal_scout {};
+		}
+		
+		// compositions detailing all the objects at the site
+		class system_sites_create_compositions
+		{
+			file = "functions\systems\sites\create\compositions";
+			class sites_create_compositions_aa {};
+			class sites_create_compositions_camp {};
+			class sites_create_compositions_factory {};
+			class sites_create_compositions_hq {};
+			class sites_create_compositions_mortar {};
+			class sites_create_compositions_radar {};
+			class sites_create_compositions_tunnel {};
+			class sites_create_compositions_water_supply {};
+			// old not used
+			class sites_create_tunnel {};
+			class sites_create_camp {};
+		}
+
+		// creating individual sites using main sites code and compositions
+		class system_sites_create_site
+		{
+			file = "functions\systems\sites\create\site";
+
+			//Specific types of site
+			class sites_create_site_aa {};
+			class sites_create_site_artillery {};
+			class sites_create_site_camp {};
+			class sites_create_site_water_supply {};
+			class sites_create_site_tunnel {};
+			class sites_create_site_hq {};
+			class sites_create_site_factory {};
+			class sites_create_site_radar {};
+		}
+
+		// utility functions to simplify/DRY the existing site code
 		class system_sites_utils
 		{
 			file = "functions\systems\sites\utils";
 			class sites_utils_std_teardown {};
 			class sites_utils_std_check_teardown {};
+			class sites_utils_normalise_object_placement {};
+		}
+
+		// simple scheduled utility job to make triple sure that critical
+		// site objects cannot fall through the ground.
+		// much simpler than the paradigm fall through world check.
+		// I might be remembering it wrong, but I also think the paradigm 
+		// fallthrough world checker only performs adjustments once on an
+		// object then releases it from checks (which doesn't always work)
+		class system_sites_object_zfixer
+		{
+			file = "functions\systems\sites\object_zfixer";
+			class sites_object_zfixer_init {};
+			class sites_object_zfixer_job {};
+			class sites_object_zfixer_add_object {};
 		}
 
 		class system_supplies {
@@ -348,37 +394,73 @@ class CfgFunctions
 			class tutorial_subsystem_client_init {};
 		};
 
-		class system_vehicle_asset_manager
+		class system_vehicle_asset_manager_client
 		{
-			file = "functions\systems\vehicle_asset_manager";
-			class packageforslingloading {};
-			class veh_asset_add_package_wreck_action_local {};
+			file = "functions\systems\vehicle_asset_manager\client";
 			class veh_asset_add_package_underwater_wreck_action_local {};
+			class veh_asset_add_package_wreck_action_local {};
+			class veh_asset_describe_status {};
+			class veh_asset_finalise_spawn_point_setup_on_client {};
+			class veh_asset_remove_package_underwater_wreck_action_local {};
+			class veh_asset_remove_spawn_point_client {};
+			class veh_asset_request_vehicle_change_client {};
+			class veh_asset_setup_package_wreck_action_local {};
+			class veh_asset_update_spawn_point_data {};
+		};
+
+		class system_vehicle_asset_manager_global
+		{
+			file = "functions\systems\vehicle_asset_manager\global";
+			class veh_asset_can_change_vehicle {};
+			class veh_asset_get_spawn_point_info_from_config {};
+			class veh_asset_load_vehicle_configs {};
+		};
+
+		class system_vehicle_asset_manager_server_network
+		{
+			file = "functions\systems\vehicle_asset_manager\server\network";
+			class packageforslingloading {};
+			class veh_asset_handle_change_vehicle_request {};
+		};
+
+		class system_vehicle_asset_manager_server
+		{
+			file = "functions\systems\vehicle_asset_manager\server";
+			class veh_asset_3DEN_spawn_point {};
+			class veh_asset_add_spawn_point {};
 			class veh_asset_add_unlock_action {};
-			class veh_asset_add_vehicle {};
-			class veh_asset_get_by_id {};
-			class veh_asset_init_vehicle {};
-			class veh_asset_key {};
+			class veh_asset_assign_vehicle_to_spawn_point {};
+			class veh_asset_change_vehicle {};
+			class veh_asset_create_spawn_point_id {};
 			class veh_asset_job {};
 			class veh_asset_lock_vehicle {};
 			class veh_asset_marker_create {};
 			class veh_asset_marker_delete {};
 			class veh_asset_marker_update_position {};
 			class veh_asset_package_wreck {};
-			class veh_asset_remove_package_underwater_wreck_action_local {};
-			class veh_asset_remove_vehicle {};
+			class veh_asset_process_spawn_point {};
+			class veh_asset_remove_spawn_point {};
 			class veh_asset_respawn {};
+			class veh_asset_respawn_job {};
 			class veh_asset_set_active {};
 			class veh_asset_set_disabled {};
+			class veh_asset_set_global_variable {};
+			class veh_asset_set_global_variables {};
 			class veh_asset_set_idle {};
-			class veh_asset_setup_package_wreck_action {};
-			class veh_asset_setup_package_wreck_action_local {};
 			class veh_asset_set_repairing {};
 			class veh_asset_set_respawning {};
 			class veh_asset_set_wrecked {};
+			class veh_asset_setup_package_wreck_action {};
 			class veh_asset_subsystem_init {};
 			class veh_asset_unlock_vehicle {};
-			class veh_asset_respawn_job {};
+		};
+		class system_vehicle_asset_manager_bn
+		{
+			file = "functions\systems\vehicle_asset_manager\bn";
+			class veh_asset_bn_curator_force_recover_wrecked_vehicle {};
+			class veh_asset_bn_curator_force_reset_idle_vehicle {};
+			class veh_asset_bn_curator_lock_spawner {};
+			class veh_asset_bn_curator_unlock_spawner {};
 		};
 
 		class system_vehicle_creation_detection

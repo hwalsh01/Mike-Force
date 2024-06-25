@@ -40,7 +40,6 @@ publicVariable _playerGroup;
 _player setVariable ["vn_mf_db_player_group", _team, true];
 private _nextPlayerTeamArray = missionNamespace getVariable [_team, []];
 _nextPlayerTeamArray pushBackUnique _player;
-
 /*
   @dijksterhuis commenting out line below as it just causes script errors 
   (no-one from SGD responded to my discord post about it).
@@ -53,6 +52,7 @@ _nextPlayerTeamArray pushBackUnique _player;
 	[] call vn_mf_fnc_task_refresh_tasks_client;
 	[] call vn_mf_fnc_tr_overview_team_update;
 	[] call vn_mf_fnc_update_channels;
+	[] call vn_mf_fnc_apply_unit_traits;
+	[] call vn_mf_fnc_action_trait;
+	// reset the available actions on the client
 }] remoteExec ["spawn", _player];
-
-[] remoteExecCall ["vn_mf_fnc_apply_unit_traits", _player];

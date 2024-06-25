@@ -1403,7 +1403,6 @@ class vn_whitelisted_arsenal_loadouts
 			{ "vn_b_pack_trp_03_02", 				{-1, 0, 0,-1}}, 
 			{ "vn_b_pack_trp_04", 					{-1, 0, 0,-1}}, 
 			{ "vn_b_pack_trp_04_02", 				{-1, 0, 0,-1}},
-			{ "vn_b_pack_trp_04_02_m16_pl",			{-1, 0, 0,-1}},
 			{ "vn_c_pack_01", 						{ 0,-1, 0,-1}}, 
 			{ "vn_c_pack_02", 						{ 0,-1, 0,-1}}, 
 			{ "vn_o_pack_01", 						{ 0,-1,-1,-1}}, 

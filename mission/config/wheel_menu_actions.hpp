@@ -114,7 +114,7 @@ class wheel_menu_actions
 		icon = "img\vn_ico_mf_binoculars_ca.paa";
 		icon_highlighted = "";
 		arguments = "_target";
-		function = "vn_mf_fnc_scout_action";
+		function = "vn_mf_fnc_sites_remoteactions_reveal_scout";
 		spawn = 0;
 	};
 };

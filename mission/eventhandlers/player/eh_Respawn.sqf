@@ -34,3 +34,6 @@ _unit setVariable ["vn_mf_side", side player, true];
 // update UI
 ["vn_mf_db_thirst",1] call vn_mf_fnc_ui_update;
 ["vn_mf_db_hunger",1] call vn_mf_fnc_ui_update;
+
+// re-add hold/add actions onto the newly respawned player
+call vn_mf_fnc_action_init;

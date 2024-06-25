@@ -204,16 +204,16 @@
         <Original>This vehicle slot can't be used by your team.</Original>
       </Key>
       <Key ID="STR_vn_mf_respawn_mike_force">
-        <Original>PLEI MEI SF CAMP - MIKE FORCE</Original>
+        <Original>MIKE FORCE</Original>
       </Key>
       <Key ID="STR_vn_mf_respawn_green_hornets">
-        <Original>PLEIKU - GREEN HORNETS</Original>
+        <Original>GREEN HORNETS</Original>
       </Key>
       <Key ID="STR_vn_mf_respawn_spike_team">
-        <Original>FOB2 KONTUM - SPIKE TEAM</Original>
+        <Original>SPIKE TEAM</Original>
       </Key>
       <Key ID="STR_vn_mf_respawn_acav">
-        <Original>FOB 5 BAN ME THUOT - ACAV</Original>
+        <Original>ACAV</Original>
       </Key>
       <Key ID="STR_vn_mf_respawn_mike_force_khe_sanh">
         <Original>KHE SANH SF CAMP - MIKE FORCE</Original>
@@ -282,7 +282,7 @@
         <Original>BLACK HORSE</Original>
       </Key>
       <Key ID="STR_vn_mf_respawn_quarterhorse_fsb">
-        <Original>WHITELISTED ARTILLERY</Original>
+        <Original>BLACK HORSE ARTILLERY</Original>
       </Key>
 	    <Key ID="STR_vn_mf_respawn_muskets">
         <Original>MUSKETS</Original>
@@ -297,7 +297,7 @@
         <Original>633RD CSG</Original>
       </Key>
 	    <Key ID="STR_vn_mf_respawn_sasr">
-        <Original>NZ-SAS</Original>
+        <Original>ANZAC</Original>
       </Key>
       <Key ID="STR_vn_mf_supply_officer">
         <Original>Supply Officer</Original>
@@ -308,11 +308,17 @@
       <Key ID="STR_vn_mf_light_helicopters">
         <Original>Light Helicopters</Original>
       </Key>
+      <Key ID="STR_vn_mf_motor_pool">
+        <Original>Motor Pool</Original>
+      </Key>
       <Key ID="STR_vn_mf_helicopters">
         <Original>Helicopters</Original>
       </Key>
       <Key ID="STR_vn_mf_cas_helicopters">
-        <Original>CAS Helicopters</Original>
+        <Original>CAS Helicopters (Whitelisted)</Original>
+      </Key>
+      <Key ID="STR_vn_mf_planes_land">
+        <Original>CAS Planes (Whitelisted)</Original>
       </Key>
       <Key ID="STR_vn_mf_wreck_recovery">
         <Original>Wreck Recovery</Original>
@@ -390,7 +396,7 @@
         <Original>RVN Wound Medal</Original>
       </Key>
       <Key ID="STR_vn_mf_supply_drops">
-        <Original>Supply Drops</Original>
+        <Original>Supply Drop</Original>
       </Key>
       <Key ID="STR_vn_mf_distinguished_service_cross">
         <Original>Distinguished Service Cross</Original>
@@ -1662,7 +1668,7 @@
         <Original>Khe Sanh</Original>
       </Key>
       <Key ID="STR_vn_mf_zone_kok">
-        <Original>Kok</Original>
+        <Original>Near Kok</Original>
       </Key>
       <Key ID="STR_vn_mf_zone_french_fort">
         <Original>French Fort</Original>
@@ -1674,16 +1680,16 @@
         <Original>Khe Sanh Base</Original>
       </Key>
       <Key ID="STR_vn_mf_zone_koanphan">
-        <Original>Koanphan</Original>
+        <Original>Near Koanphan</Original>
       </Key>
       <Key ID="STR_vn_mf_zone_that">
-        <Original>That</Original>
+        <Original>Near That</Original>
       </Key>
-      <Key ID="STR_vn_mf_zone_nabo">
-        <Original>Nabo</Original>
+      <Key ID="STR_vn_mf_zone_phonsang">
+        <Original>Phonsang</Original>
       </Key>
-      <Key ID="STR_vn_mf_zone_river_edge">
-        <Original>River Edge</Original>
+      <Key ID="STR_vn_mf_zone_hill_410">
+        <Original>Hill410</Original>
       </Key>
       <Key ID="STR_vn_mf_zone_hill_203">
         <Original>Hill203</Original>
@@ -1757,6 +1763,39 @@
       <Key ID="STR_vn_mf_zone_mouang_nong">
         <Original>Mouang Nong</Original>
       </Key>
+		<Key ID="STR_vn_mf_zone_lang_bu">
+        <Original>Lang Bu</Original>
+      </Key>
+		<Key ID="STR_vn_mf_zone_hill_85">
+        <Original>Hill 85</Original>
+      </Key>
+		<Key ID="STR_vn_mf_zone_nhi_ha">
+        <Original>Nhi Ha</Original>
+      </Key>
+		<Key ID="STR_vn_mf_zone_thongxa">
+        <Original>thongxa</Original>
+      </Key>
+		<Key ID="STR_vn_mf_zone_thanh">
+        <Original>thanh</Original>
+      </Key>
+		<Key ID="STR_vn_mf_zone_tum_lang">
+        <Original>Tum Lang</Original>
+      </Key>
+		<Key ID="STR_vn_mf_zone_co_so">
+        <Original>Near Co So</Original>
+      </Key>
+		<Key ID="STR_vn_mf_zone_the_bowl">
+        <Original>The Bowl</Original>
+      </Key
+	  	<Key ID="STR_vn_mf_zone_son_giang">
+        <Original>Son Giang</Original>
+      </Key
+	  	<Key ID="STR_vn_mf_zone_cu_yang">
+        <Original>Cu Yang</Original>
+      </Key
+	  	<Key ID="STR_vn_mf_zone_hill_186">
+        <Original>Hill186</Original>
+      </Key
     </Container>
     <Container name="ZoneName_the_bra">
       <Key ID="STR_vn_mf_zone_ban_dac_maruk">
