@@ -12,7 +12,9 @@ class EditorData
 	};
 	class ItemIDProvider
 	{
+
 		nextID=18821;
+
 	};
 	class MarkerIDProvider
 	{
@@ -20,14 +22,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=25798;
+		nextID=25902;
 	};
 	class Camera
 	{
-		pos[]={15576.967,164.99673,6700.4155};
-		dir[]={0.83719689,-0.23300602,0.49502316};
-		up[]={0.20065913,0.97242194,0.11864459};
-		aside[]={0.50902492,5.0538802e-007,-0.86087453};
+		pos[]={15535.39,118.44491,6775.812};
+		dir[]={0.88365394,-0.24209522,0.40097967};
+		up[]={0.22056058,0.97018677,0.10008196};
+		aside[]={0.41326252,-2.3805478e-007,-0.91072834};
 	};
 };
 binarizationWanted=0;
@@ -412,8 +414,8 @@ class CustomAttributes
 		name="Multiplayer";
 		class Attribute0
 		{
-			property="ReviveRequiredItems";
-			expression="false";
+			property="SharedObjectives";
+			expression="if (isMultiplayer) then {[_value] spawn bis_fnc_sharedObjectives;};";
 			class Value
 			{
 				class data
@@ -463,8 +465,8 @@ class CustomAttributes
 		};
 		class Attribute4
 		{
-			property="SharedObjectives";
-			expression="if (isMultiplayer) then {[_value] spawn bis_fnc_sharedObjectives;};";
+			property="ReviveRequiredItems";
+			expression="false";
 			class Value
 			{
 				class data
@@ -6837,7 +6839,7 @@ class Mission
 						class data
 						{
 							singleType="STRING";
-							value="[""Land_vn_us_vehicleammo"", ""Land_vn_usaf_fueltank_75_01"", ""Land_vn_helipadsquare_f"", ""Land_vn_b_helipad_01"", ""Land_vn_helipadempty_f"", ""Land_vn_usaf_revetment_helipad_02"",""Land_vn_helipadrescue_f"", ""Land_vn_usaf_hangar_02""]";
+							value="[""Land_vn_us_vehicleammo"", ""Land_vn_usaf_fueltank_75_01"", ""Land_vn_helipadsquare_f"", ""Land_vn_b_helipad_01"", ""Land_vn_helipadempty_f"", ""Land_vn_usaf_revetment_helipad_02"",""Land_vn_helipadrescue_f"", ""Land_vn_usaf_hangar_02"", ""Land_JumpTarget_F""]";
 						};
 					};
 				};
@@ -6850,7 +6852,7 @@ class Mission
 						class data
 						{
 							singleType="STRING";
-							value="[""Land_vn_us_vehicleammo"", ""Land_vn_usaf_fueltank_75_01"", ""Land_vn_helipadsquare_f"", ""Land_vn_b_helipad_01"", ""Land_vn_helipadempty_f"", ""Land_vn_usaf_revetment_helipad_02"",""Land_vn_helipadrescue_f"", ""Land_vn_usaf_hangar_02""]";
+							value="[""Land_vn_us_vehicleammo"", ""Land_vn_usaf_fueltank_75_01"", ""Land_vn_helipadsquare_f"", ""Land_vn_b_helipad_01"", ""Land_vn_helipadempty_f"", ""Land_vn_usaf_revetment_helipad_02"",""Land_vn_helipadrescue_f"", ""Land_vn_usaf_hangar_02"", ""Land_JumpTarget_F""]";
 						};
 					};
 				};
@@ -6863,7 +6865,7 @@ class Mission
 						class data
 						{
 							singleType="STRING";
-							value="[""Land_vn_us_vehicleammo"", ""Land_vn_usaf_fueltank_75_01"", ""Land_vn_helipadsquare_f"", ""Land_vn_b_helipad_01"", ""Land_vn_helipadempty_f"", ""Land_vn_usaf_revetment_helipad_02"",""Land_vn_helipadrescue_f"", ""Land_vn_usaf_hangar_02""]";
+							value="[""Land_vn_us_vehicleammo"", ""Land_vn_usaf_fueltank_75_01"", ""Land_vn_helipadsquare_f"", ""Land_vn_b_helipad_01"", ""Land_vn_helipadempty_f"", ""Land_vn_usaf_revetment_helipad_02"",""Land_vn_helipadrescue_f"", ""Land_vn_usaf_hangar_02"", ""Land_JumpTarget_F""]";
 						};
 					};
 				};
@@ -19201,7 +19203,7 @@ class Mission
 							name="duty_officer_mikeforce";
 							type="mil_dot";
 							colorName="ColorWhite";
-							angle=1.7836134;
+							angle=1.7836133;
 							id=7545;
 							atlOffset=0.49795628;
 						};
@@ -36730,11 +36732,11 @@ class Mission
 						};
 					};
 					id=18316;
-					atlOffset=-5.166275;
+					atlOffset=0.39802933;
 				};
 			};
 			id=18339;
-			atlOffset=-1.8342724;
+			atlOffset=-1.6750603;
 		};
 		class Item297
 		{
@@ -47266,11 +47268,11 @@ class Mission
 	{
 		class LinkIDProvider
 		{
-			nextID=392;
+			nextID=396;
 		};
 		class Links
 		{
-			items=392;
+			items=396;
 			class Item0
 			{
 				linkID=0;
@@ -51186,6 +51188,46 @@ class Mission
 				linkID=391;
 				item0=18788;
 				item1=18787;
+				class CustomData
+				{
+					type="Sync";
+				};
+			};
+			class Item392
+			{
+				linkID=392;
+				item0=18608;
+				item1=823;
+				class CustomData
+				{
+					type="Sync";
+				};
+			};
+			class Item393
+			{
+				linkID=393;
+				item0=18592;
+				item1=823;
+				class CustomData
+				{
+					type="Sync";
+				};
+			};
+			class Item394
+			{
+				linkID=394;
+				item0=18242;
+				item1=823;
+				class CustomData
+				{
+					type="Sync";
+				};
+			};
+			class Item395
+			{
+				linkID=395;
+				item0=18763;
+				item1=823;
 				class CustomData
 				{
 					type="Sync";
