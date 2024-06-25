@@ -80,17 +80,30 @@ if (_enlisted isEqualTo "0") then {
 
 // last group, or if not one assign MikeForce
 private _lastTeamName = _player getVariable ["vn_mf_db_player_group", "FAILED"];
+private _currentTeamName = _lastTeamName;
 
 switch (side _player) do {
-	case east: { if (_lastTeamName != "DacCong") then { _lastTeamName = "DacCong"; }; };
-	case default { if (_lastTeamName == "DacCong") then { _lastTeamName = "MikeForce"; }; };
+	case east: { if (_lastTeamName != "DacCong") then { _currentTeamName = "DacCong"; }; };
+	case default { if (_lastTeamName == "DacCong") then { _currentTeamName = "MikeForce"; }; };
 };
 
 // Attempt team change, defaulting to MikeForce is team is full.
-[_player, _lastTeamName] call vn_mf_fnc_force_team_change;
+[_player, _currentTeamName] call vn_mf_fnc_force_team_change;
 
 // load last loadout
 (["GET", (_uid + "_loadout"), []] call para_s_fnc_profile_db) params ["","_loadout"];
+
+// @dijksterhuis: fix exploit where players can get a VC loadout as Blufor
+//
+// 1. attempt to load in as dac cong
+// 2. get kicked
+// 3. on next player init the previous opfor loadout is the loadout retrieved from the profile
+//
+// fix: set loadout to default if player was opfor last server join, but not this time
+if (_lastTeamName == "DacCong" && _currentTeamName != "DacCong") then {
+	_loadout = [];
+};
+
 if !(_loadout isEqualTo []) then
 {
 	_player setUnitLoadout [_loadout, false];

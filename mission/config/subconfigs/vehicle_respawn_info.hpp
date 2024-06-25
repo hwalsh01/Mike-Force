@@ -598,7 +598,7 @@ class spawn_point_types {
 			};
 		};
 	};
-
+/*
 	class 633rd_air_transport_heavy {
 
 		name = "Helicopters (Heavy) [633rd]";
@@ -631,26 +631,49 @@ class spawn_point_types {
 			};
 		};
 	};
-
+*/
 	class 633rd_air_transport_custom {
 
-		name = "Helicopters (Transport) [633rd]";
+		name = "Helicopters [633rd]";
 		respawnType = SPAWN_TYPE_RESPAWN;
 		time = SPAWN_TIME_MEDIUM;
 		lockTeams[] = LOCKED_633RD;
 
 		class categories {
-			class 633rd {
-				name = "633rd CSG";
+			class utility {
+				name = "Utility Lift";
 				icon = VEHICLE_ICON_HELO;
 				vehicles[] = {
-					"vn_b_air_uh1f_01_03",
+					"vn_b_air_oh6a_01",
 					"vn_b_air_uh1d_02_03",
+					"vn_b_air_uh1f_01_03",
+				};
+			};		
+			class medical {
+				name = "Medical Lift";
+				icon = VEHICLE_ICON_HELO;
+				vehicles[] = {
+					"vn_b_air_uh1b_01_03",
+					"vn_b_air_uh1d_01_03",
+					"vn_b_air_ch47_02_01",
 				};
 			};
+			class heavy {
+				name = "Heavy Lift";
+				icon = VEHICLE_ICON_HELO;
+				vehicles[] = {
+					"vn_b_air_ch47_01_01",
+					"vn_b_air_ch47_03_01",
+					"vn_b_air_ch47_04_01",
+					"vn_i_air_ch34_01_02",
+					"vn_i_air_ch34_02_02",
+					"vn_b_air_ch34_01_01",
+					"vn_b_air_ch34_03_01",
+				};
+			};	
 		};
 	};
-
+/*
 	class 633rd_air_dustoff_medical_custom {
 
 		name = "Helicopters (Dust-off/Medevac) [633rd]";
@@ -675,7 +698,7 @@ class spawn_point_types {
 				};
 			};
 		};
-	};
+	};*/
 
 	// 7th cav //////////////////////////////////////////////////////////////////////////
 
@@ -703,16 +726,36 @@ class spawn_point_types {
 				vehicles[] = {
 					"vn_b_air_oh6a_01",
 					"vn_b_air_oh6a_02",
+					"vn_b_air_uh1c_07_02",
+					"vn_b_air_uh1d_02_02",					
 					"vn_b_air_ch47_01_02",
 					"vn_b_air_ch47_03_02",
-					"vn_b_air_uh1c_07_02",
-					"vn_b_air_uh1d_02_02",
 				};
 			};
 		};
 	};
 
 	// arvn ////////////////////////////////////////////////////////////////////////////////
+
+	class arvn_statics_custom {
+
+		name = "Static Weapons [ARVN]";
+		respawnType = SPAWN_TYPE_RESPAWN;
+		time = SPAWN_TIME_SHORT;
+		lockTeams[] = LOCKED_ARVN;
+
+		class categories {
+			class static {
+				name = "Static Weapons";
+				icon = VEHICLE_ICON_CAR;
+				vehicles[] = {
+					"vn_i_static_m45",
+					"vn_i_static_tow",
+					"vn_i_static_m101_01",
+				};
+			};
+		};
+	};
 
 	class arvn_grnd_transport_light {
 
@@ -736,7 +779,7 @@ class spawn_point_types {
 	class arvn_grnd_firesupport_light_custom {
 
 		name = "Fire Support [ARVN]";
-		respawnType = SPAWN_TYPE_WRECK;
+		respawnType = SPAWN_TYPE_RESPAWN;
 		time = SPAWN_TIME_MEDIUM;
 		lockTeams[] = LOCKED_ARVN;
 
@@ -755,7 +798,7 @@ class spawn_point_types {
 
 	class arvn_grnd_firesupport_heavy_custom {
 		name = "Fire Support (Heavy) [ARVN]";
-		respawnType = SPAWN_TYPE_WRECK;
+		respawnType = SPAWN_TYPE_RESPAWN;
 		time = SPAWN_TIME_LONG;
 		lockTeams[] = LOCKED_ARVN;
 		class categories {
@@ -913,12 +956,12 @@ class spawn_point_types {
 
 	// berchesgarden extras
 	class blackhorse_grnd_transport_heavy: unlocked_grnd_transport_heavy {
-		name = "APCs/Trucks [Blackhorse]"
+		name = "APCs/Trucks [Blackhorse]";
 		lockTeams[] = LOCKED_BLACKHORSE;
 	};
 
 	class blackhorse_grnd_utility: unlocked_grnd_utility {
-		name = "Trucks (Utility/Transport) [Blackhorse]"
+		name = "Trucks (Utility/Transport) [Blackhorse]";
 		lockTeams[] = LOCKED_BLACKHORSE;
 	};
 
@@ -945,7 +988,7 @@ class spawn_point_types {
 
 	class mp_grnd_transport_light {
 
-		name = "Transport (Light) [Military Police]";
+		name = "Transport [Military Police]";
 		respawnType = SPAWN_TYPE_RESPAWN;
 		time = SPAWN_TIME_MEDIUM;
 		lockTeams[] = LOCKED_MILITARY_POLICE;
@@ -966,6 +1009,14 @@ class spawn_point_types {
 				vehicles[] = {
 					"vn_b_wheeled_m151_01_mp",
 					"vn_b_wheeled_m151_02_mp",
+				};
+			};
+			class truck {
+				name = "M54 Transport";
+				icon = VEHICLE_ICON_TRUCK;
+				vehicles[] = {
+					"vn_b_wheeled_m54_01",
+					"vn_b_wheeled_m54_02",
 				};
 			};
 		};
@@ -1227,12 +1278,52 @@ class spawn_point_types {
 			};
 		};
 	};
+	class udt_boats_small {
+
+		name = "Small Boats [UDT]";
+		respawnType = SPAWN_TYPE_RESPAWN;
+		time = SPAWN_TIME_SHORT;
+		lockTeams[] = LOCKED_UDT;
+
+		class categories {
+			class pbr {
+				name = "PBR";
+				icon = VEHICLE_ICON_BOAT;
+				vehicles[] = {
+					"vn_b_boat_12_01",
+					"vn_b_boat_12_02",
+					"vn_b_boat_12_03",
+					"vn_b_boat_12_04",
+					"vn_b_boat_13_01",
+					"vn_b_boat_13_02",
+					"vn_b_boat_13_03",
+					"vn_b_boat_13_04",
+				};
+			};
+			class boat {
+				name = "Stab";
+				icon = VEHICLE_ICON_BOAT;
+				vehicles[] = {
+					"vn_b_boat_09_01",
+					"vn_b_boat_10_01",
+					"vn_b_boat_11_01",
+				};
+			};
+			class RHIB {
+				name = "RHIB";
+				icon = VEHICLE_ICON_BOAT;
+				vehicles[] = {
+					"B_Boat_Transport_01_F",
+				};
+			};
+		};
+	};
 
 	// usmc ///////////////////////////////////////////////////////////////////////
 
-	class usmc_grnd_transport_light_custom {
+	class usmc_grnd_combined_custom {
 
-		name = "Transport (Light/Trucks) [USMC]";
+		name = "Ground Vehicles [USMC]";
 		respawnType = SPAWN_TYPE_RESPAWN;
 		time = SPAWN_TIME_MEDIUM;
 		lockTeams[] = LOCKED_USMC;
@@ -1261,17 +1352,6 @@ class spawn_point_types {
 					"vn_b_wheeled_m151_mg_04_usmc",
 				};
 			};
-		};
-	};
-
-	class usmc_grnd_firesupport_heavy_custom {
-
-		name = "Armor [USMC]";
-		respawnType = SPAWN_TYPE_WRECK;
-		time = SPAWN_TIME_LONG;
-		lockTeams[] = LOCKED_USMC;
-
-		class categories {
 			class m113 {
 				name = "APC";
 				icon = VEHICLE_ICON_ARMOUR;

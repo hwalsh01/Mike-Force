@@ -12,6 +12,7 @@ class vn_mf_keydown_escape_action
 	displayName = "";
 	access = 0;
 };
+
 class para_keydown_open_wheel_menu
 {
 	defaultKey = DIK_6;
@@ -23,6 +24,7 @@ class para_keydown_open_wheel_menu
 	displayName = $STR_vn_mf_keybindings_selector;
 	access = 1;
 };
+/*
 class para_vote_1
 {
 	defaultKey = DIK_F1;
@@ -56,6 +58,7 @@ class para_vote_3
 	displayName = "Open Voting Menu";
 	access = 1;
 };
+*/
 class vn_mf_interactionOverlay_toggle
 {
 	defaultKey = DIK_7; // 7
@@ -67,7 +70,6 @@ class vn_mf_interactionOverlay_toggle
 	displayName = $STR_vn_mf_keybindings_interactionOverlay_toggle;
 	access = 1;
 };
-
 
 //--- Key up actions:
 class vn_mf_debug_monitor_action
@@ -81,6 +83,7 @@ class vn_mf_debug_monitor_action
 	displayName = $STR_vn_mf_keybindings_debug_monitor;
 	access = 1;
 };
+
 class vn_mf_task_roster_action
 {
 	defaultKey = DIK_H;
@@ -92,6 +95,7 @@ class vn_mf_task_roster_action
 	displayName = $STR_vn_mf_keybindings_task_roster;
 	access = 1;
 };
+
 class vn_mf_ack_hint_card {
 	defaultKey = DIK_8;
 	shift = "false";
@@ -101,7 +105,8 @@ class vn_mf_ack_hint_card {
 	down = 0;
 	displayName = "Acknowledge Hint";
 	access = 1;
-}
+};
+
 class vn_mf_build_mode_action_up
 {
 	defaultKey = DIK_N;
@@ -113,6 +118,7 @@ class vn_mf_build_mode_action_up
 	displayName = $STR_vn_mf_keybindings_build_mode;
 	access = 1;
 };
+
 class vn_mf_quick_build
 {
 	defaultKey = DIK_N;
@@ -146,5 +152,53 @@ class vn_mf_release_cargo
 	function = "vn_mf_fnc_release_cargo";
 	down = 0;
 	displayName = "Release Cargo (ADVSL)";
+	access = 1;
+};
+
+class vn_mf_channel_switcher_onoff_ground
+{
+	defaultKey = DIK_F1;
+	shift = "false";
+	ctrl = "false";
+	alt = "false";
+	function = "vn_mf_fnc_teams_comms_switchers_onoff_ground";
+	down = 0;
+	displayName = "Mute/Unmute 'Ground'";
+	access = 1;
+};
+
+class vn_mf_channel_switcher_onoff_air
+{
+	defaultKey = DIK_F2;
+	shift = "false";
+	ctrl = "false";
+	alt = "false";
+	function = "vn_mf_fnc_teams_comms_switchers_onoff_air";
+	down = 0;
+	displayName = "Mute/Unmute 'Air'";
+	access = 1;
+};
+
+class vn_mf_channel_switcher_onoff_cff
+{
+	defaultKey = DIK_F3;
+	shift = "false";
+	ctrl = "false";
+	alt = "false";
+	function = "vn_mf_fnc_teams_comms_switchers_onoff_cff";
+	down = 0;
+	displayName = "Mute/Unmute 'CFF'";
+	access = 1;
+};
+
+class vn_mf_channel_switcher_off_all
+{
+	defaultKey = DIK_F4;
+	shift = "false";
+	ctrl = "false";
+	alt = "false";
+	function = "vn_mf_fnc_teams_comms_switchers_off_all";
+	down = 0;
+	displayName = "Mute All channels";
 	access = 1;
 };
