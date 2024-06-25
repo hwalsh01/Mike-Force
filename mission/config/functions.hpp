@@ -180,6 +180,10 @@ class CfgFunctions
 			class action_eat_food {};
 			class action_lower_flag {};
 			class action_reraise_flag {};
+			class action_curator_force_recover_wrecked_vehicle {};
+			class action_curator_force_reset_idle_vehicle {};
+			class action_curator_lock_spawner {};
+			class action_curator_unlock_spawner {};
 		};
 
 		class system_actives {
@@ -427,6 +431,14 @@ class CfgFunctions
 			class veh_asset_setup_package_wreck_action {};
 			class veh_asset_subsystem_init {};
 			class veh_asset_unlock_vehicle {};
+		};
+		class system_vehicle_asset_manager_bn
+		{
+			file = "functions\systems\vehicle_asset_manager\bn";
+			class veh_asset_bn_curator_force_recover_wrecked_vehicle {};
+			class veh_asset_bn_curator_force_reset_idle_vehicle {};
+			class veh_asset_bn_curator_lock_spawner {};
+			class veh_asset_bn_curator_unlock_spawner {};
 		};
 
 		class system_vehicle_creation_detection
