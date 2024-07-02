@@ -1,25 +1,37 @@
-// fn_attachments_lightsources_flashlight.sqf
-
 /*
+    File: fn_attachments_lightsources_chemlight.sqf
+    Author: 'DJ' Dijksterhuis
+    Public: No
 
-All the setLight* commands are localy only.
+    Description:
+        Sets up the two lightsources we'll use for making chemlights useful
+        instead of completely blinding to player.
 
-So this needs to be remote exec'd globally.
+        Needs to be remote Exec'd on all clients to get them to see the lights properly.
 
+    Parameter(s):
+        _lightSources - The two light source vehicles we'll be modifying. 
+                        **Must** have been created on the server with createVehicle.
+        _classname - Chemlight class name (tells us the color)
+
+    Returns: nothing
+    Example(s): cba
 */
 
-params ["_player", "_classname"];
+params ["_lightSources", "_classname"];
 
-diag_log format ["RMOTEFGIOHG CHELIGMHTHJMKSFN %1", _classname];
+if !((count _lightSources) isEqualTo 2) exitWith {
+  diag_log format ["ERROR: Attachments: chemlights need two lightsource attachments! lightSources=%1", _lightSources];
+};
 
 private _colorAmbient = [0, 0, 0];
 private _colorLight = [0, 0, 0];
 
 switch (true) do { 
-  // case ((toLower _classname) findIf "green" > -1) : {
-  //   _colorAmbient = [0, 0.3, 0];
-  //   _colorLight = [0, 1, 0];
-  // }; 
+  case ((toLower _classname) find "green" > -1) : {
+    _colorAmbient = [0, 0.3, 0];
+    _colorLight = [0, 1, 0];
+  }; 
   case ((toLower _classname) find "blue" > -1) : {
     _colorAmbient = [0, 0.3, 0.3];
     _colorLight = [0, 0.5, 1];
@@ -33,29 +45,24 @@ switch (true) do {
     _colorLight = [1, 0, 0];
   };
   default {
-  	// green
-    _colorAmbient = [0, 0.3, 0];
-    _colorLight = [0, 1, 0];
+  	// black (no light)
+    _colorAmbient = [0, 0, 0];
+    _colorLight = [0, 0, 0];
   };
 };
 
 // ambient light creating some 360 visibility
+private _lightSourceOne = _lightSources select 0;
+private _lightSourceTwo = _lightSources select 1;
 
-private _lightsourceOne = "#lightreflector" createVehicle (_player modelToWorld [0, 0, -1]); 
-_lightsourceOne setLightIntensity 400;
-_lightsourceOne setLightAmbient _colorAmbient; 
-_lightsourceOne setLightColor _colorLight; 
-_lightsourceOne setLightConePars [270, 2, 1];
-_lightsourceOne setLightAttenuation [1, 10, 4, 3, 1, 2.5];
-_lightsourceOne attachTo [_player,  [0, 0.4, 0], "Pelvis", true];
-_lightsource setPosWorld getPosWorld _lightsource;
+_lightSourceOne setLightIntensity 400;
+_lightSourceOne setLightAmbient _colorAmbient; 
+_lightSourceOne setLightColor _colorLight; 
+_lightSourceOne setLightConePars [270, 2, 1];
+_lightSourceOne setLightAttenuation [1, 10, 4, 3, 1, 2.5];
 
 // forward facing light source to let players see things in front of them
-
-private _lightsourceTwo = "#lightreflector" createVehicle (_player modelToWorld [0, 0, -1]);
-_lightsourceTwo setLightIntensity 2500; 
-_lightsourceTwo setLightAmbient _colorAmbient; 
-_lightsourceTwo setLightColor _colorLight; 
-_lightsourceTwo setLightConePars [360, 20, 15];
-_lightsourceTwo attachTo [_player,  [0, 0, -0.2], "", true];
-_lightsource setPosWorld getPosWorld _lightsource;
+_lightSourceTwo setLightIntensity 2500; 
+_lightSourceTwo setLightAmbient _colorAmbient; 
+_lightSourceTwo setLightColor _colorLight; 
+_lightSourceTwo setLightConePars [360, 20, 15];

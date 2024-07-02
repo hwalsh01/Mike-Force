@@ -206,11 +206,14 @@ class CfgFunctions
 			class attachments_client_attach_chemlight {};
 			class attachments_server_attach_flashlight {};
 			class attachments_server_attach_chemlight {};
+			class attachments_server_get_jip_id {};
 			class attachments_global_delete_all {};
+			class attachments_client_battery_monitor_init {};
+			class attachments_client_battery_monitor_job {};
 		};
 
 		class system_attachments_lightsources {
-			file = "functions\systems\attachments\lightsources\create";
+			file = "functions\systems\attachments\lightsources";
 			class attachments_lightsources_flashlight {};
 			class attachments_lightsources_chemlight {};
 		};

@@ -1,18 +1,17 @@
 /*
-    File: fn_attach_vest_chemlight.sqf
+    File: fn_attachments_client_attach_chemlight.sqf
     Author: 'DJ' Dijksterhuis
     Public: No
 
     Description:
-        Attachs a chemlight of some colour to the player, also creating
-        two light sources to create more of an aura (and make it easier to see).
+        Player wants to attach a chemlight to see in the dark.
 
-        Execute this on the server. We'll broadcast remoteExecs out to other
-        players if needed.
+        This triggers server side execution so we can sync everything.
+
+        Called by the "consume" system stuff, which was hacked a little to get this working.
 
     Parameter(s):
-        _player - Player we will be attaching to
-        _classname - Chemlight class name (tells us the color)
+        TODO
 
     Returns: nothing
 
@@ -33,6 +32,6 @@ if !(_interactedItem isEqualTo []) then {
 [player] call vn_mf_fnc_attachments_global_delete_all;
 
 player removeItem _interactedItem;
+player setVariable ["vn_mf_bn_attch_battery_starttime", serverTime];
 
-// TODO: shouldn't need to JIP as createVehicle has global effect?
 [player, _interactedItem] remoteExec ["vn_mf_fnc_attachments_server_attach_chemlight", 2];

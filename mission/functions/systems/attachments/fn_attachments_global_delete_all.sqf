@@ -1,3 +1,20 @@
+/*
+    File: fn_attachments_global_delete_all.sqf
+    Author: 'DJ' Dijksterhuis
+    Public: No
+
+    Description:
+        Delete lightsources and attached objects.
+
+        createVehicle is global, so this should sync across everyone and everything.
+
+        also resets the JIP queue.
+
+    Parameter(s): none.
+    Returns: nothing
+    Example(s):
+        [player] call vn_mf_fnc_attachments_global_delete_all;
+*/
 params ["_player"];
 
 private _obs = attachedObjects _player select {
@@ -18,4 +35,5 @@ private _obs = attachedObjects _player select {
 } apply {deleteVehicle _x};
 
 // clean up the JIP queue
-remoteExec ["", format ["vn_mf_bn_jip_attch_lightsrc_%1", getPlayerUID _player]];
+private _jipId = [_player] call vn_mf_fnc_attachments_get_jip_id;
+remoteExec ["", _jipId];

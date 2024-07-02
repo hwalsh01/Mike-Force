@@ -29,13 +29,19 @@ _chemlight attachTo [_player,  [0, 0.15, 0.1], "Pelvis", true];
 _chemlight setDir 280;
 _chemlight setPosWorld getPosWorld _chemlight;
 
+private _lightSourceOne = "#lightreflector" createVehicle (_player modelToWorld [0, 0, -1]);
+_lightSourceOne attachTo [_player,  [0, 0.4, 0], "Pelvis", true];
+_lightSourceOne setPosWorld getPosWorld _lightSourceOne;
+
+private _lightSourceTwo = "#lightreflector" createVehicle (_player modelToWorld [0, 0, -1]);
+_lightSourceTwo attachTo [_player,  [0, 0, -0.2], "", true];
+_lightSourceTwo setPosWorld getPosWorld _lightSourceTwo;
+
 // execute globally so all players and AI etc can see the light sources
 // jip executed to ensure joining players also get the attached light source
-[_player, _classname] remoteExec [
-  "vn_mf_fnc_attachments_lightsources_chemlight",
-  0,
-  format [
-    "vn_mf_bn_jip_attch_lightsrc_%1",
-    getPlayerUID _player
-  ]
+private _jipId = [_player] call vn_mf_fnc_attachments_get_jip_id;
+
+[[_lightSourceOne, _lightSourceTwo], _classname] remoteExec [
+  "vn_mf_fnc_attachments_lightsources_chemlight", -2, _jipId
 ];
+  
