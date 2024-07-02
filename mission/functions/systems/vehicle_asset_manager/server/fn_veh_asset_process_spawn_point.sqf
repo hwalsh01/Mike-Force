@@ -39,9 +39,21 @@ private _vehicle = _spawnPoint getOrDefault ["currentVehicle", objNull];
 private _settings = _spawnPoint get "settings";
 private _respawnType = _settings get "respawnType";
 
+if ((_spawnPoint get "status" get "state") == "ADMINLOCKED") exitWith {
+	// just switched the state over after request from client
+	// probably need to delete the vehicle.
+	if(alive _vehicle) then {
+
+		deleteVehicle _vehicle;
+		[_spawnPoint] call vn_mf_fnc_veh_asset_marker_delete;
+	};
+};
+
+
 if(!alive _vehicle) then {
 	[_vehicle] call vn_mf_fnc_veh_asset_unlock_vehicle;
 };
+
 
 //Vehicle is dead, and hasn't be transitioned to a "DEAD" state.
 if (!alive _vehicle && !((_spawnPoint get "status" get "state") in ["RESPAWNING", "REPAIRING", "WRECKED"])) then {

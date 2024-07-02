@@ -74,5 +74,8 @@ if (_state isEqualTo "ACTIVE") exitWith {
 	format ["The %1 is currently deployed and in use. %2", _vehicleName, _vehiclePosDisplay];
 };
 
+if (_state isEqualTo "ADMINLOCKED") exitWith {
+	format ["Spawner has been locked by an Admin, either due to bugs or bad behaviour."]
+};
 
 "The current state of this spawn point is unknown."

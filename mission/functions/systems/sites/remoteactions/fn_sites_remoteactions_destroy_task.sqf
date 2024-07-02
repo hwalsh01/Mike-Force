@@ -1,5 +1,5 @@
 /*
-	File: fn_destroy_task.sqf
+	File: sites_remoteactions_destroy_task.sqf
 	Author: Cerebral
 	Public: No
 	
@@ -11,7 +11,7 @@
 	Returns:
 	
 	Example(s):
-		[_object, _player] call vn_mf_fnc_destroy_task;
+		[_object, _player] call vn_mf_fnc_sites_remoteactions_destroy_task;
 */
 
 params ["_task", "_player"];
@@ -138,4 +138,3 @@ if !(_building isEqualTo objNull) then
 		deleteVehicle _task;
 	};
 };
-

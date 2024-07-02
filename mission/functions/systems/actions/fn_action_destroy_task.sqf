@@ -68,11 +68,11 @@ private _conditionToShowString = format ["(%1)",
 	"custom\holdactions\holdAction_destroy_ca.paa",	// Idle icon shown on screen
 	"custom\holdactions\holdAction_destroy_ca.paa",	// Progress icon shown on screen
 	_conditionToShowString, // Condition for the action to be shown
-	"player distance cursorObject < 10",						// Condition for the action to progress
+	"player distance cursorObject < 3",						// Condition for the action to progress
 	{},	// Code executed when action starts
 	{},	// Code executed on every progress tick
 	{
-		[cursorObject, player] remoteExec ["vn_mf_fnc_destroy_task", 2];
+		[cursorObject, player] remoteExec ["vn_mf_fnc_sites_remoteactions_destroy_task", 2];
 	},// Code executed on completion
 	{},	// Code executed on interrupted
 	[],													// Arguments passed to the scripts as _this select 3
