@@ -33,7 +33,3 @@ private _obs = attachedObjects _player select {
 		"vn_b_item_mx991_01"
 	]
 } apply {deleteVehicle _x};
-
-// clean up the JIP queue
-private _jipId = [_player] call vn_mf_fnc_attachments_global_get_jip_id;
-remoteExec ["", -2, _jipId];

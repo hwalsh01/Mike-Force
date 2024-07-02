@@ -29,7 +29,8 @@ if !(_interactedItem isEqualTo []) then {
   _interactedItem = _interactedItem select 1;
 };
 
-[player] call vn_mf_fnc_attachments_global_delete_all;
+[player] call vn_mf_fnc_attachments_global_delete_objects;
+[player] call vn_mf_fnc_attachments_global_reset_jip_id;
 
 player removeItem _interactedItem;
 player setVariable ["vn_mf_bn_attch_battery_starttime", serverTime];

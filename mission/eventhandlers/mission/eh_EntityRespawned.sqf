@@ -24,9 +24,6 @@ params
 // respawn player with same loadout as before death
 if (isPlayer _entity) then
 {
-	// delete all light sources and attachments that might have been on the player
-	[_entity] call vn_mf_fnc_attachments_global_delete_all;
-
 	// get loadout from body
 	private _loadout = getUnitLoadout _corpse;
 
@@ -79,4 +76,9 @@ if (isPlayer _entity) then
 	[_entity] call vn_mf_fnc_curator_init;
 	// wipe out unused data
 	_corpse setVariable ["vn_mf_dyn_weaponholders",nil,true];
+
+	// delete all light sources and attachments that might have been on the player
+	// also clear the JIP queue for other clients
+	[_corpse] call vn_mf_fnc_attachments_global_delete_objects;
+	[_entity] call vn_mf_fnc_attachments_global_reset_jip_id;
 };
