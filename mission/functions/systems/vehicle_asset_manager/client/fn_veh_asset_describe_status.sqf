@@ -27,6 +27,8 @@ if (isNil "_spawnPoint") exitWith { "" };
 private _vehicle = _spawnPoint getOrDefault ["currentVehicle", objNull];
 private _vehicleType = typeOf _vehicle;
 private _vehicleName = getText (configFile >> "CfgVehicles" >> _vehicleType >> "displayName");
+if (_vehicleName isEqualTo "") then {_vehicleName = "vehicle"};
+
 
 private _status = _spawnPoint getOrDefault ["status", createHashMap];
 private _state = _status getOrDefault ["state", "UNKNOWN"];
@@ -51,11 +53,11 @@ if (_state isEqualTo "IDLE") exitWith {
 };
 
 if (_state isEqualTo "REPAIRING") exitWith {
-	format ["The vehicle is currently being repaired, and will be finished in %1.", call _fnc_getTimeRemaining];
+	format ["The %1 is repairing and will be sent to the respawn queue in %2.", _vehicleName, call _fnc_getTimeRemaining];
 };
 
 if (_state isEqualTo "RESPAWNING") exitWith {
-	format ["The %1 will begin respawning in %2.", _vehicleName, call _fnc_get_timeRemaining];
+	format ["The %1 will be sent to the respawn queue in %2.", _vehicleName, call _fnc_getTimeRemaining];
 };
 
 if (_state isEqualTo "WRECKED") exitWith {
@@ -63,7 +65,7 @@ if (_state isEqualTo "WRECKED") exitWith {
 };
 
 if (_state isEqualTo "QUEUED") exitWith {
-	format ["The %1 is in the spawner queue and will appear shortly.", _vehicleName];
+	format ["The %1 is in the respawn queue and will be created in %2", _vehicleName, call _fnc_getTimeRemaining];
 };
 
 if (_state isEqualTo "DISABLED") exitWith {
