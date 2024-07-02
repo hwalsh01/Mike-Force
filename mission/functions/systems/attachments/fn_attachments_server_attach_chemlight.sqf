@@ -39,7 +39,7 @@ _lightSourceTwo setPosWorld getPosWorld _lightSourceTwo;
 
 // execute globally so all players and AI etc can see the light sources
 // jip executed to ensure joining players also get the attached light source
-private _jipId = [_player] call vn_mf_fnc_attachments_get_jip_id;
+private _jipId = [_player] call vn_mf_fnc_attachments_global_get_jip_id;
 
 [[_lightSourceOne, _lightSourceTwo], _classname] remoteExec [
   "vn_mf_fnc_attachments_lightsources_chemlight", -2, _jipId

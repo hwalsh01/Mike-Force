@@ -206,7 +206,7 @@ class CfgFunctions
 			class attachments_client_attach_chemlight {};
 			class attachments_server_attach_flashlight {};
 			class attachments_server_attach_chemlight {};
-			class attachments_server_get_jip_id {};
+			class attachments_global_get_jip_id {};
 			class attachments_global_delete_all {};
 			class attachments_client_battery_monitor_init {};
 			class attachments_client_battery_monitor_job {};

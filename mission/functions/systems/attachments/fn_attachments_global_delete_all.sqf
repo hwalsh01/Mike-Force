@@ -35,5 +35,5 @@ private _obs = attachedObjects _player select {
 } apply {deleteVehicle _x};
 
 // clean up the JIP queue
-private _jipId = [_player] call vn_mf_fnc_attachments_get_jip_id;
-remoteExec ["", _jipId];
+private _jipId = [_player] call vn_mf_fnc_attachments_global_get_jip_id;
+remoteExec ["", -2, _jipId];

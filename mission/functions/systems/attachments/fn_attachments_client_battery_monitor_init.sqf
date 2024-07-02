@@ -16,4 +16,4 @@
         call vn_mf_fnc_attachments_client_battery_monitor_init
 */
 
-["attch_client_battery_monitor", vn_mf_fnc_attachments_client_battery_job, [], 60] call para_g_fnc_scheduler_add_job;
+["attch_client_battery_monitor", vn_mf_fnc_attachments_client_battery_monitor_job, [], 60] call para_g_fnc_scheduler_add_job;
