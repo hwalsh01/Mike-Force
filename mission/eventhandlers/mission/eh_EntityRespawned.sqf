@@ -24,6 +24,9 @@ params
 // respawn player with same loadout as before death
 if (isPlayer _entity) then
 {
+	// delete all light sources and attachments that might have been on the player
+	[_entity] call vn_mf_fnc_attachments_global_delete_all;
+
 	// get loadout from body
 	private _loadout = getUnitLoadout _corpse;
 
