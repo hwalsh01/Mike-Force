@@ -28,7 +28,7 @@ private _startTime = player getVariable ["vn_mf_bn_attch_battery_starttime", -1]
 // final tick
 ((_startTime > 0) && {serverTime > (_startTime + _ttl)}) && {
     diag_log format ["INFO: Light attachment has ran out of battery, removing."];
-    [player] call vn_mf_fnc_attachments_global_delete_all;
+    [player] call vn_mf_fnc_attachments_global_delete_objects;
     ["LightsourceAttachOutOfEnergy",[]] call para_c_fnc_show_notification;
     player setVariable ["vn_mf_bn_attch_battery_starttime", -1];
 };
