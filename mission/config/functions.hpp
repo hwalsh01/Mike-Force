@@ -486,6 +486,8 @@ class CfgFunctions
 			class zones_load_zone {};
 			class zones_manager_job {};
 			class zones_save_zone {};
+			class zones_update_zone {};
+			class zones_get_struct_value {};
 		};
 
 		class system_sysmsgs

@@ -30,7 +30,9 @@ if (_savedData isEqualTo []) then
 		//Zone
 		_zoneId,
 		//Captured
-		false
+		false,
+		// task state
+		"prepare_zone"
 	];
 };
 
@@ -42,10 +44,23 @@ private _version = _savedData select 0;
 _savedData params [
 	"_version",
 	"_zoneMarker",
-	"_captured"	
+	"_captured",
+	["_task", "prepare_zone"]  // optional for back compat
 ];
+
+// TODO: hack for local issue with wrong task name -- should not be required in release?
+if (_task isEqualTo "prepare") then {_task = "prepare_zone"};
+
+
+// tasks could have dependencies on other tasks being completed
+// need to go back and redo those ones instead of starting with
+// the latest task.
+// tl;dr: this is the "capture_zone" task needing "prepare_zone"
+// for the site generation.
+_task = mf_s_zone_next_tasks get _task get "init";
 
 _zoneData set [struct_zone_m_marker, _zoneMarker];
 _zoneData set [struct_zone_m_captured, _captured];
+_zoneData set [struct_zone_m_task, _task];
 
 _zoneData

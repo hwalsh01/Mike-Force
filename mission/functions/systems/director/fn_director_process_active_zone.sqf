@@ -32,81 +32,41 @@ private _task = _zoneInfo get "currentTask";
 private _taskIsCompleted = [_task] call vn_mf_fnc_task_is_completed;
 private _taskResult = _task getVariable ["taskResult", ""];
 
+private _fnc_start_next_task = {
+	params ["_zone", "_currentState", "_currentResult"];
+
+	private _nextState = mf_s_zone_next_tasks get _currentState get _currentResult;
+
+	[
+		"INFO",
+		format ["Zone '%1' phase '%2' %3, starting next task '%4'", _zone, _currentState, _currentResult, _nextState]
+	] call para_g_fnc_log;
+
+	private _nextTask = (([_nextState, _zone] call vn_mf_fnc_task_create) # 1);
+
+	_zoneInfo set ["state", _nextState];
+	_zoneInfo set ["currentTask", _nextTask];
+
+	[_zone, struct_zone_m_task, _nextState] call vn_mf_fnc_zones_update_zone;
+
+};
+
 if (_taskIsCompleted) then {
 
-	/*
-	Preparation phase has ended.
-
-	Either:
-	(a) all site compositions generated and players did not enter zone (move to capture)
-	(b) players entered the zone (move to go_away)
-	*/
-	if (_currentState isEqualTo "prepare") exitWith {
-
-		["INFO", format ["Zone '%1' preparation successful, moving to 'capture'", _zone]] call para_g_fnc_log;
-
-		// players didn't enter the AO, we're okay to move on to capture phase
-		private _captureTask = ((["capture_zone", _zone] call vn_mf_fnc_task_create) # 1);
-
-		_zoneInfo set ["state", "capture"];
-		_zoneInfo set ["currentTask", _captureTask];
+	if (_taskResult isEqualTo "FAILED") exitWith {
+		[_zone, _currentState, "failure"] call _fnc_start_next_task;
 	};
 
-	/*
-	All capture site sub tasks have been completed. End of the capture phase.
+	if (_currentState isEqualTO mf_s_zone_last_task) exitWith {
+		[
+			"INFO",
+			format ["Zone '%1' phase '%2' successful, completing zone", _zone, _currentState]
+		] call para_g_fnc_log;
 
-	Trigger the Zone's counterattack state.
-	*/
-
-	if (_currentState isEqualTo "capture") exitWith {
-
-		["INFO", format ["Zone '%1' captured, moving to 'counterattack'", _zone]] call para_g_fnc_log;
-
-		private _counterattackTask = ((["defend_counterattack", _zone, [["prepTime", 180]]] call vn_mf_fnc_task_create) # 1);
-		_zoneInfo set ["state", "counterattack"];
-		_zoneInfo set ["currentTask", _counterattackTask];
-	};
-
-	/*
-	Counterattack results are in!
-
-	Do some clean up (remove dc respawns/compositions) then either:
-
-	(a) counterattack phase failed -- reset back to prepare phase (players need to leave zone).
-	(b) counterattack phase successful -- close the zone (opening a new zone after).
-	*/
-
-	if (_currentState isEqualTo "counterattack") exitWith {
-
-		if (_taskResult isEqualTo "FAILED") exitWith {
-
-			["INFO", format ["Zone '%1' defend against counterattack failed, restarting 'counterattack' phase", _zone]] call para_g_fnc_log;
-
-			private _counterattackReTask = ((["defend_counterattack", _zone, [["prepTime", 180]]] call vn_mf_fnc_task_create) # 1);
-			_zoneInfo set ["state", "counterattack"];
-			_zoneInfo set ["currentTask", _counterattackReTask];
-		};
-
-		// the counterattacked was defended against successfully
-
-		// delete DC spawns etc.
-		{
-		    private _marker = _x # 0;
-		    private _respawnID = _x # 1;
-
-		    _respawnID call BIS_fnc_removeRespawnPosition;
-		    deleteMarker _marker;
-		} forEach vn_dc_adhoc_respawns;
-
-		// delete all site composition objects.
-		{
-		    deleteVehicle _x;
-		} forEach vn_site_objects;
-
-
-		["INFO", format ["Zone '%1' counterattack successfully defended against, completing zone", _zone]] call para_g_fnc_log;
-		// Task is finished, and hasn't failed
 		[_zone] call vn_mf_fnc_director_complete_zone;
 	};
+
+	[_zone, _currentState, "success"] call _fnc_start_next_task;
+
 };
 
