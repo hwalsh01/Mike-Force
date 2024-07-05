@@ -26,7 +26,7 @@ params ["_taskDataStore"];
 Constants
 */
 _taskDataStore setVariable ["holdDuration", 60 * 30];
-_taskDataStore setVariable ["failureTime", 5 * 60];
+_taskDataStore setVariable ["failureDuration", 5 * 60];
 
 
 /*
@@ -46,7 +46,7 @@ _taskDataStore setVariable ["INIT", {
 	private _hqs = (localNamespace getVariable ["sites_hq", []]) inAreaArray _marker;
 	*/
 
-	private _prepTime = _tds getVariable ["prepTime", 0];
+	private _prepTime = _tds getVariable ["prepTime", 180];
 
 	_marker setMarkerColor "ColorYellow";
 	_marker setMarkerBrush "DiagGrid";
@@ -118,7 +118,7 @@ _taskDataStore setVariable ["INIT", {
 		_attackPos
 	];
 
-	private _attackTime = serverTime + (_tds getVariable ["prepTime", 0]);
+	private _attackTime = serverTime + _prepTime;
 	_tds setVariable ["attackTime", _attackTime];
 	_tds setVariable ["attackPos", _attackPos];
 	_tds setVariable ["attackAreaSize", _areaSize];
@@ -152,6 +152,13 @@ _taskDataStore setVariable ["_fnc_create_circle_area", {
 
 }];
 
+_taskDataStore setVariable ["_fnc_notify_attack_remaining", {
+	params ["_timeRemaining"];
+	["CounterAttackImminent", [(_timeRemaining / 60) toFixed 0]] remoteExec ["para_c_fnc_show_notification", 0];
+	[] call vn_mf_fnc_timerOverlay_removeGlobalTimer;
+	["Counter Attack", serverTime + _timeRemaining, true] call vn_mf_fnc_timerOverlay_setGlobalTimer;
+}];
+
 /*
 Prepare the zone -- get everything ready for the counter-attack phase
 
@@ -182,27 +189,28 @@ _taskDataStore setVariable ["prepare_zone", {
 
 	if (_tds getVariable "attackTime" > serverTime) exitWith {};
 
-	["CounterAttackImminent"] remoteExec ["para_c_fnc_show_notification", 0];
-	[] call vn_mf_fnc_timerOverlay_removeGlobalTimer;
-	["Counter Attack Imminent", serverTime + 180, true] call vn_mf_fnc_timerOverlay_setGlobalTimer;
-
-	_tds setVariable ["startTime", serverTime];
-
 	// set up the next task(s)
 	// one of "defend_flag + defend_fob" or "defend_fob" or "defend_zone".
 
-	if (
-		(_tds getVariable ["flag_exists", false]) 
-		&& (_tds getVariable ["fob_exists", false])
-	) exitWith {
+	// start our timers
+	_tds setVariable ["startTime", serverTime];
+	_tds setVariable ["enemyZoneHeldTime", 0];
+	_tds setVariable ["lastCheck", serverTime];
+
+	// post server restart check -- how long is reamining on a counterattack
+	["GET", "counterattack_timer", -1] call para_s_fnc_profile_db params ["", "_timeRemaining"];
+	if (_timeRemaining < 0) then {_timeRemaining = (_tds getVariable ["holdDuration", 60 * 30])};
+
+	_tds setVariable ["attackDuration", _timeRemaining];
+	[_timeRemaining] call (_tds getVariable "_fnc_notify_attack_remaining");
+	[_tds] call (_tds getVariable "_fnc_create_circle_area");
+	
+	if ((_tds getVariable ["flag_exists", false]) && (_tds getVariable ["fob_exists", false])) exitWith {
 
 		// used in the players action to check if players are looking at the right flag.
 		// we set it now so the flag cannot be lowered during the prepare counterattack phase
 		// but can be lowered during the upcoming defned thr flag phase
 		(_tds getVariable "flag") setVariable ["canLower", true];
-
-		[_tds] call (_tds getVariable "_fnc_create_circle_area");
-
 		[
 			"SUCCEEDED", 
 			[
@@ -213,17 +221,11 @@ _taskDataStore setVariable ["prepare_zone", {
 	};
 
 	if (_tds getVariable ["fob_exists", false]) exitWith {
-
-		[_tds] call (_tds getVariable "_fnc_create_circle_area");
-
 		[
 			"SUCCEEDED", 
 			[["defend_fob", _tds getVariable "attackPos"]]
 		] call _fnc_finishSubtask;
 	};
-
-	[_tds] call (_tds getVariable "_fnc_create_circle_area");
-
 
 	// no other options left
 	// chuck some AI in the zone and hope they bump into players
@@ -244,6 +246,8 @@ _taskDataStore setVariable ["_fnc_check_ai_failure_condition", {
 	private _attackPos = _tds getVariable "attackPos";
 	private _areaSize = _tds getVariable "attackAreaSize";
 	private _areaDescriptor = [_attackPos, _areaSize select 0, _areaSize select 1, 0, false];
+	private _enemyZoneHeldTime = _tds getVariable "enemyZoneHeldTime";
+	private _lastCheck = _tds getVariable "lastCheck";
 
 	//Side check - downed players don't count. Nor do players in aircraft. Ground vehicles are fair game.
 	private _alivePlayersInZone = allPlayers inAreaArray _areaDescriptor 
@@ -254,50 +258,47 @@ _taskDataStore setVariable ["_fnc_check_ai_failure_condition", {
 			&& !(_x getVariable ["vn_revive_incapacitated", false])
 		};
 
-	private _enemyZoneHeldTime = _tds getVariable "enemyZoneHeldTime";
-	private _lastCheck = _tds getVariable "lastCheck";
 	//Enemy hold the zone if no living players.
 	private _enemyHoldZone = count _alivePlayersInZone == 0;
 
 	if (_enemyHoldZone) then {
-		if (isNil "_enemyZoneHeldTime") then {
-			_enemyZoneHeldTime = 0;
-			_lastCheck = serverTime;
-		} else {
-			//Adding the interval between checks will be close enough to work.
-			//We will lose or gain a few seconds but will even out in the long run.
-			//Interval is approx 5 +/- 2 seconds from my testing.
-			_enemyZoneHeldTime = _enemyZoneHeldTime + (serverTime - _lastCheck);
-			_lastCheck = serverTime;
-		};
-		_tds setVariable ["enemyZoneHeldTime", _enemyZoneHeldTime];
-		_tds setVariable ["lastCheck", _lastCheck];
+		//Adding the interval between checks will be close enough to work.
+		//We will lose or gain a few seconds but will even out in the long run.
+		//Interval is approx 5 +/- 2 seconds from my testing.
+		_tds setVariable ["enemyZoneHeldTime", _enemyZoneHeldTime + (serverTime - _lastCheck)];
+		_tds setVariable ["lastCheck", serverTime];
 	} else {
 		_tds setVariable ["enemyZoneHeldTime", 0];
-		_lastCheck = serverTime;
-		_tds setVariable ["lastCheck", _lastCheck];
+		_tds setVariable ["lastCheck", serverTime];
 	};
 
 	private _startTime = _tds getVariable "startTime";
+	private _endTime = _startTime + (_tds getVariable "attackDuration");
 
 	//Zone has been held long enough, or they've killed enough attackers for the
 	// AI objective to complete.
-	if (
-		serverTime - _startTime > (_tds getVariable ["holdDuration", 60 * 30]) 
-		|| isNull (_tds getVariable "attackObjective")
-	) exitWith {
+	if (serverTime - _startTime > _endTime || isNull (_tds getVariable "attackObjective")) exitWith {
+		_tds setVariable ["enemyZoneHeldTime", 0];
+		_tds setVariable ["lastCheck", 0];
+		["SET", "counterattack_timer", -1] call para_s_fnc_profile_db;
 		"SUCCESS"
 	};
 
 	//Enemy hold the zone for X seconds, we've failed
-	if (
-		_enemyHoldZone
-		&& {_enemyZoneHeldTime > (_tds getVariable ["failureTime", 5 * 60])}
-	) exitWith {
+	if (_enemyHoldZone && {_enemyZoneHeldTime > (_tds getVariable ["failureDuration", 5 * 60])}) exitWith {
+		_tds setVariable ["enemyZoneHeldTime", 0];
+		_tds setVariable ["lastCheck", 0];
+		["SET", "counterattack_timer", -1] call para_s_fnc_profile_db;
 		"FAILED"
 	};
 
 	// still going
+	if (serverTime - (10 * 60) > (_tds getVariable ["attackLastNotification", _startTime])) then {
+		_tds setVariable ["attackLastNotification", serverTime];
+		[_endTime - serverTime] call (_tds getVariable "_fnc_notify_attack_remaining");
+	};
+
+	["SET", "counterattack_timer", _endTime - serverTime] call para_s_fnc_profile_db;
 	"ACTIVE"
 }];
 

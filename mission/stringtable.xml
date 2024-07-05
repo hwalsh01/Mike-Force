@@ -705,8 +705,8 @@
         <English>The enemy will counter-attack in %2 minutes</English>
       </Key>
       <Key ID="STR_vn_mf_notification_desc_counter_attack_imminent">
-        <Original>Enemy counter-attack is imminent!</Original>
-        <English>Enemy counter-attack is imminent!</English>
+        <Original>Enemy forces are counter-attacking! Time remaining: %1 minutes.</Original>
+        <English>Enemy forces are counter-attacking! Time remaining: %1 minutes.</English>
       </Key>
       <Key ID="STR_vn_mf_notification_title_base_attack">
         <Original>FOB Attack</Original>
