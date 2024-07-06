@@ -105,13 +105,27 @@ _taskDataStore setVariable ["fnc_subtaskGoAway", {
 
 	[_taskStore, "ColorBlack"] call (_taskStore getVariable "fnc_changeAreaMarkerColor");
 
+	// delete generated sites as early as possible
+	// doesn't matter if players are inside the zone
+	// make it clear they shouldn't be here by removing things in front of them
+	// GTFO now please!
+	if (scriptDone (_taskStore getVariable "generateHandle")) then {
+		call vn_mf_fnc_sites_delete_all_active_sites;
+		call vn_mf_fnc_daccong_respawns_delete_all;
+	};
+
 	/*
 	players have left the AO's blue circle
 	we're good to end this task and move back to the DC prepare task
+
+	NOTE -- make sure to check for scriptDone here too.
 	*/
-	if ((count _playersInArea) == 0) exitWith {
+
+	if ((count _playersInArea) == 0 && (scriptDone (_taskStore getVariable "generateHandle"))) exitWith {
+
 		// we need to set the timer overlay up before we start the task
 		// otherwise task block above will call this on every task tick
+
 		private _nextsubtaskDurationSeconds = _taskStore getVariable "subtaskDurationSeconds";
 		
 		[] call vn_mf_fnc_timerOverlay_removeGlobalTimer;
@@ -178,11 +192,13 @@ _taskDataStore setVariable ["fnc_subtaskRTB", {
 
 	looks like we're okay to spawn in sites for now
 	*/
-	if (serverTime > _subtaskEndTime and not (_taskStore getVariable ["generated", false])) exitWith {
-		// NOTE: vn_mf_fnc_sites_generate is a blocking call which
-		// stops the prepare task doing any ticks while it's executing
-		[_taskStore getVariable "taskMarker"] call vn_mf_fnc_sites_generate;
-		_taskStore setVariable ["generated", true];
+	if (serverTime > _subtaskEndTime and not (_taskStore getVariable ["generateStarted", false])) exitWith {
+		private _handle = [_taskStore getVariable "taskMarker"] spawn {
+			params ["_pos"];
+			[_pos] call vn_mf_fnc_sites_generate;
+		};
+		_taskStore setVariable ["generateStarted", true];
+		_taskStore setVariable ["generateHandle", _handle];
 	};
 
 	/*
@@ -204,7 +220,6 @@ _taskDataStore setVariable ["fnc_subtaskRTB", {
 		then reset the task state so we can go back to the first sub task
 		and generate sites all over again
 		*/
-		[] call vn_mf_fnc_sites_delete_all_active_sites;
 		_taskStore setVariable ["generated", false];
 
 		[
@@ -216,8 +231,9 @@ _taskDataStore setVariable ["fnc_subtaskRTB", {
 	};
 
 	/* we actually generated the sites and haven't triggered a subtask failure. great success! */
-	if (_taskStore getVariable ["generated", false]) exitWith {
+	if (scriptDone (_taskStore getVariable "generateHandle")) exitWith {
 		diag_log format ["Prepare AO: RTB subtask success, switching to Prepare subtask"];
+		_taskStore setVariable ["generated", true];
 		[
 			"SUCCEEDED",
 			[
