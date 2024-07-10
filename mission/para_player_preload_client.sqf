@@ -42,7 +42,7 @@ playMusic selectRandom [
 	"vn_drafted",
 	"vn_unsung_heroes",
 	"vn_blues_for_suzy",
-	"vn_voodo_girl",
+	"vn_voodoo_girl",
 	"vn_tequila_highway",
 	"vn_there_it_is",
 	"vn_kitty_bar_blues",

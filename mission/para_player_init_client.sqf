@@ -28,33 +28,19 @@
 		use_paradigm_init = 1;
 */
 
+private _transitionsTotal = count (
+	((preprocessFile "para_player_init_client.sqf") splitString ";") select {"call _fnc_tick_loading_screen" in _x}
+);
 
-/*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!
+private _loadingTickProgress = 0;
+private _img = "welcomeBasic";
 
-after adding any more `call _fnc_do_loading_bar` lines you will
-need to work out how many times `_fnc_do_loading_bar` is called in this file
-
-update the hardcoded `_transitionsTotal` variable if you want to change this
-
-**TIP** -- use this command line
-
-```bash
-# count lines in the file that match the string
-grep -c 'call _fnc_do_loading_bar' mission/para_player_init_client.sqf
-```
-
-!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*/
-
-private _transitionsTotal = 25;
-private _loadingChanges = 0;
-private _imgSwitched = false;
-
-private _fnc_do_loading_bar = {
+private _fnc_tick_loading_screen = {
+	params ["_loadingTicks"];
 
 	/*
 
 	This function is called to progress the loading screen at various points while player client is init'd.
-	See the note above about the `_transitionsTotal` variable -- __it must be hardcoded in this file__.
 
 	tl;dr --
 	- steps the progress bar on screen based on total progress
@@ -62,18 +48,25 @@ private _fnc_do_loading_bar = {
 		- random string contents selection
 		- random text colour selection
 		- text size (based on progress -- bigger text as progress bar increases)
-	- switches the image after 50% loaded
+	- switches the image after 33% / 66% loaded
 
 	*/
 
-	private _progress = _loadingChanges / _transitionsTotal;
-	_loadingChanges = _loadingChanges + 1;
+	_loadingTicks = _loadingTicks + 1;
+	private _progress = _loadingTicks / (_transitionsTotal + 1);
 
 	progressLoadingScreen _progress;
 
-	if (_progress > 0.5 && !_imgSwitched) then {
-		[getText (missionConfigFile >> "gamemode" >> "loadingScreens" >> "patreon"), 5002] call vn_mf_fnc_update_loading_screen;
-		_imgSwitched = true;
+	// this logic is a bit nasty -- we really need to track progression through a DAG.
+	// but hackiness is fine for the moment. i could spend time working out a better 
+	// way of organising this code, but it's really not that big of a deal right now.
+	if (_progress > 0.3333 && !(_img in ["patreonBasic", "patreonSupporters"])) then {
+		[getText (missionConfigFile >> "gamemode" >> "loadingScreens" >> "patreonBasic"), 5002] call vn_mf_fnc_update_loading_screen;
+		_img = "patreonBasic";
+	};
+	if (_progress > 0.6666 && !(_img in ["patreonSupporters"])) then {
+		[getText (missionConfigFile >> "gamemode" >> "loadingScreens" >> "patreonSupporters"), 5002] call vn_mf_fnc_update_loading_screen;
+		_img = "patreonSupporters";
 	};
 
 	private _loadingText = selectRandom [
@@ -107,112 +100,114 @@ private _fnc_do_loading_bar = {
 
 	[
 		parseText format [
-			"<t size='%3' font='tt2020base_vn' color='%2'>%1</t>",
-			localize _loadingText,
+			"<t size='%1' font='tt2020base_vn' color='%2'>%3</t>",
+			1.33,
 			_textColour,
-			_textSize
+			localize _loadingText
 		]
 	] call vn_mf_fnc_update_loading_screen;
-	uiSleep 0.3;
+	uiSleep 0.45;
+
+	_loadingTicks
 };
 
 params ["_player", "_didJIP"];
 
-call _fnc_do_loading_bar;
+_loadingTickProgress = [_loadingTickProgress] call _fnc_tick_loading_screen;
 
 player createDiaryRecord ["Diary", [localize "STR_vn_mf_howtobuild", localize "STR_vn_mf_howtobuild_long"], taskNull, "", false];
 player createDiaryRecord ["Diary", [localize "STR_vn_mf_other_keys", localize "STR_vn_mf_other_keys_long"], taskNull, "", false];
 
 // Instantiate the main scheduler
 [] call para_g_fnc_scheduler_subsystem_init;
-call _fnc_do_loading_bar;
+_loadingTickProgress = [_loadingTickProgress] call _fnc_tick_loading_screen;
 
 call para_g_fnc_event_subsystem_init;
-call _fnc_do_loading_bar;
+_loadingTickProgress = [_loadingTickProgress] call _fnc_tick_loading_screen;
 
 //Read pow cage locations and populate arrays 
 call vn_mf_fnc_pow_init;
-call _fnc_do_loading_bar;
+_loadingTickProgress = [_loadingTickProgress] call _fnc_tick_loading_screen;
 
 // add display event handlers
 call para_c_fnc_init_display_event_handler;
-call _fnc_do_loading_bar;
+_loadingTickProgress = [_loadingTickProgress] call _fnc_tick_loading_screen;
 
 // add player event handlers
 call para_c_fnc_init_player_event_handlers;
-call _fnc_do_loading_bar;
+_loadingTickProgress = [_loadingTickProgress] call _fnc_tick_loading_screen;
 
 call vn_mf_fnc_active_init;
-call _fnc_do_loading_bar;
+_loadingTickProgress = [_loadingTickProgress] call _fnc_tick_loading_screen;
 
 // @dijksterhuis: we should only need to call this once? -- when the player joins?
 // only reason to keep adding actions after attach to player would be if the actions
 // are removed from player object.
 call vn_mf_fnc_action_init;
-call _fnc_do_loading_bar;
+_loadingTickProgress = [_loadingTickProgress] call _fnc_tick_loading_screen;
 // ["action_manager", vn_mf_fnc_action_init, [], 5] call para_g_fnc_scheduler_add_job;
 
 // Set up arsenal clean up trash cans.
 call vn_mf_fnc_arsenal_trash_cleanup_init;
-call _fnc_do_loading_bar;
+_loadingTickProgress = [_loadingTickProgress] call _fnc_tick_loading_screen;
 
 // create UI
 0 spawn vn_mf_fnc_ui_create;
-call _fnc_do_loading_bar;
+_loadingTickProgress = [_loadingTickProgress] call _fnc_tick_loading_screen;
 
 // master loop
 0 spawn para_c_fnc_compiled_loop_init;
-call _fnc_do_loading_bar;
+_loadingTickProgress = [_loadingTickProgress] call _fnc_tick_loading_screen;
 
 private _lastTeamName = player getVariable ["vn_mf_db_player_group", "MikeForce"];
-call _fnc_do_loading_bar;
+_loadingTickProgress = [_loadingTickProgress] call _fnc_tick_loading_screen;
 
 private _respawnMarker = format ["mf_respawn_%1", _lastTeamName];
 if (side player == east) then 
 {
 	_respawnMarker = format ["mf_dc_respawn_%1", _lastTeamName]; 
 };
-call _fnc_do_loading_bar;
+_loadingTickProgress = [_loadingTickProgress] call _fnc_tick_loading_screen;
 
 if (_lastTeamName == "SatansAngels" && toLower(worldName) in ["cam_lao_nam"]) then {
 	player setPosATL [20152.6,67.6535,123.54];
 } else {
 	player setPos getMarkerPos _respawnMarker;
 };
-call _fnc_do_loading_bar;
+_loadingTickProgress = [_loadingTickProgress] call _fnc_tick_loading_screen;
 
 //Setup teleporters
 call vn_mf_fnc_action_teleport;
-call _fnc_do_loading_bar;
+_loadingTickProgress = [_loadingTickProgress] call _fnc_tick_loading_screen;
 
 // apply health effects
 call vn_mf_fnc_health_effects;
-call _fnc_do_loading_bar;
+_loadingTickProgress = [_loadingTickProgress] call _fnc_tick_loading_screen;
 
 private _respawnDelay = ["respawn_delay", 20] call BIS_fnc_getParamValue;
 setplayerrespawntime _respawnDelay;
-call _fnc_do_loading_bar;
+_loadingTickProgress = [_loadingTickProgress] call _fnc_tick_loading_screen;
 
 // Start player marker subsystem
 private _useMarkers = (["allow_map_markers", 1] call BIS_fnc_getParamValue) > 0;
 if (_useMarkers) then {
 	call vn_mf_fnc_player_markers_subsystem_init;
 };
-call _fnc_do_loading_bar;
+_loadingTickProgress = [_loadingTickProgress] call _fnc_tick_loading_screen;
 
 // Initalize marker info UI
 [] call para_c_fnc_zone_marker_init;
-call _fnc_do_loading_bar;
+_loadingTickProgress = [_loadingTickProgress] call _fnc_tick_loading_screen;
 
 // Start AI processing for local player, if we're not a LAN server (as then serverside processing will kick in)
 if (!isServer) then {
 	call para_g_fnc_ai_create_behaviour_execution_loop;
 };
-call _fnc_do_loading_bar;
+_loadingTickProgress = [_loadingTickProgress] call _fnc_tick_loading_screen;
 
 // Set up automatic view distance scaling for performance
 [] call para_c_fnc_perf_enable_dynamic_view_distance;
-call _fnc_do_loading_bar;
+_loadingTickProgress = [_loadingTickProgress] call _fnc_tick_loading_screen;
 
 // starting rank
 vn_mf_starting_rank = player getVariable ["vn_mf_db_rank",0];
@@ -222,17 +217,17 @@ vn_mf_default_awards = [];
 {
     vn_mf_default_awards pushBack [configName _x, -1];
 } forEach ("isClass(_x)" configClasses (missionConfigFile >> "gamemode" >> "awards_config"));
-call _fnc_do_loading_bar;
+_loadingTickProgress = [_loadingTickProgress] call _fnc_tick_loading_screen;
 
 // initialize tools controller
 call para_c_fnc_tool_controller_init;
-call _fnc_do_loading_bar;
+_loadingTickProgress = [_loadingTickProgress] call _fnc_tick_loading_screen;
 
 //call vn_mf_fnc_admin_arsenal;
 
 // This is used for showing values of food and water in the arsenal
 call vn_mf_fnc_enable_arsenal_food_drink_overlay;
-call _fnc_do_loading_bar;
+_loadingTickProgress = [_loadingTickProgress] call _fnc_tick_loading_screen;
 
 //LOADING COMPLETE
 //Start tidying up ready for play.
