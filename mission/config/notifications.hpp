@@ -404,4 +404,10 @@ class CfgNotifications
 		iconPicture = "\A3\ui_f\data\map\mapcontrol\taskIconDone_ca.paa";
 	};
 
+	class SiteDestroyTaskActionsError: FireInTheHole
+	{
+		title = "Error";
+		description = "SiteDestroyTaskActionsError: please report this to Dev Team.";
+	};
+
 };
