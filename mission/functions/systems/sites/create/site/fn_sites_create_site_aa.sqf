@@ -31,7 +31,7 @@ params ["_pos"];
 		private _sitePos = getPos _siteStore;
 		private _spawnPos = _sitePos;
 
-		private _objects = [_spawnPos] call vn_mf_fnc_create_aa_buildings;
+		private _objects = [_spawnPos] call vn_mf_fnc_sites_create_compositions_aa;
 
 		vn_site_objects append _objects;
 
