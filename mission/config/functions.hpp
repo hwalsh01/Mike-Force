@@ -221,8 +221,8 @@ class CfgFunctions
 			file = "functions\systems\dac_cong";
 
 			class capture_player {};
-			class ctf_opfor_lower_flag {};
-			class ctf_bluefor_raise_flag {};
+			class ctf_handle_flag_height_change {};
+			class ctf_broadcast_notify_immediate {};
 		}
 
 		//Gameplay director, responsible for main game progression and flow.

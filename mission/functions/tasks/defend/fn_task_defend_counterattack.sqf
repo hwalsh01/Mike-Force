@@ -242,7 +242,12 @@ _taskDataStore setVariable ["prepare_zone", {
 		*/
 		vn_mf_bn_dc_target_flag = _tds getVariable "flag";
 		publicVariable "vn_mf_bn_dc_target_flag";
-
+	} else {
+		// if no flag, extend the counterattack timer by 15 minutes.
+		// this is to encourage people to build flags instead of just
+		// meta-ing out of the CTF system with no penalty.
+		private _dur = (_tds getVariable ["holdDuration", 60 * 30]);
+		_tds setVariable ["holdDuration", _dur + (15 * 60)];
 	};
 
 	["SUCCEEDED", _next_tasks] call _fnc_finishSubtask;
@@ -318,6 +323,21 @@ _taskDataStore setVariable ["_fnc_check_ai_failure_condition", {
 
 
 /* 
+remove all the network'd variables and JIP queue ID for any flags.
+
+parameters: None
+*/
+_taskDataStore setVariable ["_fnc_remove_flag_network_vars", {
+		// broadcast that the flag no longer exists.
+		vn_mf_bn_dc_target_flag = nil;
+		publicVariable "vn_mf_bn_dc_target_flag";
+
+        // clear the JIP queue for flag height, not necessary anymore
+        remoteExec ["", "JIP_DACCONG_CTF_FLAG_HEIGHT"];	
+}];
+
+
+/* 
 no one built a FOB, so AI are just going to move to the centre of the zone
 
 parameters: _taskDataStore (_tds)
@@ -381,13 +401,12 @@ _taskDataStore setVariable ["defend_flag", {
 	occurs when either 
 	- Dac Cong full lowered the flag through the action (deleteVehicle'd)
 	- the flag has been hammered out of existence (Bluefor tried to be clever)
+	- a zeus has deleted the flag (badAdmin)
 	*/
 
 	if (isNull _flag || isNil "vn_mf_bn_dc_target_flag") exitWith {
 
-		// broadcast that the flag no longer exists.
-		vn_mf_bn_dc_target_flag = nil;
-		publicVariable "vn_mf_bn_dc_target_flag";
+		call (_tds getVariable ["_fnc_remove_flag_network_vars", {}]);
 
 		["CounterAttackExtended"] remoteExec ["para_c_fnc_show_notification", 0];
 		["FAILED"] call _fnc_finishSubtask;
@@ -398,6 +417,9 @@ _taskDataStore setVariable ["defend_flag", {
 	// (30 minutes passed or AI objective has been wiped out)
 
 	if (_status == "SUCCESS") exitWith {
+
+		call (_tds getVariable ["_fnc_remove_flag_network_vars", {}]);
+
 		_tds setVariable ["flagDefended", true];
 		["SUCCEEDED"] call _fnc_finishSubtask;
 	};
@@ -417,4 +439,7 @@ _taskDataStore setVariable ["FINISH", {
 	params ["_tds"];
 	[_tds getVariable "attackObjective"] call para_s_fnc_ai_obj_finish_objective;
 	deleteMarker (_tds getVariable ["CircleAreaMarkerName", "activeDefendCircle"]);
+
+	// do this yet again just in case someone tries to complete tasks via commands
+	call (_tds getVariable ["_fnc_remove_flag_network_vars", {}]);
 }];

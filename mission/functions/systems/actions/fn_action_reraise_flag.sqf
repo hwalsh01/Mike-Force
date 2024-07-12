@@ -21,15 +21,15 @@ private _actionText = format ["<t color='#0000FF'>%1</t>", "Raise Flag"];
 private _actionIdleIcon = "custom\holdactions\holdAction_interact_ca.paa";
 private _actionProgressIcon = "custom\holdactions\holdAction_interact_ca.paa";
 
-private _isNotOpfor = "side player == west";
+private _isNotOpfor = "(side player) isEqualTo west";
 private _isInRangeOf = "player distance cursorObject < 5";
 private _validFlagsArr = "['vn_flag_usa', 'vn_flag_aus', 'vn_flag_arvn', 'vn_flag_nz']";
 private _isValidObjectType = format [
 	"typeOf cursorObject in %1",
 	_validFlagsArr
 ];
-private _isObjectiveFlag = "!(isNil 'vn_mf_bn_dc_target_flag') && (cursorObject == vn_mf_bn_dc_target_flag)";
-private _isFlagLowered = "(flagAnimationPhase cursorObject) != 1";
+private _isObjectiveFlag = "!(isNil 'vn_mf_bn_dc_target_flag') && (cursorObject isEqualTo vn_mf_bn_dc_target_flag)";
+private _isFlagLowered = "((flagAnimationPhase cursorObject) isNotEqualTo 1)";
 
 // bluefor can raise the flag only if it has been lowered
 private _conditionToShow = format [
@@ -45,17 +45,11 @@ private _conditionToProgress = "true";
 
 private _codeOnStart = {
 	params ["_target", "_caller", "_actionId", "_arguments"];
-	allPlayers apply {["BlueforRaisingFlag", []] remoteExec ["para_c_fnc_show_notification", _x]};
+	["BlueforRaisingFlag"] remoteExec ["vn_mf_fnc_ctf_broadcast_notify_immediate", 2];
 };
 private _codeOnTick = {
-
 	params ["_target", "_caller", "_actionId", "_arguments", "_progress", "_maxProgress"];
-
-	// only run this script 4 times to reduce network bandwith usage
-	if ((_progress mod (_maxProgress / 4 )) == 0) then {
-		// runs globally on all machines!
-		[vn_mf_bn_dc_target_flag, 4] remoteExec ["vn_mf_fnc_ctf_bluefor_raise_flag", 0];
-	};
+	[vn_mf_bn_dc_target_flag, _progress, _maxProgress, 1] remoteExec ["vn_mf_fnc_ctf_handle_flag_height_change", 2];
 };
 
 /*

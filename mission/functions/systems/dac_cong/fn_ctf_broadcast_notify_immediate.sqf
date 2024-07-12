@@ -20,14 +20,6 @@
 	[_target, 4] call vn_mf_fnc_ctf_bluefor_raise_flag;
 */
 
+params ["_notificationClass"];
 
-params ["_target", "_maxProgress"];
-
-private _startingFlagHeight = flagAnimationPhase _target;
-private _newHeight = _startingFlagHeight + (1 / _maxProgress);
-
-if (_newHeight >= 1) exitWith {
-    _target setFlagAnimationPhase 1;
-};
-
-_target setFlagAnimationPhase _newHeight;
+[_notificationClass, []] remoteExec ["para_c_fnc_show_notification", -2];

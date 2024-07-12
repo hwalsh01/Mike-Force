@@ -22,7 +22,7 @@ private _actionText = format ["<t color='#FF0000'>%1</t>", "Lower Flag"];
 private _actionIdleIcon = "custom\holdactions\holdAction_interact_ca.paa";
 private _actionProgressIcon = "custom\holdactions\holdAction_danger_ca.paa";
 
-private _isOpfor = "side player == east";
+private _isOpfor = "side player isEqualTo east";
 private _isInRangeOf = "player distance cursorObject < 5";
 private _validFlagsArr = "['vn_flag_usa', 'vn_flag_aus', 'vn_flag_arvn', 'vn_flag_nz']";
 private _isValidObjectType = format [
@@ -39,7 +39,7 @@ need to use a publicVar, else we'd need to remoteExec constantly as part
 of condition to show... but mike force hold actions are attached to the PLAYER
 which means constantly running remoteExec's whenever a player is looking at ANYTHING.
 */
-private _isObjectiveFlag = "!(isNil 'vn_mf_bn_dc_target_flag') && (cursorObject == vn_mf_bn_dc_target_flag)";
+private _isObjectiveFlag = "!(isNil 'vn_mf_bn_dc_target_flag') && (cursorObject isEqualTo vn_mf_bn_dc_target_flag)";
 
 private _conditionToShow = format [
         "(%1 && %2 && %3 && %4)",
@@ -53,17 +53,11 @@ private _conditionToProgress = "true";
 
 private _codeOnStart = {
 	params ["_target", "_caller", "_actionId", "_arguments"];
-	allPlayers apply {["DacCongCapturingFlag", []] remoteExec ["para_c_fnc_show_notification", _x]};
+	["DacCongCapturingFlag"] remoteExec ["vn_mf_fnc_ctf_broadcast_notify_immediate", 2];
 };
 private _codeOnTick = {
-
 	params ["_target", "_caller", "_actionId", "_arguments", "_progress", "_maxProgress"];
-
-	// only run this script 4 times to reduce network bandwith usage
-	if ((_progress mod (_maxProgress / 4 )) == 0) then {
-		// runs globally on all machines!
-		[vn_mf_bn_dc_target_flag, 4] remoteExec ["vn_mf_fnc_ctf_opfor_lower_flag", 0];
-	};
+	[vn_mf_bn_dc_target_flag, _progress, _maxProgress, -1] remoteExec ["vn_mf_fnc_ctf_handle_flag_height_change", 2];
 };
 /*
 private _codeOnComplete = {
