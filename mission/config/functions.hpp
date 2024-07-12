@@ -169,7 +169,6 @@ class CfgFunctions
 			file = "functions\systems\actions";
 			class action_init {};
 			class action_vehspawner_show_spawn_point {};
-			class action_destroy_respawn {};
 			class action_destroy_task {};
 			class action_gather_intel {};
 			class action_radiotap {};
@@ -289,6 +288,10 @@ class CfgFunctions
 		{
 			file = "functions\systems\sites\remoteactions";
 			class sites_remoteactions_destroy_task {};
+			class sites_remoteactions_destroy_task_burn_object {};
+			class sites_remoteactions_destroy_task_dc_respawn {};
+			class sites_remoteactions_destroy_task_object {};
+			class sites_remoteactions_destroy_task_para_building {};
 			// class sites_remoteactions_burn_shelter {}; // @dijksterhuis: TODO
 			class sites_remoteactions_reveal_radiotap {};
 			class sites_remoteactions_reveal_intel {};
