@@ -1,18 +1,25 @@
 /*
-	File: fn_action_init.sqf
-	Author: Cerebral
-	Modified: @dijksterhuis
+	File: fn_sites_remoteactions_destroy_task_dc_respawn.sqf
+	Author: @dijksterhuis
 	Public: No
 	
 	Description:
-		Init player actions
+		Deregisters a dac cong respawn from the mission.
+
+		**THIS DOES NOT DELETE THE PLATFORM.**
+
+		You must call vn_mf_fnc_sites_remoteactions_destroy_task_object after this one.
 	
-	Parameter(s): none
+	Parameter(s):
+		- _task - the respawn object
 	
 	Returns:
+		Nothing
 	
 	Example(s):
-		call vn_mf_fnc_action_init;
+		[_platform] call vn_mf_fnc_sites_remoteactions_destroy_task_dc_respawn;
+		// must be called to blow up the platform!
+		[_platform] call vn_mf_fnc_sites_remoteactions_destroy_task_object;
 */
 
 params ["_task"];

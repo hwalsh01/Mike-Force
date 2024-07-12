@@ -5,9 +5,22 @@
 	Public: No
 	
 	Description:
-		Pops a task
+		Destroys a site's asset based on the type of asset, via the `destroy_task` holdAction
+
+		This runs server side. It needs to do several client side remoteExecs to:
+		- remove the player's explosive mag from inventory
+		- set up the fire light/particle sources for burning a shelter
+		- Send various paradigm notifications to players
+
+		Currently implemented:
+		- Burning shelters at campsites
+		- Destroying dac cong respawns
+		- Blowing up a paradigm built building
+		- Blowing up a basic object, like an ammo crate or a mortar
 	
-	Parameter(s): none
+	Parameter(s):
+		- _task - the object that needs to be destroyed (player is looking at)
+		- _player - player doing the destroying
 	
 	Returns:
 	
