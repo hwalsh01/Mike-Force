@@ -15,6 +15,87 @@ if(_playerIsCurator == true) then
 				if (isNil "MikeFrcCur_group") then {MikeFrcCur_group = creategroup sideLogic;};
 				_myCurObject = MikeFrcCur_group createunit["ModuleCurator_F", [0, 90, 90], [], 0.5, "NONE"];	//Logic Server
 				_myCurObject setVariable ["showNotification",false];
+
+				_myCurObject addEventHandler ["CuratorObjectRegistered", {
+					params ["_curator", "_input"];
+
+					[format ["[ZEUS LOG] %1 has entered the zeus interface.", name _curator]] remoteExec ["diag_log", 2];
+				}];
+
+				_myCurObject addEventHandler ["CuratorObjectPlaced", {
+					params ["_curator", "_entity"];
+
+					private _entityTypeName = typeOf _entity;
+					private _entityName = name _entity;
+
+					private _curatorName = name _curator;
+					private _curatorUID = getPlayerUID _curator;
+
+					[format ["[ZEUS LOG] %1 has placed %2 (%3) at %4.", _curatorName, _entityName, _entityTypeName, getPos _entity]] remoteExec ["diag_log", 2];
+				}];
+
+				_myCurObject addEventHandler ["CuratorObjectEdited", {
+					params ["_curator", "_entity"];
+
+					private _entityTypeName = typeOf _entity;
+					private _entityName = name _entity;
+
+					private _curatorName = name _curator;
+					private _curatorUID = getPlayerUID _curator;
+
+					[format ["[ZEUS LOG] %1 has edited %2 (%3) at %4.", _curatorName, _entityName, _entityTypeName, getPos _entity]] remoteExec ["diag_log", 2];
+				}];
+
+				_myCurObject addEventHandler ["CuratorObjectDeleted", {
+					params ["_curator", "_entity"];
+
+					private _entityTypeName = typeOf _entity;
+					private _entityName = name _entity;
+
+					private _curatorName = name _curator;
+					private _curatorUID = getPlayerUID _curator;
+
+					[format ["[ZEUS LOG] %1 has deleted %2 (%3) at %4.", _curatorName, _entityName, _entityTypeName, getPos _entity]] remoteExec ["diag_log", 2];
+				}];
+
+				_myCurObject addEventHandler ["CuratorObjectAttributesChanged", {
+					params ["_curator", "_entity"];
+
+					private _entityTypeName = typeOf _entity;
+					private _entityName = name _entity;
+
+					private _curatorName = name _curator;
+					private _curatorUID = getPlayerUID _curator;
+
+					[format ["[ZEUS LOG] %1 has changed attributes of %2 (%3) at %4.", _curatorName, _entityName, _entityTypeName, getPos _entity]] remoteExec ["diag_log", 2];
+				}];
+
+				_myCurObject addEventHandler ["CuratorGroupPlaced", {
+					params ["_curator", "_group"];
+
+					private _curatorName = name _curator;
+					private _curatorUID = getPlayerUID _curator;
+
+					[format ["[ZEUS LOG] %1 has placed a group of AI.", _curatorName]] remoteExec ["diag_log", 2];
+				}];
+
+				_myCurObject addEventHandler ["CuratorWaypointEdited", {
+					params ["_curator", "_group", "_waypoint"];
+
+					private _curatorName = name _curator;
+					private _curatorUID = getPlayerUID _curator;
+
+					[format ["[ZEUS LOG] %1 has edited a waypoint.", _curatorName]] remoteExec ["diag_log", 2];
+				}];
+
+				_myCurObject addEventHandler ["CuratorWaypointPlaced", {
+					params ["_curator", "_group", "_waypoint"];
+
+					private _curatorName = name _curator;
+					private _curatorUID = getPlayerUID _curator;
+
+					[format ["[ZEUS LOG] %1 has placed a waypoint.", _curatorName]] remoteExec ["diag_log", 2];
+				}];
 				
 				missionNamespace setVariable [_curVarName, _myCurObject, true];
 				publicVariable "MikeFrcCur_group";
