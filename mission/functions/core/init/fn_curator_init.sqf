@@ -57,19 +57,7 @@ if(_playerIsCurator == true) then
 
 					[format ["[ZEUS LOG] %1 has deleted %2 (%3) at %4.", _curatorName, _entityName, _entityTypeName, getPos _entity]] remoteExec ["diag_log", 2];
 				}];
-
-				_myCurObject addEventHandler ["CuratorObjectAttributesChanged", {
-					params ["_curator", "_entity"];
-
-					private _entityTypeName = typeOf _entity;
-					private _entityName = name _entity;
-
-					private _curatorName = name _curator;
-					private _curatorUID = getPlayerUID _curator;
-
-					[format ["[ZEUS LOG] %1 has changed attributes of %2 (%3) at %4.", _curatorName, _entityName, _entityTypeName, getPos _entity]] remoteExec ["diag_log", 2];
-				}];
-
+				
 				_myCurObject addEventHandler ["CuratorGroupPlaced", {
 					params ["_curator", "_group"];
 
