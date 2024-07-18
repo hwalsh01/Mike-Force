@@ -1,7 +1,7 @@
 
 mainWelcome = "custom\loadingscreens\BN_Welcome_202406.paa";
-patreonBasic = "custom\loadingscreens\Patreon_1_welcome.paa"
-patreonSupporters = "custom\loadingscreens\Patreon_2_supporters_2024_07_10.paa"
+patreonBasic = "custom\loadingscreens\Patreon_1_welcome.paa";
+patreonSupporters = "custom\loadingscreens\Patreon_2_supporters_2024_07_10.paa";
 
 images[] =
 {
