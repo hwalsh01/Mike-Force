@@ -8,7 +8,7 @@ class EditorData
 	toggles=1610;
 	class ItemIDProvider
 	{
-		nextID=18822;
+		nextID=18823;
 	};
 	class MarkerIDProvider
 	{
@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=26318;
+		nextID=26422;
 	};
 	class Camera
 	{
-		pos[]={16269.439,77.933334,7519.6528};
-		dir[]={-0.73931873,-0.66841716,-0.081863321};
-		up[]={-0.66437119,0.74377567,-0.073565274};
-		aside[]={-0.1100586,1.8812716e-007,0.99396038};
+		pos[]={16187.884,43.802204,7531.5923};
+		dir[]={0.68540615,-0.58363956,-0.43554294};
+		up[]={0.49262407,0.81199342,-0.3130379};
+		aside[]={-0.53636044,7.8114681e-008,-0.84405595};
 	};
 };
 binarizationWanted=0;
@@ -408,8 +408,8 @@ class CustomAttributes
 		name="Multiplayer";
 		class Attribute0
 		{
-			property="SharedObjectives";
-			expression="if (isMultiplayer) then {[_value] spawn bis_fnc_sharedObjectives;};";
+			property="ReviveRequiredItems";
+			expression="false";
 			class Value
 			{
 				class data
@@ -459,8 +459,8 @@ class CustomAttributes
 		};
 		class Attribute4
 		{
-			property="ReviveRequiredItems";
-			expression="false";
+			property="SharedObjectives";
+			expression="if (isMultiplayer) then {[_value] spawn bis_fnc_sharedObjectives;};";
 			class Value
 			{
 				class data
@@ -516,7 +516,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=438;
+		items=439;
 		class Item0
 		{
 			dataType="Marker";
@@ -19211,7 +19211,7 @@ class Mission
 							name="duty_officer_mikeforce";
 							type="mil_dot";
 							colorName="ColorWhite";
-							angle=1.7836128;
+							angle=1.7836127;
 							id=7545;
 							atlOffset=0.49795628;
 						};
@@ -22846,7 +22846,7 @@ class Mission
 										class data
 										{
 											singleType="BOOL";
-											value=0;
+											value=1;
 										};
 									};
 								};
@@ -30518,7 +30518,7 @@ class Mission
 									};
 									id=18423;
 									type="Land_HelipadEmpty_F";
-									atlOffset=0.011260986;
+									atlOffset=0.013122559;
 								};
 								class Item2
 								{
@@ -47215,16 +47215,51 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={16220.707,20.637627,7509.7002};
+				position[]={16218.304,20.585011,7528.3799};
+				angles[]={0,4.6327376,-0};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+				disableSimulation=1;
+			};
+			id=18821;
+			type="B_Heli_Light_01_F";
+			atlOffset=-0.037006378;
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="ammoBox";
+					expression="[_this,_value] call bis_fnc_initAmmoBox;";
+					class Value
+					{
+						class data
+						{
+							singleType="STRING";
+							value="[[[[],[]],[[],[]],[[],[]],[[],[]]],false]";
+						};
+					};
+				};
+				nAttributes=1;
+			};
+		};
+		class Item438
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={16216.414,20.390011,7499.8892};
+				angles[]={0,6.2452593,0};
 			};
 			side="Empty";
 			flags=4;
 			class Attributes
 			{
 			};
-			id=18821;
+			id=18822;
 			type="B_Heli_Light_01_F";
-			atlOffset=0.044002533;
 			class CustomAttributes
 			{
 				class Attribute0
