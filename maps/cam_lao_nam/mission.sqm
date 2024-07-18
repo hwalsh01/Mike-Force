@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=26006;
+		nextID=26110;
 	};
 	class Camera
 	{
-		pos[]={16243.471,26.647827,6383.4902};
-		dir[]={-0.73737872,-0.66031212,-0.14325163};
-		up[]={-0.64819974,0.75093108,-0.12592381};
-		aside[]={-0.19072692,5.0012022e-007,0.98175699};
+		pos[]={16211.105,25.560497,7534.8369};
+		dir[]={0.40491995,-0.3592549,-0.84097296};
+		up[]={0.15588769,0.93316209,-0.32376695};
+		aside[]={-0.9011001,2.841698e-007,-0.43386891};
 	};
 };
 binarizationWanted=0;
@@ -408,8 +408,8 @@ class CustomAttributes
 		name="Multiplayer";
 		class Attribute0
 		{
-			property="ReviveRequiredItems";
-			expression="false";
+			property="SharedObjectives";
+			expression="if (isMultiplayer) then {[_value] spawn bis_fnc_sharedObjectives;};";
 			class Value
 			{
 				class data
@@ -459,8 +459,8 @@ class CustomAttributes
 		};
 		class Attribute4
 		{
-			property="SharedObjectives";
-			expression="if (isMultiplayer) then {[_value] spawn bis_fnc_sharedObjectives;};";
+			property="ReviveRequiredItems";
+			expression="false";
 			class Value
 			{
 				class data
@@ -4979,7 +4979,7 @@ class Mission
 							};
 							id=16872;
 							type="Land_Billboard_F";
-							atlOffset=-0.67500019;
+							atlOffset=-0.67500114;
 							class CustomAttributes
 							{
 								class Attribute0
@@ -19211,7 +19211,7 @@ class Mission
 							name="duty_officer_mikeforce";
 							type="mil_dot";
 							colorName="ColorWhite";
-							angle=1.7836132;
+							angle=1.7836131;
 							id=7545;
 							atlOffset=0.49795628;
 						};
@@ -46163,7 +46163,7 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={16216.952,20.600376,7526.2905};
+				position[]={16216.952,20.600376,7526.291};
 				angles[]={6.2776003,4.6454902,6.2767973};
 			};
 			side="Empty";
@@ -46171,7 +46171,6 @@ class Mission
 			class Attributes
 			{
 				init="[this, [""MACV"", ""DacCong""]] call vn_mf_fnc_lock_vehicle_to_teams;";
-				disableSimulation=1;
 			};
 			id=18704;
 			type="B_Heli_Light_01_F";
