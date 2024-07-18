@@ -8,7 +8,7 @@ class EditorData
 	toggles=1610;
 	class ItemIDProvider
 	{
-		nextID=18821;
+		nextID=18822;
 	};
 	class MarkerIDProvider
 	{
@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=26110;
+		nextID=26214;
 	};
 	class Camera
 	{
-		pos[]={16211.105,25.560497,7534.8369};
-		dir[]={0.40491995,-0.3592549,-0.84097296};
-		up[]={0.15588769,0.93316209,-0.32376695};
-		aside[]={-0.9011001,2.841698e-007,-0.43386891};
+		pos[]={16176.149,40.922455,7569.4365};
+		dir[]={0.33449635,-0.41111121,-0.84801829};
+		up[]={0.15085697,0.91157699,-0.38245291};
+		aside[]={-0.93026447,1.2107193e-007,-0.36693808};
 	};
 };
 binarizationWanted=0;
@@ -55,6 +55,7 @@ addons[]=
 	"A3_Air_F_Heli_Light_01",
 	"A3_Structures_F_EPC_Civ_Camping",
 	"weapons_f_vietnam_c",
+	"cba_jam_vn",
 	"A3_Weapons_F",
 	"A3_Weapons_F_Orange",
 	"characters_f_vietnam_03_c",
@@ -89,7 +90,7 @@ class AddonsMetaData
 {
 	class List
 	{
-		items=37;
+		items=38;
 		class Item0
 		{
 			className="objects_f_vietnam_c";
@@ -225,124 +226,131 @@ class AddonsMetaData
 		};
 		class Item19
 		{
+			className="cba_jam_vn";
+			name="Community Base Addons - Joint Ammo Magazines";
+			author="CBA Team";
+			url="https://www.github.com/CBATeam/CBA_A3";
+		};
+		class Item20
+		{
 			className="A3_Weapons_F";
 			name="Arma 3 Alpha - Weapons and Accessories";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item20
+		class Item21
 		{
 			className="A3_Weapons_F_Orange";
 			name="Arma 3 Orange - Weapons and Accessories";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item21
+		class Item22
 		{
 			className="characters_f_vietnam_03_c";
 			name="characters_f_vietnam_03_c";
 			author="Savage Game Design";
 			url="https://www.arma3.com";
 		};
-		class Item22
+		class Item23
 		{
 			className="characters_f_vietnam_04_c";
 			name="characters_f_vietnam_04_c";
 			author="Savage Game Design";
 			url="https://www.arma3.com";
 		};
-		class Item23
+		class Item24
 		{
 			className="A3_Props_F_AoW";
 			name="Arma 3 Art of War - Decorative and Mission ";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item24
+		class Item25
 		{
 			className="A3_Structures_F_Mark";
 			name="Arma 3 Marksmen - Buildings and Structures";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item25
+		class Item26
 		{
 			className="characters_f_vietnam_02_c";
 			name="characters_f_vietnam_02_c";
 			author="Savage Game Design";
 			url="https://www.arma3.com";
 		};
-		class Item26
+		class Item27
 		{
 			className="A3_Structures_F_Exp_Civilian";
 			name="Arma 3 Apex - Civilian Buildings";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item27
+		class Item28
 		{
 			className="A3_Static_F_Jets";
 			name="Arma 3 Jets - Turrets";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item28
+		class Item29
 		{
 			className="A3_Boat_F_Jets";
 			name="Arma 3 Jets - Boats and Submersibles";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item29
+		class Item30
 		{
 			className="A3_Structures_F_Ind";
 			name="Arma 3 - Industrial Structures";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item30
+		class Item31
 		{
 			className="air_f_vietnam_c";
 			name="air_f_vietnam_c";
 			author="Savage Game Design";
 			url="https://www.arma3.com";
 		};
-		class Item31
+		class Item32
 		{
 			className="A3_Supplies_F_Exp";
 			name="Arma 3 Apex - Ammoboxes and Supplies";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item32
+		class Item33
 		{
 			className="static_f_vietnam_02_c";
 			name="static_f_vietnam_02_c";
 			author="Savage Game Design";
 			url="https://www.arma3.com";
 		};
-		class Item33
+		class Item34
 		{
 			className="A3_Structures_F_Heli";
 			name="Arma 3 Helicopters - Buildings and Structures";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item34
+		class Item35
 		{
 			className="A3_Props_F_Orange";
 			name="Arma 3 Orange - Decorative and Mission Objects";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item35
+		class Item36
 		{
 			className="A3_Structures_F_EPA";
 			name="Arma 3 Survive Episode - Buildings and Structures";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item36
+		class Item37
 		{
 			className="A3_Structures_F_Argo";
 			name="Arma 3 Malden - Buildings and Structures";
@@ -408,8 +416,8 @@ class CustomAttributes
 		name="Multiplayer";
 		class Attribute0
 		{
-			property="SharedObjectives";
-			expression="if (isMultiplayer) then {[_value] spawn bis_fnc_sharedObjectives;};";
+			property="ReviveRequiredItems";
+			expression="false";
 			class Value
 			{
 				class data
@@ -459,8 +467,8 @@ class CustomAttributes
 		};
 		class Attribute4
 		{
-			property="ReviveRequiredItems";
-			expression="false";
+			property="SharedObjectives";
+			expression="if (isMultiplayer) then {[_value] spawn bis_fnc_sharedObjectives;};";
 			class Value
 			{
 				class data
@@ -516,7 +524,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=438;
+		items=439;
 		class Item0
 		{
 			dataType="Marker";
@@ -16170,7 +16178,7 @@ class Mission
 				class Attribute0
 				{
 					property="groupID";
-					expression="_this setGroupID [_value];";
+					expression="                            if (isNil 'CBA_fnc_setCallsign') then {                                _this setGroupID [_value];                            } else {                                [_this, _value] call CBA_fnc_setCallsign;                            };";
 					class Value
 					{
 						class data
@@ -19211,7 +19219,7 @@ class Mission
 							name="duty_officer_mikeforce";
 							type="mil_dot";
 							colorName="ColorWhite";
-							angle=1.7836131;
+							angle=1.783613;
 							id=7545;
 							atlOffset=0.49795628;
 						};
@@ -30519,7 +30527,7 @@ class Mission
 									};
 									id=18423;
 									type="Land_HelipadEmpty_F";
-									atlOffset=0.011260986;
+									atlOffset=0.013122559;
 								};
 								class Item2
 								{
@@ -46163,14 +46171,13 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={16216.952,20.600376,7526.291};
-				angles[]={6.2776003,4.6454902,6.2767973};
+				position[]={16182.039,20.569145,7541.7021};
+				angles[]={0.0063881162,3.0746574,6.2776008};
 			};
 			side="Empty";
 			flags=4;
 			class Attributes
 			{
-				init="[this, [""MACV"", ""DacCong""]] call vn_mf_fnc_lock_vehicle_to_teams;";
 			};
 			id=18704;
 			type="B_Heli_Light_01_F";
@@ -47244,6 +47251,39 @@ class Mission
 			id=18819;
 			type="Land_Billboard_03_aan_F";
 			atlOffset=-9.5367432e-007;
+		};
+		class Item438
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={16220.707,20.637844,7509.6997};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+			};
+			id=18821;
+			type="B_Heli_Light_01_F";
+			atlOffset=0.044219971;
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="ammoBox";
+					expression="[_this,_value] call bis_fnc_initAmmoBox;";
+					class Value
+					{
+						class data
+						{
+							singleType="STRING";
+							value="[[[[],[]],[[],[]],[[],[]],[[],[]]],false]";
+						};
+					};
+				};
+				nAttributes=1;
+			};
 		};
 	};
 	class Connections
