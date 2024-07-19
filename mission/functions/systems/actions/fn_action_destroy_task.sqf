@@ -82,19 +82,24 @@ private _title = "Destroy";
 private _idleIcon = "custom\holdactions\holdAction_destroy_ca.paa";
 private _idleProgress = "custom\holdactions\holdAction_destroy_ca.paa";
 
-// all the checks formatted as a single string
-private _conditionToShowString = format ["(%1)",
-	[
-		format ["typeOf cursorObject in %1", _objString],
-		"player distance cursorObject < (1 + (sizeOf (typeOf cursorObject)) / 2)",
-		"side player != east",
-		// the vn_tunnel module sets this variable globally,
-		// meaning we should be able to inspect it locally as
-		// a player (holdAction is player local)
-		"(isNull (cursorObject getVariable ['vn_tunnel_tunnel_object', objNull]))"
-	] joinString " && "
-];
-private _conditionToProgressString = "player distance cursorObject < (1 + (sizeOf (typeOf cursorObject)) / 2)";
+// the vn_tunnel module sets the vn_tunnel_tunnel_object variable globally,
+// meaning we should be able to inspect it locally as
+// a player (holdAction is player local)
+
+// the str {} trim trick here means we can write stuff that highlights in an ide
+// as sqf, but we make it turns into a string for the holdAction argument to compile later
+private _conditionToShowString = str {
+	call {
+		(
+			(typeOf cursorObject in _classNames)
+			&& (player distance cursorObject < (1.5 + (sizeOf (typeOf cursorObject)) / 2))
+			&& (side player != east)
+			&& (isNull (cursorObject getVariable ['vn_tunnel_tunnel_object', objNull]))
+		)
+	};
+} trim ["{}", 0];
+
+private _conditionToProgressString = _conditionToShowString;
 private _codeOnStart = {};
 private _codeOnProgressTick = {};
 private _codeOnCompletion =	{
