@@ -132,7 +132,7 @@ class CfgDebriefing
 	{
 		title = "WHITELISTED SIDE";
 		subtitle = "Not whitelisted for Dac Cong.";
-		description = "<t align='center'>You are trying to join a reserved team for Dac Cong Commandos. <br/> <t align='center'>Join the Dac Cong Commandos by applying at this link</t> <br/> <t align='center' size='1.25'><a href='https://discord.gg/3wdfV6c8td'>BRO-NATION UNITS DISCORD</a></t>";
+		description = "<t align='center'>You are trying to join a reserved team for Dac Cong Commandos. <br/> <t align='center'>Join the Dac Cong Commandos by applying at this link</t> <br/> <t align='center' size='1.25'><a href='https://discord.gg/bro-nation'>BRO-NATION DISCORD</a></t>";
 		pictureBackground = "";
 		picture = "";
 		pictureColor[] = {0.0,0.3,0.6,1};
@@ -142,7 +142,7 @@ class CfgDebriefing
 	{
 		title = "RESERVED";
 		subtitle = "NOT approved for Press Corp.";
-		description = "<t align='center'>You are trying to join a reserved slot for Press Corp. <br/> <t align='center'>Join discord by clicking this link and introduce yourself</t> <br/> <t align='center' size='1.25'><a href='https://discord.gg/W6geNfx'>BRO-NATION DISCORD INVITE LINK</a></t> <br/> <t align='center'>Join the BRO-NATION Units and be considered for Press by applying at this link</t> <br/> <t align='center' size='1.25'><a href='https://discord.gg/3wdfV6c8td'>BRO-NATION UNITS DISCORD</a></t> <br/> <t align='center'>Join the Civilian Press by inquirijng within discord</t>";
+		description = "<t align='center'>You are trying to join a reserved slot for Press Corp. <br/> <t align='center'>Join discord by clicking this link and introduce yourself</t> <br/> <t align='center' size='1.25'><a href='https://discord.gg/W6geNfx'>BRO-NATION DISCORD INVITE LINK</a></t> <br/> <t align='center'>Join the BRO-NATION Units and be considered for Press by applying at this link</t> <br/> <t align='center' size='1.25'><a href='https://discord.gg/bro-nation'>BRO-NATION DISCORD</a></t> <br/> <t align='center'>Join the Civilian Press by inquiring within discord</t>";
 		pictureBackground = "";
 		picture = "";
 		pictureColor[] = {0.0,0.3,0.6,1};
