@@ -56,7 +56,9 @@ enableDebugConsole[] = {
 	//cypher
 	"76561199175533497",
 	//rogier
-	"76561198007206066"
+	"76561198007206066",
+	//phillip
+	"76561198065538409"
 };
 
 allowFunctionsLog = 1;
