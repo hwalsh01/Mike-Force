@@ -568,7 +568,7 @@ class vn_tr_supportRequest_miniMap_accept: vn_mf_RscButton
 	colorBackground[] = {0,0,0,0.5};
 	sizeEx = TXT_S;
 	
-	onButtonClick = "systemchat str [_this, 'ACCEPT']; call vn_mf_fnc_tr_supportTask_selectPosition_accept;";
+	onButtonClick = "call vn_mf_fnc_tr_supportTask_selectPosition_accept;";
 	MouseButtonDown = "";	//No _this param given
 	text = "ACCEPT";
 };
@@ -587,7 +587,7 @@ class vn_tr_supportRequest_miniMap_abort: vn_mf_RscButton
 	colorBackground[] = {0,0,0,0.5};
 	sizeEx = TXT_S;
 	
-	onButtonClick = "systemchat str [_this, 'ABORT']; [] spawn vn_mf_fnc_tr_supportTask_map_hide;";
+	onButtonClick = "[] spawn vn_mf_fnc_tr_supportTask_map_hide;";
 	MouseButtonDown = "";	//No _this param given
 	text = "ABORT";
 };
