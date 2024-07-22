@@ -29,26 +29,21 @@ class vn_tr_disp_taskRoster_Main
 			h = VN_TR_FOLDER_H;
 			colorText[] = {1,1,1,1};
 			colorBackground[] = {1,1,1,1};
+			// empty lhs background sheet
 			text = "\vn\ui_f_vietnam\ui\taskroster\img\tr_folder_background_sheetL.paa";
-			tooltip = "";
 		};
 		
-		class vn_sheet_overview: vn_sheet_overview_accepted_base
-		{
-			idc = -1;
-		};
-		
-		//Background Image
+		// empty rhs background sheet
 		class vn_sheet_clean_R: vn_sheet_clean_R_base
 		{
 			idc = -1;
 		};
 		
-		//Must be here... remember the popup nonsense...
-		class vn_tr_missionInfoPolaroid: vn_tr_missionInfoPolaroid_base
-		{
-			idc = VN_TR_MISSIONSHEET_IDC;
-		};
+		// //Must be here... remember the popup nonsense...
+		// class vn_tr_missionInfoPolaroid: vn_tr_missionInfoPolaroid_base
+		// {
+		// 	idc = VN_TR_MISSIONSHEET_IDC;
+		// };
 		//Support Request Sheet
 		class vn_tr_supportRequest: vn_tr_supportRequest_base
 		{
@@ -59,334 +54,181 @@ class vn_tr_disp_taskRoster_Main
 		{
 			idc = VN_TR_CHARINFO_IDC;
 		};
-		
+
 		//MUST be last entry, so it's above all other Sheets!
-		//Main Info
-		class vn_tr_MainInfo: vn_tr_MainInfo_base
+		//Main Info -- this is the default RHS sheet
+		// "Welcome to $TEAM" -- $TEAM Description -- $ROLES
+		// inherits from: mission\config\ui\taskroster\ui_tr_def_ctrls.hpp: vn_tr_MainInfo_base
+		// which inherits from: mission\config\ui\ui_def_ctrl_base.hpp: vn_mf_RscControlsGroupNoScrollbarHV
+		class vn_tr_blanksheet: vn_tr_blanksheet_base
 		{
-			idc = VN_TR_MAININFO_IDC;
+			idc = VN_TR_BLANKSHEET_RHS_IDC;
 		};
 		
 	};
 	
 	class Controls
 	{
-		
-		class team_logo: vn_mf_RscPicture
+		class lhs_welcome_text_header: vn_mf_RscText
 		{
-			idc = VN_TR_TEAMLOGO_IDC;
-			
-			x = UIX_CL(12.5);
-			y = UIY_CU(10);
-			w = UIW(2.5);
-			h = UIH(2.5);
-			
-			colorText[] = {1,1,1,1};
-			colorBackground[] = {1,1,1,1};
-			text = "";
-		};
-		class team_logo_btn: vn_mf_RscButton
-		{
-			idc = VN_TR_TEAMLOGO_BTN_IDC;
-			x = UIX_CL(12.5);
-			y = UIY_CU(10);
-			w = UIW(2.5);
-			h = UIH(2.5);
+			idc = VN_TR_WELCOMETITLE_IDC;
+			style = "0x10";
+			x = UIX_CL(17.5);
+			y = UIY_CU(10.5);
+			w = UIW(16);
+			h = UIH(2);
 			
 			colorText[] = {0,0,0,1};
 			colorBackground[] = {0,0,0,0};
-			colorFocused[] = {0,0,0,0};
-			colorShadow[] = {0,0,0,0};
-			colorBorder[] = {0,0,0,0};
+			sizeEx = TXT_L;
+			font = USEDFONT_B;
 			
-			tooltip = "";
-			text = "";
+			text = "Bro-Nation Mike Force";
+		};
+
+		class lhs_welcome_text_blurb: vn_mf_RscStructuredText
+		{
+			idc = VN_TR_WELCOMEBLURB_IDC;
+			style = "0x10";
+			x = UIX_CL(17.5);
+			y = UIY_CU(8.5);
+			w = UIW(16);
+			h = UIH(14);
+			
+			colorText[] = {0,0,0,1};
+			colorBackground[] = {0,0,0,0};
+			size = TXT_M;
+			
+			text = "Mike Force is a co-operative PvE gamemode by <t font='tt2020base_vn_bold'><a href='https://www.savage-game.com'>Savage Game Design</a></t>. This is a modified version of Mike Force brought to you by <t font='tt2020base_vn_bold'><a href='https://discord.gg/bro-nation'>Bro-Nation</a></t>.<br/><br/>This menu can be accessed at any time by pressing the H key.<br/><br/>We recommend new players click on the button below to read our new player guide!<br/><br/>Please join the <t font='tt2020base_vn_bold'><a href='https://discord.gg/bro-nation'>Bro-Nation Discord</a></t> for additional help like: reporting players; reporting bugs; requesting training; joining whitelisted units.";
+			class Attributes
+			{
+				align = "left";
+				color = "#000000";
+				colorLink = "#0a7012"; // dark green
+				font = USEDFONT;
+				size = 0.9;
+				shadow = 0;
+			};
+		};
+
+		// button to show first time player info
+		class lhs_newbie_info_btn: vn_mf_RscButton
+		{
+			idc = VN_TR_NEWBIEHELP_BTN_IDC;
+			style = "0x10";	//LEFT: "0x10" | Center: "0x02 + 0x10"
+			x = UIX_CL(17);
+			y = UIY_CU(-5);
+			w = UIW(7);
+			h = UIH(1.5);
+			
+			colorText[] = {0,0,0,1};
+			colorBackground[] = {0,0,0,0.1};
+
+			text = "New Player Guide";
+			onButtonClick = "hint 'new player guide does nothing yet';";
+		};
+		
+
+		// button users click to switch team
+		class lhs_team_select_btn: vn_mf_RscButton
+		{
+			idc = VN_TR_TEAMLOGO_BTN_IDC;
+			style = "0x10";	//LEFT: "0x10" | Center: "0x02 + 0x10"
+			x = UIX_CL(17);
+			y = UIY_CU(-7);
+			w = UIW(7);
+			h = UIH(1.5);
+			
+			colorText[] = {0,0,0,1};
+			colorBackground[] = {0,0,0,0.1};
+
+			text = "Change Team";
 			onButtonClick = "if!((player getVariable 'vn_mf_db_player_group') isEqualTo 'DacCong')then { call vn_mf_fnc_tr_cleanRightSheet; createDialog 'vn_tr_disp_selectTeam' };";
+
 		};
-		
-		class username: vn_mf_RscButton
+		// resets to main info screen
+		// @dijksterhuis: now points to showTeamInfo screen
+		class lhs_player_team_and_roles_btn: vn_mf_RscButton
 		{
-			idc = VN_TR_USERNAME_IDC;
+			idc = VN_TR_CURRTEAMTEXT_BTN_IDC;
 			style = "0x10";	//LEFT: "0x10" | Center: "0x02 + 0x10"
-			
-			x = UIX_CL(9.3);
-			y = UIY_CU(9.8);
-			w = UIW(7.5);
-			h = UIH(1);
-			
-			colorText[] = {0,0,0,1};
-			colorBackground[] = {0,0,1,0.0};
-			sizeEx = TXT_S;
-			onButtonClick = "call vn_mf_fnc_tr_cleanRightSheet; call vn_mf_fnc_tr_characterInfo_show";
-			MouseButtonDown = "";	//No _this param given
-			text = "Username";
-		};
-		class team: vn_mf_RscButton
-		{
-			idc = VN_TR_TEAMNAME_IDC;
-			style = "0x10";	//LEFT: "0x10" | Center: "0x02 + 0x10"
-			
-			x = UIX_CL(9.3);
-			y = UIY_CU(8.2);
-			w = UIW(7.5);
-			h = UIH(1);
-			
-			colorText[] = {0,0,0,1};
-			colorBackground[] = {0,0,1,0.0};
-			sizeEx = TXT_S;
-			onButtonClick = "call vn_mf_fnc_tr_cleanRightSheet; call vn_mf_fnc_tr_mainInfo_show;";
-			MouseButtonDown = "";	//No _this param given
-			text = "Team";
-		};
-		
-		class zone_a: vn_mf_RscButton
-		{
-			idc = VN_TR_ZONE_A_IDC;
-			style = "0x10";	//LEFT: "0x10" | Center: "0x02 + 0x10"
-			
-			x = UIX_CL(16);
-			y = UIY_CU(6.1);
-			w = UIW(6.5);
-			h = UIH(1);
-			
-			colorText[] = {0,0,0,1};
-			colorBackground[] = {0,0,1,0.0};
-			sizeEx = TXT_S;
-			onButtonClick = "call vn_mf_fnc_tr_cleanRightSheet; call vn_mf_fnc_tr_mainInfo_show;";
-			text = "InsertZonenameAHere";
-		};
-		class zone_a_flag: vn_mf_RscPicture
-		{
-			idc = 450104;
 			
 			x = UIX_CL(17);
-			y = UIY_CU(6.1);
-			w = UIW(1);
-			h = UIH(1);
-			
-			// colorText[] = {0.3,0.3,0.3,1};
-			colorText[] = {VN_TR_MISS_PRIM};
-			colorBackground[] = {1,1,1,1};
-			text = "\vn\ui_f_vietnam\ui\taskroster\img\icons\vn_icon_task_primary.paa";
+			y = UIY_CU(-9);
+			w = UIW(7);
+			h = UIH(1.5);
+
+			colorText[] = {0,0,0,1};
+			colorBackground[] = {0,0,0,0.1};
+
+			sizeEx = TXT_M;
+			onButtonClick = "call vn_mf_fnc_tr_cleanRightSheet; createDialog 'vn_tr_disp_showTeamInfo';";
+			MouseButtonDown = "";	//No _this param given
+			text = "Your Team/Roles";
 		};
-		
-		class zone_b: vn_mf_RscButton
+
+		// button users click to open the character info screen
+		class lhs_player_rank_and_stats_btn: vn_mf_RscButton
 		{
-			idc = VN_TR_ZONE_B_IDC;
+			idc = VN_TR_MEDALSTEXT_BTN_IDC;
+			style = "0x10";	//LEFT: "0x10" | Center: "0x02 + 0x10"
+
+			x = UIX_CL(8.5);
+			y = UIY_CU(-5);
+			w = UIW(7);
+			h = UIH(1.5);
+
+			colorText[] = {0,0,0,1};
+			colorBackground[] = {0,0,0,0.1};
+			sizeEx = TXT_M;
+			onButtonClick = "call vn_mf_fnc_tr_cleanRightSheet; call vn_mf_fnc_tr_characterInfo_show";
+			MouseButtonDown = "";	//No _this param given
+			text = "Info/Rank/Medals";
+		};
+
+		// TODO: Show the current tasks on RHS -- then switch RHS based on what is selected there
+		class lhs_player_active_tasks_btn: vn_mf_RscButton
+		{
+			idc = VN_TR_CURRTASKSTEXT_BTN_IDC;
 			style = "0x10";	//LEFT: "0x10" | Center: "0x02 + 0x10"
 			
-			x = UIX_CL(8.3);
-			y = UIY_CU(6.1);
-			w = UIW(6.5);
-			h = UIH(1);
-			
+			x = UIX_CL(8.5);
+			y = UIY_CU(-7);
+			w = UIW(7);
+			h = UIH(1.5);
+
 			colorText[] = {0,0,0,1};
-			colorBackground[] = {0,0,1,0.0};
-			sizeEx = TXT_S;
-			onButtonClick = "call vn_mf_fnc_tr_cleanRightSheet; call vn_mf_fnc_tr_mainInfo_show;";
+			colorBackground[] = {0,0,0,0.1};
+
+			sizeEx = TXT_M;
+			// TODO -- see active missions below.
+			onButtonClick = "call vn_mf_fnc_tr_cleanRightSheet; createDialog 'vn_tr_disp_showTasksInfo';";
 			MouseButtonDown = "";	//No _this param given
-			text = "InsertZonenameBHere";
+			text = "Active Tasks";
 		};
-		class zone_b_flag: vn_mf_RscPicture
-		{
-			idc = 450106;
-			x = UIX_CL(9.3);
-			y = UIY_CU(6.1);
-			w = UIW(1);
-			h = UIH(1);
-			colorText[] = {VN_TR_MISS_SECO};
-			colorBackground[] = {1,1,1,1};
-			text = "\vn\ui_f_vietnam\ui\taskroster\img\icons\vn_icon_task_primary.paa";
-		};
-		class requestMission: vn_mf_RscButton
+
+		// switches RHS to the support request tab
+		class lhs_player_request_support_tasks_btn: vn_mf_RscButton
 		{
 			idc = VN_TR_TASK_REQ_IDC;
 			style = "0x10";	//LEFT: "0x10" | Center: "0x02 + 0x10"
 			
-			x = UIX_CL(16);
-			y = UIY_CU(4.4);
-			w = UIW(14);
-			h = UIH(1);
-			
+			x = UIX_CL(8.5);
+			y = UIY_CU(-9);
+			w = UIW(7);
+			h = UIH(1.5);
+
 			colorText[] = {0,0,0,1};
-			colorBackground[] = {0,0,1,0.0};
-			sizeEx = TXT_S;
+			colorBackground[] = {0,0,0,0.1};
+			sizeEx = TXT_M;
 			onButtonClick = "call vn_mf_fnc_tr_cleanRightSheet; call vn_mf_fnc_tr_supportTask_show;";
 			
 			MouseButtonDown = "";	//No _this param given
-			text = "Request a support task";
-		};
-		class requestMission_flag: vn_mf_RscPicture
-		{
-			idc = VN_TR_TASK_REQ_FLAG_IDC;
-			
-			x = UIX_CL(17);
-			y = UIY_CU(4.4);
-			w = UIW(1);
-			h = UIH(1);
-			
-			colorText[] = {VN_TR_MISS_SUPP};
-			colorBackground[] = {1,1,1,1};
-			text = "\vn\ui_f_vietnam\ui\taskroster\img\icons\vn_icon_task_support.paa";
-		};
-		
-		class mission_active: vn_mf_RscButton
-		{
-			idc = VN_TR_TASK_ACTIVE_IDC;
-			style = "0x10";	//LEFT: "0x10" | Center: "0x02 + 0x10"
-			
-			x = UIX_CL(16);
-			y = UIY_CU(2.45);
-			w = UIW(14);
-			h = UIH(1);
-			
-			text = "No active Task";
-			
-			colorText[] = {0,0,0,1};
-			colorBackground[] = {0,0,1,0.0};
-			sizeEx = TXT_S;
-			onButtonClick = "[controlNull, -1] call vn_mf_fnc_tr_missions_show;";
-			MouseButtonDown = "";	//No _this param given
-		};
-		class mission_active_icon: vn_mf_RscPicture
-		{
-			idc = VN_TR_TASK_ICON_IDC;
-			
-			x = UIX_CL(17);
-			y = UIY_CU(2.45);
-			w = UIW(1);
-			h = UIH(1);
-			
-			colorText[] = {0,0,0,1};
-			colorBackground[] = {1,1,1,1};
-			text = "";
-		};
-		
-		
-		class missionList: vn_mf_RscListNBox //vn_mf_RscListBox
-		{
-			idc = VN_TR_MISSIONLIST_IDC;
-			
-			x = UIX_CL(17);
-			y = UIY_CU(0.45);
-			w = UIW(16);
-			h = UIH(10);
-			
-			
-			//columns[] = {	0,									1,						2,						3 };
-			//columns[] = {	(Symbol: Support/Main/Seconday),	(Symbol: MissionType),	(Text: Description),	(Data/Placeholder)};
-			columns[] = {0.0,UIW(2.25),UIW(4.25),UIW(5)};
-			
-			
-			//colorText[] = {0,0,0,1};
-			colorBackground[] = {0,0,0,1};
-			
-			colorText[] = {0,0,0,1}; // Text and frame color
-			colorSelect[] = {0,0,0,1}; // Text selection color
-			colorSelect2[] = {0,0,0,1}; // Text selection color (oscillates between this and colorSelect)
-			colorDisabled[] = {1,1,1,0.5}; // Disabled text color
-			colorShadow[] = {0,0,0,0.5}; // Text shadow color (used only when shadow is 1)
-			
-			colorPicture[] = {0.2,0.2,0.2,1};
-			colorPictureSelected[] = {0.9,0.9,0.9,1};
-			colorPictureDisabled[] = {0,0,0,1};
-			
-			onLBSelChanged = "_this call vn_mf_fnc_tr_missions_show";
-			onLBDblClick = "";
+			text = "Request Support";
 		};
 
-		class mutecomms: vn_mf_RscText
-		{
-			idc = VN_TR_CHARINFO_RANK_IDC;
-			x = UIW(-4);
-			y = UIH(0.25);
-			w = UIW(3);
-			h = UIH(0.65);
-			
-			style = "0x10 + 0x0200";
-			
-			colorText[] = {0.1,0.1,0.1,0.9};
-			colorBackground[] = {0,0,0,0.0};
-			shadow = 0;
-			text = "Mute";
-			font = USEDFONT;
-			sizeEx = TXT_M;
-			tooltip = "Mute communications per force.";
-		};
-		
-		class ccmf_btn: vn_mf_RscButton_ImgSwitch
-		{
-			idc = VN_TR_CCMF_BTN_IDC;
-			x = UIW(-3);
-			y = UIH(1);
-			w = UIW(1);
-			h = UIH(1);
-			tooltip = "";
-			text = "\vn\ui_f_vietnam\ui\taskroster\img\logos\Logo_MikeForce_HL.paa";
-			onButtonClick = "1 radioChannelAdd [player];6 enableChannel [true, true];['TaskSucceeded',['','Ground communication enabled!']] call para_c_fnc_show_notification;";
-		};
-
-		class ccmfoff_btn: vn_mf_RscButton_ImgSwitch
-		{
-			idc = VN_TR_CCMFOFF_BTN_IDC;
-			x = UIW(-4.21);
-			y = UIH(1);
-			w = UIW(1);
-			h = UIH(1);
-			tooltip = "";
-			text = "\vn\ui_f_vietnam\ui\taskroster\img\logos\Logo_MikeForce.paa";
-			onButtonClick = "1 radioChannelRemove [player];['TaskSucceeded',['','Ground communication disabled!']] call para_c_fnc_show_notification;";
-		};
-		
-		class ccac_btn: vn_mf_RscButton_ImgSwitch
-		{
-			idc = VN_TR_CCAC_BTN_IDC;
-			x = UIW(-3);
-			y = UIH(2.5);
-			w = UIW(1);
-			h = UIH(1);
-			tooltip = "";
-			text = "\vn\ui_f_vietnam\ui\taskroster\img\logos\Logo_ACAV_HL.paa";
-			onButtonClick = "3 radioChannelAdd [player];8 enableChannel [true, true];['TaskSucceeded',['','Call for Fire communication enabled!']] call para_c_fnc_show_notification;";
-		};
-		
-		class ccacoff_btn: vn_mf_RscButton_ImgSwitch
-		{
-			idc = VN_TR_CCACOFF_BTN_IDC;
-			x = UIW(-4.21);
-			y = UIH(2.5);
-			w = UIW(1);
-			h = UIH(1);
-			tooltip = "";
-			text = "\vn\ui_f_vietnam\ui\taskroster\img\logos\Logo_ACAV.paa";
-			onButtonClick = "3 radioChannelRemove [player];['TaskSucceeded',['','Call for Fire communication disabled!']] call para_c_fnc_show_notification;";
-		};
-
-		class ccgh_btn: vn_mf_RscButton_ImgSwitch
-		{
-			idc = VN_TR_CCGH_BTN_IDC;
-			x = UIW(-3);
-			y = UIH(4);
-			w = UIW(1);
-			h = UIH(1);
-			tooltip = "";
-			text = "\vn\ui_f_vietnam\ui\taskroster\img\logos\Logo_Hornets_HL.paa";
-			onButtonClick = "2 radioChannelAdd [player];7 enableChannel [true, true];['TaskSucceeded',['','Air communication enabled!']] call para_c_fnc_show_notification;";
-		};
-
-		class ccghoff_btn: vn_mf_RscButton_ImgSwitch
-		{
-			idc = VN_TR_CCGHOFF_BTN_IDC;
-			x = UIW(-4.21);
-			y = UIH(4);
-			w = UIW(1);
-			h = UIH(1);
-			tooltip = "";
-			text = "\vn\ui_f_vietnam\ui\taskroster\img\logos\Logo_Hornets.paa";
-			onButtonClick = "2 radioChannelRemove [player];['TaskSucceeded',['','Air communication disabled!']] call para_c_fnc_show_notification;";
-		};
-		
 		//ALWAYS AT THE BOTTOM/LAST OF THE CONTROLS!
+		// 2x binders in the centre of the screen to make it look like a notebook thing
 		class folder_cordels: vn_tr_cordels{};
 	};
 };
