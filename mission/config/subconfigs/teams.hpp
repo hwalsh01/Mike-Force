@@ -643,7 +643,7 @@ class SASR
     unit = "vn_b_men_army_01";
     color = "ColorUNKNOWN";
     colorRGBA[] = {0.7,0.6,0,1};
-    description = "Bro-Nation ANZAC - 1st Australian Task Force is a whitelisted ground infantry unit that operates in Bro-Nation Mike Force 1 and other Bro-Nation servers. The unit consist of two elements, the ANZAC Mike Force (inspired by 1RAR) and the ANZAC Spike Team (inspired by SASR and NZSAS).";
+    description = "Bro-Nation ANZAC - 1st Australian Task Force is a ground infantry unit. The unit consist of two elements, the ANZAC Mike Force (inspired by 1RAR) and the ANZAC Spike Team (inspired by SASR and NZSAS).";
     
     class rolelimits 
     {
