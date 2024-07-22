@@ -28,10 +28,11 @@ deleteMarkerLocal format["%1_missionMarker",getPlayerUID player];
 
 {
 	_x ctrlShow false;
-}forEach[VN_TR_MISSIONSHEET_CTRL, VN_TR_SUPREQ_CTRL, VN_TR_CHARINFO_CTRL];
+}forEach[VN_TR_MISSIONSHEET_CTRL, VN_TR_SUPREQ_CTRL, VN_TR_CHARINFO_CTRL, VN_TR_MAININFO_CTRL];
 
 //Added as single one, so it's staying ontop, until the others are "hidden"
-VN_TR_MAININFO_CTRL ctrlShow false;
+// VN_TR_MAININFO_CTRL ctrlShow false;
+VN_TR_BLANKSHEET_RHS_CTRL ctrlShow false;
 
 {
 	ctrlDelete (_display displayCtrl _x);
