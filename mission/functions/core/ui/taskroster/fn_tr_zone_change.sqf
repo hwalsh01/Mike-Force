@@ -30,5 +30,4 @@ if(_ctrl isEqualTo VN_TR_ZONE_A_CTRL)then
 };
 
 call vn_mf_fnc_tr_cleanRightSheet;
-call vn_mf_fnc_tr_mainInfo_show;
 [] call vn_mf_fnc_tr_missions_fill;
