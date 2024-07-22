@@ -3,8 +3,6 @@
 class vn_tr_disp_selectTeam
 {
 	name = "vn_tr_disp_selectTeam";
-	//scriptName = "vn_tr_disp_selectTeam";
-	//scriptPath = "GUI";
 	//If already opened -> Recalling it -> Reloading the Dialog (e.g. like updating the view, without "closing" it)
 	onLoad = "[""onLoad"",_this,""vn_tr_disp_selectTeam"",''] call 	(uinamespace getvariable 'BIS_fnc_initDisplay'); _this call vn_mf_fnc_tr_selectTeam_init;";
 	onUnload = "[""onUnload"",_this,""vn_tr_disp_selectTeam"",''] call 	(uinamespace getvariable 'BIS_fnc_initDisplay'); [] spawn vn_mf_fnc_tr_overview_init;";
@@ -33,13 +31,11 @@ class vn_tr_disp_selectTeam
 			idc = -1;
 		};
 	};
-	
-	
-	
+
 	class Controls
 	{
 		///////////////////Right:
-		//Teamselection
+		// needs to be here, not in the controls background
 		class vn_tr_selectTeam: vn_tr_selectTeam_base
 		{
 			idc = VN_TR_SELECTTEAM_TEAM_SELECTION_IDC;
@@ -78,7 +74,7 @@ class vn_tr_disp_selectTeam
 				align = "center";
 				color = "#000000";
 				colorLink = "#D09B43";
-				font = USEDFONT;
+				font = USEDFONT_B;
 				size = 1.1;
 				shadow = 0;
 			};
