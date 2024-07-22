@@ -24,26 +24,30 @@ VN_TR_CHARINFO_CTRL ctrlShow true;
 
 ///////////// WIP /////////////
 
-VN_TR_CHARINFO_NAME_CTRL ctrlSetText profileName;
-VN_TR_CHARINFO_POINTS_CTRL ctrlSetText str(player getVariable ["vn_mf_db_rank",0]);
-VN_TR_CHARINFO_RANK_CTRL ctrlSetText (rank player);
+VN_TR_CHARINFO_NAME_CTRL ctrlSetText format ["Profile Name: %1", profileName];
+VN_TR_CHARINFO_POINTS_CTRL ctrlSetText format ["Current Points: %1", str(player getVariable ["vn_mf_db_rank",0])];
+VN_TR_CHARINFO_RANK_CTRL ctrlSetText format ["Current Rank: %1", (rank player)];
 
 _player_id = player getVariable ["vn_mf_db_serial","0"];
-VN_TR_CHARINFO_SNUM_CTRL ctrlSetText _player_id;
+VN_TR_CHARINFO_SNUM_CTRL ctrlSetText format ["Serial Number: %1", _player_id];
+VN_TR_CHARINFO_UID_CTRL ctrlSetText format ["Player UID: %1", getPlayerUID player];
 
 _taskName = (taskDescription currentTask player)#1;
 if(isNil "_taskName")then
 {
-	VN_TR_CHARINFO_TASK_CTRL ctrlSetText "No active tasking";
+	VN_TR_CHARINFO_TASK_CTRL ctrlSetText "Active Task: None.";
 }else{
-	VN_TR_CHARINFO_TASK_CTRL ctrlSetText (taskDescription currentTask player)#1;
+	VN_TR_CHARINFO_TASK_CTRL ctrlSetText format ["Active Task: %1" ,(taskDescription currentTask player)#1];
 };
-VN_TR_CHARINFO_WORLD_CTRL ctrlSetText worldName;
+
+private _s = getPlayerScores player;
+VN_TR_CHARINFO_KILLS_CTRL ctrlSetText format ["Session Kills: Inf/Veh/Armor/Air: %1 / %2 / %3 / %4", _s # 0, _s # 1, _s # 2, _s # 3];
+VN_TR_CHARINFO_DEATHS_CTRL ctrlSetText format ["Session Deaths: %1", _s # 4];
+
 _progress = call vn_mf_fnc_points_to_next_rank;
-VN_TR_CHARINFO_PROGR_CTRL ctrlSetText str(_progress);
+VN_TR_CHARINFO_PROGR_CTRL ctrlSetText format ["Points to Next Rank: %1", _progress];
 
-
-VN_TR_CHARINFO_REWARD_TEXT_CTRL ctrlSetStructuredText parseText "<t size='0.6' font='tt2020base_vn'>Description for current Medal or Ribbon shown. More textspace blablabla roflcopter blub bla, i like trains and more stuff to add omgwtf stuff thingy</t>";
+VN_TR_CHARINFO_REWARD_TEXT_CTRL ctrlSetStructuredText parseText "<t size='0.6' font='tt2020base_vn'></t>";
 _ctrl_text ctrlCommit 0;
 
 private _awards_cur = player getVariable ["vn_mf_db_awards",vn_mf_default_awards];
