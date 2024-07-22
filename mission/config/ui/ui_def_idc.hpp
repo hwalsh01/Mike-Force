@@ -21,6 +21,26 @@
 #define VN_TR_TEAMLOGO_CTRL					(VN_DISP_TR_TASKROSTER displayCtrl VN_TR_TEAMLOGO_IDC)
 #define VN_TR_TEAMLOGO_BTN_IDC				412003
 #define VN_TR_TEAMLOGO_BTN_CTRL				(VN_DISP_TR_TASKROSTER displayCtrl VN_TR_TEAMLOGO_BTN_IDC)
+
+//-----------------------------------------------------------------------------
+// TASKROSTER: MAIN WELCOME PAGE
+//-----------------------------------------------------------------------------
+// TODO: some of these IDC/CTRLS can be removed now
+
+#define VN_TR_WELCOMETITLE_IDC				428000
+#define VN_TR_WELCOMETITLE_CTRL				(VN_DISP_TR_TASKROSTER displayCtrl VN_TR_WELCOMETITLE_IDC)
+#define VN_TR_WELCOMEBLURB_IDC				428001
+#define VN_TR_WELCOMEBLURB_CTRL				(VN_DISP_TR_TASKROSTER displayCtrl VN_TR_WELCOMEBLURB_IDC)
+#define VN_TR_NEWBIEHELP_BTN_IDC			428002
+#define VN_TR_NEWBIEHELP_BTN_CTRL			(VN_DISP_TR_TASKROSTER displayCtrl VN_TR_NEWBIEHELP_BTN_IDC)
+#define VN_TR_TEAMTEXT_BTN_IDC				428003
+#define VN_TR_TEAMTEXT_BTN_CTRL				(VN_DISP_TR_TASKROSTER displayCtrl VN_TR_TEAMTEXT_BTN_IDC)
+#define VN_TR_MEDALSTEXT_BTN_IDC			428004
+#define VN_TR_MEDALSTEXT_BTN_CTRL 			(VN_DISP_TR_TASKROSTER displayCtrl VN_TR_MEDALSTEXT_BTN_IDC)
+#define VN_TR_CURRTEAMTEXT_BTN_IDC			428005
+#define VN_TR_CURRTEAMTEXT_BTN_CTRL 		(VN_DISP_TR_TASKROSTER displayCtrl VN_TR_CURRTEAMTEXT_BTN_IDC)
+#define VN_TR_CURRTASKSTEXT_BTN_IDC			428006
+#define VN_TR_CURRTASKSTEXT_BTN_CTRL 		(VN_DISP_TR_TASKROSTER displayCtrl VN_TR_CURRTASKSTEXT_BTN_IDC)
 #define VN_TR_TASK_REQ_IDC					412004
 #define VN_TR_TASK_REQ_CTRL					(VN_DISP_TR_TASKROSTER displayCtrl VN_TR_TASK_REQ_IDC)
 #define VN_TR_TASK_REQ_FLAG_IDC				412005
@@ -35,14 +55,23 @@
 #define VN_TR_ZONE_B_IDC					412011
 #define VN_TR_ZONE_B_CTRL					(VN_DISP_TR_TASKROSTER displayCtrl VN_TR_ZONE_B_IDC)
 
+//-----------------------------------------------------------------------------
+// TASKROSTER: ACTIVE TASKS SHEET
+//-----------------------------------------------------------------------------
+// MAIN INTERFACES
+#define VN_IDD_TR_TASKINFO					412989
+#define VN_DISP_TR_TASKINFO					(uinamespace getvariable ["vn_tr_disp_showTasksInfo", DisplayNull])
 
+#define VN_TR_TASKINFO_IDC					412990
+#define VN_TR_TASKINFO_CTRL					(VN_DISP_TR_TASKINFO displayCtrl VN_TR_TASKINFO_IDC)
 
+// LEFT HAND SIDE -- The List of Parent Tasks
 #define VN_TR_MISSIONLIST_IDC				413000
-#define VN_TR_MISSIONLIST_CTRL				(VN_DISP_TR_TASKROSTER displayCtrl VN_TR_MISSIONLIST_IDC)
+#define VN_TR_MISSIONLIST_CTRL				(VN_DISP_TR_TASKINFO displayCtrl VN_TR_MISSIONLIST_IDC)
 
-//Mission Sheet
+// RIGHT HAND SIDE -- The Child tasks for a parent task
 #define VN_TR_MISSIONSHEET_IDC				413010
-#define VN_TR_MISSIONSHEET_CTRL				(VN_DISP_TR_TASKROSTER displayCtrl VN_TR_MISSIONSHEET_IDC)
+#define VN_TR_MISSIONSHEET_CTRL				(VN_DISP_TR_TASKINFO displayCtrl VN_TR_MISSIONSHEET_IDC)
 #define VN_TR_MISSIONSHEET_IMG_IDC			413011
 #define VN_TR_MISSIONSHEET_IMG_CTRL			(VN_TR_MISSIONSHEET_CTRL controlsGroupCtrl VN_TR_MISSIONSHEET_IMG_IDC)
 #define VN_TR_MISSIONSHEET_NAME_IDC			413012
@@ -62,8 +91,10 @@
 #define VN_TR_MISSIONSHEET_TASKS_LIST_IDC 	413019
 #define VN_TR_MISSIONSHEET_TASKS_LIST_CTRL 	(VN_TR_MISSIONSHEET_CTRL controlsGroupCtrl VN_TR_MISSIONSHEET_TASKS_LIST_IDC)
 
-
-//Support Request Sheet
+//-----------------------------------------------------------------------------
+// TASKROSTER: SUPPORT REQUEST
+//-----------------------------------------------------------------------------
+// ONLY RIGHT HAND SIDE FOR NOW
 #define VN_TR_SUPREQ_IDC					414000
 #define VN_TR_SUPREQ_CTRL					(VN_DISP_TR_TASKROSTER displayCtrl VN_TR_SUPREQ_IDC)
 #define VN_TR_SUPREQ_DESC_TXT_IDC			414001
@@ -81,7 +112,7 @@
 #define VN_TR_SUPREQ_CTASK_IDC				414007
 #define VN_TR_SUPREQ_CTASK_CTRL				(VN_TR_SUPREQ_CTRL controlsGroupCtrl VN_TR_SUPREQ_CTASK_IDC)
 
-//Support Request Map + Buttons
+// Support Request -- Pop Up Map + Buttons
 #define VN_TR_SUPREQ_MAP_IDC				414011
 #define VN_TR_SUPREQ_MAP_CTRL				(VN_DISP_TR_TASKROSTER displayCtrl VN_TR_SUPREQ_MAP_IDC)
 #define VN_TR_SUPREQ_ACCEPT_IDC				414012
@@ -89,7 +120,10 @@
 #define VN_TR_SUPREQ_ABORT_IDC				414013
 #define VN_TR_SUPREQ_ABORT_CTRL				(VN_DISP_TR_TASKROSTER displayCtrl VN_TR_SUPREQ_ABORT_IDC)
 
-//Character Sheet
+//-----------------------------------------------------------------------------
+// TASKROSTER: CHARACTER/PLAYER INFO
+//-----------------------------------------------------------------------------
+// RIGHT HAND SIDE ONLY
 #define VN_TR_CHARINFO_IDC					414100
 #define VN_TR_CHARINFO_CTRL					(VN_DISP_TR_TASKROSTER displayCtrl VN_TR_CHARINFO_IDC)
 #define VN_TR_CHARINFO_BTN_A_IDC			414101
@@ -102,13 +136,22 @@
 #define VN_TR_CHARINFO_RANK_CTRL			(VN_TR_CHARINFO_CTRL controlsGroupCtrl VN_TR_CHARINFO_RANK_IDC)
 #define VN_TR_CHARINFO_TASK_IDC				414105
 #define VN_TR_CHARINFO_TASK_CTRL			(VN_TR_CHARINFO_CTRL controlsGroupCtrl VN_TR_CHARINFO_TASK_IDC)
+// no longer in use becuase people can look at the map o_0
 #define VN_TR_CHARINFO_WORLD_IDC			414106
 #define VN_TR_CHARINFO_WORLD_CTRL			(VN_TR_CHARINFO_CTRL controlsGroupCtrl VN_TR_CHARINFO_WORLD_IDC)
 #define VN_TR_CHARINFO_POINTS_IDC			414107
 #define VN_TR_CHARINFO_POINTS_CTRL			(VN_TR_CHARINFO_CTRL controlsGroupCtrl VN_TR_CHARINFO_POINTS_IDC)
 #define VN_TR_CHARINFO_PROGR_IDC			414108
 #define VN_TR_CHARINFO_PROGR_CTRL			(VN_TR_CHARINFO_CTRL controlsGroupCtrl VN_TR_CHARINFO_PROGR_IDC)
-
+// @dijksterhuis custom
+#define VN_TR_CHARINFO_TITLE_IDC			414151
+#define VN_TR_CHARINFO_TITLE_CTRL			(VN_TR_CHARINFO_CTRL controlsGroupCtrl VN_TR_CHARINFO_TITLE_IDC)
+#define VN_TR_CHARINFO_UID_IDC				414152
+#define VN_TR_CHARINFO_UID_CTRL				(VN_TR_CHARINFO_CTRL controlsGroupCtrl VN_TR_CHARINFO_UID_IDC)
+#define VN_TR_CHARINFO_KILLS_IDC			414153
+#define VN_TR_CHARINFO_KILLS_CTRL			(VN_TR_CHARINFO_CTRL controlsGroupCtrl VN_TR_CHARINFO_KILLS_IDC)
+#define VN_TR_CHARINFO_DEATHS_IDC			414154
+#define VN_TR_CHARINFO_DEATHS_CTRL			(VN_TR_CHARINFO_CTRL controlsGroupCtrl VN_TR_CHARINFO_DEATHS_IDC)
 
 #define VN_TR_CHARINFO_REWARD_TEXT_IDC		414109
 #define VN_TR_CHARINFO_REWARD_TEXT_CTRL		(VN_TR_CHARINFO_CTRL controlsGroupCtrl VN_TR_CHARINFO_REWARD_TEXT_IDC)
@@ -199,10 +242,26 @@
 #define VN_TR_CHARINFO_MEDAL_RIBBON_IDC		414150
 #define VN_TR_CHARINFO_MEDAL_RIBBON_CTRL	(VN_TR_CHARINFO_CTRL controlsGroupCtrl VN_TR_CHARINFO_MEDAL_RIBBON_IDC)
 
+//-----------------------------------------------------------------------------
+// TASKROSTER: BLANK SHEET
+//-----------------------------------------------------------------------------
+// For clearing the right sheet
+#define VN_TR_BLANKSHEET_RHS_IDC			414188
+#define VN_TR_BLANKSHEET_RHS_CTRL			(VN_DISP_TR_TASKROSTER displayCtrl VN_TR_BLANKSHEET_RHS_IDC)
 
-//Main Info Sheet
+//-----------------------------------------------------------------------------
+// TASKROSTER: PLAYER TEAM INFO AND ROLES
+//-----------------------------------------------------------------------------
+// Previously called MAIN INFO SHEET
+// main IDCs/CTRLS
+#define VN_IDD_TR_SHOWTEAMINFO				414199
+#define VN_DISP_TR_SHOWTEAMINFO				(uinamespace getvariable ["vn_tr_disp_showTeamInfo", DisplayNull])
+
+// RIGHT HAND SIDE MAIN DISPLAY GROUP
 #define VN_TR_MAININFO_IDC					414200
-#define VN_TR_MAININFO_CTRL					(VN_DISP_TR_TASKROSTER displayCtrl VN_TR_MAININFO_IDC)
+#define VN_TR_MAININFO_CTRL					(VN_DISP_TR_SHOWTEAMINFO displayCtrl VN_TR_MAININFO_IDC)
+
+// RIGHT HAND SIDE ELEMENTS
 #define VN_TR_MAININFO_IMG_IDC				414201
 #define VN_TR_MAININFO_IMG_CTRL				(VN_TR_MAININFO_CTRL controlsGroupCtrl VN_TR_MAININFO_IMG_IDC)
 #define VN_TR_MAININFO_TXT_TOP_IDC			414202
@@ -215,11 +274,36 @@
 #define VN_TR_MAININFO_GRP_ROLESHEADER_CTRL (VN_TR_MAININFO_CTRL controlsGroupCtrl VN_TR_MAININFO_GRP_ROLESHEADER_IDC)
 #define VN_TR_MAININFO_GRP_ROLES_IDC 		414206
 #define VN_TR_MAININFO_GRP_ROLES_CTRL 		(VN_TR_MAININFO_CTRL controlsGroupCtrl VN_TR_MAININFO_GRP_ROLES_IDC)
+// @dijksterhuis custom
+#define VN_TR_MAININFO_GRP_TITLE_IDC	 	414209
+#define VN_TR_MAININFO_TITLE_CTRL		 	(VN_TR_MAININFO_CTRL controlsGroupCtrl VN_TR_MAININFO_GRP_TITLE_IDC)
 
-//Team Selection (Display with ctrlGroup in it)
+// LEFT HAND SIDE ELEMENTS
+#define VN_TR_SHOWTEAM_LHS_LOGO_IDC				414210
+#define VN_TR_SHOWTEAM_LHS_LOGO_CTRL			(VN_DISP_TR_SHOWTEAMINFO displayCtrl VN_TR_SHOWTEAM_LHS_LOGO_IDC)
+// note: title might not be needed as an IDC/ctrl pair as it's static
+#define VN_TR_SHOWTEAM_LHS_TITLE_IDC			414211
+#define VN_TR_SHOWTEAM_LHS_TITLE_CTRL			(VN_DISP_TR_SHOWTEAMINFO displayCtrl VN_TR_SHOWTEAM_LHS_TITLE_IDC)
+#define VN_TR_SHOWTEAM_LHS_TEAMNAME_IDC			414212
+#define VN_TR_SHOWTEAM_LHS_TEAMNAME_CTRL		(VN_DISP_TR_SHOWTEAMINFO displayCtrl VN_TR_SHOWTEAM_LHS_TEAMNAME_IDC)
+#define VN_TR_SHOWTEAM_LHS_DESC_IDC				414213
+#define VN_TR_SHOWTEAM_LHS_DESC_CTRL			(VN_DISP_TR_SHOWTEAMINFO displayCtrl VN_TR_SHOWTEAM_LHS_DESC_IDC)
+#define VN_TR_MAININFO_LHS_ROLELIMITSHEADER_IDC	414214
+#define VN_TR_MAININFO_LHS_ROLELIMITSHEADER_CTRL (VN_DISP_TR_SHOWTEAMINFO displayCtrl VN_TR_MAININFO_LHS_ROLELIMITSHEADER_IDC)
+#define VN_TR_MAININFO_LHS_ROLELIMITS_IDC		414215
+#define VN_TR_MAININFO_LHS_ROLELIMITS_CTRL		(VN_DISP_TR_SHOWTEAMINFO displayCtrl VN_TR_MAININFO_LHS_ROLELIMITS_IDC)
+#define VN_TR_MAININFO_GRP_PLAYERSHEADER_IDC 	414216
+#define VN_TR_MAININFO_GRP_PLAYERSHEADER_CTRL	(VN_DISP_TR_SHOWTEAMINFO displayCtrl VN_TR_MAININFO_GRP_PLAYERSHEADER_IDC)
+#define VN_TR_MAININFO_GRP_PLAYERS_IDC 			414217
+#define VN_TR_MAININFO_GRP_PLAYERS_CTRL 		(VN_DISP_TR_SHOWTEAMINFO displayCtrl VN_TR_MAININFO_GRP_PLAYERS_IDC)
+
+//-----------------------------------------------------------------------------
+// TASKROSTER: TEAM SELECTION
+//-----------------------------------------------------------------------------
 #define VN_IDD_TR_SELECTTEAM						45001
 #define VN_DISP_TR_SELECTTEAM						(uinamespace getvariable ["vn_tr_disp_selectTeam", DisplayNull])
 
+// LEFT HAND SIDE ELEMENTS
 #define VN_TR_SELECTTEAM_TEAM_LOGO_IDC				45010
 #define VN_TR_SELECTTEAM_TEAM_LOGO_CTRL				(VN_DISP_TR_SELECTTEAM displayCtrl VN_TR_SELECTTEAM_TEAM_LOGO_IDC)
 #define VN_TR_SELECTTEAM_TEAM_DESC_IDC				45011
@@ -227,10 +311,11 @@
 #define VN_TR_SELECTTEAM_TEAM_TEXT_IDC				45012
 #define VN_TR_SELECTTEAM_TEAM_TEXT_CTRL				(VN_DISP_TR_SELECTTEAM displayCtrl VN_TR_SELECTTEAM_TEAM_TEXT_IDC)
 
-
+// RIGHT HAND SIDE DISPLAY GROUP
 #define VN_TR_SELECTTEAM_TEAM_SELECTION_IDC			45020
 #define VN_TR_SELECTTEAM_TEAM_SELECTION_CTRL		(VN_DISP_TR_SELECTTEAM displayCtrl VN_TR_SELECTTEAM_TEAM_SELECTION_IDC)
 
+// RIGHT HAND SIDE ELEMENTS
 #define VN_TR_SELECTTEAM_TEAM_NAME_IDC				45021
 #define VN_TR_SELECTTEAM_TEAM_NAME_CTRL				(VN_TR_SELECTTEAM_TEAM_SELECTION_CTRL controlsGroupCtrl VN_TR_SELECTTEAM_TEAM_NAME_IDC)
 #define VN_TR_SELECTTEAM_TEAM_TEXT_BOTTOM_IDC		45022
@@ -248,6 +333,10 @@
 
 #define VN_TR_SELECTTEAM_ACCEPT_IDC					45028
 #define VN_TR_SELECTTEAM_ACCEPT_CTRL				(VN_DISP_TR_SELECTTEAM displayCtrl VN_TR_SELECTTEAM_ACCEPT_IDC)
+
+//-----------------------------------------------------------------------------
+// NON TASK ROSTER
+//-----------------------------------------------------------------------------
 
 //Infopanel
 #define VN_IDD_MF_INFOPANEL								47000
