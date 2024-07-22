@@ -1,10 +1,11 @@
 /*
     File: fn_tr_mission_setActive.sqf
     Author: Savage Game Design
+    Modified: @dijksterhuis
     Public: No
     
     Description:
-		Set the active mission?
+		Set the active sub task for the player.
     
     Parameter(s): none
     
@@ -15,32 +16,18 @@
 
 #include "..\..\..\..\config\ui\ui_def_base.inc"
 
+private _list_index = lbCurSel VN_TR_MISSIONLIST_CTRL;
+private _subtask_index = lbCurSel VN_TR_MISSIONSHEET_TASKS_LIST_CTRL;
 
-_list_index = lbCurSel VN_TR_MISSIONLIST_CTRL;
+(vn_tr_taskList # _list_index) params["", "", "", "_parent"];
 
-systemchat str ["_list_index",_list_index];
+private _task = (taskChildren _parent) select _subtask_index;
 
-(vn_tr_taskList#_list_index) params["_sortOrder","_parent_category","_parent_classname","_parent"];
+if (taskCompleted _task) exitWith {
+	hint "Error: Cannot set task as active because it has been completed! Select another task.";
+};
 
-{
-	systemchat str ["taskCompleted _x", taskCompleted _x];
-	if!(taskCompleted _x)then
-	{
-		_task = _x;
-		//Make last Childrentask active
-		player setCurrentTask _task;
-		//Update "Current Tasking" on the left side
-		_task_title = (taskDescription _parent)#1;
-		VN_TR_TASK_ACTIVE_CTRL ctrlSetText _task_title;
-		_icon = getText(configFile >> "CfgTaskTypes" >> taskType _parent >> "icon");
-		VN_TR_TASK_ICON_CTRL ctrlSetText _icon;
-		
-		
-		private _task_classname = _parent call vn_mf_fnc_getTaskConfigName;
-		private _taskID = _parent call vn_mf_fnc_getTaskID;
-		private _task_varName = format["%1-%2", _taskID, _task_classname];
-		private _task_data = missionNamespace getVariable [format ["task_%1", _task_varName], []];
-		systemchat str [_task_classname, _taskID, _task_varName, _task_data];
-		
-	};
-}forEach taskChildren _parent;
+// fine, already selected
+if (_task isEqualTo (currentTask player)) exitWith {true};
+
+player setCurrentTask _task;

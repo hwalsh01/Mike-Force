@@ -22,7 +22,7 @@ params ["_lb", ["_ind", -1]];
 private ["_task","_coords"];
 if (_lb == VN_TR_MISSIONLIST_CTRL) then {
 	//--- Main task selected
-	_task = vn_tr_taskList#_ind param[3, taskNull];
+	_task = vn_tr_taskList # _ind param[3, taskNull];
 	_coords = {
 		private _dest = taskDestination _x;
 		if !(_dest isEqualTo [0,0,0]) exitWith{_dest};
@@ -44,4 +44,8 @@ ctrlMapAnimCommit VN_TR_MISSION_MAP_CTRL;
 
 VN_TR_MISSIONSHEET_NAME_CTRL ctrlSetText (taskDescription _task)#1;
 VN_TR_MISSIONSHEET_DESC_CTRL ctrlSetText (taskDescription _task)#0;
+
+// set the selected subtask as active
+call vn_mf_fnc_tr_mission_setActive;
+
 nil
