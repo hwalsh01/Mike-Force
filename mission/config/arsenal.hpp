@@ -1343,7 +1343,8 @@ class vn_whitelisted_arsenal_loadouts
 			{"vn_b_helmet_m1_19_02",				{-1,0,-1,-1}},
 			{"vn_b_helmet_m1_20_01",				{-1,0,-1,-1}},
 			{"vn_b_helmet_m1_20_02",				{-1,0,-1,-1}},
-			{"vn_b_boonie_09_01",					{-1,-1,-1,-1}},//confederate flag boonie hats
+			//confederate flag boonie hats
+			{"vn_b_boonie_09_01",					{-1,-1,-1,-1}},
 			{"vn_b_boonie_09_02",					{-1,-1,-1,-1}},
 			{"vn_b_boonie_09_03",					{-1,-1,-1,-1}},
 			{"vn_b_boonie_09_04",					{-1,-1,-1,-1}},
@@ -1352,12 +1353,12 @@ class vn_whitelisted_arsenal_loadouts
 			{"vn_b_boonie_09_07",					{-1,-1,-1,-1}},
 			{"vn_b_boonie_09_08",					{-1,-1,-1,-1}},
 			{"vn_b_boonie_09_09",					{-1,-1,-1,-1}},
-			// TODO: These last few aren't actually confederate?
-			{"vn_b_boonie_01_09",					{-1,-1,-1,-1}},
-			{"vn_b_boonie_02_09",					{-1,-1,-1,-1}},
-			{"vn_b_boonie_03_09",					{-1,-1,-1,-1}},
-			{"vn_b_boonie_04_09",					{-1,-1,-1,-1}},
-			{"vn_b_boonie_05_09",					{-1,-1,-1,-1}},//end of confederate flag boonie hats
+			//end of confederate flag boonie hats
+			{"vn_b_boonie_01_09",					{-1,0,-1,-1}},
+			{"vn_b_boonie_02_09",					{-1,0,-1,-1}},
+			{"vn_b_boonie_03_09",					{-1,0,-1,-1}},
+			{"vn_b_boonie_04_09",					{-1,0,-1,-1}},
+			{"vn_b_boonie_05_09",					{-1,0,-1,-1}},
 			{"vn_b_beret_01_09",					{-1,0,-1,-1}},
 			{"vn_b_beret_01_10",					{-1,0,-1,-1}},
 			{"vn_b_beret_01_11",					{-1,0,-1,-1}}
