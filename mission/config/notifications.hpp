@@ -425,6 +425,42 @@ class CfgNotifications
 	{
 		title = "Error";
 		description = "SiteDestroyTaskActionsError: please report this to Dev Team.";
+
+	class ErrorEmotesBase
+	{
+		title = "Emotes Menu";
+		description = "%1"
+		priority = 1;
+		sound = "";
+		soundClose = "";
+		duration = 3;
+		color[] = NOTIFY_COLOR_RED_HEAVY;
+		iconPicture = "\A3\ui_f\data\map\mapcontrol\taskIconFailed_ca.paa";
+	};
+
+	class ErrorEmotesPlayerIncap: ErrorEmotesBase
+	{
+		description = "Cannot use emotes while incapacitated.";
+	};
+
+	class ErrorEmotesPlayerDead: ErrorEmotesBase
+	{
+		description = "Cannot use emotes while dead.";
+	};
+
+	class ErrorEmotesInVehicle: ErrorEmotesBase
+	{
+		description = "Cannot use emotes while in a vehicle.";
+	};
+
+	class ErrorEmotesInWater: ErrorEmotesBase
+	{
+		description = "Cannot use emotes while swimming.";
+	};
+
+	class ErrorEmotesNotOnGround: ErrorEmotesBase
+	{
+		description = "Cannot use emotes when not on the ground.";
 	};
 
 };
