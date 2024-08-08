@@ -18,10 +18,6 @@
 disableSerialization;
 #include "..\..\..\..\config\ui\ui_def_base.inc"
 
-//[] spawn vn_mf_fnc_tr_supportTask_map_hide;
-call vn_mf_fnc_tr_supportTask_map_hide;
-
-
 VN_TR_SUPREQ_CTASK_CTRL ctrlEnable false;
 //"unhide" supportRequest Page
 VN_TR_SUPREQ_CTRL ctrlShow true;
@@ -48,3 +44,4 @@ _groupID = player getVariable ["vn_mf_db_player_group", "FAILED"];
 };
 
 _ctrl_taskSelection lbSetCurSel 0;
+call vn_mf_fnc_tr_supportTask_selectPosition;

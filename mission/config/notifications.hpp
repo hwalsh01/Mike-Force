@@ -13,6 +13,12 @@ class CfgNotifications
 {
 	#include "..\paradigm\Client\configs\notifications.hpp"
 
+	class Error {
+		priority = 8;
+		color[] = NOTIFY_COLOR_RED_HEAVY;
+		iconPicture = "\A3\ui_f\data\map\mapcontrol\taskIconFailed_ca.paa";
+	};
+
 	class BaseAttackImminent
 	{
 		title = $STR_vn_mf_notification_title_base_attack;
@@ -404,10 +410,16 @@ class CfgNotifications
 		iconPicture = "\A3\ui_f\data\map\mapcontrol\taskIconDone_ca.paa";
 	};
 
-	class SiteDestroyTaskActionsError: FireInTheHole
+	class SiteDestroyTaskActionsError: Error
 	{
 		title = "Error";
 		description = "SiteDestroyTaskActionsError: please report this to Dev Team.";
+	};
+
+	class ErrorNotWhitelistedForTeam: Error
+	{
+		title = "Team Whitelisting";
+		description = "Not whitelisted for %1 -- setting team to Mike Force.";
 	};
 
 };

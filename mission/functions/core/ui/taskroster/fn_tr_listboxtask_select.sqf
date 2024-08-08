@@ -20,7 +20,7 @@
 #include "..\..\..\..\config\ui\ui_def_base.inc"
 params ["_lb", ["_ind", -1]];
 private ["_task","_coords"];
-if (_lb == VN_TR_MISSIONLIST_CTRL) then {
+if (_lb == VN_TR_ACTIVETASKS_LHS_LBOX_CTRL) then {
 	//--- Main task selected
 	_task = vn_tr_taskList # _ind param[3, taskNull];
 	_coords = {
@@ -37,13 +37,13 @@ if (isNil "_coords") then {_coords = [0,0,0]};
 private _distance = round (getPos player distance _coords);
 private _distance_type = "m";
 if(count(str (round _distance)) > 3)then{_distance = (_distance / 1000) toFixed 1; _distance_type = "km";};
-VN_TR_MISSIONSHEET_COORDS_CTRL ctrlSetText format["%1 %2", _distance, _distance_type];
+VN_TR_ACTIVETASKS_RHS_COORDS_CTRL ctrlSetText format["%1 %2", _distance, _distance_type];
 
 VN_TR_MISSION_MAP_CTRL ctrlMapAnimAdd [0, 0.25, _coords];
-ctrlMapAnimCommit VN_TR_MISSION_MAP_CTRL;
+ctrlMapAnimCommit VN_TR_ACTIVETASKS_RHS_MAP_CTRL;
 
-VN_TR_MISSIONSHEET_NAME_CTRL ctrlSetText (taskDescription _task)#1;
-VN_TR_MISSIONSHEET_DESC_CTRL ctrlSetText (taskDescription _task)#0;
+VN_TR_ACTIVETASKS_RHS_NAME_CTRL ctrlSetText (taskDescription _task)#1;
+VN_TR_ACTIVETASKS_RHS_DESC_CTRL ctrlSetText (taskDescription _task)#0;
 
 // set the selected subtask as active
 call vn_mf_fnc_tr_mission_setActive;

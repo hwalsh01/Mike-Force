@@ -41,9 +41,12 @@ lnbclear _ctrl_availableTeams;
 //ret: Array with configName of allowed Teams for that Task
 _teamsToAssign = getArray(missionConfigFile >> "gamemode" >> "tasks" >> _supportClassname >> "taskgroups");
 _taskDesc = getText(missionConfigFile >> "gamemode" >> "tasks" >> _supportClassname >> "requesterDesc");
-VN_TR_SUPREQ_DESC_TXT_CTRL ctrlSetStructuredText parseText _taskDesc;
+VN_TR_SUPREQ_DESC_TXT_CTRL ctrlSetStructuredText parseText (
+	format ["<t font='tt2020base_vn_bold'>Selected Task Description</t>: %1", _taskDesc]
+);
+
 //Fill the List-/Combobox with the Teams
-{
+_teamsToAssign apply {
 	private _groupConfig = (missionConfigFile >> "gamemode" >> "teams" >> _x);
 	private _groupNameFull = getText(_groupConfig >> "name");
 	private _groupIcon = getText(_groupConfig >> "icon");
@@ -51,7 +54,6 @@ VN_TR_SUPREQ_DESC_TXT_CTRL ctrlSetStructuredText parseText _taskDesc;
 	
 	private _index = _ctrl_availableTeams lnbAddRow ["",_groupName];
 	_ctrl_availableTeams lnbSetData [[_index,0], _x];
-	_ctrl_availableTeams lnbSetPicture [[_index,0],I];
-
-} forEach _teamsToAssign;
+	_ctrl_availableTeams lnbSetPicture [[_index,0],_groupIcon];
+};
 _ctrl_availableTeams lbSetCurSel 0;

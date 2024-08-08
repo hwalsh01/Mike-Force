@@ -17,17 +17,28 @@
 
 disableSerialization;
 
-if((vn_tr_supportMissionInfo#2) isEqualTo [])exitWith{systemchat str ["((vn_tr_supportMissionInfo#2) isEqualTo []) = ", ((vn_tr_supportMissionInfo#2) isEqualTo [])]};
+private _isDebugPos = (
+    (vn_tr_supportMissionInfo # 1) isEqualTo []
+    || (vn_tr_supportMissionInfo # 1) isEqualTo [0, 0]
+    || (vn_tr_supportMissionInfo # 1) isEqualTo [0, 0, 0]
+);
+if (_isDebugPos) exitWith {
+    [] spawn {
+        hint "You must select a position on the map to create a support task!";
+        sleep 5;
+        hintSilent "";
+    };
+};
+
 //disable the Request Button, after clicking it
 VN_TR_SUPREQ_CTASK_IDC ctrlEnable false;
-//cleanup the right side
-call vn_mf_fnc_tr_cleanRightSheet;
 
 //send request to Server
 //["Classname",[Coords],"TeamName"]
 ["supporttaskcreate", vn_tr_supportMissionInfo] call para_c_fnc_call_on_server;
+
 //clear TempVar
 vn_tr_supportMissionInfo = ["",[],[]];
 
-//DEV / ToDo: Get confirmation/Trigger from Server, when mission is created
-[] call vn_mf_fnc_tr_missions_fill;
+VN_TR_SUPREQ_TASK_CTRL lbSetCurSel 0;
+VN_TR_SUPREQ_TEAM_CTRL lbSetCurSel 0;

@@ -27,6 +27,7 @@ class CfgFunctions
 			class player_within_radius {};
 			class check_side {};
 			class range {};
+			class color_confname_to_rgba {};
 		};
 
 		class core_init
@@ -118,6 +119,11 @@ class CfgFunctions
 			/* Main Info: */
 			class tr_mainInfo_show {};
 
+			/* Current Team and Changing Team */
+			class tr_teamInfo_show {};
+			class tr_teamInfo_listboxSelect {};
+			class tr_teamInfo_listboxInit {};
+
 			/* Mission List */
 			class tr_zone_change {};
 			class tr_missions_fill {};
@@ -140,11 +146,11 @@ class CfgFunctions
 			class tr_selectTeam_init {};
 			class tr_selectTeam_set {};
 
-			/* Character Info */
-			class tr_characterInfo_show {};
-			class tr_characterInfo_ribbon_enter {};
-			class tr_characterInfo_ribbon_exit {};
-			class tr_characterInfo_ribbon_setIcon {};
+			/* Player Info Pages */
+			class tr_playerInfo_show {};
+			class tr_playerInfo_ribbon_enter {};
+			class tr_playerInfo_ribbon_exit {};
+			class tr_playerInfo_ribbon_setIcon {};
 		};
 
 		class ui_timerOverlay
@@ -534,6 +540,8 @@ class CfgFunctions
 			class task_sec_spike_wiretap { file = "functions\tasks\secondary\fn_task_sec_spike_wiretap.sqf";};
 
 			class task_sup_brightlight { file = "functions\tasks\support\fn_task_sup_brightlight.sqf"; };
+			class task_sup_recon_area { file = "functions\tasks\support\fn_task_sup_recon_area.sqf"; };
+			class task_sup_move_to_area { file = "functions\tasks\support\fn_task_sup_move_to_area.sqf"; };
 			class task_sup_cas { file = "functions\tasks\support\fn_task_sup_cas.sqf"; };
 			class task_sup_destroy_target { file = "functions\tasks\support\fn_task_sup_destroy_target.sqf"; };
 			class task_sup_transport { file = "functions\tasks\support\fn_task_sup_transport.sqf"; };

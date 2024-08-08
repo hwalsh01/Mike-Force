@@ -1,6 +1,7 @@
 /*
-    File: fn_tr_characterInfo_ribbon_enter.sqf
+    File: fn_tr_playerInfo_ribbon_enter.sqf
     Author: Savage Game Design
+    Modified: @dijksterhuis
     Public: No
     
     Description:

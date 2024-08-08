@@ -16,8 +16,8 @@
 
 #include "..\..\..\..\config\ui\ui_def_base.inc"
 
-private _list_index = lbCurSel VN_TR_MISSIONLIST_CTRL;
-private _subtask_index = lbCurSel VN_TR_MISSIONSHEET_TASKS_LIST_CTRL;
+private _list_index = lbCurSel VN_TR_ACTIVETASKS_LHS_LBOX_CTRL;
+private _subtask_index = lbCurSel VN_TR_ACTIVETASKS_RHS_TASKS_LIST_CTRL;
 
 (vn_tr_taskList # _list_index) params["", "", "", "_parent"];
 

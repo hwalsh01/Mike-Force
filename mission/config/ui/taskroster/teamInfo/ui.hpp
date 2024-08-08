@@ -1,13 +1,126 @@
 //included by "ui_tr_base.hpp"
 
+// RIGHT HAND SIDE -- INHERITED BELOW
+
+class vn_tr_disp_showTeamInfo_rhs : vn_mf_RscControlsGroupNoScrollbarHV
+{
+	idc = -1;
+	onLoad = "";
+
+	x = VN_TR_SHEET_R_X;
+	y = VN_TR_SHEET_R_Y;
+	w = VN_TR_SHEET_R_W;
+	h = VN_TR_SHEET_R_H;
+
+	class controls
+	{
+		class rhs_changeteam_title: vn_mf_RscText
+		{
+			idc = -1;
+			x = UIW(2.5);
+			y = UIH(1);
+			w = UIW(9);
+			h = UIH(2);
+			sizeEx = TXT_L;
+			colorText[] = {0,0,0,1};
+			colorBackground[] = {0,0,0,0};
+			text = "Change Team";
+			tooltip = "";
+			font = USEDFONT_B;
+		};
+
+		class lhs_changeteam_description: vn_mf_RscStructuredText
+		{
+			idc = -1;
+			style = "0x10";
+
+			x = UIW(2.5);
+			y = UIH(3);
+			w = UIW(16);
+			h = UIH(6);
+
+			colorText[] = {0,0,0,1};
+			colorBackground[] = {0,0,0,0.0};
+			sizeEx = TXT_XS;
+			text = "To change your team, click on one of the entries in the list below, then press the CHANGE TEAM button.<br/><br/>'Public' teams are open to all players; 'Locked' teams are whitelisted teams you cannot join; 'Unlocked' teams are whitelisted teams you can join.";
+			tooltip = "";
+			class Attributes
+			{
+				align = "left";
+				color = "#000000";
+				colorLink = "#D09B43";
+				font = USEDFONT;
+				size = 0.8;
+				shadow = 0;
+			};
+		};
+
+		class rhs_changeteam_select_listNBox: vn_mf_RscListNBox
+		{
+			idc = VN_TR_SHOWTEAMINFO_RHS_CHANGETEAM_LISTBOX_IDC;
+
+			x = UIW(2.5);
+			y = UIH(10);
+			w = UIW(15);
+			h = UIH(10);
+
+			// icon start
+			// team name start
+			// public or whitelisted text start
+			// mapmarker icon start
+			columns[] = {
+				0,
+				0.075,
+				0.45,
+				0.85,
+				0.95
+			};
+
+			sizeEx = TXT_S;
+			rowHeight = UIH(1);
+
+			colorBackground[] = {0,0,0,0};
+			colorText[] = {0,0,0,1};
+			colorShadow[] = {0,0,0,0};
+
+			colorSelect[] = {1,1,1,1};
+			colorSelect2[] = {1,1,1,1};
+			colorDisabled[] = {1,1,1,0.5};
+
+			colorPicture[] = {1,1,1,1};
+			colorPictureSelected[] = {1,1,1,1};
+			colorPictureDisabled[] = {1,1,1,1};
+
+			tooltipPerColumn = true;
+			padding = 0.008;
+		};
+
+		class rhs_confirm_btn: vn_mf_RscButton
+		{
+			idc = VN_TR_SHOWTEAMINFO_RHS_CHANGETEAM_BUTTON_IDC;
+
+			x = UIX_CL(4.5);
+			y = UIY_CU(-8.5);
+			w = UIW(6);
+			h = UIH(1.5);
+
+			text = "CHANGE TEAM";
+			font = USEDFONT;
+			sizeEx = TXT_L;
+			onButtonClick = "call vn_mf_fnc_tr_teamInfo_listboxSelect;";
+			colorText[] = {0,0,0,1};
+			colorBackground[] = {0,0,0,0.1};
+		};
+	};
+};
+
 class vn_tr_disp_showTeamInfo
 {
 	name = "vn_tr_disp_showTeamInfo";
 	//If already opened -> Recalling it -> Reloading the Dialog (e.g. like updating the view, without "closing" it)
-	// TODO: rename vn_mf_fnc_tr_mainInfo_show to vn_mf_fnc_tr_showTeamInfo_show
-	onLoad = "[""onLoad"",_this,""vn_tr_disp_showTeamInfo"",''] call 	(uinamespace getvariable 'BIS_fnc_initDisplay'); _this call vn_mf_fnc_tr_mainInfo_show;";
-	onUnload = "[""onUnload"",_this,""vn_tr_disp_showTeamInfo"",''] call 	(uinamespace getvariable 'BIS_fnc_initDisplay'); [] spawn vn_mf_fnc_tr_overview_init;";
-	idd = VN_IDD_TR_SHOWTEAMINFO_WRONG;
+	onLoad = "[""onLoad"",_this,""vn_tr_disp_showTeamInfo"",''] call (uinamespace getvariable 'BIS_fnc_initDisplay'); call vn_mf_fnc_tr_teamInfo_show;";
+	onUnload = "[""onUnload"",_this,""vn_tr_disp_showTeamInfo"",''] call (uinamespace getvariable 'BIS_fnc_initDisplay'); [] spawn vn_mf_fnc_tr_overview_init;";
+	idd = -1;
 	movingEnable = 1;
 	enableSimulation = 1;
 		
@@ -24,21 +137,25 @@ class vn_tr_disp_showTeamInfo
 			colorBackground[] = {1,1,1,1};
 			text = "\vn\ui_f_vietnam\ui\taskroster\img\tr_folder_background_sheetL.paa";
 		};
-		
-		//MUST be in the background, otherwise it could "pop up", when clicking on it, covering up the cordles (silly Arma, y u do dis? :sad:)
-		///////////////////Right:
-		//Teamselection
-		class vn_tr_selectTeam: vn_tr_MainInfo_base
+		//MUST be in the background, otherwise it could "pop up", when clicking on it, covering up the cordles
+		class vn_sheet_clean_R: vn_sheet_clean_R_base
 		{
-			idc = VN_TR_MAININFO_IDC;
+			idc = -1;
 		};
 	};
 	
 	
 	class Controls
 	{
-		
-		///////////////////Left:
+		// Teamselection
+		// I do not know why this has to be in the main Controls class.
+		// putting it in the ControlsBackground class breaks the UI
+		// but showPlayerInfo does that fine ?!?!?
+		class rhs: vn_tr_disp_showTeamInfo_rhs
+		{
+			idc = VN_TR_SHOWTEAMINFO_RHS_IDC;
+		};
+
 		class lhs_main_text_header: vn_mf_RscText
 		{
 			idc = -1;
@@ -61,9 +178,9 @@ class vn_tr_disp_showTeamInfo
 		};
 
 		// Current Team: %1
-		class text_top: vn_mf_RscStructuredText
+		class lhs_text_top: vn_mf_RscStructuredText
 		{
-			idc = VN_TR_SHOWTEAM_LHS_TEAMNAME_IDC;
+			idc = VN_TR_SHOWTEAMINFO_LHS_TEAMNAME_IDC;
 			x = UIX_CL(12);
 			y = UIY_CU(10.35);
 			w = UIW(7);
@@ -89,7 +206,7 @@ class vn_tr_disp_showTeamInfo
 
 		class lhs_team_logo_img: vn_mf_RscPicture
 		{
-			idc = VN_TR_SHOWTEAM_LHS_LOGO_IDC;
+			idc = VN_TR_SHOWTEAMINFO_LHS_LOGO_IDC;
 			x = UIX_CL(4.5);
 			y = UIY_CU(11);
 			w = UIW(2);
@@ -105,7 +222,7 @@ class vn_tr_disp_showTeamInfo
 		// Text for the team's description field.
 		class lhs_team_description_stext: vn_mf_RscStructuredText
 		{
-			idc = VN_TR_SHOWTEAM_LHS_DESC_IDC;
+			idc = VN_TR_SHOWTEAMINFO_LHS_DESC_IDC;
 			style = "0x10";
 
 			x = UIX_CL(17.5);
@@ -129,9 +246,9 @@ class vn_tr_disp_showTeamInfo
 			};
 		};
 
-		class PlayersRoleListHeader: vn_mf_RscControlsGroupNoScrollbarH
+		class lhs_PlayersRoleListHeader: vn_mf_RscControlsGroupNoScrollbarH
 		{
-			idc = VN_TR_MAININFO_GRP_PLAYERSHEADER_IDC;
+			idc = -1;
 			x = UIX_CL(17.5);
 			y = UIY_CU(4.5);
 			w = UIW(15);
@@ -140,7 +257,7 @@ class vn_tr_disp_showTeamInfo
 			{
 				class PlayerName: vn_mf_RscStructuredText
 				{
-					text = "Players"
+					text = "Players";
 					x = 0;
 					y = 0;
 					w = UIW(16);
@@ -164,19 +281,18 @@ class vn_tr_disp_showTeamInfo
 				};
 			};
 		};
-		class PlayersRoleList: PlayersRoleListHeader
+		class lhs_PlayersRoleList: lhs_PlayersRoleListHeader
 		{
-			idc = VN_TR_MAININFO_GRP_PLAYERS_IDC;
-			// y = UIY_CU(-2.25);
+			idc = VN_TR_SHOWTEAMINFO_LHS_PLAYERS_IDC;
 			y = UIY_CU(3.75);
 			h = UIH(5);
 			colorBackground[] = {0, 0, 0, 1};
 			class controls {};
 		};
 
-		class RoleLimitsHeader: vn_mf_RscControlsGroupNoScrollbarH
+		class lhs_RoleLimitsHeader: vn_mf_RscControlsGroupNoScrollbarH
 		{
-			idc = VN_TR_MAININFO_LHS_ROLELIMITSHEADER_IDC;
+			idc = -1;
 			x = UIX_CL(17.5);
 			y = UIY_CU(-3);
 
@@ -186,7 +302,7 @@ class vn_tr_disp_showTeamInfo
 			{
 				class Role: vn_mf_RscStructuredText
 				{
-					text = "Team Role Allowance"
+					text = "Team Role Allowance";
 					x = 0;
 					y = 0;
 					w = UIW(6);
@@ -216,39 +332,14 @@ class vn_tr_disp_showTeamInfo
 				};
 			};
 		};
-		class RoleLimits: RoleLimitsHeader
+		class lhs_RoleLimits: lhs_RoleLimitsHeader
 		{
-			idc = VN_TR_MAININFO_LHS_ROLELIMITS_IDC;
+			idc = VN_TR_SHOWTEAMINFO_LHS_ROLELIMITS_IDC;
 			y = UIY_CU(-3.75);
 			h = UIH(5);
 			colorBackground[] = {0, 0, 0, 1};
 			class controls {};
 		};
-
-		// class lhs_player_list_subtitle: vn_mf_RscStructuredText
-		// {
-		// 	idc = -1;
-		// 	x = UIX_CL(17.5);
-		// 	y = UIY_CU(-1.25);
-		// 	w = UIW(16);
-		// 	h = UIH(1);
-			
-		// 	colorText[] = {0.1,0.1,0.1,0.9};
-		// 	colorBackground[] = {0,0,0,0.0};
-		// 	text = "Team mates and their roles";
-		// 	size = UIH(0.9);
-		// 	tooltip = "";
-		// 	class Attributes
-		// 	{
-		// 		align = "left";
-		// 		valign = "middle";
-		// 		color = "#000000";
-		// 		colorLink = "#D09B43";
-		// 		font = USEDFONT;
-		// 		size = 1;
-		// 		shadow = 0;
-		// 	};
-		// };
 
 		class lhs_back_btn: vn_mf_RscButton
 		{

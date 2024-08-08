@@ -18,16 +18,9 @@
 disableSerialization;
 #include "..\..\..\..\config\ui\ui_def_base.inc"
 
-_display = ctrlParent (_this#0);
-//ToDo: maybe redo it, to load a ctrlGroup, instead of single ctrl's
-_ctrl_map = _display ctrlCreate ["vn_tr_supportRequest_miniMap",VN_TR_SUPREQ_MAP_IDC];
-_ctrl_map_accept = _display ctrlCreate ["vn_tr_supportRequest_miniMap_accept",VN_TR_SUPREQ_ACCEPT_IDC];
-_ctrl_map_abort = _display ctrlCreate ["vn_tr_supportRequest_miniMap_abort",VN_TR_SUPREQ_ABORT_IDC];
+_ctrl_map = VN_DISP_TR_SUPREQ ctrlCreate ["vn_tr_supportRequest_miniMapAA", VN_TR_SUPREQ_MAP_IDC];
 
 private _coords = getPos player;
 //move map to player Position
 _ctrl_map ctrlMapAnimAdd [0, 0.15, _coords];
 ctrlMapAnimCommit _ctrl_map;
-//Add mouseEH, to be able to click around the map
-_ctrl_map ctrlAddEventHandler ["MouseButtonClick",vn_mf_fnc_tr_getMapPosClick];
-

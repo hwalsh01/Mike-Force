@@ -33,4 +33,6 @@ VN_TR_SUPREQ_CTASK_CTRL ctrlEnable true;
 //DEV NOTE: No idea why, but when "call"-ed -> Game crashes. Seems to be working with "spawn", but should be kept in mind!
 //call vn_mf_fnc_tr_supportTask_map_hide;
 //-------------------------------------
-[] spawn vn_mf_fnc_tr_supportTask_map_hide;
+
+// @dijksterhuis going to keep the map enabled for now.
+// [] spawn vn_mf_fnc_tr_supportTask_map_hide;

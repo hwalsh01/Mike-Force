@@ -19,18 +19,20 @@
     Example(s): none
 */
 
+params ["_control", "_button", "_xPos", "_yPos", "_shift", "_ctrl", "_alt"];
+
 disableSerialization;
 
-_worldCoord = (_this#0) ctrlMapScreenToWorld [(_this#2), (_this#3)];
-_markerName = format["%1_missionMarker",getPlayerUID player];
+_worldCoord = _control ctrlMapScreenToWorld [_xPos, _yPos];
+_markerName = format["%1_missionMarker", getPlayerUID player];
 
-if(isNil _markerName)then
+if (isNil _markerName) then
 {
-	
 	_marker = createMarkerLocal [_markerName, _worldCoord];
-	_marker setMarkerShapeLocal "ELLIPSE";
-	_marker setMarkerColorLocal "ColorBlack";
-	_marker setMarkerSizeLocal [10, 10];
+	_marker setMarkerColorLocal "ColorRed";
+	_marker setMarkerSizeLocal [1, 1];
 	_marker setMarkerAlphaLocal 1;
+	_marker setMarkerTypeLocal "hd_objective_noShadow";
 };
 _markerName setMarkerPosLocal _worldCoord;
+

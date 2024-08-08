@@ -17,10 +17,5 @@
 disableSerialization;
 #include "..\..\..\..\config\ui\ui_def_base.inc"
 
-private _display = VN_DISP_TR_TASKROSTER;
-
-{
-	ctrlDelete _x;
-}forEach [VN_TR_SUPREQ_MAP_CTRL, VN_TR_SUPREQ_ACCEPT_CTRL, VN_TR_SUPREQ_ABORT_CTRL];
-
-VN_TR_SUPREQ_SELPOS_CTRL ctrlenable true;
+_markerName = format["%1_missionMarker", getPlayerUID player];
+deleteMarkerLocal _markerName;

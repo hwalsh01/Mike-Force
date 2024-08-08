@@ -115,7 +115,7 @@ private _fnc_process_task = {
 disableSerialization;
 #include "..\..\..\..\config\ui\ui_def_base.inc"
 
-private _ctrl = VN_TR_MISSIONLIST_CTRL;
+private _ctrl = VN_TR_ACTIVETASKS_LHS_LBOX_CTRL;
 lbclear _ctrl;
 
 private _onlyParentTasks = (simpleTasks player) select {

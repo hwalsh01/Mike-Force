@@ -20,20 +20,13 @@ call vn_mf_fnc_tr_supportTask_map_hide;
 
 _display = VN_DISP_TR_TASKROSTER;
 
-//DISABLED! WOBBLEWOBBLE (crash)
-//_ctrl_SupportTasks = VN_TR_MISSIONLIST_CTRL;
-//_ctrl_SupportTasks lnbSetCurSelRow -1;
-
 deleteMarkerLocal format["%1_missionMarker",getPlayerUID player];
-
-{
-	_x ctrlShow false;
-}forEach[VN_TR_MISSIONSHEET_CTRL, VN_TR_SUPREQ_CTRL, VN_TR_CHARINFO_CTRL, VN_TR_MAININFO_CTRL];
+// [
+//     VN_TR_ACTIVETASKS_RHS_GROUP_CTRL, VN_TR_SUPREQ_CTRL, VN_TR_CHARINFO_CTRL, VN_TR_SHOWTEAMINFO_RHS_CTRL
+// ] apply {_x ctrlShow false};
 
 //Added as single one, so it's staying ontop, until the others are "hidden"
 // VN_TR_MAININFO_CTRL ctrlShow false;
 VN_TR_BLANKSHEET_RHS_CTRL ctrlShow false;
 
-{
-	ctrlDelete (_display displayCtrl _x);
-}forEach[VN_TR_MISSION_ACTIVATE_IDC];
+// [VN_TR_MISSION_ACTIVATE_IDC] apply {ctrlDelete (_display displayCtrl _x)};
