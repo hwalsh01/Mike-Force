@@ -121,7 +121,7 @@ progressLoadingScreen 0.9;
 
 private _lastTeamName = player getVariable ["vn_mf_db_player_group", "MikeForce"];
 
-private _respawnMarker = format ["mf_respawn_%1", _lastTeamName]; 
+private _respawnMarker = format ["mf_respawn_%1", _lastTeamName];
 if (side player == east) then 
 {
 	_respawnMarker = format ["mf_dc_respawn_%1", _lastTeamName]; 
@@ -331,4 +331,3 @@ if hasInterface then
 
 ["InitializePlayer", [player]] call para_c_fnc_dynamicGroups;
 
-[player] call vn_mf_fnc_emotes_init;

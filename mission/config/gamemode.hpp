@@ -111,7 +111,4 @@ class gamemode
 
 	#include "subconfigs\units.hpp"
 
-	class emotes {
-		#include "subconfigs\emotes.hpp"
-	};
 };
