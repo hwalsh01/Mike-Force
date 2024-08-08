@@ -219,7 +219,7 @@ class CfgFunctions
 
 		class system_dac_cong {
 			file = "functions\systems\dac_cong";
-
+			class daccong_respawns_delete_all {};
 			class capture_player {};
 		}
 
