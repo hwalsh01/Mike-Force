@@ -420,4 +420,11 @@ class CfgNotifications
 	{
 		description = "Cannot locate vehicle's spawner -- you are not driving a spawned vehicle.";
 	};
+
+	class SiteDestroyTaskActionsError: FireInTheHole
+	{
+		title = "Error";
+		description = "SiteDestroyTaskActionsError: please report this to Dev Team.";
+	};
+
 };
