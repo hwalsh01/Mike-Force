@@ -71,7 +71,4 @@ private _scriptHandle = [getPos player, _iconPos] spawn {
 	player setVariable ["veh_asset_spawnPoint_draw3d_active", false];
 };
 
-// once script is executed let player draw icon in ui again
-// waitUntil { scriptDone _scriptHandle };
-// player setVariable ["veh_asset_spawnPoint_draw3d_active", false];
 
