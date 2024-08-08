@@ -20,3 +20,8 @@ vn_dc_adhoc_respawns apply {
 	_respawnID call BIS_fnc_removeRespawnPosition;
 	deleteMarker _marker;
 };
+
+[
+	"INFO",
+	format ["Should have deleted all Dac Cong respawns: n=%1", count vn_dc_adhoc_respawns]
+] call para_g_fnc_log;
