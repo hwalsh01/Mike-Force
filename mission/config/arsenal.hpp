@@ -778,6 +778,7 @@ class vn_whitelisted_arsenal_loadouts
 			{ "vn_b_boonie_02_05", 					{-1, 0, 0,-1}}, 
 			{ "vn_b_boonie_02_06", 					{-1, 0, 0,-1}}, 
 			{ "vn_b_boonie_02_07", 					{-1, 0, 0,-1}}, 
+			{ "vn_b_boonie_02_08", 					{-1, 0, 0,-1}}, 
 			{ "vn_b_boonie_03_01", 					{-1, 0, 0,-1}}, 
 			{ "vn_b_boonie_03_02", 					{-1, 0, 0,-1}}, 
 			{ "vn_b_boonie_03_03", 					{-1, 0, 0,-1}}, 
@@ -1351,6 +1352,7 @@ class vn_whitelisted_arsenal_loadouts
 			{"vn_b_boonie_09_07",					{-1,-1,-1,-1}},
 			{"vn_b_boonie_09_08",					{-1,-1,-1,-1}},
 			{"vn_b_boonie_09_09",					{-1,-1,-1,-1}},
+			// TODO: These last few aren't actually confederate?
 			{"vn_b_boonie_01_09",					{-1,-1,-1,-1}},
 			{"vn_b_boonie_02_09",					{-1,-1,-1,-1}},
 			{"vn_b_boonie_03_09",					{-1,-1,-1,-1}},
