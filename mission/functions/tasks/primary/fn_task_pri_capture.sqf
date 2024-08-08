@@ -36,6 +36,7 @@ _taskDataStore setVariable ["INIT", {
 	// change the zone's hexagon colour and shading
 	_zone setMarkerColor "ColorRed";
 	_zone setMarkerBrush "DiagGrid";
+	_zone setMarkerAlpha 0.45;
 
 	private _areaMarkerSize = vn_mf_bn_s_zone_radius + 100;
 
