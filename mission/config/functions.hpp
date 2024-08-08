@@ -101,6 +101,7 @@ class CfgFunctions
 			class ui_sub_menu {};
 			class ui_update {};
 			class update_loading_screen {};
+			class ui_hud_toggle {};
 		};
 
 		class ui_taskroster
@@ -242,6 +243,7 @@ class CfgFunctions
 		class system_earplugs {
 			file = "functions\systems\earplugs";
 			class earplugs {};
+			class earplugs_toggle {};
 		};
 
 		class system_player_markers
@@ -409,6 +411,7 @@ class CfgFunctions
 			class veh_asset_request_vehicle_change_client {};
 			class veh_asset_setup_package_wreck_action_local {};
 			class veh_asset_update_spawn_point_data {};
+			class veh_asset_client_locate_vehicle_spawn_point {};
 		};
 
 		class system_vehicle_asset_manager_global
