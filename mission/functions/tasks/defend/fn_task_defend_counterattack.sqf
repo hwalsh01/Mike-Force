@@ -25,8 +25,61 @@ params ["_taskDataStore"];
 /*
 Constants
 */
-_taskDataStore setVariable ["holdDuration", 60 * 30];
-_taskDataStore setVariable ["failureDuration", 5 * 60];
+_taskDataStore setVariable ["holdDuration", 10 * 30];
+_taskDataStore setVariable ["failureDuration", 3 * 60];
+
+// get the counterattack time remaining for this specific zone
+_taskDataStore setVariable ["_fnc_get_db_timer_key", {
+	params ["_tds"];
+	private _zoneName = _tds getVariable "taskMarker";
+	format ["%1_counterattack_timer", _zoneName];
+}];
+
+// post server restart check -- how long is remaining on a counterattack after a restart?
+_taskDataStore setVariable ["fnc_update_hold_time", {
+	params ["_tds"];
+
+	diag_log "DEBUG: Checking current zone's counterattack time remaining in profile DB.";
+
+	private _key = [_tds] call (_tds getVariable "_fnc_get_db_timer_key");
+	["GET", _key, -1] call para_s_fnc_profile_db params ["", "_holdTimeRemaining"];
+
+	// update hold duration. if not previously set the counterattack
+	// will use the default holdDuration value defined above.
+	if (_holdTimeRemaining >= 0) then {
+		diag_log "DEBUG: Updating current zone's counterattack time remaining from profile DB.";
+		_tds setVariable ["holdDuration", _holdTimeRemaining];
+	};
+
+	diag_log "DEBUG: Checked current zone's counterattack time remaining in profile DB.";
+}];
+
+// save current time remaining to the profile DB
+_taskDataStore setVariable ["fnc_update_db_time_remain", {
+	params ["_tds"];
+
+	diag_log "DEBUG: Saving current zone's counterattack time remaining to profile DB.";
+
+	private _startTime = _tds getVariable "startTime";
+	private _endTime = _startTime + (_tds getVariable "holdDuration");
+
+	private _key = [_tds] call (_tds getVariable "_fnc_get_db_timer_key");
+	["SET", _key, _endTime - serverTime] call para_s_fnc_profile_db;
+
+	diag_log "DEBUG: Saving current zone's counterattack time remaining to profile DB.";
+}];
+
+// reset the time remaining to -1 to make clear we have no previous state to worry about
+_taskDataStore setVariable ["fnc_reset_db_time_remain", {
+	params ["_tds"];
+
+	diag_log "DEBUG: Resetting current zone's counterattack time remaining in profile DB.";
+
+	private _key = [_tds] call (_tds getVariable "_fnc_get_db_timer_key");
+	["SET", _key, -1] call para_s_fnc_profile_db;
+
+	diag_log "DEBUG: Reset current zone's counterattack time remaining in profile DB.";
+}];
 
 
 /*
@@ -123,6 +176,8 @@ _taskDataStore setVariable ["INIT", {
 	_tds setVariable ["attackPos", _attackPos];
 	_tds setVariable ["attackAreaSize", _areaSize];
 
+	[_tds] call (_taskDataStore getVariable "fnc_update_hold_time");
+
 	if (_prepTime > 0) then 
 	{
 		["CounterAttackPreparing", ["", (_prepTime / 60) toFixed 0]] remoteExec ["para_c_fnc_show_notification", 0];
@@ -197,12 +252,7 @@ _taskDataStore setVariable ["prepare_zone", {
 	_tds setVariable ["enemyZoneHeldTime", 0];
 	_tds setVariable ["lastCheck", serverTime];
 
-	// post server restart check -- how long is reamining on a counterattack
-	["GET", "counterattack_timer", -1] call para_s_fnc_profile_db params ["", "_timeRemaining"];
-	if (_timeRemaining < 0) then {_timeRemaining = (_tds getVariable ["holdDuration", 60 * 30])};
-
-	_tds setVariable ["attackDuration", _timeRemaining];
-	[_timeRemaining] call (_tds getVariable "_fnc_notify_attack_remaining");
+	[_tds getVariable "holdDuration"] call (_tds getVariable "_fnc_notify_attack_remaining");
 	[_tds] call (_tds getVariable "_fnc_create_circle_area");
 	
 	if ((_tds getVariable ["flag_exists", false]) && (_tds getVariable ["fob_exists", false])) exitWith {
@@ -253,9 +303,15 @@ _taskDataStore setVariable ["_fnc_check_ai_failure_condition", {
 	private _alivePlayersInZone = allPlayers inAreaArray _areaDescriptor 
 		select {
 			alive _x 
-			&& (side _x == west || side _x == independent) 
-			&& !(vehicle _x isKindOf "Air") 
-			&& !(_x getVariable ["vn_revive_incapacitated", false])
+			&& {
+			(side _x == west || side _x == independent)
+			&& {
+			!(vehicle _x isKindOf "Air")
+			&& {
+			!(_x getVariable ["vn_revive_incapacitated", false])
+			}
+			}
+			};
 		};
 
 	//Enemy hold the zone if no living players.
@@ -273,14 +329,13 @@ _taskDataStore setVariable ["_fnc_check_ai_failure_condition", {
 	};
 
 	private _startTime = _tds getVariable "startTime";
-	private _endTime = _startTime + (_tds getVariable "attackDuration");
+	private _endTime = _startTime + (_tds getVariable "holdDuration");
 
 	//Zone has been held long enough, or they've killed enough attackers for the
 	// AI objective to complete.
-	if (serverTime - _startTime > _endTime || isNull (_tds getVariable "attackObjective")) exitWith {
+	if (serverTime > _endTime || isNull (_tds getVariable "attackObjective")) exitWith {
 		_tds setVariable ["enemyZoneHeldTime", 0];
 		_tds setVariable ["lastCheck", 0];
-		["SET", "counterattack_timer", -1] call para_s_fnc_profile_db;
 		"SUCCESS"
 	};
 
@@ -288,17 +343,18 @@ _taskDataStore setVariable ["_fnc_check_ai_failure_condition", {
 	if (_enemyHoldZone && {_enemyZoneHeldTime > (_tds getVariable ["failureDuration", 5 * 60])}) exitWith {
 		_tds setVariable ["enemyZoneHeldTime", 0];
 		_tds setVariable ["lastCheck", 0];
-		["SET", "counterattack_timer", -1] call para_s_fnc_profile_db;
 		"FAILED"
 	};
 
-	// still going
-	if (serverTime - (10 * 60) > (_tds getVariable ["attackLastNotification", _startTime])) then {
+	// still going and been at least 10 minutes since we last pinged players about remaining duration
+	if (
+		_endTime > serverTime
+		&& {serverTime - (10 * 60) > (_tds getVariable ["attackLastNotification", _startTime])}
+	) then {
 		_tds setVariable ["attackLastNotification", serverTime];
 		[_endTime - serverTime] call (_tds getVariable "_fnc_notify_attack_remaining");
 	};
 
-	["SET", "counterattack_timer", _endTime - serverTime] call para_s_fnc_profile_db;
 	"ACTIVE"
 }];
 
@@ -317,12 +373,22 @@ _taskDataStore setVariable ["defend_zone", {
 		["CounterAttackExtended"] remoteExec ["para_c_fnc_show_notification", 0];
 		["FAILED"] call _fnc_finishSubtask;
 		["FAILED"] call _fnc_finishTask;
+
+		// force reset the DB timer to -1
+		[_tds] call (_taskDataStore getVariable "fnc_reset_db_time_remain");
 	};
 
 	if (_status == "SUCCESS") exitWith {
 		_tds setVariable ["zoneDefended", true];
 		["SUCCEEDED"] call _fnc_finishSubtask;
+
+		// force reset the DB timer to -1
+		[_tds] call (_taskDataStore getVariable "fnc_reset_db_time_remain");
 	};
+
+	// still running -- save current time remaining to the profile DB
+	[_tds] call (_taskDataStore getVariable "fnc_update_db_time_remain");
+
 }];
 
 /* 
@@ -339,12 +405,22 @@ _taskDataStore setVariable ["defend_fob", {
 		["CounterAttackExtended"] remoteExec ["para_c_fnc_show_notification", 0];
 		["FAILED"] call _fnc_finishSubtask;
 		["FAILED"] call _fnc_finishTask;
+
+		// force reset the DB timer to -1
+		[_tds] call (_taskDataStore getVariable "fnc_reset_db_time_remain");
 	};
 
 	if (_status == "SUCCESS") exitWith {
 		_tds setVariable ["zoneDefended", true];
 		["SUCCEEDED"] call _fnc_finishSubtask;
+
+		// force reset the DB timer to -1
+		[_tds] call (_taskDataStore getVariable "fnc_reset_db_time_remain");
 	};
+
+	// still running -- save current time remaining to the profile DB
+	[_tds] call (_taskDataStore getVariable "fnc_update_db_time_remain");
+
 }];
 
 /*
@@ -399,4 +475,9 @@ _taskDataStore setVariable ["FINISH", {
 	if !(isNull (_tds getVariable ["flag", objNull])) then {
 		(_tds getVariable "flag") setVariable ["canLower", false];
 	};
+
+	// force reset the timer to -1 as either the phase was completed
+	// or the task was forced through with a command
+	// save current time remaining to the profile DB
+	[_tds] call (_taskDataStore getVariable "fnc_reset_db_time_remain");
 }];
