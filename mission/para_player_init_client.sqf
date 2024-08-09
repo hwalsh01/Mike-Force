@@ -381,4 +381,3 @@ if hasInterface then
 
 ["InitializePlayer", [player]] call para_c_fnc_dynamicGroups;
 
-
