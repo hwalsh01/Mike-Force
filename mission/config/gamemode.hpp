@@ -114,4 +114,5 @@ class gamemode
 	};
 
 	#include "subconfigs\units.hpp"
+
 };
