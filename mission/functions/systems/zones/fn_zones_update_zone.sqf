@@ -21,3 +21,6 @@
 
 params ["_zone", "_struct", "_value"];
 localNamespace getVariable [_zone, []] set [_struct, _value];
+// save new data to DB immediately
+// (otherwise we have to wait up to 30 seconds for the zone manager job)
+[localNamespace getVariable _zone] call vn_mf_fnc_zones_save_zone;
