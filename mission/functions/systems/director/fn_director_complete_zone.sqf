@@ -31,14 +31,7 @@ if !([_task] call vn_mf_fnc_task_is_completed) then {
 	[_task, 'SUCCEEDED'] call vn_mf_fnc_task_complete;
 };
 
-// delete DC spawns etc.
-vn_dc_adhoc_respawns apply {
-    private _marker = _x # 0;
-    private _respawnID = _x # 1;
-
-    _respawnID call BIS_fnc_removeRespawnPosition;
-    deleteMarker _marker;
-};
+call vn_mf_fnc_daccong_delete_respawns_all;
 
 // delete all site composition objects.
 vn_site_objects apply {deleteVehicle _x};
