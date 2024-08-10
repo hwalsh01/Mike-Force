@@ -1,23 +1,18 @@
 /*
-    File: fn_ctf_bluefor_raise_flag.sqf
-    Author: "DJ" Dijksterhuis
-    Public: No
+	File: fn_ctf_broadcast_notify_immediate.sqf
+	Author: "DJ" Dijksterhuis
+	Public: No
 
-    Description:
-	   Raise the flag on clients and server simulateneously.
+	Description:
+	   Display a notification for all players (not server).
 
-       Flags raised on server are not visibly raised on client and vice versa.
+	Parameter(s):
+		- _notificationClass -- class name of the notification to show [STRING]
 
-       So this script has to be executed on every machine.
+	Returns: nothing
 
-    Parameter(s):
-        - _target -- flag we'll be raising
-        - _maxProgress -- maximum number of steps to raise the flag height with
-
-    Returns: nothing
-
-    Example(s):
-	[_target, 4] call vn_mf_fnc_ctf_bluefor_raise_flag;
+	Example(s):
+		["FireInTheHole"] call vn_mf_fnc_ctf_broadcast_notify_immediate;
 */
 
 params ["_notificationClass"];
