@@ -101,6 +101,7 @@ class CfgFunctions
 			class ui_sub_menu {};
 			class ui_update {};
 			class update_loading_screen {};
+			class ui_hud_toggle {};
 		};
 
 		class ui_taskroster
@@ -219,7 +220,7 @@ class CfgFunctions
 
 		class system_dac_cong {
 			file = "functions\systems\dac_cong";
-
+			class daccong_respawns_delete_all {};
 			class capture_player {};
 			class ctf_handle_flag_height_change {};
 			class ctf_broadcast_notify_immediate {};
@@ -239,11 +240,13 @@ class CfgFunctions
 			class director_process_active_zone {};
 			class director_zones_in_range_of_bases {};
 			class director_play_music_completed_zone {};
+			class director_start_next_zone_task {};
 		};
 
 		class system_earplugs {
 			file = "functions\systems\earplugs";
 			class earplugs {};
+			class earplugs_toggle {};
 		};
 
 		class system_player_markers
@@ -411,6 +414,7 @@ class CfgFunctions
 			class veh_asset_request_vehicle_change_client {};
 			class veh_asset_setup_package_wreck_action_local {};
 			class veh_asset_update_spawn_point_data {};
+			class veh_asset_client_locate_vehicle_spawn_point {};
 		};
 
 		class system_vehicle_asset_manager_global
@@ -491,6 +495,8 @@ class CfgFunctions
 			class zones_load_zone {};
 			class zones_manager_job {};
 			class zones_save_zone {};
+			class zones_update_zone {};
+			class zones_get_struct_value {};
 		};
 
 		class system_sysmsgs

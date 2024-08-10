@@ -2,6 +2,9 @@ params ["_player"];
 
 private _curators = missionNamespace getVariable ["curatorUIDs", []];
 private _playerIsCurator = _curators findIf { _x == getPlayerUID _player} > -1;
+
+private _myCurObject = objNull;
+
 if(_playerIsCurator == true) then
 {	
 	[_player] call {
@@ -9,7 +12,7 @@ if(_playerIsCurator == true) then
 			params ["_thePlayer"];
 			private _playerUID = getPlayerUID _thePlayer;
 			private _curVarName = _playerUID+"_Cur";
-			private _myCurObject = missionNamespace getVariable [_curVarName, objNull];
+			_myCurObject = missionNamespace getVariable [_curVarName, objNull];
 			
 			if (isNull _myCurObject) then {
 				if (isNil "MikeFrcCur_group") then {MikeFrcCur_group = creategroup sideLogic;};

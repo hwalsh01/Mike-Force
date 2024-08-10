@@ -40,11 +40,14 @@ mf_s_zones = [];
 //All zone names
 mf_s_zone_markers = [];
 
+mf_s_zone_first_task = "prepare_zone";
+
 [
 	"zone",
 	[
 		"marker",
-		["captured", {false}]
+		["captured", {false}],
+		["task", {mf_s_zone_first_task}]
 	]
 ] call para_g_fnc_create_struct;
 
