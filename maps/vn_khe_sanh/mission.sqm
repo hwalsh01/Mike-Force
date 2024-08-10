@@ -1224,7 +1224,6 @@ class Mission
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={9669.7188,372.31754,6062.1797};
 				position[]={9669.7188,372.31763,6062.1802};
 			};
 			name="vn_mf_masterarm";
