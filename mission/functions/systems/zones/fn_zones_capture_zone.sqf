@@ -21,7 +21,8 @@ params ["_zone"];
 [_zone, struct_zone_m_captured, true] call vn_mf_fnc_zones_update_zone;
 [_zone, struct_zone_m_task, ""] call vn_mf_fnc_zones_update_zone;
 
-_zone setMarkerColor "ColorGreen";
+_zone setMarkerColorLocal "ColorGreen";
+_zone setMarkerBrushLocal "Solid";
 _zone setMarkerAlpha 1;
 
 [_zone, "zone_captured"] call para_c_fnc_zone_marker_add;
