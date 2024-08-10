@@ -546,5 +546,5 @@ _taskDataStore setVariable ["FINISH", {
 	// or the task was forced through with a command
 	// save current time remaining to the profile DB
 	[_tds] call (_taskDataStore getVariable "fnc_reset_db_time_remain");
->>>>>>> dj-development
+
 }];
