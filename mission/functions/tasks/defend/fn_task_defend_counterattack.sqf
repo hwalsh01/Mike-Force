@@ -25,7 +25,7 @@ params ["_taskDataStore"];
 /*
 Constants
 */
-_taskDataStore setVariable ["holdDuration", 30 * 60];
+_taskDataStore setVariable ["holdDuration", 45 * 60];
 _taskDataStore setVariable ["failureDuration", 5 * 60];
 
 // get the counterattack time remaining for this specific zone
