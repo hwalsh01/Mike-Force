@@ -238,6 +238,7 @@ class CfgFunctions
 			class director_process_active_zone {};
 			class director_zones_in_range_of_bases {};
 			class director_play_music_completed_zone {};
+			class director_start_next_zone_task {};
 		};
 
 		class system_earplugs {
@@ -492,6 +493,8 @@ class CfgFunctions
 			class zones_load_zone {};
 			class zones_manager_job {};
 			class zones_save_zone {};
+			class zones_update_zone {};
+			class zones_get_struct_value {};
 		};
 
 		class system_sysmsgs
