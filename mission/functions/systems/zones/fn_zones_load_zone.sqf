@@ -31,8 +31,8 @@ if (_savedData isEqualTo []) then
 		_zoneId,
 		//Captured
 		false,
-		// task state
-		"prepare_zone"
+		// default initial task state
+		mf_s_zone_first_task
 	];
 };
 
@@ -45,12 +45,8 @@ _savedData params [
 	"_version",
 	"_zoneMarker",
 	"_captured",
-	["_task", "prepare_zone"]  // optional for back compat
+	["_task", mf_s_zone_first_task]  // optional for back compat
 ];
-
-// TODO: hack for local issue with wrong task name -- should not be required in release?
-if (_task isEqualTo "prepare") then {_task = "prepare_zone"};
-
 
 // tasks could have dependencies on other tasks being completed
 // need to go back and redo those ones instead of starting with
