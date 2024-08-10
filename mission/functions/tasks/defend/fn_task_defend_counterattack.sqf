@@ -25,8 +25,8 @@ params ["_taskDataStore"];
 /*
 Constants
 */
-_taskDataStore setVariable ["holdDuration", 10 * 30];
-_taskDataStore setVariable ["failureDuration", 3 * 60];
+_taskDataStore setVariable ["holdDuration", 30 * 60];
+_taskDataStore setVariable ["failureDuration", 5 * 60];
 
 // get the counterattack time remaining for this specific zone
 _taskDataStore setVariable ["_fnc_get_db_timer_key", {
