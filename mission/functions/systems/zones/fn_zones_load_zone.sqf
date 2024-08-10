@@ -48,12 +48,15 @@ _savedData params [
 	["_task", mf_s_zone_first_task]  // optional for back compat
 ];
 
-// tasks could have dependencies on other tasks being completed
-// need to go back and redo those ones instead of starting with
-// the latest task.
-// tl;dr: this is the "capture_zone" task needing "prepare_zone"
+// MASSIVEHACK: this is the "capture_zone" task needing "prepare_zone"
 // for the site generation.
-_task = mf_s_zone_next_tasks get _task get "init";
+
+// If I can get `capture_zone` sites data persisted (quite a big job)
+// then we can get rid of this line. Until then it needs to be here.
+
+if (_task isEqualTo "capture_zone") then {
+	_task = "prepare_zone";
+};
 
 _zoneData set [struct_zone_m_marker, _zoneMarker];
 _zoneData set [struct_zone_m_captured, _captured];

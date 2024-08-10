@@ -108,10 +108,6 @@ class gamemode
 	{
 		#include "subconfigs\zoneMarkerTypes.hpp"
 	};
-	class zoneTasks
-	{
-		#include "subconfigs\zoneTasks.hpp"
-	};
 
 	#include "subconfigs\units.hpp"
 

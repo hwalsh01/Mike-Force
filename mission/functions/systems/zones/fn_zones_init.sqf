@@ -40,19 +40,7 @@ mf_s_zones = [];
 //All zone names
 mf_s_zone_markers = [];
 
-mf_s_zone_first_task = getText (
-	missionConfigFile >> "gamemode" >> "zoneTasks" >> "first_task"
-);
-mf_s_zone_last_task = getText (
-	missionConfigFile >> "gamemode" >> "zoneTasks" >> "last_task"
-);
-
-mf_s_zone_next_tasks = createHashMapFromArray (
-	("true" configClasses (missionConfigFile >> "gamemode" >> "zoneTasks")) apply {
-		[_x, configName _x] params ["_cls", "_name"];
-		[_name, createHashMapFromArray (["success", "failure", "init"] apply {[_x, getText (_cls >> _x)]})]
-	}
-);
+mf_s_zone_first_task = "prepare_zone";
 
 [
 	"zone",

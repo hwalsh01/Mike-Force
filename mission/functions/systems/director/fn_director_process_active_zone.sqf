@@ -18,55 +18,75 @@
     Example(s):
 		["zone_ba_ria"] call vn_mf_fnc_director_process_active_zone;
 */
-
 params ["_zone"];
-
 if !(_zone in mf_s_dir_activeZones) exitWith {
 	["WARNING", format ["Attempted to process inactive zone '%1'", _zone]] call para_g_fnc_log;
 };
-
 private _zoneInfo = mf_s_dir_activeZones get _zone;
-
 private _currentState = _zoneInfo get "state";
 private _task = _zoneInfo get "currentTask";
 private _taskIsCompleted = [_task] call vn_mf_fnc_task_is_completed;
 private _taskResult = _task getVariable ["taskResult", ""];
 
-private _fnc_start_next_task = {
-	params ["_zone", "_currentState", "_currentResult"];
-
-	private _nextState = mf_s_zone_next_tasks get _currentState get _currentResult;
-
-	[
-		"INFO",
-		format ["Zone '%1' phase '%2' %3, starting next task '%4'", _zone, _currentState, _currentResult, _nextState]
-	] call para_g_fnc_log;
-
-	private _nextTask = (([_nextState, _zone] call vn_mf_fnc_task_create) # 1);
-
-	_zoneInfo set ["state", _nextState];
-	_zoneInfo set ["currentTask", _nextTask];
-
-	[_zone, struct_zone_m_task, _nextState] call vn_mf_fnc_zones_update_zone;
-
-};
+[
+	"INFO",
+	format [
+		"Director: checking for task completion: zone=%1 state=%2 result=%3 completed=%4",
+		_zone,
+		_currentState,
+		_taskResult,
+		_taskIsCompleted
+	]
+] call para_g_fnc_log;
 
 if (_taskIsCompleted) then {
+	["INFO", format ["Zone '%1' task '%2' completed with status: %3.", _zone, _currentState, _taskResult]] call para_g_fnc_log;
 
-	if (_taskResult isEqualTo "FAILED") exitWith {
-		[_zone, _currentState, "failure"] call _fnc_start_next_task;
+	/*
+	Preparation phase has ended.
+
+	Either:
+	(a) all site compositions generated and players did not enter zone (move to capture)
+	(b) players entered the zone (move to go_away)
+	*/
+	if (_currentState isEqualTo "prepare_zone") exitWith {
+		[_zone, _zoneInfo, "capture_zone"] call vn_mf_fnc_director_start_next_zone_task;
 	};
 
-	if (_currentState isEqualTO mf_s_zone_last_task) exitWith {
-		[
-			"INFO",
-			format ["Zone '%1' phase '%2' successful, completing zone", _zone, _currentState]
-		] call para_g_fnc_log;
+	/*
+	All capture site sub tasks have been completed. End of the capture phase.
 
+	Trigger the Zone's counterattack state.
+	*/
+
+	if (_currentState isEqualTo "capture_zone") exitWith {
+		// prep time needs to be 180 until other PR is merged as well.
+		[_zone, _zoneInfo, "defend_counterattack", [["prepTime", 180]]] call vn_mf_fnc_director_start_next_zone_task;
+	};
+
+	/*
+	Counterattack results are in!
+	Do some clean up (remove dc respawns/compositions) then either:
+	(a) counterattack phase failed -- reset back to prepare phase (players need to leave zone).
+	(b) counterattack phase successful -- close the zone (opening a new zone after).
+	*/
+
+	if (_currentState isEqualTo "defend_counterattack") exitWith {
+
+		if (_taskResult isEqualTo "FAILED") exitWith {
+			// prep time needs to be 180 until other PR is merged as well.
+			[_zone, _zoneInfo, "defend_counterattack", [["prepTime", 180]]] call vn_mf_fnc_director_start_next_zone_task;
+		};
+
+		// the counterattacked was defended against successfully
+		["INFO", format ["Zone '%1' counterattack successfully defended against, completing zone", _zone]] call para_g_fnc_log;
+		// Task is finished, and hasn't failed
 		[_zone] call vn_mf_fnc_director_complete_zone;
 	};
 
-	[_zone, _currentState, "success"] call _fnc_start_next_task;
+	[
+		"ERROR",
+		format ["Director: Task completed, but could not move to new task! zone=%1 currentTask=%2", _zone, _currentState]
+	] call para_g_fnc_log;
 
 };
-
