@@ -162,6 +162,9 @@ _taskDataStore setVariable ["INIT", {
 		if (count _paraBuiltFlags > 0) then {
 
 			_taskDataStore setVariable ["flag_exists", true];
+			// shorten the counterattack duration
+			// if this is post server restart this value should get overwritten.
+			_taskDataStore setVariable ["holdDuration", 30 * 60];
 
 			private _flagsWithDistance = _paraBuiltFlags apply {
 				[_x distance2D _attackPos, _x]
