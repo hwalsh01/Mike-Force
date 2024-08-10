@@ -26,6 +26,7 @@ params ["_taskDataStore"];
 Constants
 */
 _taskDataStore setVariable ["holdDuration", 45 * 60];
+_taskDataStore setVariable ["flagTimerReduction", 15 * 60];
 _taskDataStore setVariable ["failureDuration", 5 * 60];
 
 // get the counterattack time remaining for this specific zone
@@ -162,9 +163,17 @@ _taskDataStore setVariable ["INIT", {
 		if (count _paraBuiltFlags > 0) then {
 
 			_taskDataStore setVariable ["flag_exists", true];
-			// shorten the counterattack duration
-			// if this is post server restart this value should get overwritten.
-			_taskDataStore setVariable ["holdDuration", 30 * 60];
+
+			/*
+			shorten the counterattack duration by 15 minutes
+			if this is post server restart this value should get overwritten when
+			we run `_taskDataStore getVariable "fnc_update_hold_time")` below
+			*/
+
+			private _holdDuration = _taskDataStore getVariable "holdDuration";
+			private _timerReduction = _taskDataStore getVariable "flagTimerReduction";
+
+			_taskDataStore setVariable ["holdDuration", _holdDuration - _timerReduction];
 
 			private _flagsWithDistance = _paraBuiltFlags apply {
 				[_x distance2D _attackPos, _x]
