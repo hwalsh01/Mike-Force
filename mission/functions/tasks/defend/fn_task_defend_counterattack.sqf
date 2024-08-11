@@ -110,7 +110,7 @@ _taskDataStore setVariable ["INIT", {
 	private _areaSize = markerSize _marker;
 
 	// search for candidate FOBs within the zone's area.
-	private _base_search_area = [_markerPos, vn_mf_bn_s_zone_radius + 100, vn_mf_bn_s_zone_radius + 100, 0, false];
+	private _base_search_area = [_markerPos, vn_mf_bn_s_zone_radius, vn_mf_bn_s_zone_radius, 0, false];
 	private _candidate_bases_to_attack = para_g_bases inAreaArray _base_search_area apply {
 		[_x getVariable "para_g_current_supplies", _x]
 	};
@@ -278,40 +278,41 @@ _taskDataStore setVariable ["prepare_zone", {
 	[_tds] call (_tds getVariable "_fnc_create_circle_area");
 
 	// set up the next batch of tasks.
-	// doing a series of if-else statements is tidier / more compact
+	// doing a series of switch-case pushback statements is tidier / more compact
 	private _next_tasks = [];
 
-	if (_tds getVariable ["fob_exists", false]) then {
-		_next_tasks pushBack ["defend_fob", _tds getVariable "attackPos"];
-	} else {
-		_next_tasks pushBack ["defend_zone", _tds getVariable "attackPos"];
-	};
-	// NOTE -- flag must be built within an established fob
-	// but nested ifs aren't very clean
-	if (_tds getVariable ["flag_exists", false]) then {
-		_next_tasks pushBack ["defend_flag", getPos (_tds getVariable "flag")];
+	private _fob_exists = _tds getVariable ["fob_exists", false];
+	private _flag_exists = _tds getVariable ["flag_exists", false];
 
-		/*
-		Set the publicVariable that allows opfor/bluefor to respectively
-		lower/raise the flag as part of the hold action.
+	switch (true) do {
+		// NOTE -- flag must be built within an established fob
+		case (_fob_exists && _flag_exists) : {
+			/*
+			Set the publicVariable that allows opfor/bluefor to respectively
+			lower/raise the flag as part of the hold action.
 
-		NOTE: public variables are bad.
+			do this as late as possible to ensure opfor cannot lower the flag
+			before the counterattack timer actually starts.
 
-		but we we need to pass a variable out of the task's scope and locality.
-		so there is no other option.
+			NOTE: public variables are bad. but we we need to pass a variable
+			out of the task's scope and locality so there is no other option.
 
-		this variable broadcast only happens once -- when we are switching from
-		prepare to the actual defend tasks. so it should not severly impact network
-		performance as we do not frequently rebroadcast.
-		*/
-		vn_mf_bn_dc_target_flag = _tds getVariable "flag";
-		publicVariable "vn_mf_bn_dc_target_flag";
-	} else {
-		// if no flag, extend the counterattack timer by 15 minutes.
-		// this is to encourage people to build flags instead of just
-		// meta-ing out of the CTF system with no penalty.
-		private _dur = (_tds getVariable ["holdDuration", 60 * 30]);
-		_tds setVariable ["holdDuration", _dur + (15 * 60)];
+			this variable broadcast only happens once -- when we are switching from
+			prepare to the actual defend tasks. so it should not severly impact network
+			performance as we do not frequently rebroadcast.
+			*/
+			vn_mf_bn_dc_target_flag = _tds getVariable "flag";
+			publicVariable "vn_mf_bn_dc_target_flag";
+
+			_next_tasks pushBack ["defend_flag", getPos (_tds getVariable "flag")];
+			_next_tasks pushBack ["defend_fob", _tds getVariable "attackPos"];
+		};
+		case (_fob_exists) : {
+			_next_tasks pushBack ["defend_fob", _tds getVariable "attackPos"];
+		};
+		default {
+			_next_tasks pushBack ["defend_zone", _tds getVariable "attackPos"];
+		};
 	};
 
 	["SUCCEEDED", _next_tasks] call _fnc_finishSubtask;
