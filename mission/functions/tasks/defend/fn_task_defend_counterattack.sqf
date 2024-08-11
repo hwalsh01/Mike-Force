@@ -40,8 +40,6 @@ _taskDataStore setVariable ["_fnc_get_db_timer_key", {
 _taskDataStore setVariable ["fnc_update_hold_time", {
 	params ["_tds"];
 
-	diag_log "DEBUG: Checking current zone's counterattack time remaining in profile DB.";
-
 	private _key = [_tds] call (_tds getVariable "_fnc_get_db_timer_key");
 	["GET", _key, -1] call para_s_fnc_profile_db params ["", "_holdTimeRemaining"];
 
@@ -51,15 +49,11 @@ _taskDataStore setVariable ["fnc_update_hold_time", {
 		diag_log "DEBUG: Updating current zone's counterattack time remaining from profile DB.";
 		_tds setVariable ["holdDuration", _holdTimeRemaining];
 	};
-
-	diag_log "DEBUG: Checked current zone's counterattack time remaining in profile DB.";
 }];
 
 // save current time remaining to the profile DB
 _taskDataStore setVariable ["fnc_update_db_time_remain", {
 	params ["_tds"];
-
-	diag_log "DEBUG: Saving current zone's counterattack time remaining to profile DB.";
 
 	private _startTime = _tds getVariable "startTime";
 	private _endTime = _startTime + (_tds getVariable "holdDuration");
@@ -67,19 +61,15 @@ _taskDataStore setVariable ["fnc_update_db_time_remain", {
 	private _key = [_tds] call (_tds getVariable "_fnc_get_db_timer_key");
 	["SET", _key, _endTime - serverTime] call para_s_fnc_profile_db;
 
-	diag_log "DEBUG: Saving current zone's counterattack time remaining to profile DB.";
 }];
 
 // reset the time remaining to -1 to make clear we have no previous state to worry about
 _taskDataStore setVariable ["fnc_reset_db_time_remain", {
 	params ["_tds"];
 
-	diag_log "DEBUG: Resetting current zone's counterattack time remaining in profile DB.";
-
 	private _key = [_tds] call (_tds getVariable "_fnc_get_db_timer_key");
 	["SET", _key, -1] call para_s_fnc_profile_db;
 
-	diag_log "DEBUG: Reset current zone's counterattack time remaining in profile DB.";
 }];
 
 
