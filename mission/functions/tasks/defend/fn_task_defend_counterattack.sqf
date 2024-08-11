@@ -402,8 +402,8 @@ _taskDataStore setVariable ["_fnc_remove_flag_network_vars", {
 		vn_mf_bn_dc_target_flag = nil;
 		publicVariable "vn_mf_bn_dc_target_flag";
 
-        // clear the JIP queue for flag height, not necessary anymore
-        remoteExec ["", "JIP_DACCONG_CTF_FLAG_HEIGHT"];
+		// clear the JIP queue for flag height, not necessary anymore
+		remoteExec ["", "JIP_DACCONG_CTF_FLAG_HEIGHT"];
 }];
 
 
