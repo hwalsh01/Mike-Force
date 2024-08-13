@@ -1,9 +1,9 @@
 params ["_player"];
 
-if (!(isClass (configFile >> "CfgPatches" >> "zen_main"))) exitWith {  
+if (!(isClass (configFile >> "CfgPatches" >> "zen_main")) || !(isClass (configFile >> "CfgPatches" >> "cba_main"))) exitWith {  
 	// Bro-Nation Zeus Pack is not loaded so we can't use the curator system 
 	_imag  = "<img size='3'  image='custom\wheelmenu\siren.paa' align='center'/>"; 
-	_text = "<br/><t color='#ff0000' size='3' shadow='1' shadowColor='#000000' align='center'>Warning!</t><br/>You must use the Bro-Nation Zeus Pack to have curation access.<br/>"; 
+	_text = "<br/><t color='#ff0000' size='3' shadow='1' shadowColor='#000000' align='center'>Warning!</t><br/>You must have the Bro-Nation Zeus Pack and CBA_A3 enabled to have curation access.<br/>"; 
 	hint parseText (_imag + _text); 
 }; 
 
