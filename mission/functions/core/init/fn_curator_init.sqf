@@ -8,8 +8,8 @@ private _myCurObject = objNull;
 if(_playerIsCurator == false) exitWith {};
 
 // call vn_mf_fnc_check_zeus_pack with remoteExec to check if the player has the required mods
-[_player] remoteExec ["vn_mf_fnc_check_zeus_pack", _player];
-if (_player getVariable ["hasZeusPack", false] == false) exitWith {};
+private _hasZeusPack = call vn_mf_fnc_check_zeus_pack;
+if (_hasZeusPack == false) exitWith {};
 
 [_player] call {
 	[0, {
