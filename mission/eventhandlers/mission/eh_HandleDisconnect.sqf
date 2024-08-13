@@ -31,7 +31,7 @@ private _prefix = "vn_mf_db_";
 private _config = (missionConfigFile >> "gamemode" >> "vars" >> "players");
 private _blacklisted = getArray(_config >> "blacklisted");
 
-["CuratorConnect", [_unit, _id, _uid, _name]] call CBA_fnc_serverEvent;
+["CuratorDisconnect", [_unit, _id, _uid, _name]] call CBA_fnc_serverEvent;
 
 private _vardata = [];
 if !(isNull _unit) then
