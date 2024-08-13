@@ -1,5 +1,12 @@
 params ["_player"];
 
+if (!(isClass (configFile >> "CfgPatches" >> "zen_main"))) exitWith { 
+	// Bro-Nation Zeus Pack is not loaded so we can't use the curator system
+	_imag  = "<img image='custom\wheelmenu\siren.paa' align='center'/>";
+	_text = "<t color='#ff0000' size='1.2' shadow='1' shadowColor='#000000' align='center'>Warning!</t><br/>You must use the Bro-Nation curation mod to have curation access.<br/>";
+	hint parseText (_imag + _text);
+}; 
+
 private _curators = missionNamespace getVariable ["curatorUIDs", []];
 private _playerIsCurator = _curators findIf { _x == getPlayerUID _player} > -1;
 
