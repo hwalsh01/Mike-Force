@@ -7,6 +7,7 @@ class Put {};			// Put EH
 class Take {};			// Take EH
 class HandleRating {};
 class HandleDamage {};
+class HandleDisconnect {};
 class Respawn {};
 class SeatSwitchedMan {};
 class TaskSetAsCurrent {};
