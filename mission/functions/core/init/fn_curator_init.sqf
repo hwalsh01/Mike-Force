@@ -5,7 +5,7 @@ private _playerIsCurator = _curators findIf { _x == getPlayerUID _player} > -1;
 
 private _myCurObject = objNull;
 
-if(_playerIsCurator == false) exitWith {}
+if(_playerIsCurator == false) exitWith {};
 
 if (!(isClass (configFile >> "CfgPatches" >> "zen_main")) || !(isClass (configFile >> "CfgPatches" >> "cba_main"))) exitWith {  
 	// Bro-Nation Zeus Pack is not loaded so we can't use the curator system 
@@ -31,7 +31,7 @@ if (!(isClass (configFile >> "CfgPatches" >> "zen_main")) || !(isClass (configFi
 			unassignCurator _myCurObject;
 			_cfg = (configFile >> "CfgPatches");
 			_newAddons = [];
-			
+
 			for "_i" from 0 to((count _cfg) - 1) do {
 				_name = configName(_cfg select _i);
 				_newAddons pushBack _name;
