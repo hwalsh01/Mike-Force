@@ -37,3 +37,5 @@ _unit setVariable ["vn_mf_side", side player, true];
 
 // re-add hold/add actions onto the newly respawned player
 call vn_mf_fnc_action_init;
+
+[player] call vn_mf_fnc_curator_init;
