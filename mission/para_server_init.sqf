@@ -17,6 +17,8 @@
         use_paradigm_init = 1;
 */
 
+call vn_mf_fnc_curator_init_eh;
+
 call vn_mf_fnc_server_init_backend;
 ["restart_messages", vn_mf_fnc_server_process_restart, [], 60] call para_g_fnc_scheduler_add_job;
 
