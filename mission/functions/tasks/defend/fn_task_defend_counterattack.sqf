@@ -25,7 +25,8 @@ params ["_taskDataStore"];
 /*
 Constants
 */
-_taskDataStore setVariable ["holdDuration", 30 * 60];
+_taskDataStore setVariable ["holdDuration", 40 * 60];
+_taskDataStore setVariable ["flagTimerReduction", 10 * 60];
 _taskDataStore setVariable ["failureDuration", 5 * 60];
 
 // get the counterattack time remaining for this specific zone
@@ -45,7 +46,11 @@ _taskDataStore setVariable ["fnc_update_hold_time", {
 	// update hold duration. if not previously set the counterattack
 	// will use the default holdDuration value defined above.
 	if (_holdTimeRemaining >= 0) then {
-		diag_log "DEBUG: Updating current zone's counterattack time remaining from profile DB.";
+		diag_log format [
+			"DEBUG: Updating current zone's counterattack time remaining from profile DB: timeS=%1 timeM=%2",
+			_holdTimeRemaining,
+			_holdTimeRemaining / 60
+		];
 		_tds setVariable ["holdDuration", _holdTimeRemaining];
 	};
 }];
@@ -84,11 +89,6 @@ _taskDataStore setVariable ["INIT", {
 	private _marker = _tds getVariable "taskMarker";
 	private _markerPos = getMarkerPos _marker;
 
-	/*
-	// present in SGD Mike Force, but not used anywhere.
-	private _hqs = (localNamespace getVariable ["sites_hq", []]) inAreaArray _marker;
-	*/
-
 	private _prepTime = _tds getVariable ["prepTime", 180];
 
 	_marker setMarkerColor "ColorYellow";
@@ -113,6 +113,8 @@ _taskDataStore setVariable ["INIT", {
 	private _candidate_bases_to_attack = para_g_bases inAreaArray _base_search_area apply {
 		[_x getVariable "para_g_current_supplies", _x]
 	};
+
+	// base with most supplies is likely the main fob
 	_candidate_bases_to_attack sort false;
 
 	// candidate FOBs exist
@@ -136,7 +138,7 @@ _taskDataStore setVariable ["INIT", {
 
 		_tds setVariable ["fob_exists", true];
 
-		// nearest objects might be buggy
+		// candidate flags can only exist within the established fob
 
 		private _possibleFlags = nearestObjects [
 			[_attackPos select 0, _attackPos select 1],
@@ -144,13 +146,38 @@ _taskDataStore setVariable ["INIT", {
 			para_g_max_base_radius
 		];
 
-		if (count _possibleFlags > 0) then {
-			private _flag = _possibleFlags select 0;
-			_tds setVariable ["flag", _flag];
+		// need to check if they are a paradigm built object!
+		private _paraBuiltFlags = _possibleFlags select {not isNull (_x getVariable ["para_g_building", objNull])};
+
+		if (count _paraBuiltFlags > 0) then {
+
+			_taskDataStore setVariable ["flag_exists", true];
+
+			/*
+			shorten the counterattack duration by 15 minutes
+			if this is post server restart this value should get overwritten when
+			we run `_taskDataStore getVariable "fnc_update_hold_time")` below
+			*/
+
+			private _holdDuration = _taskDataStore getVariable "holdDuration";
+			private _timerReduction = _taskDataStore getVariable "flagTimerReduction";
+
+			_taskDataStore setVariable ["holdDuration", _holdDuration - _timerReduction];
+
+			private _flagsWithDistance = _paraBuiltFlags apply {
+				[_x distance2D _attackPos, _x]
+			};
+
+			_flagsWithDistance sort true;
+
+			private _flag_to_attack = (_flagsWithDistance # 0 ) # 1;
+
+			_tds setVariable ["flag", _flag_to_attack];
 			_tds setVariable ["flag_exists", true];
+
 			diag_log format [
 				"Counterattack: Suitable flag discovered: %1",
-				getPos _flag
+				getPos _flag_to_attack
 			];
 		};
 
@@ -243,36 +270,51 @@ _taskDataStore setVariable ["prepare_zone", {
 	_tds setVariable ["lastCheck", serverTime];
 
 	[_tds getVariable "holdDuration"] call (_tds getVariable "_fnc_notify_attack_remaining");
+
+	// we'll always have one of the "defend_fob" or "defend_zone" tasks active
+	// both need a red circle around the area that needs defending as players
+	// must hold that area to complete the task.
 	[_tds] call (_tds getVariable "_fnc_create_circle_area");
-	
-	if ((_tds getVariable ["flag_exists", false]) && (_tds getVariable ["fob_exists", false])) exitWith {
 
-		// used in the players action to check if players are looking at the right flag.
-		// we set it now so the flag cannot be lowered during the prepare counterattack phase
-		// but can be lowered during the upcoming defned thr flag phase
-		(_tds getVariable "flag") setVariable ["canLower", true];
-		[
-			"SUCCEEDED", 
-			[
-				["defend_fob", _tds getVariable "attackPos"],
-				["defend_flag", getPos (_tds getVariable "flag")]
-			]
-		] call _fnc_finishSubtask;
+	// set up the next batch of tasks.
+	// doing a series of switch-case pushback statements is tidier / more compact
+	private _next_tasks = [];
+
+	private _fob_exists = _tds getVariable ["fob_exists", false];
+	private _flag_exists = _tds getVariable ["flag_exists", false];
+
+	switch (true) do {
+		// NOTE -- flag must be built within an established fob
+		case (_fob_exists && _flag_exists) : {
+			/*
+			Set the publicVariable that allows opfor/bluefor to respectively
+			lower/raise the flag as part of the hold action.
+
+			do this as late as possible to ensure opfor cannot lower the flag
+			before the counterattack timer actually starts.
+
+			NOTE: public variables are bad. but we we need to pass a variable
+			out of the task's scope and locality so there is no other option.
+
+			this variable broadcast only happens once -- when we are switching from
+			prepare to the actual defend tasks. so it should not severly impact network
+			performance as we do not frequently rebroadcast.
+			*/
+			vn_mf_bn_dc_target_flag = _tds getVariable "flag";
+			publicVariable "vn_mf_bn_dc_target_flag";
+
+			_next_tasks pushBack ["defend_flag", getPos (_tds getVariable "flag")];
+			_next_tasks pushBack ["defend_fob", _tds getVariable "attackPos"];
+		};
+		case (_fob_exists) : {
+			_next_tasks pushBack ["defend_fob", _tds getVariable "attackPos"];
+		};
+		default {
+			_next_tasks pushBack ["defend_zone", _tds getVariable "attackPos"];
+		};
 	};
 
-	if (_tds getVariable ["fob_exists", false]) exitWith {
-		[
-			"SUCCEEDED", 
-			[["defend_fob", _tds getVariable "attackPos"]]
-		] call _fnc_finishSubtask;
-	};
-
-	// no other options left
-	// chuck some AI in the zone and hope they bump into players
-	[
-		"SUCCEEDED", 
-		[["defend_zone", _tds getVariable "attackPos"]]
-	] call _fnc_finishSubtask;
+	["SUCCEEDED", _next_tasks] call _fnc_finishSubtask;
 }];
 
 /*
@@ -350,6 +392,21 @@ _taskDataStore setVariable ["_fnc_check_ai_failure_condition", {
 
 
 /* 
+remove all the network'd variables and JIP queue ID for any flags.
+
+parameters: None
+*/
+_taskDataStore setVariable ["_fnc_remove_flag_network_vars", {
+		// broadcast that the flag no longer exists.
+		vn_mf_bn_dc_target_flag = nil;
+		publicVariable "vn_mf_bn_dc_target_flag";
+
+		// clear the JIP queue for flag height, not necessary anymore
+		remoteExec ["", "JIP_DACCONG_CTF_FLAG_HEIGHT"];
+}];
+
+
+/*
 no one built a FOB, so AI are just going to move to the centre of the zone
 
 parameters: _taskDataStore (_tds)
@@ -422,17 +479,24 @@ parameters: _taskDataStore (_tds)
 _taskDataStore setVariable ["defend_flag", {
 	params ["_tds"];
 	private _flag = _tds getVariable "flag";
+
+	// check if the main task has completed
+	// the ctf defend task can only complete once the main defend task is also completed
 	private _status = [_tds] call (_tds getVariable "_fnc_check_ai_failure_condition");
 
 	/*
 	failure -- flag object has been deleteVehicle'd
 
 	occurs when either 
-	- Dac Cong full lowered the flag through the action
+	- Dac Cong full lowered the flag through the action (deleteVehicle'd)
 	- the flag has been hammered out of existence (Bluefor tried to be clever)
+	- a zeus has deleted the flag (badAdmin)
 	*/
 
-	if (isNull _flag) exitWith {
+	if (isNull _flag || isNil "vn_mf_bn_dc_target_flag") exitWith {
+
+		call (_tds getVariable ["_fnc_remove_flag_network_vars", {}]);
+
 		["CounterAttackExtended"] remoteExec ["para_c_fnc_show_notification", 0];
 		["FAILED"] call _fnc_finishSubtask;
 		["FAILED"] call _fnc_finishTask;
@@ -442,6 +506,9 @@ _taskDataStore setVariable ["defend_flag", {
 	// (30 minutes passed or AI objective has been wiped out)
 
 	if (_status == "SUCCESS") exitWith {
+
+		call (_tds getVariable ["_fnc_remove_flag_network_vars", {}]);
+
 		_tds setVariable ["flagDefended", true];
 		["SUCCEEDED"] call _fnc_finishSubtask;
 	};
@@ -462,12 +529,12 @@ _taskDataStore setVariable ["FINISH", {
 	[_tds getVariable "attackObjective"] call para_s_fnc_ai_obj_finish_objective;
 	deleteMarker (_tds getVariable ["CircleAreaMarkerName", "activeDefendCircle"]);
 
-	if !(isNull (_tds getVariable ["flag", objNull])) then {
-		(_tds getVariable "flag") setVariable ["canLower", false];
-	};
+	// do this yet again just in case someone tries to complete tasks via commands
+	call (_tds getVariable ["_fnc_remove_flag_network_vars", {}]);
 
 	// force reset the timer to -1 as either the phase was completed
 	// or the task was forced through with a command
 	// save current time remaining to the profile DB
 	[_tds] call (_taskDataStore getVariable "fnc_reset_db_time_remain");
+
 }];

@@ -379,7 +379,7 @@ class CfgNotifications
 
 	class DacCongCapturedFlag
 	{
-		title = "Protect The Flag!";
+		title = "Flag Captured!";
 		description = "You are failure! Dac Cong have captured the flag!";
 		priority = 6;
 		color[] = {1,0,0,1};
@@ -388,7 +388,7 @@ class CfgNotifications
 
 	class BlueforRaisingFlag
 	{
-		title = "Raise The Flag!";
+		title = "Raising Flag!";
 		description = "Bluefor are raising the flag.";
 		priority = 6;
 		color[] = {0.2,0.3,1,1};
@@ -397,7 +397,7 @@ class CfgNotifications
 
 	class BlueforRaisedFlag
 	{
-		title = "Raise The Flag!";
+		title = "Raised Flag!";
 		description = "Bluefor have raised the flag!";
 		priority = 6;
 		color[] = {0.2,0.3,1,1};
