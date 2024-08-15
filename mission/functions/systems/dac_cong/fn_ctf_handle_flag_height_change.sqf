@@ -45,8 +45,8 @@ if ((_progress mod _tickRate ) isEqualTo 0) then {
 			// global command, no need to remoteExec
 			deleteVehicle _target;
 
-			// broadcast notification
-			["DacCongCapturedFlag", []] remoteExec ["para_c_fnc_show_notification", -2];
+			// broadcast notification out to all players
+			["DacCongCapturedFlag"] call vn_mf_fnc_ctf_broadcast_notify_immediate;
 
 			// clear the JIP queue for flag height.
 			remoteExec ["", "JIP_DACCONG_CTF_FLAG_HEIGHT"];
@@ -62,7 +62,7 @@ if ((_progress mod _tickRate ) isEqualTo 0) then {
 			[_target, 1] remoteExec ["setFlagAnimationPhase", 0, "JIP_DACCONG_CTF_FLAG_HEIGHT"];
 
 			// broadcast notification out to all players
-			["BlueforRaisedFlag", []] remoteExec ["para_c_fnc_show_notification", -2];
+			["BlueforRaisedFlag"] call vn_mf_fnc_ctf_broadcast_notify_immediate;
 
 		};
 	};
@@ -71,4 +71,4 @@ if ((_progress mod _tickRate ) isEqualTo 0) then {
 	[_target, _newHeight] remoteExec ["setFlagAnimationPhase", 0, "JIP_DACCONG_CTF_FLAG_HEIGHT"];
 };
 
-nil
+nil;
