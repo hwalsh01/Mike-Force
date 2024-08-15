@@ -17,6 +17,8 @@
         use_paradigm_init = 1;
 */
 
+call para_s_fnc_curator_init_eh;
+
 call vn_mf_fnc_server_init_backend;
 ["restart_messages", vn_mf_fnc_server_process_restart, [], 60] call para_g_fnc_scheduler_add_job;
 
@@ -24,11 +26,11 @@ call para_s_fnc_init_whitelist;
 ["update_whitelist", para_s_fnc_init_whitelist, [], 120] call para_g_fnc_scheduler_add_job;
 
 // update curator whitelist, every 5 minutes
-call para_s_fnc_init_curators;
-["update_curators", para_s_fnc_init_curators, [], 300] call para_g_fnc_scheduler_add_job;
+call para_s_fnc_curator_populate;
+["update_curators", para_s_fnc_curator_populate, [], 300] call para_g_fnc_scheduler_add_job;
 
 // update objects curators can edit, every 10 seconds
-[10] call para_s_fnc_init_curators_update_objects_job;
+[10] call para_s_fnc_curator_update_objects;
 
 call para_s_fnc_init_dopamine;
 ["dopamine_hit", para_s_fnc_init_dopemine, [], 300] call para_g_fnc_scheduler_add_job;

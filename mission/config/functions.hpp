@@ -509,6 +509,7 @@ class CfgFunctions
 		class mod_support
 		{
 			class init_comms {};
+			class check_zeus_pack {};
 		};
 
 		class paradigm_interop
