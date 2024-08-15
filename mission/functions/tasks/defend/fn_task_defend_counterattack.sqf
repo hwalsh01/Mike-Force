@@ -25,8 +25,8 @@ params ["_taskDataStore"];
 /*
 Constants
 */
-_taskDataStore setVariable ["holdDuration", 45 * 60];
-_taskDataStore setVariable ["flagTimerReduction", 15 * 60];
+_taskDataStore setVariable ["holdDuration", 40 * 60];
+_taskDataStore setVariable ["flagTimerReduction", 10 * 60];
 _taskDataStore setVariable ["failureDuration", 5 * 60];
 
 // get the counterattack time remaining for this specific zone
@@ -46,7 +46,11 @@ _taskDataStore setVariable ["fnc_update_hold_time", {
 	// update hold duration. if not previously set the counterattack
 	// will use the default holdDuration value defined above.
 	if (_holdTimeRemaining >= 0) then {
-		diag_log "DEBUG: Updating current zone's counterattack time remaining from profile DB.";
+		diag_log format [
+			"DEBUG: Updating current zone's counterattack time remaining from profile DB: timeS=%1 timeM=%2",
+			_holdTimeRemaining,
+			_holdTimeRemaining / 60
+		];
 		_tds setVariable ["holdDuration", _holdTimeRemaining];
 	};
 }];
@@ -85,11 +89,6 @@ _taskDataStore setVariable ["INIT", {
 	private _marker = _tds getVariable "taskMarker";
 	private _markerPos = getMarkerPos _marker;
 
-	/*
-	// present in SGD Mike Force, but not used anywhere.
-	private _hqs = (localNamespace getVariable ["sites_hq", []]) inAreaArray _marker;
-	*/
-
 	private _prepTime = _tds getVariable ["prepTime", 180];
 
 	_marker setMarkerColor "ColorYellow";
@@ -110,7 +109,7 @@ _taskDataStore setVariable ["INIT", {
 	private _areaSize = markerSize _marker;
 
 	// search for candidate FOBs within the zone's area.
-	private _base_search_area = [_markerPos, vn_mf_bn_s_zone_radius, vn_mf_bn_s_zone_radius, 0, false];
+	private _base_search_area = [_markerPos, _areaSize select 0, _areaSize select 1, 0, false];
 	private _candidate_bases_to_attack = para_g_bases inAreaArray _base_search_area apply {
 		[_x getVariable "para_g_current_supplies", _x]
 	};
