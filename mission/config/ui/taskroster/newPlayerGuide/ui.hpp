@@ -31,13 +31,13 @@ class vn_tr_disp_showNewPlayerGuide_rhs : vn_mf_RscControlsGroupNoScrollbarHV
 		{
 			idc = -1;
 			x = UIW(2);
-			y = UIH(12.5);
-			w = UIW(16);
+			y = UIH(4.25);
+			w = UIW(11.25);
 			h = UIH(5);
 
 			colorText[] = {0.1,0.1,0.1,0.9};
 			colorBackground[] = {0,0,0,0.0};
-			text = "Walk up to a duty officer and press the 6 key while looking at them. This will bring up a wheel menu where you can click on the role(s) you want. Duty officers can be located by the white dot markers on the map around the main base.";
+			text = "This is an arsenal, marked with pink dots on the map around base. Use these to create, save, edit and load your loadouts. Multiple loadouts can be made for different roles and playstyles, be as creative as you like.";
 			size = UIH(0.69);
 			tooltip = "";
 			class Attributes
@@ -52,64 +52,78 @@ class vn_tr_disp_showNewPlayerGuide_rhs : vn_mf_RscControlsGroupNoScrollbarHV
 			};
 		};
 
-		class rhs_img_dutyofficer_map: vn_mf_RscPicture
+		class rhs_img_arsenal: vn_mf_RscPicture
 		{
 			idc = -1;
-			x = UIW(1);
-			y = UIH(16.5);
+			x = UIW(13);
+			y = UIH(4.25);
 			w = UIW(5);
 			h = UIH(5);
-			text = "custom\taskroster\help\img_duty_officer_map.paa";
-			tooltip = "Duty officers are marked by white dots on the map at the main base.";
+			text = "custom\taskroster\help\img_newplayer_arsenal.paa";
+			tooltip = "This is an Arsenal, kit up here.";
 		};
 
 		class rhs_img_dutyofficer_map_caption: vn_mf_RscText
 		{
 			idc = -1;
-			x = UIW(1.5);
-			y = UIH(21.5);
+			x = UIW(14);
+			y = UIH(3.5);
 			w = UIW(5);
 			h = UIH(1);
 			sizeEx = TXT_S;
 			colorText[] = {0, 0, 0, 1};
-			text = "Map Markers";
+			text = "Arsenal";
 		};
 
 		class rhs_img_dutyofficer_unit: vn_mf_RscPicture
 		{
 			idc = -1;
-			x = UIW(7);
-			y = UIH(16.5);
+			x = UIW(13);
+			y = UIH(10);
 			w = UIW(5);
 			h = UIH(5);
 
-			text = "custom\taskroster\help\img_duty_officer_unit.paa";
-			tooltip = "A Duty Officer.";
+			text = "custom\taskroster\help\img_newplayer_map.paa";
+			tooltip = "A Teleporter Map Board.";
 		};
 
 		class rhs_img_dutyofficer_unit_caption: rhs_img_dutyofficer_map_caption
 		{
-			x = UIW(7.5);
-			text = "Duty Officer";
+			x = UIW(13.5);
+			y = UIH(9.2);
+			text = "Teleporter";
 		};
+        
+        class rhs_helper_blurb_6: rhs_helper_blurb
+        {
+            y = UIH(11.25);
+            text = "This is a Map Board, use these to quickly teleport to numerous locations on base. Use the 6 key to interact with it.";
+        };
 
 		class rhs_img_dutyofficer_wheel: vn_mf_RscPicture
 		{
 			idc = -1;
 			x = UIW(13);
-			y = UIH(16.5);
+			y = UIH(15.75);
 			w = UIW(5);
 			h = UIH(5);
 
-			text = "custom\taskroster\help\img_duty_officer_wheel.paa";
-			tooltip = "Pressing the 6 key will bring up the wheel menu where you can gain additional roles.";
+			text = "custom\taskroster\help\img_newplayer_pads.paa";
+			tooltip = "Pick up location.";
 		};
 
 		class rhs_img_dutyofficer_wheel_caption: rhs_img_dutyofficer_map_caption
 		{
 			x = UIW(13.5);
-			text = "Wheel Menu";
+			y = UIH(15);
+			text = "Helo Pickup";
 		};
+	    
+	    class rhs_helper_blurb_7: rhs_helper_blurb
+        {
+            y = UIH(16.5);
+            text = "These are the helo pick-up pads, near Green Hornets. Switch to the Air Channel with the period key and hail a Green Hornet pilot to get yourself into the fight!";
+        };
 	};
 };
 
@@ -149,9 +163,9 @@ class vn_tr_disp_showNewPlayerGuide
 		class title: vn_mf_RscText
 		{
 			idc = -1;
-			x = UIW(0);
-			y = UIH(2);
-			w = UIW(15);
+			x = UIX_CL(17.5);
+			y = UIY_CU(10.5);
+			w = UIW(16);
 			h = UIH(2);
 
 			style = "0x10 + 0x0200";
@@ -167,14 +181,14 @@ class vn_tr_disp_showNewPlayerGuide
 		class rhs_helper_blurb2: vn_mf_RscStructuredText
 		{
 			idc = -1;
-			x = UIW(0);
-			y = UIH(5);
+			x = UIX_CL(17.5);
+			y = UIY_CU(9.5);
 			w = UIW(16);
-			h = UIH(5);
+			h = UIH(14);
 
 			colorText[] = {0.1,0.1,0.1,0.9};
 			colorBackground[] = {0,0,0,0.0};
-			text = "Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum.";
+			//text = "In this guide you'll find all the information required to get you into the fight!";
 			size = UIH(0.69);
 			tooltip = "";
 			class Attributes
@@ -192,14 +206,14 @@ class vn_tr_disp_showNewPlayerGuide
 		class rhs_helper_blurb: vn_mf_RscStructuredText
 		{
 			idc = -1;
-			x = UIW(0);
-			y = UIH(10);
-			w = UIW(16);
+			x = UIW(4);
+			y = UIH(4.75);
+			w = UIW(11.5);
 			h = UIH(5);
 
 			colorText[] = {0.1,0.1,0.1,0.9};
 			colorBackground[] = {0,0,0,0.0};
-			text = "Walk up to a duty officer and press the 6 key while looking at them. This will bring up a wheel menu where you can click on the role(s) you want. Duty officers can be located by the white dot markers on the map around the main base.";
+			text = "These are the areas on the map to take. Do not enter blue zones. Yellow circled zones are the active ao. When all sites are destroyed inside the zone the defence phase starts. Green zones are completed.";
 			size = UIH(0.69);
 			tooltip = "";
 			class Attributes
@@ -214,65 +228,84 @@ class vn_tr_disp_showNewPlayerGuide
 			};
 		};
 
-		class rhs_img_dutyofficer_map: vn_mf_RscPicture
+		class rhs_img_zone: vn_mf_RscPicture
 		{
 			idc = -1;
 			x = UIW(-1);
-			y = UIH(14);
+			y = UIH(4.75);
 			w = UIW(5);
 			h = UIH(5);
-			text = "custom\taskroster\help\img_duty_officer_map.paa";
-			tooltip = "Duty officers are marked by white dots on the map at the main base.";
+			text = "custom\taskroster\help\img_newplayer_zone.paa";
+			tooltip = "Zones to be taken.";
 		};
 
 		class rhs_img_dutyofficer_map_caption: vn_mf_RscText
 		{
 			idc = -1;
-			x = UIW(-0.5);
-			y = UIH(19);
+			x = UIW(-0.75);
+			y = UIH(4);
 			w = UIW(5);
 			h = UIH(1);
 			sizeEx = TXT_S;
 			colorText[] = {0, 0, 0, 1};
-			text = "Map Markers";
+			text = "Combat Zones";
 		};
 
-		class rhs_img_dutyofficer_unit: vn_mf_RscPicture
+		class rhs_img_legend: vn_mf_RscPicture
 		{
 			idc = -1;
-			x = UIW(6);
-			y = UIH(14);
+			x = UIW(-1);
+			y = UIH(10.5);
 			w = UIW(5);
 			h = UIH(5);
 
-			text = "custom\taskroster\help\img_duty_officer_unit.paa";
-			tooltip = "A Duty Officer.";
+			text = "custom\taskroster\help\img_newplayer_legend.paa";
+			tooltip = "Map Legend.";
 		};
 
 		class rhs_img_dutyofficer_unit_caption: rhs_img_dutyofficer_map_caption
 		{
-			x = UIW(6.5);
-			text = "Duty Officer";
+			x = UIW(-0.60);
+			y = UIH(9.7);
+			w = UIW(5);
+			h = UIH(1);
+			text = "Map Legend";
 		};
 
-		class rhs_img_dutyofficer_wheel: vn_mf_RscPicture
+        class rhs_helper_blurb_4: rhs_helper_blurb
+        {
+            y = UIH(11);
+            text = "This is a map legend and can usually be found somewhere on the map. Use this to help navigate yourself around the base and the rest of the map.";
+        };
+
+		class rhs_img_cas: vn_mf_RscPicture
 		{
 			idc = -1;
-			x = UIW(12);
-			y = UIH(14);
+			x = UIW(-1);
+			y = UIH(16.25);
 			w = UIW(5);
 			h = UIH(5);
 
-			text = "custom\taskroster\help\img_duty_officer_wheel.paa";
-			tooltip = "Pressing the 6 key will bring up the wheel menu where you can gain additional roles.";
+			text = "custom\taskroster\help\img_newplayer_cas.paa";
+			tooltip = "CAS is whitelisted.";
 		};
 
 		class rhs_img_dutyofficer_wheel_caption: rhs_img_dutyofficer_map_caption
 		{
-			x = UIW(12.5);
-			text = "Wheel Menu";
+			x = UIW(-0.75);
+			y = UIH(15.5);
+			w = UIW(5);
+			h = UIH(1);
+			text = "CAS and Arty";
 		};
-
+     
+        class rhs_helper_blurb_3: rhs_helper_blurb
+        {
+            y = UIH(16.50);
+            text = "CAS and heavy artilley are whitelisted, this is to prevent misuse and abuse of these powerful assets to improve all players experience. Enquire in Discord for how to join.";
+        };
+		
+		//Buttons
 		class lhs_back_btn: vn_mf_RscButton
 		{
 			idc = -1;
