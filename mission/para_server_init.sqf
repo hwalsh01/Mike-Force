@@ -17,6 +17,8 @@
         use_paradigm_init = 1;
 */
 
+call para_s_fnc_curator_init_eh;
+
 call vn_mf_fnc_server_init_backend;
 ["restart_messages", vn_mf_fnc_server_process_restart, [], 60] call para_g_fnc_scheduler_add_job;
 
@@ -24,11 +26,11 @@ call para_s_fnc_init_whitelist;
 ["update_whitelist", para_s_fnc_init_whitelist, [], 120] call para_g_fnc_scheduler_add_job;
 
 // update curator whitelist, every 5 minutes
-call para_s_fnc_init_curators;
-["update_curators", para_s_fnc_init_curators, [], 300] call para_g_fnc_scheduler_add_job;
+call para_s_fnc_curator_populate;
+["update_curators", para_s_fnc_curator_populate, [], 300] call para_g_fnc_scheduler_add_job;
 
 // update objects curators can edit, every 10 seconds
-[10] call para_s_fnc_init_curators_update_objects_job;
+[10] call para_s_fnc_curator_update_objects;
 
 call para_s_fnc_init_dopamine;
 ["dopamine_hit", para_s_fnc_init_dopemine, [], 300] call para_g_fnc_scheduler_add_job;
@@ -117,7 +119,7 @@ vn_site_objects = [];
 // Set desired number of simultaneously active zones.
 vn_mf_targetNumberOfActiveZones = 1;
 // Set number of enemies per player. Scale the default value by the percentage set in the config options.
-para_g_enemiesPerPlayer = 2;
+para_g_enemiesPerPlayer = ((["ai_scaling", 100] call BIS_fnc_getParamValue) / 100) * 2;
 //Global variable, so it needs syncing across the network.
 publicVariable "para_g_enemiesPerPlayer";
 
@@ -292,7 +294,7 @@ diag_log "VN MikeForce: Initialising Loadbalancer";
 diag_log "VN MikeForce: Initialising AI Objectives";
 // start ai subsystem. Depends on the load balancer subsystem.
 [
-    ["hardAiLimit", ["hard_ai_limit", 140] call BIS_fnc_getParamValue]
+    ["hardAiLimit", ["hard_ai_limit", 100] call BIS_fnc_getParamValue]
 ] call para_s_fnc_ai_obj_subsystem_init;
 
 diag_log "VN MikeForce: Initialising Harass";
