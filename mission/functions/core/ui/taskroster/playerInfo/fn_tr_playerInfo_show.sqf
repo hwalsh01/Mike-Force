@@ -16,7 +16,7 @@
 */
 
 disableSerialization;
-#include "..\..\..\..\config\ui\ui_def_base.inc"
+#include "..\..\..\..\..\config\ui\ui_def_base.inc"
 
 private _fnc_bold_title_plain_value = {
 	params ["_title", "_value"];
@@ -41,28 +41,22 @@ private _fnc_display_player_stats = {
 	];
 
 	VN_TR_PLAYERINFO_NAME_CTRL ctrlSetStructuredText parseText (
-		format ["Profile Name: %1", profileName]
+		format ["<t font='tt2020base_vn_bold'>Profile Name:</t> %1", profileName]
 	);
 	VN_TR_PLAYERINFO_SNUM_CTRL ctrlSetStructuredText parseText (
-		format ["Serial Number: %1", _player_id]
+		format ["<t font='tt2020base_vn_bold'>Serial Number:</t> %1", _player_id]
 	);
 	VN_TR_PLAYERINFO_UID_CTRL ctrlSetStructuredText parseText (
-    	format ["Player UID: %1", getPlayerUID player]
+    	format ["<t font='tt2020base_vn_bold'>Player UID:</t> %1", getPlayerUID player]
    	);
 	VN_TR_PLAYERINFO_RANK_CTRL ctrlSetStructuredText parseText (
-		format ["Current Rank: %1", rank player]
+		format ["<t font='tt2020base_vn_bold'>Current Rank:</t> %1", rank player]
 	);
 	VN_TR_PLAYERINFO_POINTS_CTRL ctrlSetStructuredText parseText (
-		format ["Current Points: %1", str(player getVariable ["vn_mf_db_rank",0])]
+		format ["<t font='tt2020base_vn_bold'>Current Rank Points:</t> %1", str(player getVariable ["vn_mf_db_rank",0])]
 	);
 	VN_TR_PLAYERINFO_PROGR_CTRL ctrlSetStructuredText parseText (
-		format ["Points to Next Rank: %1", _progress]
-	);
-	VN_TR_PLAYERINFO_KILLS_CTRL ctrlSetStructuredText parseText (
-		format ["Session Inf/Veh/Armor/Air Kills: %1", _kills]
-	);
-	VN_TR_PLAYERINFO_DEATHS_CTRL ctrlSetStructuredText parseText (
-		format ["Session Deaths: %1", _scores # 4]
+		format ["<t font='tt2020base_vn_bold'>Points to Next Rank:</t> %1", _progress]
 	);
 
 	VN_TR_PLAYERINFO_REWARD_TEXT_CTRL ctrlSetStructuredText parseText "<t size='0.6' font='tt2020base_vn'></t>";

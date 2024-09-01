@@ -26,8 +26,20 @@ class vn_tr_disp_showNewPlayerGuide_rhs : vn_mf_RscControlsGroupNoScrollbarHV
 			tooltip = "";
 		};
 
-		// go find a duty officer and press 6 on them
-		class rhs_helper_blurb: vn_mf_RscStructuredText
+		// ARSENAL //////////////////////////////////////////////////////////////////////
+
+		class rhs_img_arsenal: vn_mf_RscPicture
+		{
+			idc = -1;
+			x = UIW(13);
+			y = UIH(4.25);
+			w = UIW(5);
+			h = UIH(5);
+			text = "custom\taskroster\help\img_newplayer_arsenal.paa";
+			tooltip = "This is an Arsenal, kit up here.";
+		};
+
+		class rhs_helptext_arsenal: vn_mf_RscStructuredText
 		{
 			idc = -1;
 			x = UIW(2);
@@ -52,18 +64,7 @@ class vn_tr_disp_showNewPlayerGuide_rhs : vn_mf_RscControlsGroupNoScrollbarHV
 			};
 		};
 
-		class rhs_img_arsenal: vn_mf_RscPicture
-		{
-			idc = -1;
-			x = UIW(13);
-			y = UIH(4.25);
-			w = UIW(5);
-			h = UIH(5);
-			text = "custom\taskroster\help\img_newplayer_arsenal.paa";
-			tooltip = "This is an Arsenal, kit up here.";
-		};
-
-		class rhs_img_dutyofficer_map_caption: vn_mf_RscText
+		class rhs_img_arsenal_caption: vn_mf_RscText
 		{
 			idc = -1;
 			x = UIW(14);
@@ -75,7 +76,9 @@ class vn_tr_disp_showNewPlayerGuide_rhs : vn_mf_RscControlsGroupNoScrollbarHV
 			text = "Arsenal";
 		};
 
-		class rhs_img_dutyofficer_unit: vn_mf_RscPicture
+		// TELEPORTER ///////////////////////////////////////////////////////////////////
+
+		class rhs_img_teleporter: vn_mf_RscPicture
 		{
 			idc = -1;
 			x = UIW(13);
@@ -87,20 +90,22 @@ class vn_tr_disp_showNewPlayerGuide_rhs : vn_mf_RscControlsGroupNoScrollbarHV
 			tooltip = "A Teleporter Map Board.";
 		};
 
-		class rhs_img_dutyofficer_unit_caption: rhs_img_dutyofficer_map_caption
+		class rhs_img_teleporter_caption: rhs_img_arsenal_caption
 		{
 			x = UIW(13.5);
 			y = UIH(9.2);
 			text = "Teleporter";
 		};
         
-        class rhs_helper_blurb_6: rhs_helper_blurb
+        class rhs_helptext_teleporter: rhs_helptext_arsenal
         {
             y = UIH(11.25);
             text = "This is a Map Board, use these to quickly teleport to numerous locations on base. Use the 6 key to interact with it.";
         };
 
-		class rhs_img_dutyofficer_wheel: vn_mf_RscPicture
+     	// HELO PADS ////////////////////////////////////////////////////////////////////
+
+		class rhs_img_helopads: vn_mf_RscPicture
 		{
 			idc = -1;
 			x = UIW(13);
@@ -112,14 +117,14 @@ class vn_tr_disp_showNewPlayerGuide_rhs : vn_mf_RscControlsGroupNoScrollbarHV
 			tooltip = "Pick up location.";
 		};
 
-		class rhs_img_dutyofficer_wheel_caption: rhs_img_dutyofficer_map_caption
+		class rhs_img_helopads_caption: rhs_img_arsenal_caption
 		{
 			x = UIW(13.5);
 			y = UIH(15);
 			text = "Helo Pickup";
 		};
 	    
-	    class rhs_helper_blurb_7: rhs_helper_blurb
+	    class rhs_helptext_helopads: rhs_helptext_arsenal
         {
             y = UIH(16.5);
             text = "These are the helo pick-up pads, near Green Hornets. Switch to the Air Channel with the period key and hail a Green Hornet pilot to get yourself into the fight!";
@@ -130,10 +135,9 @@ class vn_tr_disp_showNewPlayerGuide_rhs : vn_mf_RscControlsGroupNoScrollbarHV
 class vn_tr_disp_showNewPlayerGuide
 {
 	name = "vn_tr_disp_showNewPlayerGuide";
-	//If already opened -> Recalling it -> Reloading the Dialog (e.g. like updating the view, without "closing" it)
 	onLoad = "[""onLoad"",_this,""vn_tr_disp_showNewPlayerGuide"",''] call (uinamespace getvariable 'BIS_fnc_initDisplay');";
-	onUnload = "[""onUnload"",_this,""vn_tr_disp_showNewPlayerGuide"",''] call (uinamespace getvariable 'BIS_fnc_initDisplay'); [] spawn vn_mf_fnc_tr_overview_init;";
-	idd = THISISWRONGONPURPOSE;
+	onUnload = "[""onUnload"",_this,""vn_tr_disp_showNewPlayerGuide"",''] call (uinamespace getvariable 'BIS_fnc_initDisplay');";
+	idd = -1;
 	movingEnable = 1;
 	enableSimulation = 1;
 
@@ -177,33 +181,32 @@ class vn_tr_disp_showNewPlayerGuide
 			sizeEx = TXT_L;
 		};
 
-		// go find a duty officer and press 6 on them
-		class rhs_helper_blurb2: vn_mf_RscStructuredText
+     	// ZONES ////////////////////////////////////////////////////////////////////////
+
+		class rhs_img_zones: vn_mf_RscPicture
 		{
 			idc = -1;
-			x = UIX_CL(17.5);
-			y = UIY_CU(9.5);
-			w = UIW(16);
-			h = UIH(14);
-
-			colorText[] = {0.1,0.1,0.1,0.9};
-			colorBackground[] = {0,0,0,0.0};
-			//text = "In this guide you'll find all the information required to get you into the fight!";
-			size = UIH(0.69);
-			tooltip = "";
-			class Attributes
-			{
-				align = "left";
-				valign = "middle";
-				color = "#000000";
-				colorLink = "#D09B43";
-				font = USEDFONT;
-				size = 1;
-				shadow = 0;
-			};
+			x = UIW(-1);
+			y = UIH(4.75);
+			w = UIW(5);
+			h = UIH(5);
+			text = "custom\taskroster\help\img_newplayer_zone.paa";
+			tooltip = "Zones to be taken.";
 		};
-		// go find a duty officer and press 6 on them
-		class rhs_helper_blurb: vn_mf_RscStructuredText
+
+		class rhs_img_zones_caption: vn_mf_RscText
+		{
+			idc = -1;
+			x = UIW(-0.75);
+			y = UIH(4);
+			w = UIW(5);
+			h = UIH(1);
+			sizeEx = TXT_S;
+			colorText[] = {0, 0, 0, 1};
+			text = "Combat Zones";
+		};
+
+		class rhs_helptext_zones: vn_mf_RscStructuredText
 		{
 			idc = -1;
 			x = UIW(4);
@@ -228,28 +231,7 @@ class vn_tr_disp_showNewPlayerGuide
 			};
 		};
 
-		class rhs_img_zone: vn_mf_RscPicture
-		{
-			idc = -1;
-			x = UIW(-1);
-			y = UIH(4.75);
-			w = UIW(5);
-			h = UIH(5);
-			text = "custom\taskroster\help\img_newplayer_zone.paa";
-			tooltip = "Zones to be taken.";
-		};
-
-		class rhs_img_dutyofficer_map_caption: vn_mf_RscText
-		{
-			idc = -1;
-			x = UIW(-0.75);
-			y = UIH(4);
-			w = UIW(5);
-			h = UIH(1);
-			sizeEx = TXT_S;
-			colorText[] = {0, 0, 0, 1};
-			text = "Combat Zones";
-		};
+     	// MAP LEGEND ///////////////////////////////////////////////////////////////////
 
 		class rhs_img_legend: vn_mf_RscPicture
 		{
@@ -263,7 +245,7 @@ class vn_tr_disp_showNewPlayerGuide
 			tooltip = "Map Legend.";
 		};
 
-		class rhs_img_dutyofficer_unit_caption: rhs_img_dutyofficer_map_caption
+		class rhs_img_legend_caption: rhs_img_zones_caption
 		{
 			x = UIW(-0.60);
 			y = UIH(9.7);
@@ -272,11 +254,13 @@ class vn_tr_disp_showNewPlayerGuide
 			text = "Map Legend";
 		};
 
-        class rhs_helper_blurb_4: rhs_helper_blurb
+        class rhs_helptext_zones_legend: rhs_helptext_zones
         {
             y = UIH(11);
             text = "This is a map legend and can usually be found somewhere on the map. Use this to help navigate yourself around the base and the rest of the map.";
         };
+
+		// CAS IS WHITELISTED PLEASE STOP ASKING ////////////////////////////////////////
 
 		class rhs_img_cas: vn_mf_RscPicture
 		{
@@ -290,7 +274,7 @@ class vn_tr_disp_showNewPlayerGuide
 			tooltip = "CAS is whitelisted.";
 		};
 
-		class rhs_img_dutyofficer_wheel_caption: rhs_img_dutyofficer_map_caption
+		class rhs_img_cas_caption: rhs_img_zones_caption
 		{
 			x = UIW(-0.75);
 			y = UIH(15.5);
@@ -299,13 +283,12 @@ class vn_tr_disp_showNewPlayerGuide
 			text = "CAS and Arty";
 		};
      
-        class rhs_helper_blurb_3: rhs_helper_blurb
+        class rhs_helptext_cas: rhs_helptext_zones
         {
             y = UIH(16.50);
             text = "CAS and heavy artilley are whitelisted, this is to prevent misuse and abuse of these powerful assets to improve all players experience. Enquire in Discord for how to join.";
         };
 		
-		//Buttons
 		class lhs_back_btn: vn_mf_RscButton
 		{
 			idc = -1;
@@ -323,8 +306,8 @@ class vn_tr_disp_showNewPlayerGuide
 			colorBackground[] = {0,0,0,0.1};
 		};
 
-		//ALWAYS AT THE BOTTOM/LAST OF THE CONTROLS!
-		class folder_cordels: vn_tr_cordels
-		{};
+		/////////////////////////////////////////////////////////////////////////////////
+		// ALWAYS AT THE BOTTOM/LAST OF THE CONTROLS!
+		class folder_cordels: vn_tr_cordels {};
 	};
 };

@@ -1,5 +1,5 @@
 /*
-    File: fn_tr_listboxtask_select.sqf
+    File: fn_tr_tasksInfo_listbox_select.sqf
     Author: Savage Game Design
     Public: No
     
@@ -14,10 +14,11 @@
         nil
     
     Example(s):
-        [_listbox, 0] call vn_mf_fnc_tr_listboxtask_select;
+        [_listbox, 0] call vn_mf_fnc_tr_tasksInfo_listbox_select;
 */
 
-#include "..\..\..\..\config\ui\ui_def_base.inc"
+#include "..\..\..\..\..\config\ui\ui_def_base.inc"
+
 params ["_lb", ["_ind", -1]];
 private ["_task","_coords"];
 if (_lb == VN_TR_ACTIVETASKS_LHS_LBOX_CTRL) then {
@@ -46,6 +47,6 @@ VN_TR_ACTIVETASKS_RHS_NAME_CTRL ctrlSetText (taskDescription _task)#1;
 VN_TR_ACTIVETASKS_RHS_DESC_CTRL ctrlSetText (taskDescription _task)#0;
 
 // set the selected subtask as active
-call vn_mf_fnc_tr_mission_setActive;
+call vn_mf_fnc_tr_tasksInfo_setActive;
 
 nil

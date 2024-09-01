@@ -90,7 +90,7 @@ class vn_tr_disp_taskRoster_Main
 {
 	name = "vn_tr_disp_taskRoster_Main";
 	//If already opened -> Recalling it -> Reloading the Dialog (e.g. like updating the view, without "closing" it)
-	onLoad = "[""onLoad"",_this,""vn_tr_disp_taskRoster_Main"",''] call (uinamespace getvariable 'BIS_fnc_initDisplay'); call vn_mf_fnc_tr_overview_init;";
+	onLoad = "[""onLoad"",_this,""vn_tr_disp_taskRoster_Main"",''] call (uinamespace getvariable 'BIS_fnc_initDisplay');";
 	onUnload = "[""onUnload"",_this,""vn_tr_disp_taskRoster_Main"",''] call	(uinamespace getvariable 'BIS_fnc_initDisplay');";
 	idd = VN_IDD_TR_TASKROSTER;
 	movingEnable = 1;
@@ -160,7 +160,7 @@ class vn_tr_disp_taskRoster_Main
 			colorBackground[] = {0,0,0,0};
 			size = TXT_M;
 			
-			text = "Mike Force is a co-operative PvE gamemode by <t font='tt2020base_vn_bold'><a href='https://www.savage-game.com'>Savage Game Design</a></t>. This is a modified version of Mike Force brought to you by <t font='tt2020base_vn_bold'><a href='https://discord.gg/bro-nation'>Bro-Nation</a></t>.<br/><br/>This menu can be accessed at any time by pressing the H key.<br/><br/>We recommend new players click on the button below to read our new player guide!<br/><br/>Please join the <t font='tt2020base_vn_bold'><a href='https://discord.gg/bro-nation'>Bro-Nation Discord</a></t> for additional help, or click on the links on the opposite page.";
+			text = "Mike Force is a co-operative PvE gamemode by <t font='tt2020base_vn_bold'><a href='https://www.savage-game.com'>Savage Game Design</a></t>. This is a modified version of Mike Force brought to you by <t font='tt2020base_vn_bold'><a href='https://discord.gg/bro-nation'>Bro-Nation</a></t>.<br/><br/>This menu can be accessed at any time by pressing the H key.<br/><br/>We recommend new players read our 'Server Guide' by clicking on the button below!<br/><br/>Please join the <t font='tt2020base_vn_bold'><a href='https://discord.gg/bro-nation'>Bro-Nation Discord</a></t> for additional help, or click on the links on the opposite page.";
 			class Attributes
 			{
 				align = "left";
@@ -172,7 +172,7 @@ class vn_tr_disp_taskRoster_Main
 			};
 		};
 
-		// left hand buttons
+		// left hand buttons /////////////////////////////////
 
 		class lhs_newbie_info_btn: vn_mf_RscButton
 		{
@@ -186,7 +186,7 @@ class vn_tr_disp_taskRoster_Main
 			colorText[] = {0,0,0,1};
 			colorBackground[] = {0,0,0,0.1};
 
-			text = "New Player Guide";
+			text = "Server Guide";
 			onButtonClick = "createDialog 'vn_tr_disp_showNewPlayerGuide';";
 		};
 		class lhs_player_stats_and_roles_btn: lhs_newbie_info_btn
@@ -194,32 +194,39 @@ class vn_tr_disp_taskRoster_Main
 			idc = VN_TR_MEDALSTEXT_BTN_IDC;
 			y = UIY_CU(-7);
 			onButtonClick = "createDialog 'vn_tr_disp_showPlayerInfo';";
-			text = "Your Stats & Roles";
+			text = "Stats & Roles";
 		};
 		class lhs_player_team_btn: lhs_newbie_info_btn
 		{
 			idc = VN_TR_CURRTEAMTEXT_BTN_IDC;
 			y = UIY_CU(-9);
 			onButtonClick = "createDialog 'vn_tr_disp_showTeamInfo';";
-			text = "Select Your Team";
+			text = "Select Team";
 		};
 
-		// right hand buttons
+		// right hand buttons /////////////////////////////////
 
-		class lhs_player_active_tasks_btn: lhs_newbie_info_btn
+		class lhs_changelog_btn: lhs_newbie_info_btn
 		{
 			idc = VN_TR_CURRTASKSTEXT_BTN_IDC;
 			x = UIX_CL(8.5);
+			y = UIY_CU(-5);
+			onButtonClick = "createDialog 'para_ChangelogScreen';";
+			text = "S.G.D. Changelog";
+		};
+		class lhs_player_active_tasks_btn: lhs_changelog_btn
+		{
+			idc = VN_TR_CURRTASKSTEXT_BTN_IDC;
 			y = UIY_CU(-7);
 			onButtonClick = "createDialog 'vn_tr_disp_showTasksInfo';";
-			text = "Your Active Tasks";
+			text = "Active Tasks";
 		};
 		class lhs_player_request_support_tasks_btn: lhs_player_active_tasks_btn
 		{
 			idc = VN_TR_TASK_REQ_IDC;
 			y = UIY_CU(-9);
 			onButtonClick = "createDialog 'vn_tr_disp_showRequestSupport';";
-			text = "Create Support Tasks";
+			text = "Create Tasks";
 		};
 
 		// ALWAYS AT THE BOTTOM/LAST OF THE CONTROLS!

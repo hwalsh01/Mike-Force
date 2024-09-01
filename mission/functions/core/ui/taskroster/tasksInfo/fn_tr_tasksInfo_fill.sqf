@@ -1,10 +1,11 @@
 /*
-    File: fn_tr_missions_fill.sqf
+    File: fn_tr_tasksInfo_fill.sqf
     Author: Savage Game Design
+    Modified: @dijksterhuis
     Public: No
     
     Description:
-		Fills the TaskRoster Mission Overview with the Parent-/Maintasks. Children will be handled in "vn_mf_fnc_tr_missions_show"
+		Fills the TaskRoster Mission Overview with the Parent-/Maintasks. Children will be handled in "vn_mf_fnc_tr_tasksInfo_show"
     
     Parameter(s): none
     
@@ -40,7 +41,8 @@ private _taskCategoryLookup = createHashMapFromArray [
 			["priority", 0],
 			["text", "PRIMARY"],
 			["imgPath", "\vn\ui_f_vietnam\ui\taskroster\img\icons\vn_icon_task_primary.paa"],
-			["color", VN_TR_MISS_PRIM]
+			// red
+			["color", [0.5, 0, 0, 1]]
 		]
 	],
 	["SEC",
@@ -48,7 +50,8 @@ private _taskCategoryLookup = createHashMapFromArray [
 			["priority", 50],
 			["text", "SECONDARY"],
 			["imgPath", "\vn\ui_f_vietnam\ui\taskroster\img\icons\vn_icon_task_secondary.paa"],
-			["color", VN_TR_MISS_SECO]
+			// blue
+			["color", [0, 0, 0.5, 1]]
 		]
 	],
 	["SUP",
@@ -56,7 +59,8 @@ private _taskCategoryLookup = createHashMapFromArray [
 			["priority", 100],
 			["text", "SUPPORT"],
 			["imgPath", "\vn\ui_f_vietnam\ui\taskroster\img\icons\vn_icon_task_support.paa"],
-			["color", VN_TR_MISS_SUPP]
+			// green
+			["color", [0, 0.5, 0, 1]]
 		]
 	],
 	["",
@@ -64,6 +68,7 @@ private _taskCategoryLookup = createHashMapFromArray [
 			["priority", 1000],
 			["text", "OTHER"],
 			["imgPath", "Vn\ui_f_vietnam\ui\debrief\sticky.paa"],
+			// dark grey
 			["color", [0, 0, 0, 0.8]]
 		]
 	]
@@ -90,7 +95,7 @@ private _fnc_process_task = {
 	private _taskSubtypeStr = taskType _task;
 	private _taskSubtypeCapitalised = (toUpper (_taskSubtypeStr select [0, 1])) + (_taskSubtypeStr select [1, count _taskSubtypeStr]);
 
-	private _tooltip = format ["%1 -- %2 Objective (%3)", _task_description, _taskTypeText, _taskSubtypeCapitalised];
+	private _tooltip = format ["%1 (%2 Objective)", _task_description, _taskTypeText];
 	private _sortOrderRank = _taskTypePriority + _sortOffset;
 
 	private _hmap = createHashMapFromArray [
@@ -113,7 +118,7 @@ private _fnc_process_task = {
 ////////////////////////////////////////////////////////////////////////////////
 
 disableSerialization;
-#include "..\..\..\..\config\ui\ui_def_base.inc"
+#include "..\..\..\..\..\config\ui\ui_def_base.inc"
 
 private _ctrl = VN_TR_ACTIVETASKS_LHS_LBOX_CTRL;
 lbclear _ctrl;
@@ -133,9 +138,9 @@ vn_tr_taskList = [];
 	// new row of data
 	// **MUST** set at least one value in here otherwise it breaks the UI
 	// and refuses to show the right hand side page.
-	private _row = _ctrl lnbAddRow ["", "", "", "", _t get "taskDescription"];
+	private _row = _ctrl lnbAddRow ["", "", "", _t get "taskDescription"];
 
-	// set the task data. this is grabbed by `vn_mf_fnc_tr_missions_show` when
+	// set the task data. this is grabbed by `vn_mf_fnc_tr_tasksInfo_show` when
 	// activating the currently selected task on the right hand side page.
 	_ctrl lnbSetData [[_row, 1], _t get "taskData"];
 
@@ -153,12 +158,6 @@ vn_tr_taskList = [];
 	_ctrl lnbSetPictureColor [[_row, 2], _t get "taskTypeIconColor"];
 	_ctrl lnbSetPictureColorSelected [[_row, 2], _t get "taskTypeIconColor"];
 
-	// column 4 -- text for task subtype
-	// TODO: Not showing for some reason.
-	// _ctrl lnbSetText [[_row, 3], _t get "taskSubtypeText"];
-
-	// TODO: tooltipPerColumn -- see description here: https://community.bistudio.com/wiki/lnbSetTooltip
-	_ctrl lnbSetTooltip [[_row, 0], _t get "taskTooltip"];
 
 } forEach _onlyParentTasks;
 

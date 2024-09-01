@@ -114,7 +114,7 @@ class vn_tr_missionInfoPolaroid_base : vn_mf_RscControlsGroupNoScrollbarHV
 		class mission_tasks_list: vn_mf_RscListBox
 		{
 			idc = VN_TR_ACTIVETASKS_RHS_TASKS_LIST_IDC;
-			onLBSelChanged = _this call vn_mf_fnc_tr_listboxtask_select;
+			onLBSelChanged = "_this call vn_mf_fnc_tr_tasksInfo_listbox_select";
 			x = UIW(2.25);
 			y = UIH(10.25);
 			w = UIW(15);
@@ -150,10 +150,9 @@ class vn_tr_disp_showTasksInfo
 {
 	name = "vn_tr_disp_showTasksInfo";
 	//If already opened -> Recalling it -> Reloading the Dialog (e.g. like updating the view, without "closing" it)
-	onLoad = "[""onLoad"",_this,""vn_tr_disp_showTasksInfo"",''] call (uinamespace getvariable 'BIS_fnc_initDisplay'); call vn_mf_fnc_tr_cleanRightSheet; call vn_mf_fnc_tr_missions_fill;";
-	onUnload = "[""onUnload"",_this,""vn_tr_disp_showTasksInfo"",''] call (uinamespace getvariable 'BIS_fnc_initDisplay'); call vn_mf_fnc_tr_cleanRightSheet; [] spawn vn_mf_fnc_tr_overview_init;";
-	// does not have a matching IDD #define on purpose. breaks without this for some ungodly reason.
-	idd = VN_IDD_TR_SHOWTEAMINFO_WRONG;
+	onLoad = "[""onLoad"",_this,""vn_tr_disp_showTasksInfo"",''] call (uinamespace getvariable 'BIS_fnc_initDisplay'); call vn_mf_fnc_tr_tasksInfo_fill;";
+	onUnload = "[""onUnload"",_this,""vn_tr_disp_showTasksInfo"",''] call (uinamespace getvariable 'BIS_fnc_initDisplay');";
+	idd = -1;
 	movingEnable = 1;
 	enableSimulation = 1;
 		
@@ -267,12 +266,11 @@ class vn_tr_disp_showTasksInfo
 
 			// TODO: These need to be percentages from 0 -> 1 (ending with 1)
 			columns[] = {
-				0.0,		// task type icon lhs boundary pos
-				UIW(1.3),	// task type icon rhs boundary pos | task type text lhs boundary pos
-				UIW(9),		// task type text rhs boundary pos | task category icon lhs boundary pos
-				UIW(10.3),	// task category icon rhs boundary pos | task category text lhs pos
-				UIW(12),	// task category text rhs pos | description lhs?
-				UIW(125),	// description rhs?
+				0.0,
+				0.05,
+				0.25,
+				0.3,
+				1
 			};
 			
 			colorBackground[] = {0,0,0,1};
@@ -288,7 +286,7 @@ class vn_tr_disp_showTasksInfo
 			colorPictureSelected[] = {0.9,0.9,0.9,1};
 			colorPictureDisabled[] = {0,0,0,1};
 
-			onLBSelChanged = "_this call vn_mf_fnc_tr_missions_show";
+			onLBSelChanged = "_this call vn_mf_fnc_tr_tasksInfo_show";
 			onLBDblClick = "";
 		};
 

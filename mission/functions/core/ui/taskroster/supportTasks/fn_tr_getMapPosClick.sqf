@@ -4,7 +4,7 @@
     Public: No
     
     Description:
-		Alled by "MouseButtonClick" Map-Eventhandler in the SupportRequest Page
+		Called by "MouseButtonClick" Map-Eventhandler in the SupportRequest Page
 		Creates local Marker, if needed, and moves it to clicked Maplocation
 		Name is probably a bit missleading, but noone should use that stuff anyway and i am too lazy/can't be bothered to change it atm ¯\_(ツ)_/¯
     

@@ -1,6 +1,7 @@
 /*
-    File: fn_tr_characterInfo_ribbon_enter.sqf
+    File: fn_tr_playerInfo_ribbon_enter.sqf
     Author: Savage Game Design
+    Modified: @dijksterhuis
     Public: No
     
     Description:
@@ -17,7 +18,7 @@
 */
 
 
-#include "..\..\..\..\config\ui\ui_def_base.inc"
+#include "..\..\..\..\..\config\ui\ui_def_base.inc"
 params["_ctrl_src","_isRibbon"];
 //set description text
 _text = _ctrl_src getVariable ["text",""];

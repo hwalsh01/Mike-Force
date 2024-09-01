@@ -1,5 +1,5 @@
 /*
-    File: fn_tr_mission_setActive.sqf
+    File: fn_tr_tasksInfo_setActive.sqf
     Author: Savage Game Design
     Modified: @dijksterhuis
     Public: No
@@ -14,7 +14,7 @@
     Example(s): none
 */
 
-#include "..\..\..\..\config\ui\ui_def_base.inc"
+#include "..\..\..\..\..\config\ui\ui_def_base.inc"
 
 private _list_index = lbCurSel VN_TR_ACTIVETASKS_LHS_LBOX_CTRL;
 private _subtask_index = lbCurSel VN_TR_ACTIVETASKS_RHS_TASKS_LIST_CTRL;

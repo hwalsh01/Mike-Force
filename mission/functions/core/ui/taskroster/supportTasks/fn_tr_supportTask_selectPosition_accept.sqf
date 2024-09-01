@@ -15,7 +15,8 @@
 */
 
 disableSerialization;
-#include "..\..\..\..\config\ui\ui_def_base.inc"
+#include "..\..\..\..\..\config\ui\ui_def_base.inc"
+
 //get markerPos of desired Mission location
 private _markerName = format["%1_missionMarker",getPlayerUID player];
 private _pos = mapGridPosition (getMarkerPos _markerName);
@@ -28,11 +29,3 @@ deleteMarkerLocal _markerName;
 
 //enable "Create new support task"-control
 VN_TR_SUPREQ_CTASK_CTRL ctrlEnable true;
-
-//IMPORTANT:
-//DEV NOTE: No idea why, but when "call"-ed -> Game crashes. Seems to be working with "spawn", but should be kept in mind!
-//call vn_mf_fnc_tr_supportTask_map_hide;
-//-------------------------------------
-
-// @dijksterhuis going to keep the map enabled for now.
-// [] spawn vn_mf_fnc_tr_supportTask_map_hide;

@@ -1,7 +1,22 @@
-// NONE
+/*
+    File: fn_tr_teamInfo_changeteam_init.sqf
+    Author: @dijksterhuis
+    Public: No
+
+    Description:
+		Initialises the task roster teamInfo page's list box for the player to change team.
+
+    Parameter(s): none
+
+    Returns: nothing
+
+    Example(s):
+		[] call vn_mf_fnc_tr_teamInfo_changeteam_init;
+*/
+
 
 disableSerialization;
-#include "..\..\..\..\config\ui\ui_def_base.inc"
+#include "..\..\..\..\..\config\ui\ui_def_base.inc"
 
 
 private _fnc_uid_in_whitelist = {

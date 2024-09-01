@@ -202,8 +202,8 @@ class vn_tr_disp_showPlayerInfo
 	name = "vn_tr_disp_showPlayerInfo";
 	//If already opened -> Recalling it -> Reloading the Dialog (e.g. like updating the view, without "closing" it)
 	onLoad = "[""onLoad"",_this,""vn_tr_disp_showPlayerInfo"",''] call (uinamespace getvariable 'BIS_fnc_initDisplay'); call vn_mf_fnc_tr_playerInfo_show;";
-	onUnload = "[""onUnload"",_this,""vn_tr_disp_showPlayerInfo"",''] call (uinamespace getvariable 'BIS_fnc_initDisplay'); [] spawn vn_mf_fnc_tr_overview_init;";
-	idd = THISISWRONGONPURPOSE;
+	onUnload = "[""onUnload"",_this,""vn_tr_disp_showPlayerInfo"",''] call (uinamespace getvariable 'BIS_fnc_initDisplay');";
+	idd = -1;
 	movingEnable = 1;
 	enableSimulation = 1;
 
@@ -230,7 +230,7 @@ class vn_tr_disp_showPlayerInfo
 
 	class Controls
 	{
-		class title: vn_mf_RscText
+		class infostats_title: vn_mf_RscText
 		{
 			idc = -1;
 			x = UIW(0);
@@ -247,7 +247,7 @@ class vn_tr_disp_showPlayerInfo
 			sizeEx = TXT_L;
 		};
 
-		class playername: vn_mf_RscStructuredText
+		class infostats_txt_playername: vn_mf_RscStructuredText
 		{
 			idc = VN_TR_PLAYERINFO_NAME_IDC;
 			x = UIW(0);
@@ -273,63 +273,227 @@ class vn_tr_disp_showPlayerInfo
 				shadow = 0;
 			};
 		};
-		class serialnumber: playername
+		class infostats_txt_serialnumber: infostats_txt_playername
 		{
 			idc = VN_TR_PLAYERINFO_SNUM_IDC;
 			y = UIH(5);
 			text = "serialnumber";
 			tooltip = "Serial Number";
 		};
-		class playeruid: playername
+		class infostats_txt_playeruid: infostats_txt_playername
 		{
 			idc = VN_TR_PLAYERINFO_UID_IDC;
 			y = UIH(6);
 			text = "playeruid";
 			tooltip = "Player UID";
 		};
-		class playerrank: playername
+		class infostats_txt_playerrank: infostats_txt_playername
 		{
 			idc = VN_TR_PLAYERINFO_RANK_IDC;
 			y = UIH(7);
 			text = "playerrank";
 			tooltip = "Player Rank";
 		};
-		class killtracking: playername
-		{
-			idc = VN_TR_PLAYERINFO_KILLS_IDC;
-			y = UIH(8);
-			text = "sessionkills";
-			tooltip = "Session Kills";
-		};
-		class deaths: playername
-		{
-			idc = VN_TR_PLAYERINFO_DEATHS_IDC;
-			y = UIH(9);
-			text = "-1";
-			tooltip = "Session Deaths";
-		};
-		class rankpoints: playername
+		class infostats_txt_rankpoints: infostats_txt_playername
 		{
 			idc = VN_TR_PLAYERINFO_POINTS_IDC;
-			y = UIH(10);
+			y = UIH(8);
 			text = "-1";
 			tooltip = "Rank Points";
 		};
-		class rankprogress: playername
+		class infostats_txt_rankprogress: infostats_txt_playername
 		{
 			idc = VN_TR_PLAYERINFO_PROGR_IDC;
-			y = UIH(11);
+			y = UIH(9);
 			text = "-1";
 			tooltip = "Rank Progress";
 		};
-		class ribbon_medal_preview: vn_mf_RscPicture
+
+		class infostats_subtitle_medals: vn_mf_RscText
+		{
+			idc = -1;
+			x = UIW(0);
+			y = UIH(11);
+			w = UIW(15);
+			h = UIH(2);
+
+			style = "0x10 + 0x0200";
+			colorText[] = {0.1,0.1,0.1,0.9};
+			colorBackground[] = {0,0,0,0.0};
+			shadow = 0;
+			text = "Your Medals";
+			font = USEDFONT_B;
+			sizeEx = TXT_L;
+		};
+
+		#define RIBBON_POS(X, Y) \
+			x = UIW((((2 + 0.25) * X))); \
+			y = UIH((13 + (((2/3.3333) + 0.25) * Y))); \
+			w = UIW(2); \
+			h = UIH((2/3.3333));
+
+		// col 1
+		class infostats_ribbon_1: vn_mf_ribbon_base {
+			idc = GET_BY_ID_VN_TR_PLAYERINFO_RIBBON_IDC(0);
+			RIBBON_POS(0, 0)
+		};
+		class infostats_ribbon_2: vn_mf_ribbon_base {
+			idc = GET_BY_ID_VN_TR_PLAYERINFO_RIBBON_IDC(1);
+			RIBBON_POS(0, 1)
+		};
+		class infostats_ribbon_3: vn_mf_ribbon_base {
+			idc = GET_BY_ID_VN_TR_PLAYERINFO_RIBBON_IDC(2);
+			RIBBON_POS(0, 2)
+		};
+		class infostats_ribbon_4: vn_mf_ribbon_base {
+			idc = GET_BY_ID_VN_TR_PLAYERINFO_RIBBON_IDC(3);
+			RIBBON_POS(0, 3)
+		};
+		class infostats_ribbon_5: vn_mf_ribbon_base {
+			idc = GET_BY_ID_VN_TR_PLAYERINFO_RIBBON_IDC(4);
+			RIBBON_POS(0, 4)
+		};
+
+		// col 2
+		class infostats_ribbon_6: vn_mf_ribbon_base {
+			idc = GET_BY_ID_VN_TR_PLAYERINFO_RIBBON_IDC(5);
+			RIBBON_POS(1, 0)
+		};
+		class infostats_ribbon_7: vn_mf_ribbon_base {
+			idc = GET_BY_ID_VN_TR_PLAYERINFO_RIBBON_IDC(6);
+			RIBBON_POS(1, 1)
+		};
+		class infostats_ribbon_8: vn_mf_ribbon_base {
+			idc = GET_BY_ID_VN_TR_PLAYERINFO_RIBBON_IDC(7);
+			RIBBON_POS(1, 2)
+		};
+		class infostats_ribbon_9: vn_mf_ribbon_base {
+			idc = GET_BY_ID_VN_TR_PLAYERINFO_RIBBON_IDC(8);
+			RIBBON_POS(1, 3)
+		};
+		class infostats_ribbon_10: vn_mf_ribbon_base {
+			idc = GET_BY_ID_VN_TR_PLAYERINFO_RIBBON_IDC(9);
+			RIBBON_POS(1, 4)
+		};
+
+		// col 3
+		class infostats_ribbon_11: vn_mf_ribbon_base {
+			idc = GET_BY_ID_VN_TR_PLAYERINFO_RIBBON_IDC(10);
+			RIBBON_POS(2, 0)
+		};
+		class infostats_ribbon_12: vn_mf_ribbon_base {
+			idc = GET_BY_ID_VN_TR_PLAYERINFO_RIBBON_IDC(11);
+			RIBBON_POS(2, 1)
+		};
+		class infostats_ribbon_13: vn_mf_ribbon_base {
+			idc = GET_BY_ID_VN_TR_PLAYERINFO_RIBBON_IDC(12);
+			RIBBON_POS(2, 2)
+		};
+		class infostats_ribbon_14: vn_mf_ribbon_base {
+			idc = GET_BY_ID_VN_TR_PLAYERINFO_RIBBON_IDC(13);
+			RIBBON_POS(2, 3)
+		};
+		class infostats_ribbon_15: vn_mf_ribbon_base {
+			idc = GET_BY_ID_VN_TR_PLAYERINFO_RIBBON_IDC(14);
+			RIBBON_POS(2, 4)
+		};
+
+		// col 4
+		class infostats_ribbon_16: vn_mf_ribbon_base {
+			idc = GET_BY_ID_VN_TR_PLAYERINFO_RIBBON_IDC(15);
+			RIBBON_POS(3, 0)
+		};
+		class infostats_ribbon_17: vn_mf_ribbon_base {
+			idc = GET_BY_ID_VN_TR_PLAYERINFO_RIBBON_IDC(16);
+			RIBBON_POS(3, 1)
+		};
+		class infostats_ribbon_18: vn_mf_ribbon_base {
+			idc = GET_BY_ID_VN_TR_PLAYERINFO_RIBBON_IDC(17);
+			RIBBON_POS(3, 2)
+		};
+		class infostats_ribbon_19: vn_mf_ribbon_base {
+			idc = GET_BY_ID_VN_TR_PLAYERINFO_RIBBON_IDC(18);
+			RIBBON_POS(3, 3)
+		};
+		class infostats_ribbon_20: vn_mf_ribbon_base {
+			idc = GET_BY_ID_VN_TR_PLAYERINFO_RIBBON_IDC(19);
+			RIBBON_POS(3, 4)
+		};
+
+		// col 5
+		class infostats_ribbon_21: vn_mf_ribbon_base {
+			idc = GET_BY_ID_VN_TR_PLAYERINFO_RIBBON_IDC(20);
+			RIBBON_POS(4, 0)
+		};
+		class infostats_ribbon_22: vn_mf_ribbon_base {
+			idc = GET_BY_ID_VN_TR_PLAYERINFO_RIBBON_IDC(21);
+			RIBBON_POS(4, 1)
+		};
+		class infostats_ribbon_23: vn_mf_ribbon_base {
+			idc = GET_BY_ID_VN_TR_PLAYERINFO_RIBBON_IDC(22);
+			RIBBON_POS(4, 2)
+		};
+		class infostats_ribbon_24: vn_mf_ribbon_base {
+			idc = GET_BY_ID_VN_TR_PLAYERINFO_RIBBON_IDC(23);
+			RIBBON_POS(4, 3)
+		};
+		class infostats_ribbon_25: vn_mf_ribbon_base {
+			idc = GET_BY_ID_VN_TR_PLAYERINFO_RIBBON_IDC(24);
+			RIBBON_POS(4, 4)
+		};
+
+		// col 6
+		class infostats_ribbon_26: vn_mf_ribbon_base {
+			idc = GET_BY_ID_VN_TR_PLAYERINFO_RIBBON_IDC(25);
+			RIBBON_POS(5, 0)
+		};
+		class infostats_ribbon_27: vn_mf_ribbon_base {
+			idc = GET_BY_ID_VN_TR_PLAYERINFO_RIBBON_IDC(26);
+			RIBBON_POS(5, 1)
+		};
+		class infostats_ribbon_28: vn_mf_ribbon_base {
+			idc = GET_BY_ID_VN_TR_PLAYERINFO_RIBBON_IDC(27);
+			RIBBON_POS(5, 2)
+		};
+		class infostats_ribbon_29: vn_mf_ribbon_base {
+			idc = GET_BY_ID_VN_TR_PLAYERINFO_RIBBON_IDC(28);
+			RIBBON_POS(5, 3)
+		};
+		class infostats_ribbon_30: vn_mf_ribbon_base {
+			idc = GET_BY_ID_VN_TR_PLAYERINFO_RIBBON_IDC(29);
+			RIBBON_POS(5, 4)
+		};
+
+		// col 7
+		class infostats_ribbon_31: vn_mf_ribbon_base {
+			idc = GET_BY_ID_VN_TR_PLAYERINFO_RIBBON_IDC(30);
+			RIBBON_POS(6, 0)
+		};
+		class infostats_ribbon_32: vn_mf_ribbon_base {
+			idc = GET_BY_ID_VN_TR_PLAYERINFO_RIBBON_IDC(31);
+			RIBBON_POS(6, 1)
+		};
+		class infostats_ribbon_33: vn_mf_ribbon_base {
+			idc = GET_BY_ID_VN_TR_PLAYERINFO_RIBBON_IDC(32);
+			RIBBON_POS(6, 2)
+		};
+		class infostats_ribbon_34: vn_mf_ribbon_base {
+			idc = GET_BY_ID_VN_TR_PLAYERINFO_RIBBON_IDC(33);
+			RIBBON_POS(6, 3)
+		};
+		class infostats_ribbon_35: vn_mf_ribbon_base {
+			idc = GET_BY_ID_VN_TR_PLAYERINFO_RIBBON_IDC(34);
+			RIBBON_POS(6, 4)
+		};
+
+		class infostats_ribbon_medal_preview: vn_mf_RscPicture
 		{
 			idc = VN_TR_PLAYERINFO_MEDAL_RIBBON_IDC;
 
 			x = UIW(0.75);
-			y = UIH(13.5);
+			y = UIH(18);
 			w = UIW(1.2);
-			h = UIH(2);
+			h = UIH(2.5);
 
 			colorText[] = {1,1,1,1};
 			colorBackground[] = {1,1,1,1};
@@ -337,12 +501,13 @@ class vn_tr_disp_showPlayerInfo
 			text = "";
 			tooltip = "";
 		};
-		class ribbon_medal_text: vn_mf_RscStructuredText
+
+		class infostats_ribbon_medal_text: vn_mf_RscStructuredText
 		{
 			idc = VN_TR_PLAYERINFO_REWARD_TEXT_IDC;
 
 			x = UIW(2.5);
-			y = UIH(14);
+			y = UIH(18.5);
 			w = UIW(12.5);
 			h = UIH(3);
 
@@ -360,166 +525,6 @@ class vn_tr_disp_showPlayerInfo
 				size = 1;
 				shadow = 0;
 			};
-		};
-
-		#define RIBBON_POS(ROW, COL) \
-			x = UIW((((2 + 0.25) * COL))); \
-			y = UIH((16.5 + (((2/3.3333) + 0.25) * ROW))); \
-			w = UIW(2); \
-			h = UIH((2/3.3333));
-
-		// col 1
-		class ribbon_1: vn_mf_ribbon_base {
-			idc = GET_BY_ID_VN_TR_PLAYERINFO_RIBBON_IDC(0);
-			RIBBON_POS(0, 0)
-		};
-		class ribbon_2: vn_mf_ribbon_base {
-			idc = GET_BY_ID_VN_TR_PLAYERINFO_RIBBON_IDC(1);
-			RIBBON_POS(1, 0)
-		};
-		class ribbon_3: vn_mf_ribbon_base {
-			idc = GET_BY_ID_VN_TR_PLAYERINFO_RIBBON_IDC(2);
-			RIBBON_POS(2, 0)
-		};
-		class ribbon_4: vn_mf_ribbon_base {
-			idc = GET_BY_ID_VN_TR_PLAYERINFO_RIBBON_IDC(3);
-			RIBBON_POS(3, 0)
-		};
-		class ribbon_5: vn_mf_ribbon_base {
-			idc = GET_BY_ID_VN_TR_PLAYERINFO_RIBBON_IDC(4);
-			RIBBON_POS(4, 0)
-		};
-
-		// col 2
-		class ribbon_6: vn_mf_ribbon_base {
-			idc = GET_BY_ID_VN_TR_PLAYERINFO_RIBBON_IDC(5);
-			RIBBON_POS(0, 1)
-		};
-		class ribbon_7: vn_mf_ribbon_base {
-			idc = GET_BY_ID_VN_TR_PLAYERINFO_RIBBON_IDC(6);
-			RIBBON_POS(1, 1)
-		};
-		class ribbon_8: vn_mf_ribbon_base {
-			idc = GET_BY_ID_VN_TR_PLAYERINFO_RIBBON_IDC(7);
-			RIBBON_POS(2, 1)
-		};
-		class ribbon_9: vn_mf_ribbon_base {
-			idc = GET_BY_ID_VN_TR_PLAYERINFO_RIBBON_IDC(8);
-			RIBBON_POS(3, 1)
-		};
-		class ribbon_10: vn_mf_ribbon_base {
-			idc = GET_BY_ID_VN_TR_PLAYERINFO_RIBBON_IDC(9);
-			RIBBON_POS(4, 1)
-		};
-
-		// col 3
-		class ribbon_11: vn_mf_ribbon_base {
-			idc = GET_BY_ID_VN_TR_PLAYERINFO_RIBBON_IDC(10);
-			RIBBON_POS(0, 2)
-		};
-		class ribbon_12: vn_mf_ribbon_base {
-			idc = GET_BY_ID_VN_TR_PLAYERINFO_RIBBON_IDC(11);
-			RIBBON_POS(1, 2)
-		};
-		class ribbon_13: vn_mf_ribbon_base {
-			idc = GET_BY_ID_VN_TR_PLAYERINFO_RIBBON_IDC(12);
-			RIBBON_POS(2, 2)
-		};
-		class ribbon_14: vn_mf_ribbon_base {
-			idc = GET_BY_ID_VN_TR_PLAYERINFO_RIBBON_IDC(13);
-			RIBBON_POS(3, 2)
-		};
-		class ribbon_15: vn_mf_ribbon_base {
-			idc = GET_BY_ID_VN_TR_PLAYERINFO_RIBBON_IDC(14);
-			RIBBON_POS(4, 2)
-		};
-
-		// col 4
-		class ribbon_16: vn_mf_ribbon_base {
-			idc = GET_BY_ID_VN_TR_PLAYERINFO_RIBBON_IDC(15);
-			RIBBON_POS(0, 3)
-		};
-		class ribbon_17: vn_mf_ribbon_base {
-			idc = GET_BY_ID_VN_TR_PLAYERINFO_RIBBON_IDC(16);
-			RIBBON_POS(1, 3)
-		};
-		class ribbon_18: vn_mf_ribbon_base {
-			idc = GET_BY_ID_VN_TR_PLAYERINFO_RIBBON_IDC(17);
-			RIBBON_POS(2, 3)
-		};
-		class ribbon_19: vn_mf_ribbon_base {
-			idc = GET_BY_ID_VN_TR_PLAYERINFO_RIBBON_IDC(18);
-			RIBBON_POS(3, 3)
-		};
-		class ribbon_20: vn_mf_ribbon_base {
-			idc = GET_BY_ID_VN_TR_PLAYERINFO_RIBBON_IDC(19);
-			RIBBON_POS(4, 3)
-		};
-
-		// col 5
-		class ribbon_21: vn_mf_ribbon_base {
-			idc = GET_BY_ID_VN_TR_PLAYERINFO_RIBBON_IDC(20);
-			RIBBON_POS(0, 4)
-		};
-		class ribbon_22: vn_mf_ribbon_base {
-			idc = GET_BY_ID_VN_TR_PLAYERINFO_RIBBON_IDC(21);
-			RIBBON_POS(1, 4)
-		};
-		class ribbon_23: vn_mf_ribbon_base {
-			idc = GET_BY_ID_VN_TR_PLAYERINFO_RIBBON_IDC(22);
-			RIBBON_POS(2, 4)
-		};
-		class ribbon_24: vn_mf_ribbon_base {
-			idc = GET_BY_ID_VN_TR_PLAYERINFO_RIBBON_IDC(23);
-			RIBBON_POS(3, 4)
-		};
-		class ribbon_25: vn_mf_ribbon_base {
-			idc = GET_BY_ID_VN_TR_PLAYERINFO_RIBBON_IDC(24);
-			RIBBON_POS(4, 4)
-		};
-
-		// col 6
-		class ribbon_26: vn_mf_ribbon_base {
-			idc = GET_BY_ID_VN_TR_PLAYERINFO_RIBBON_IDC(25);
-			RIBBON_POS(0, 5)
-		};
-		class ribbon_27: vn_mf_ribbon_base {
-			idc = GET_BY_ID_VN_TR_PLAYERINFO_RIBBON_IDC(26);
-			RIBBON_POS(1, 5)
-		};
-		class ribbon_28: vn_mf_ribbon_base {
-			idc = GET_BY_ID_VN_TR_PLAYERINFO_RIBBON_IDC(27);
-			RIBBON_POS(2, 5)
-		};
-		class ribbon_29: vn_mf_ribbon_base {
-			idc = GET_BY_ID_VN_TR_PLAYERINFO_RIBBON_IDC(28);
-			RIBBON_POS(3, 5)
-		};
-		class ribbon_30: vn_mf_ribbon_base {
-			idc = GET_BY_ID_VN_TR_PLAYERINFO_RIBBON_IDC(29);
-			RIBBON_POS(4, 5)
-		};
-
-		// col 7
-		class ribbon_31: vn_mf_ribbon_base {
-			idc = GET_BY_ID_VN_TR_PLAYERINFO_RIBBON_IDC(30);
-			RIBBON_POS(0, 6)
-		};
-		class ribbon_32: vn_mf_ribbon_base {
-			idc = GET_BY_ID_VN_TR_PLAYERINFO_RIBBON_IDC(31);
-			RIBBON_POS(1, 6)
-		};
-		class ribbon_33: vn_mf_ribbon_base {
-			idc = GET_BY_ID_VN_TR_PLAYERINFO_RIBBON_IDC(32);
-			RIBBON_POS(2, 6)
-		};
-		class ribbon_34: vn_mf_ribbon_base {
-			idc = GET_BY_ID_VN_TR_PLAYERINFO_RIBBON_IDC(33);
-			RIBBON_POS(3, 6)
-		};
-		class ribbon_35: vn_mf_ribbon_base {
-			idc = GET_BY_ID_VN_TR_PLAYERINFO_RIBBON_IDC(34);
-			RIBBON_POS(4, 6)
 		};
 
 		class lhs_back_btn: vn_mf_RscButton

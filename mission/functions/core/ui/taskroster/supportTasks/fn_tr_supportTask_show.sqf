@@ -6,7 +6,7 @@
     Description:
 		Fills the TaskRosters "Request Support Mission"-List
 		Filtered by Teams
-    
+
     Parameter(s): none
     
     Returns: nothing
@@ -16,7 +16,7 @@
 */
 
 disableSerialization;
-#include "..\..\..\..\config\ui\ui_def_base.inc"
+#include "..\..\..\..\..\config\ui\ui_def_base.inc"
 
 VN_TR_SUPREQ_CTASK_CTRL ctrlEnable false;
 //"unhide" supportRequest Page
@@ -43,5 +43,7 @@ _groupID = player getVariable ["vn_mf_db_player_group", "FAILED"];
 	_ctrl_taskSelection lnbSetData [[_index,0], (configName _x)];
 };
 
+// triggers the teams list to fill up automatically on page load
+// (teams list has an OnSelected script trigger)
 _ctrl_taskSelection lbSetCurSel 0;
 call vn_mf_fnc_tr_supportTask_selectPosition;

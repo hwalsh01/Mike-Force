@@ -105,34 +105,22 @@ class CfgFunctions
 			class ui_hud_toggle {};
 		};
 
+		// these are functions that are used outside of the taskroster UI
+		// the other task roster blocks are dedicated to each display page
 		class ui_taskroster
 		{
 			file = "functions\core\ui\taskroster";
 
+			// open on key press (default: H key)
 			class enable_task_roster {};
 
-			/* TaskRoster: */
-			class tr_cleanRightSheet {};
+			// open display if not already open
 			class tr_init {};
-			class tr_overview_init {};
-			class tr_overview_team_update {};
+		};
 
-			/* Main Info: */
-			class tr_mainInfo_show {};
-
-			/* Current Team and Changing Team */
-			class tr_teamInfo_show {};
-			class tr_teamInfo_listboxSelect {};
-			class tr_teamInfo_listboxInit {};
-
-			/* Mission List */
-			class tr_zone_change {};
-			class tr_missions_fill {};
-			class tr_missions_show {};
-			class tr_mission_setActive {};
-			class tr_listboxtask_select {};
-
-			/* Support Task Stuff */
+		class ui_taskroster_supportTasks
+		{
+			file = "functions\core\ui\taskroster\supportTasks";
 			class tr_supportTask_show {};
 			class tr_supportTask_selectTask {};
 			class tr_supportTask_selectTeam {};
@@ -141,13 +129,33 @@ class CfgFunctions
 			class tr_supportTask_create {};
 			class tr_supportTask_map_hide {};
 			class tr_getMapPosClick {};
+		};
 
-			/* Team selection */
-			class tr_selectTeam {};
-			class tr_selectTeam_init {};
-			class tr_selectTeam_set {};
+		class ui_taskroster_tasksInfo
+		{
+			file = "functions\core\ui\taskroster\tasksInfo";
+			class tr_tasksInfo_fill {};
+			class tr_tasksInfo_show {};
+			class tr_tasksInfo_setActive {};
+			class tr_tasksInfo_listbox_select {};
+		};
 
-			/* Player Info Pages */
+		class ui_taskroster_teamInfo
+		{
+			file = "functions\core\ui\taskroster\teamInfo";
+			class tr_teamInfo_show {};
+			class tr_teamInfo_changeteam_select {};
+			class tr_teamInfo_changeteam_init {};
+
+			// server side callback to player to update the team
+			// while the task roster is still displayed (so teams
+			// data updates asap in the UI)
+			class tr_teamInfo_callback_update {};
+		};
+
+		class ui_taskroster_playerInfo
+		{
+			file = "functions\core\ui\taskroster\playerInfo";
 			class tr_playerInfo_show {};
 			class tr_playerInfo_ribbon_enter {};
 			class tr_playerInfo_ribbon_exit {};
@@ -549,8 +557,6 @@ class CfgFunctions
 			class task_sec_spike_wiretap { file = "functions\tasks\secondary\fn_task_sec_spike_wiretap.sqf";};
 
 			class task_sup_brightlight { file = "functions\tasks\support\fn_task_sup_brightlight.sqf"; };
-			class task_sup_recon_area { file = "functions\tasks\support\fn_task_sup_recon_area.sqf"; };
-			class task_sup_move_to_area { file = "functions\tasks\support\fn_task_sup_move_to_area.sqf"; };
 			class task_sup_cas { file = "functions\tasks\support\fn_task_sup_cas.sqf"; };
 			class task_sup_destroy_target { file = "functions\tasks\support\fn_task_sup_destroy_target.sqf"; };
 			class task_sup_transport { file = "functions\tasks\support\fn_task_sup_transport.sqf"; };

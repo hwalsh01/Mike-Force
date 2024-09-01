@@ -107,7 +107,7 @@ class vn_tr_disp_showTeamInfo_rhs : vn_mf_RscControlsGroupNoScrollbarHV
 			text = "CHANGE TEAM";
 			font = USEDFONT;
 			sizeEx = TXT_L;
-			onButtonClick = "call vn_mf_fnc_tr_teamInfo_listboxSelect;";
+			onButtonClick = "call vn_mf_fnc_tr_teamInfo_changeteam_select;";
 			colorText[] = {0,0,0,1};
 			colorBackground[] = {0,0,0,0.1};
 		};
@@ -119,7 +119,7 @@ class vn_tr_disp_showTeamInfo
 	name = "vn_tr_disp_showTeamInfo";
 	//If already opened -> Recalling it -> Reloading the Dialog (e.g. like updating the view, without "closing" it)
 	onLoad = "[""onLoad"",_this,""vn_tr_disp_showTeamInfo"",''] call (uinamespace getvariable 'BIS_fnc_initDisplay'); call vn_mf_fnc_tr_teamInfo_show;";
-	onUnload = "[""onUnload"",_this,""vn_tr_disp_showTeamInfo"",''] call (uinamespace getvariable 'BIS_fnc_initDisplay'); [] spawn vn_mf_fnc_tr_overview_init;";
+	onUnload = "[""onUnload"",_this,""vn_tr_disp_showTeamInfo"",''] call (uinamespace getvariable 'BIS_fnc_initDisplay');";
 	idd = -1;
 	movingEnable = 1;
 	enableSimulation = 1;
@@ -148,9 +148,9 @@ class vn_tr_disp_showTeamInfo
 	class Controls
 	{
 		// Teamselection
-		// I do not know why this has to be in the main Controls class.
-		// putting it in the ControlsBackground class breaks the UI
-		// but showPlayerInfo does that fine ?!?!?
+		// @dijksterhuis: I do not know why this has to be in the main
+		// Controls class. Putting it in the ControlsBackground class
+		// breaks the UI but showPlayerInfo does that fine ?!?!?
 		class rhs: vn_tr_disp_showTeamInfo_rhs
 		{
 			idc = VN_TR_SHOWTEAMINFO_RHS_IDC;

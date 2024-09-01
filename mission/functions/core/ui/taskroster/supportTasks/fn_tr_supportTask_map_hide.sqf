@@ -15,7 +15,7 @@
 */
 
 disableSerialization;
-#include "..\..\..\..\config\ui\ui_def_base.inc"
+#include "..\..\..\..\..\config\ui\ui_def_base.inc"
 
 _markerName = format["%1_missionMarker", getPlayerUID player];
 deleteMarkerLocal _markerName;

@@ -1,10 +1,18 @@
 /*
-    File: fn_tr_mainInfo_show.sqf
+    File: fn_tr_teamInfo_show.sqf
     Author: Savage Game Design
     Public: No
     
     Description:
-		Loads up and sets the text in the Main Information Window (Teamlogo, short description).
+		Loads up and sets up the task roster disaply page for teamInfo
+
+		- LHS:
+			- Current team icon and name
+			- Current team description
+			- Current team members on server with their role icons
+			- Current count of players in specific roles, with role limits for the team
+		- RHS:
+			- Team change listbox menu
     
     Parameter(s): none
     
@@ -13,12 +21,9 @@
     Example(s): none
 */
 
-
-// TODO -- this is now the team and player roles screen. Change script/function name.
-
     
 disableSerialization;
-#include "..\..\..\..\config\ui\ui_def_base.inc"
+#include "..\..\..\..\..\config\ui\ui_def_base.inc"
 
 private _groupID = player getVariable ["vn_mf_db_player_group", "FAILED"];
 private _groupConfig = (missionConfigFile >> "gamemode" >> "teams" >> _groupID);
@@ -104,17 +109,13 @@ private _traitsPlayer = _traitConfigs select {
 /////////////////////////////////////////////////////////////////////////////////
 // RENDER DISPLAYS
 
-VN_TR_MAININFO_CTRL ctrlShow true;
+VN_TR_SHOWTEAMINFO_LHS_LOGO_CTRL ctrlSetText _groupIcon;
+VN_TR_SHOWTEAMINFO_LHS_TEAMNAME_CTRL ctrlSetStructuredText (parsetext format["<t font='tt2020base_vn_bold'>%1</t>", _groupName]);
+VN_TR_SHOWTEAMINFO_LHS_DESC_CTRL ctrlSetStructuredText (parsetext _groupDescription);
 
-VN_TR_SHOWTEAM_LHS_LOGO_CTRL ctrlSetText _groupIcon;
-VN_TR_SHOWTEAM_LHS_TEAMNAME_CTRL ctrlSetStructuredText (parsetext format["<t font='tt2020base_vn_bold'>%1</t>", _groupName]);
-VN_TR_SHOWTEAM_LHS_DESC_CTRL ctrlSetStructuredText (parsetext _groupDescription);
-
-private _displayCtrlPage = VN_DISP_TR_TASKROSTER;
-
-private _displayCtrlRoleLimits = VN_TR_MAININFO_LHS_ROLELIMITS_CTRL;
-private _displayCtrlPlayerList = VN_TR_MAININFO_GRP_PLAYERS_CTRL;
-private _displayCtrlGrpRoles = VN_TR_MAININFO_GRP_ROLES_CTRL;
+private _displayCtrlPage = VN_DISP_TR_SHOWTEAMINFO;
+private _displayCtrlRoleLimits = VN_TR_SHOWTEAMINFO_LHS_ROLELIMITS_CTRL;
+private _displayCtrlPlayerList = VN_TR_SHOWTEAMINFO_LHS_PLAYERS_CTRL;
 
 /////////////////////////////////////////////////////////////////////////////////
 // Role limits and current team player counts per role
@@ -257,78 +258,5 @@ _teamTraits apply {
 	_tgHPlayerList = _tgHPlayerList + pixelH + UIH(0.05);
 };
 
-/////////////////////////////////////////////////////////////////////////////////
-// Player roles
-
-//--- Delete old controls
-((allControls _displayCtrlPage) select {ctrlParentControlsGroup _x == _displayCtrlGrpRoles}) apply {ctrlDelete _x};
-//--- Top seperator
-private _seperator = _displayCtrlPage ctrlCreate ["vn_mf_RscText", -1, _displayCtrlGrpRoles];
-_seperator ctrlSetPosition [0, 0, UIW(15), pixelH];
-_seperator ctrlCommit 0;
-_seperator ctrlSetBackgroundColor [0,0,0,1];
-_tgH = pixelH + UIH(0.1); // keep track of the y position in the controls group for the next row
-
-if ((count _traitsPlayer) isEqualTo 0) then {
-	_traitsPlayer = [
-		createHashMapFromArray [
-			["name", "n/a"],
-			["icon", ""],
-			["text", "You haven't selected any roles."],
-			["desc", ""]
-		]
-	];
-};
-
-_traitsPlayer apply {
-
-	private _hmap = _x;
-
-	private _addH = 0; // find the highest h value of any text control
-	private _nCtrls = []; // store newly created controls
-
-	//--- Row group
-	private _ctrlSingleRoleGroup = _displayCtrlPage ctrlCreate ["vn_mf_RscControlsGroupNoScrollbarHV", -1, _displayCtrlGrpRoles];
-	_nCtrls pushBack _ctrlSingleRoleGroup;
-	_ctrlSingleRoleGroup ctrlSetPosition [0, _tgH, UIW(15), UIH(1)];
-	_ctrlSingleRoleGroup ctrlCommit 0;
-
-	//--- Role icon, column 1
-	private _ctrlRoleIcon = _displayCtrlPage ctrlCreate ["vn_mf_RscPicture", -1, _ctrlSingleRoleGroup];
-	_ctrlRoleIcon ctrlSetPosition [0, 0, UIW(1.5), UIH(1.5)];
-	_ctrlRoleIcon ctrlCommit 0;
-	_ctrlRoleIcon ctrlSetText (_hmap get "icon");
-	_ctrlRoleIcon ctrlSetTooltip ((_hmap get "text") call para_c_fnc_localize);
-	_ctrlRoleIcon ctrlSetTextColor [0,0,0,0.8];
-
-	//--- Tasks, column 2
-	private _ctrlRoleName = _displayCtrlPage ctrlCreate ["vn_mf_RscStructuredText", -1, _ctrlSingleRoleGroup];
-	_nCtrls pushBack _ctrlRoleName;
-	_ctrlRoleName ctrlSetPosition [UIW(3), 0, UIW(6.5), UIH(1)];
-	_ctrlRoleName ctrlCommit 0;
-	_ctrlRoleName ctrlSetStructuredText parseText format ["<t size='0.75'>%1</t>", (_hmap get "text")];
-	_addH = _addH max ctrlTextHeight _ctrlRoleName;
-
-	//--- Player list, column 3
-	private _ctrlDesc = _displayCtrlPage ctrlCreate ["vn_mf_RscStructuredText", -1, _ctrlSingleRoleGroup];
-	_nCtrls pushBack _ctrlDesc;
-	_ctrlDesc ctrlSetPosition [UIW(9), 0, UIW(6.5), UIH(1)];
-	_ctrlDesc ctrlCommit 0;
-	_ctrlDesc ctrlSetStructuredText parseText format ["<t size='0.75'>%1</t>", (_hmap get "desc")];
-
-	_addH = _addH max ctrlTextHeight _ctrlDesc;
-	_addH = _addH max UIH(1.5);
-	_nCtrls apply {
-		_x ctrlSetPositionH _addH;
-		_x ctrlCommit 0;
-	};
-	_tgH = _tgH + _addH + UIH(0.1);
-
-	//--- Seperator between roles
-	_seperator = _displayCtrlPage ctrlCreate ["RscText", -1, _displayCtrlGrpRoles];
-	_seperator ctrlSetPosition [0, _tgH, UIW(15), pixelH];
-	_seperator ctrlCommit 0;
-	_seperator ctrlSetBackgroundColor [0,0,0,1];
-	_tgH = _tgH + pixelH + UIH(0.1);
-
-};
+// right hand side -- change team listbox
+call vn_mf_fnc_tr_teamInfo_changeteam_init;

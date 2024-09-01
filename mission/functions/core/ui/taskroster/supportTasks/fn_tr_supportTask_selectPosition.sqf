@@ -16,7 +16,7 @@
 */
 
 disableSerialization;
-#include "..\..\..\..\config\ui\ui_def_base.inc"
+#include "..\..\..\..\..\config\ui\ui_def_base.inc"
 
 _ctrl_map = VN_DISP_TR_SUPREQ ctrlCreate ["vn_tr_supportRequest_miniMapAA", VN_TR_SUPREQ_MAP_IDC];
 
