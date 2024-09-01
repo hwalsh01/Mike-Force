@@ -107,7 +107,7 @@ private _other_messages = [
     "Radio Tap: Wiretapping radio sets at sites can now reveal all AO sites. But the locations are less accurate than the intel.",
     "Camps: Watch out for traps at campsites ...",
     "Camps: Mine Detectors have a 15m detection radius while Trap Kits only have a 5m detection radius. Morale of the story: use Mine Detectors!",
-    "Camps: Always remember to turn on your Mine Detector before you step off!",
+    "Camps: Always remember to turn on your Mine Detector before you step off!"
     // --- misc
     // "Be a bro.",
     // "Be a bro, be like John the GI.",
