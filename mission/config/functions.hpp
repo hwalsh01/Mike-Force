@@ -27,6 +27,7 @@ class CfgFunctions
 			class player_within_radius {};
 			class check_side {};
 			class range {};
+			class color_confname_to_rgba {};
 		};
 
 		class core_init
@@ -104,29 +105,22 @@ class CfgFunctions
 			class ui_hud_toggle {};
 		};
 
+		// these are functions that are used outside of the taskroster UI
+		// the other task roster blocks are dedicated to each display page
 		class ui_taskroster
 		{
 			file = "functions\core\ui\taskroster";
 
+			// open on key press (default: H key)
 			class enable_task_roster {};
 
-			/* TaskRoster: */
-			class tr_cleanRightSheet {};
+			// open display if not already open
 			class tr_init {};
-			class tr_overview_init {};
-			class tr_overview_team_update {};
+		};
 
-			/* Main Info: */
-			class tr_mainInfo_show {};
-
-			/* Mission List */
-			class tr_zone_change {};
-			class tr_missions_fill {};
-			class tr_missions_show {};
-			class tr_mission_setActive {};
-			class tr_listboxtask_select {};
-
-			/* Support Task Stuff */
+		class ui_taskroster_supportTasks
+		{
+			file = "functions\core\ui\taskroster\supportTasks";
 			class tr_supportTask_show {};
 			class tr_supportTask_selectTask {};
 			class tr_supportTask_selectTeam {};
@@ -135,17 +129,37 @@ class CfgFunctions
 			class tr_supportTask_create {};
 			class tr_supportTask_map_hide {};
 			class tr_getMapPosClick {};
+		};
 
-			/* Team selection */
-			class tr_selectTeam {};
-			class tr_selectTeam_init {};
-			class tr_selectTeam_set {};
+		class ui_taskroster_tasksInfo
+		{
+			file = "functions\core\ui\taskroster\tasksInfo";
+			class tr_tasksInfo_fill {};
+			class tr_tasksInfo_show {};
+			class tr_tasksInfo_setActive {};
+			class tr_tasksInfo_listbox_select {};
+		};
 
-			/* Character Info */
-			class tr_characterInfo_show {};
-			class tr_characterInfo_ribbon_enter {};
-			class tr_characterInfo_ribbon_exit {};
-			class tr_characterInfo_ribbon_setIcon {};
+		class ui_taskroster_teamInfo
+		{
+			file = "functions\core\ui\taskroster\teamInfo";
+			class tr_teamInfo_show {};
+			class tr_teamInfo_changeteam_select {};
+			class tr_teamInfo_changeteam_init {};
+
+			// server side callback to player to update the team
+			// while the task roster is still displayed (so teams
+			// data updates asap in the UI)
+			class tr_teamInfo_callback_update {};
+		};
+
+		class ui_taskroster_playerInfo
+		{
+			file = "functions\core\ui\taskroster\playerInfo";
+			class tr_playerInfo_show {};
+			class tr_playerInfo_ribbon_enter {};
+			class tr_playerInfo_ribbon_exit {};
+			class tr_playerInfo_ribbon_setIcon {};
 		};
 
 		class ui_timerOverlay
