@@ -28,8 +28,10 @@ class vn_tr_missionInfoPolaroid_base : vn_mf_RscControlsGroupNoScrollbarHV
 		class vn_tr_missionInfo_miniMap: vn_mf_RscMapControl
 		{
 			idc = VN_TR_ACTIVETASKS_RHS_MAP_IDC;
-			x = UIW(18);
-			y = UIH(17.65);
+			// x = UIW(18);
+			// y = UIH(17.65);
+			x = UIX_CR(1.5);
+			y = UIY_CU(-5.25)
 			w = UIW(9.9);
 			h = UIH(6.9);
 

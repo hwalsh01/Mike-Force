@@ -99,8 +99,8 @@ class vn_tr_disp_showTeamInfo_rhs : vn_mf_RscControlsGroupNoScrollbarHV
 		{
 			idc = VN_TR_SHOWTEAMINFO_RHS_CHANGETEAM_BUTTON_IDC;
 
-			x = UIX_CL(4.5);
-			y = UIY_CU(-8.5);
+			x = UIW(11.5);
+			y = UIH(21);
 			w = UIW(6);
 			h = UIH(1.5);
 

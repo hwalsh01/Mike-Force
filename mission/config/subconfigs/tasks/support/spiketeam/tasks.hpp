@@ -57,7 +57,21 @@ class support_st_searchAndDestroy : support_task
 	taskdesc = "%1 has requested you destroy the gun emplacements at this position.";
 	tasktype = "box";
 	taskgroups[] = {"SpikeTeam", "SASR", "Frogmen", "TigerForce"};
-	requestgroups[] = {"MACV", "ACAV", "MikeForce", "MilitaryPolice", "3rdMEU",  "QuarterHorse", "Frogmen",  "7thCav", "633rdCSG", "GreenHornets", "Muskets", "SatansAngels"};
+	requestgroups[] = {
+		"MACV",
+		"ARVN",
+		"ACAV",
+		"MikeForce",
+		"MilitaryPolice",
+		"3rdMEU",
+		"QuarterHorse",
+		"Frogmen",
+		"7thCAV",
+		"633rdCSG",
+		"GreenHornets",
+		"Muskets",
+		"SatansAngels"
+	};
 	rankpoints = 10;
 	taskprogress = 0;
 

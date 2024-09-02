@@ -74,8 +74,8 @@ class vn_tr_disp_requestSupportMap_RHS : vn_mf_RscControlsGroupNoScrollbarHV
 		{
 			idc = VN_TR_SUPREQ_ACCEPT_IDC;
 
-			x = UIX_CL(4.5);
-			y = UIY_CU(-8.5);
+			x = UIW(12);
+			y = UIH(21);
 			w = UIW(6);
 			h = UIH(1.5);
 
@@ -90,8 +90,8 @@ class vn_tr_disp_requestSupportMap_RHS : vn_mf_RscControlsGroupNoScrollbarHV
 		{
 			idc = VN_TR_SUPREQ_ABORT_IDC;
 
-			x = UIX_CL(14.5);
-			y = UIY_CU(-8.5);
+			x = UIW(2);
+			y = UIH(21);
 			w = UIW(6);
 			h = UIH(1.5);
 

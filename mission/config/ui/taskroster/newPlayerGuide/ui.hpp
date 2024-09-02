@@ -26,13 +26,21 @@ class vn_tr_disp_showNewPlayerGuide_rhs : vn_mf_RscControlsGroupNoScrollbarHV
 			tooltip = "";
 		};
 
+
+		#define RHS_IMAGE_Y_FROM_NUMB(N) \
+			UIH((4 + (6 * N)))
+
+		#define RHS_CAPTION_Y_FROM_NUMB(N) \
+			UIH((4 - 0.75 + (6 * N)))
+
+
 		// ARSENAL //////////////////////////////////////////////////////////////////////
 
 		class rhs_img_arsenal: vn_mf_RscPicture
 		{
 			idc = -1;
 			x = UIW(13);
-			y = UIH(4.25);
+			y = RHS_IMAGE_Y_FROM_NUMB(0);
 			w = UIW(5);
 			h = UIH(5);
 			text = "custom\taskroster\help\img_newplayer_arsenal.paa";
@@ -43,9 +51,9 @@ class vn_tr_disp_showNewPlayerGuide_rhs : vn_mf_RscControlsGroupNoScrollbarHV
 		{
 			idc = -1;
 			x = UIW(2);
-			y = UIH(4.25);
+			y = RHS_IMAGE_Y_FROM_NUMB(0);
 			w = UIW(11.25);
-			h = UIH(5);
+			h = UIH(6);
 
 			colorText[] = {0.1,0.1,0.1,0.9};
 			colorBackground[] = {0,0,0,0.0};
@@ -55,7 +63,7 @@ class vn_tr_disp_showNewPlayerGuide_rhs : vn_mf_RscControlsGroupNoScrollbarHV
 			class Attributes
 			{
 				align = "left";
-				valign = "middle";
+				valign = "top";
 				color = "#000000";
 				colorLink = "#D09B43";
 				font = USEDFONT;
@@ -67,10 +75,11 @@ class vn_tr_disp_showNewPlayerGuide_rhs : vn_mf_RscControlsGroupNoScrollbarHV
 		class rhs_img_arsenal_caption: vn_mf_RscText
 		{
 			idc = -1;
-			x = UIW(14);
-			y = UIH(3.5);
+			x = UIW(12.75);
+			y = RHS_CAPTION_Y_FROM_NUMB(0);
 			w = UIW(5);
 			h = UIH(1);
+			font = USEDFONT_B;
 			sizeEx = TXT_S;
 			colorText[] = {0, 0, 0, 1};
 			text = "Arsenal";
@@ -78,56 +87,44 @@ class vn_tr_disp_showNewPlayerGuide_rhs : vn_mf_RscControlsGroupNoScrollbarHV
 
 		// TELEPORTER ///////////////////////////////////////////////////////////////////
 
-		class rhs_img_teleporter: vn_mf_RscPicture
+		class rhs_img_teleporter: rhs_img_arsenal
 		{
-			idc = -1;
-			x = UIW(13);
-			y = UIH(10);
-			w = UIW(5);
-			h = UIH(5);
-
+			y = RHS_IMAGE_Y_FROM_NUMB(1);
 			text = "custom\taskroster\help\img_newplayer_map.paa";
 			tooltip = "A Teleporter Map Board.";
 		};
 
 		class rhs_img_teleporter_caption: rhs_img_arsenal_caption
 		{
-			x = UIW(13.5);
-			y = UIH(9.2);
+			y = RHS_CAPTION_Y_FROM_NUMB(1);
 			text = "Teleporter";
 		};
         
         class rhs_helptext_teleporter: rhs_helptext_arsenal
         {
-            y = UIH(11.25);
+			y = RHS_IMAGE_Y_FROM_NUMB(1);
             text = "This is a Map Board, use these to quickly teleport to numerous locations on base. Use the 6 key to interact with it.";
         };
 
      	// HELO PADS ////////////////////////////////////////////////////////////////////
 
-		class rhs_img_helopads: vn_mf_RscPicture
+		class rhs_img_helopads: rhs_img_arsenal
 		{
-			idc = -1;
-			x = UIW(13);
-			y = UIH(15.75);
-			w = UIW(5);
-			h = UIH(5);
-
+			y = RHS_IMAGE_Y_FROM_NUMB(2);
 			text = "custom\taskroster\help\img_newplayer_pads.paa";
 			tooltip = "Pick up location.";
 		};
 
 		class rhs_img_helopads_caption: rhs_img_arsenal_caption
 		{
-			x = UIW(13.5);
-			y = UIH(15);
+			y = RHS_CAPTION_Y_FROM_NUMB(2);
 			text = "Helo Pickup";
 		};
 	    
 	    class rhs_helptext_helopads: rhs_helptext_arsenal
         {
-            y = UIH(16.5);
-            text = "These are the helo pick-up pads, near Green Hornets. Switch to the Air Channel with the period key and hail a Green Hornet pilot to get yourself into the fight!";
+			y = RHS_IMAGE_Y_FROM_NUMB(2);
+            text = "These are the helo pick-up pads, near Green Hornets. Switch to the Air Channel with the period key and ask a Green Hornet pilot to get you into the fight!";
         };
 	};
 };
@@ -181,15 +178,23 @@ class vn_tr_disp_showNewPlayerGuide
 			sizeEx = TXT_L;
 		};
 
+		#define LHS_IMAGE_Y_FROM_NUMB(N) \
+			UIY_CU((8.25 - (6 * N)))
+
+		#define LHS_CAPTION_Y_FROM_NUMB(N) \
+			UIY_CU((8.25 + 0.75 - (6 * N)))
+
      	// ZONES ////////////////////////////////////////////////////////////////////////
 
 		class rhs_img_zones: vn_mf_RscPicture
 		{
 			idc = -1;
-			x = UIW(-1);
-			y = UIH(4.75);
+
+			x = UIX_CL(17.5);
+			y = LHS_IMAGE_Y_FROM_NUMB(0);
 			w = UIW(5);
 			h = UIH(5);
+
 			text = "custom\taskroster\help\img_newplayer_zone.paa";
 			tooltip = "Zones to be taken.";
 		};
@@ -197,10 +202,11 @@ class vn_tr_disp_showNewPlayerGuide
 		class rhs_img_zones_caption: vn_mf_RscText
 		{
 			idc = -1;
-			x = UIW(-0.75);
-			y = UIH(4);
-			w = UIW(5);
-			h = UIH(1);
+
+			x = UIX_CL(17.75);
+			y = LHS_CAPTION_Y_FROM_NUMB(0);
+
+			font = USEDFONT_B;
 			sizeEx = TXT_S;
 			colorText[] = {0, 0, 0, 1};
 			text = "Combat Zones";
@@ -209,20 +215,21 @@ class vn_tr_disp_showNewPlayerGuide
 		class rhs_helptext_zones: vn_mf_RscStructuredText
 		{
 			idc = -1;
-			x = UIW(4);
-			y = UIH(4.75);
+
+			x = UIX_CL(12.5);
+			y = LHS_IMAGE_Y_FROM_NUMB(0);
 			w = UIW(11.5);
 			h = UIH(5);
 
 			colorText[] = {0.1,0.1,0.1,0.9};
 			colorBackground[] = {0,0,0,0.0};
-			text = "These are the areas on the map to take. Do not enter blue zones. Yellow circled zones are the active ao. When all sites are destroyed inside the zone the defence phase starts. Green zones are completed.";
+			text = "Zones are where the action happens. Active zones are marked by task markers. Green zones are completed. Do not enter blue zones. Destroy all sites in active red zones. Defend yellow zones from counterattack. ";
 			size = UIH(0.69);
 			tooltip = "";
 			class Attributes
 			{
 				align = "left";
-				valign = "middle";
+				valign = "top";
 				color = "#000000";
 				colorLink = "#D09B43";
 				font = USEDFONT;
@@ -233,13 +240,9 @@ class vn_tr_disp_showNewPlayerGuide
 
      	// MAP LEGEND ///////////////////////////////////////////////////////////////////
 
-		class rhs_img_legend: vn_mf_RscPicture
+		class rhs_img_legend: rhs_img_zones
 		{
-			idc = -1;
-			x = UIW(-1);
-			y = UIH(10.5);
-			w = UIW(5);
-			h = UIH(5);
+			y = LHS_IMAGE_Y_FROM_NUMB(1);
 
 			text = "custom\taskroster\help\img_newplayer_legend.paa";
 			tooltip = "Map Legend.";
@@ -247,28 +250,22 @@ class vn_tr_disp_showNewPlayerGuide
 
 		class rhs_img_legend_caption: rhs_img_zones_caption
 		{
-			x = UIW(-0.60);
-			y = UIH(9.7);
+			y = LHS_CAPTION_Y_FROM_NUMB(1);
 			w = UIW(5);
-			h = UIH(1);
 			text = "Map Legend";
 		};
 
         class rhs_helptext_zones_legend: rhs_helptext_zones
         {
-            y = UIH(11);
+			y = LHS_IMAGE_Y_FROM_NUMB(1);
             text = "This is a map legend and can usually be found somewhere on the map. Use this to help navigate yourself around the base and the rest of the map.";
         };
 
 		// CAS IS WHITELISTED PLEASE STOP ASKING ////////////////////////////////////////
 
-		class rhs_img_cas: vn_mf_RscPicture
+		class rhs_img_cas: rhs_img_zones
 		{
-			idc = -1;
-			x = UIW(-1);
-			y = UIH(16.25);
-			w = UIW(5);
-			h = UIH(5);
+			y = LHS_IMAGE_Y_FROM_NUMB(2);
 
 			text = "custom\taskroster\help\img_newplayer_cas.paa";
 			tooltip = "CAS is whitelisted.";
@@ -276,16 +273,13 @@ class vn_tr_disp_showNewPlayerGuide
 
 		class rhs_img_cas_caption: rhs_img_zones_caption
 		{
-			x = UIW(-0.75);
-			y = UIH(15.5);
-			w = UIW(5);
-			h = UIH(1);
+			y = LHS_CAPTION_Y_FROM_NUMB(2);
 			text = "CAS and Arty";
 		};
      
         class rhs_helptext_cas: rhs_helptext_zones
         {
-            y = UIH(16.50);
+			y = LHS_IMAGE_Y_FROM_NUMB(2);
             text = "CAS and heavy artilley are whitelisted, this is to prevent misuse and abuse of these powerful assets to improve all players experience. Enquire in Discord for how to join.";
         };
 		
