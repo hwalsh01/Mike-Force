@@ -111,7 +111,7 @@ class vn_tr_disp_showRequestSupport
 	name = "vn_tr_disp_showRequestSupport";
 	//If already opened -> Recalling it -> Reloading the Dialog (e.g. like updating the view, without "closing" it)
 	onLoad = "[""onLoad"",_this,""vn_tr_disp_showRequestSupport"",''] call 	(uinamespace getvariable 'BIS_fnc_initDisplay'); call vn_mf_fnc_tr_supportTask_show;";
-	onUnload = "[""onUnload"",_this,""vn_tr_disp_showRequestSupport"",''] call 	(uinamespace getvariable 'BIS_fnc_initDisplay');";
+	onUnload = "[""onUnload"",_this,""vn_tr_disp_showRequestSupport"",''] call 	(uinamespace getvariable 'BIS_fnc_initDisplay'); call vn_mf_fnc_tr_supportTask_map_hide;";
 	idd = -1;
 	movingEnable = 1;
 	enableSimulation = 1;
