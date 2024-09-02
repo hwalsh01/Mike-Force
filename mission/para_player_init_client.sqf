@@ -292,6 +292,13 @@ cutText ["", "BLACK IN", 4];
 				"<t align='left'>4. Click 'OK'.</t><br/>"
 			] joinString ""
 		);
+
+		// hints do not disappear when other UI elements are open.
+		// their default 30 second timer gets paused.
+		[] spawn {
+			sleep 10;
+			hintSilent "";
+		};
 	};
 };
 
