@@ -28,6 +28,7 @@ class CfgFunctions
 			class check_side {};
 			class range {};
 			class color_confname_to_rgba {};
+			class sample_positions_circle {};
 		};
 
 		class core_init
@@ -194,6 +195,7 @@ class CfgFunctions
 			class action_eat_food {};
 			class action_lower_flag {};
 			class action_reraise_flag {};
+			class action_recover_pilot {};
 			class action_curator_force_recover_wrecked_vehicle {};
 			class action_curator_force_reset_idle_vehicle {};
 			class action_curator_lock_spawner {};
@@ -323,6 +325,7 @@ class CfgFunctions
 			file = "functions\systems\sites\create\compositions";
 			class sites_create_compositions_aa {};
 			class sites_create_compositions_camp {};
+			class sites_create_compositions_wreck {};
 			class sites_create_compositions_factory {};
 			class sites_create_compositions_hq {};
 			class sites_create_compositions_mortar {};
@@ -343,6 +346,7 @@ class CfgFunctions
 			class sites_create_site_aa {};
 			class sites_create_site_artillery {};
 			class sites_create_site_camp {};
+			class sites_create_site_wreck {};
 			class sites_create_site_water_supply {};
 			class sites_create_site_tunnel {};
 			class sites_create_site_hq {};
