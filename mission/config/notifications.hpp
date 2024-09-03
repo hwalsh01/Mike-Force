@@ -437,4 +437,25 @@ class CfgNotifications
 		description = "Not whitelisted for %1 -- setting team to Mike Force.";
 	};
 
+	class ErrLightsourceAttachChemlightNotPermitted {
+		title = "Light Source Attachment";
+		description = "Only Spike Team units can attach chemlights.";
+		priority = 3;
+		color[] = NOTIFY_COLOR_RED_HEAVY;
+		iconPicture = "\A3\ui_f\data\map\mapcontrol\taskIconFailed_ca.paa";
+	};
+
+	class LightsourceAttachLosingEnergy : ErrLightsourceAttachChemlightNotPermitted {
+		title = "Light Source Attachment";
+		description = "Attached light source is running out of battery/energy.";
+		color[] = NOTIFY_COLOR_ORANGE;
+		iconPicture = "\A3\ui_f\data\Map\Markers\Military\warning_ca.paa";
+	};
+
+	class LightsourceAttachOutOfEnergy : ErrLightsourceAttachChemlightNotPermitted {
+		title = "Light Source Attachment";
+		description = "Attached light source ran out of battery/energy!";
+		iconPicture = "\A3\ui_f\data\Map\Markers\Military\warning_ca.paa";
+	};
+
 };

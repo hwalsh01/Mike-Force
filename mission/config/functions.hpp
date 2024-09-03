@@ -28,6 +28,7 @@ class CfgFunctions
 			class check_side {};
 			class range {};
 			class color_confname_to_rgba {};
+			class rExecServerToGlobal_playerHost_or_dedicated {};
 		};
 
 		class core_init
@@ -216,6 +217,25 @@ class CfgFunctions
 			file = "functions\systems\arsenal_cleanup";
 			class arsenal_trash_cleanup_init {};
 			class arsenal_trash_cleanup {};
+		};
+
+		class system_attachments {
+			file = "functions\systems\attachments";
+			class attachments_client_attach_flashlight {};
+			class attachments_client_attach_chemlight {};
+			class attachments_server_attach_flashlight {};
+			class attachments_server_attach_chemlight {};
+			class attachments_global_get_jip_id {};
+			class attachments_global_reset_jip_id {};
+			class attachments_global_delete_objects {};
+			class attachments_client_battery_monitor_init {};
+			class attachments_client_battery_monitor_job {};
+		};
+
+		class system_attachments_lightsources {
+			file = "functions\systems\attachments\lightsources";
+			class attachments_lightsources_flashlight {};
+			class attachments_lightsources_chemlight {};
 		};
 
 		class system_awards {

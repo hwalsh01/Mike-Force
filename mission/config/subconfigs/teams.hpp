@@ -140,6 +140,7 @@ class MikeForce
         harassable = true;
         scout = true;
         increasedBuildRate = false;
+        canAttachChemlights = false;
     };
 
     //Function Calls on team Join
@@ -181,6 +182,7 @@ class SpikeTeam
         scout = true;
         scout_multiple = true;
         increasedBuildRate = false;
+        canAttachChemlights = true;
     };
 
     //Function Calls on team Join
@@ -221,6 +223,7 @@ class ACAV
         harassable = true;
         scout = false;
         increasedBuildRate = false;
+        canAttachChemlights = false;
     };
 
     //Function Calls on team Join
@@ -261,6 +264,7 @@ class GreenHornets
         harassable = true;
         scout = false;
         increasedBuildRate = false;
+        canAttachChemlights = false;
     };
 
     //Function Calls on team Join
@@ -301,6 +305,7 @@ class 3rdMEU
         harassable = true;
         scout = false;
         increasedBuildRate = true;
+        canAttachChemlights = false;
     };
 
     //Function Calls on team Join
@@ -341,6 +346,7 @@ class MilitaryPolice
         harassable = true;
         scout = false;
         increasedBuildRate = true;
+        canAttachChemlights = false;
     };
 
     //Function Calls on team Join
@@ -381,6 +387,7 @@ class QuarterHorse
         harassable = true;
         scout = false;
         increasedBuildRate = true;
+        canAttachChemlights = false;
     };
 
     //Function Calls on team Join
@@ -422,6 +429,7 @@ class Frogmen
         scout = true;
         scout_multiple = true;
         increasedBuildRate = true;
+        canAttachChemlights = true;
     };
 
     //Function Calls on team Join
@@ -462,6 +470,7 @@ class Muskets
         harassable = true;
         scout = false;
         increasedBuildRate = true;
+        canAttachChemlights = false;
     };
 
     //Function Calls on team Join
@@ -502,6 +511,7 @@ class SatansAngels
         harassable = true;
         scout = false;
         increasedBuildRate = true;
+        canAttachChemlights = false;
     };
 
     //Function Calls on team Join
@@ -542,6 +552,7 @@ class 633rdCSG
         harassable = true;
         scout = false;
         increasedBuildRate = true;
+        canAttachChemlights = false;
     };
 
     //Function Calls on team Join
@@ -582,6 +593,7 @@ class 7thCAV
         harassable = true;
         scout = false;
         increasedBuildRate = true;
+        canAttachChemlights = false;
     };
 
     //Function Calls on team Join
@@ -623,6 +635,7 @@ class TigerForce
         scout = true;
         scout_multiple = true;
         increasedBuildRate = true;
+        canAttachChemlights = true;
     };
 
     //Function Calls on team Join
@@ -664,6 +677,7 @@ class SASR
         scout = true;
         scout_multiple = true;
         increasedBuildRate = true;
+        canAttachChemlights = true;
     };
 
     //Function Calls on team Join
@@ -705,6 +719,7 @@ class ARVN
         scout = true;
         scout_multiple = true;
         increasedBuildRate = true;
+        canAttachChemlights = false;
     };
 
     //Function Calls on team Join
@@ -745,6 +760,7 @@ class MACV
         harassable = false;
         scout = true;
         increasedBuildRate = true;
+        canAttachChemlights = true;
     };
 
     //Function Calls on team Join
@@ -784,6 +800,7 @@ class DacCong
         harassable = false;
         scout = false;
         increasedBuildRate = true;
+        canAttachChemlights = true;
     };
 
     //Function Calls on team Join
@@ -824,6 +841,7 @@ class PressCorp
         harassable = false;
         scout = false;
         increasedBuildRate = true;
+        canAttachChemlights = false;
     };
 
     //Function Calls on team Join

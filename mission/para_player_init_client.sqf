@@ -405,3 +405,7 @@ if hasInterface then
 
 // display location + current game time
 call vn_mf_fnc_display_location_time;
+
+// monitor "life" of attached light source objects on a player
+// sends a warning when about to run out, and then removes them
+call vn_mf_fnc_attachments_client_battery_monitor_init;
