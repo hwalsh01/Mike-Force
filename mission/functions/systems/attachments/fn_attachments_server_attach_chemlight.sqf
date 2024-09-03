@@ -24,7 +24,7 @@
 
 params ["_player", "_classname"];
 
-private _chemlight = _classname createVehicle (_player modelToWorld [0, 0, -1]); 
+private _chemlight = _classname createVehicle (_player modelToWorld [0, 0, -2]);
 _chemlight attachTo [_player,  [0, 0.15, 0.1], "Pelvis", true];
 _chemlight setDir 280;
 _chemlight setPosWorld getPosWorld _chemlight;
@@ -41,7 +41,9 @@ _lightSourceTwo setPosWorld getPosWorld _lightSourceTwo;
 // jip executed to ensure joining players also get the attached light source
 private _jipId = [_player] call vn_mf_fnc_attachments_global_get_jip_id;
 
-[[_lightSourceOne, _lightSourceTwo], _classname] remoteExec [
-  "vn_mf_fnc_attachments_lightsources_chemlight", -2, _jipId
-];
-  
+// generate the light effects locally with a global RemoteExec
+[
+    [[_lightSourceOne, _lightSourceTwo], _classname],
+    "vn_mf_fnc_attachments_lightsources_chemlight",
+    _jipId
+] call vn_mf_fnc_rExecServerToGlobal_playerHost_or_dedicated;

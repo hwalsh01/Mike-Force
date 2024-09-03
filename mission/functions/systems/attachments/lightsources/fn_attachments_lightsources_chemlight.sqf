@@ -51,18 +51,23 @@ switch (true) do {
   };
 };
 
-// ambient light creating some 360 visibility
+// very dim light 270 degrees around front of player extending out about 10-20m
+// meant to be an "aura" of light emitted from player's chemlight lighting up the
+// general vicinity
 private _lightSourceOne = _lightSources select 0;
+_lightSourceOne setLightIntensity 900;
+_lightSourceOne setLightAmbient _colorAmbient;
+_lightSourceOne setLightColor _colorLight;
+_lightSourceOne setLightConePars [270, 2, 0.75];
+_lightSourceOne setLightAttenuation [0, 50, 4, 3, 0, 15];
+
+// light up the area directly in front of the player
+// simulate the chemlight's light landing on ground in front of player
+// (arma just spams 360 of light from chemlights)
 private _lightSourceTwo = _lightSources select 1;
+_lightSourceTwo setLightIntensity 900;
+_lightSourceTwo setLightAmbient _colorAmbient;
+_lightSourceTwo setLightColor _colorLight;
+_lightSourceTwo setLightConePars [180, 30, 20];
 
-_lightSourceOne setLightIntensity 400;
-_lightSourceOne setLightAmbient _colorAmbient; 
-_lightSourceOne setLightColor _colorLight; 
-_lightSourceOne setLightConePars [270, 2, 1];
-_lightSourceOne setLightAttenuation [1, 10, 4, 3, 1, 2.5];
-
-// forward facing light source to let players see things in front of them
-_lightSourceTwo setLightIntensity 2500; 
-_lightSourceTwo setLightAmbient _colorAmbient; 
-_lightSourceTwo setLightColor _colorLight; 
-_lightSourceTwo setLightConePars [360, 20, 15];
+nil;

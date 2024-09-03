@@ -28,6 +28,7 @@ class CfgFunctions
 			class check_side {};
 			class range {};
 			class color_confname_to_rgba {};
+			class rExecServerToGlobal_playerHost_or_dedicated {};
 		};
 
 		class core_init
