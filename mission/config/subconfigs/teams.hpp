@@ -100,6 +100,13 @@ class TeamName
 };
 */
 
+
+#define SIDE_WEST "west"
+#define SIDE_EAST "east"
+#define IS_WLU 1
+#define NOT_WLU 0
+
+
 class MikeForce
 {
     name = "Mike Force [Infantry]";
@@ -109,6 +116,8 @@ class MikeForce
     color = "ColorBlue";
     colorRGBA[] = {0, 0, 1, 1};
     description = "Sweep and clear areas; assault objectives and defend friendly positions.";
+    side = SIDE_WEST;
+    wlu = NOT_WLU;
 
     class rolelimits 
     {
@@ -148,6 +157,8 @@ class SpikeTeam
     color = "ColorUNKNOWN";
     colorRGBA[] = {0.7,0.6,0,1};
     description = "Reconnaissance; ambushing and assaulting objectives.";
+    side = SIDE_WEST;
+    wlu = NOT_WLU;
 
     class rolelimits 
     {
@@ -188,6 +199,8 @@ class ACAV
     color = "ColorOrange";
     colorRGBA[] = {0.85, 0.4, 0, 1};
     description = "Combat engineering, artillery fire support and armour support.";
+    side = SIDE_WEST;
+    wlu = NOT_WLU;
 
     class rolelimits 
     {
@@ -227,7 +240,9 @@ class GreenHornets
     color = "ColorIndependent";
     colorRGBA[] = {0, 1, 0, 1};
     description = "Helicopter based troop transport, resupply and reconnaissance.";
-    
+    side = SIDE_WEST;
+    wlu = NOT_WLU;
+
     class rolelimits 
     {
         medic = 40;
@@ -266,6 +281,8 @@ class 3rdMEU
     color = "ColorBlue";
     colorRGBA[] = {0, 0.3, 0.6, 1};
     description = "Forged in the crucible of history and honed through decades of service, the 31st MEU stands as a symbol of unwavering dedication and prowess in the world of military operations.";
+    side = SIDE_WEST;
+    wlu = IS_WLU;
 
     class rolelimits 
     {
@@ -305,6 +322,8 @@ class MilitaryPolice
     color = "ColorBlue";
     colorRGBA[] = {0, 0, 1, 1};
     description = "We are a tribute unit for the 716th Military Police Battalion (Saigon Warriors) that focus on Military Police action in combat and in a garrison role.";
+    side = SIDE_WEST;
+    wlu = IS_WLU;
 
     class rolelimits 
     {
@@ -344,6 +363,8 @@ class QuarterHorse
     color = "ColorOrange";
     colorRGBA[] = {0.85, 0.4, 0, 1};
     description = "11th ACR is a multi-component combat brigade with a special emphasis on combat engineering, armored warfare, and firesupport.";
+    side = SIDE_WEST;
+    wlu = IS_WLU;
 
     class rolelimits 
     {
@@ -383,6 +404,8 @@ class Frogmen
     color = "ColorOrange";
     colorRGBA[] = {0.85, 0.4, 0, 1};
     description = "UDT is a USN based spike team. Before there were SEALs, there was UDT.";
+    side = SIDE_WEST;
+    wlu = IS_WLU;
 
     class rolelimits 
     {
@@ -423,6 +446,8 @@ class Muskets
     color = "ColorIndependent";
     colorRGBA[] = {0, 1, 0, 1};
     description = "The 176th Assault Helicopter Company, 3rd Gunship Platoon, also known as the 'Muskets' is a Close Air Support (CAS) unit that provides air support using a variety of attack helicopters.";
+    side = SIDE_WEST;
+    wlu = IS_WLU;
     
     class rolelimits 
     {
@@ -462,6 +487,8 @@ class SatansAngels
     color = "ColorIndependent";
     colorRGBA[] = {0, 1, 0, 1};
     description = "An advanced air superiority squadron providing close air support and air superiority.";
+    side = SIDE_WEST;
+    wlu = IS_WLU;
     
     class rolelimits 
     {
@@ -501,6 +528,8 @@ class 633rdCSG
     color = "ColorBlue";
     colorRGBA[] = {0, 1, 0, 1};
     description = "Support functions with a focus on aviation support and logistics. We do what others don't want to do or are deemed dangerous.";
+    side = SIDE_WEST;
+    wlu = IS_WLU;
     
     class rolelimits 
     {
@@ -540,6 +569,8 @@ class 7thCAV
     color = "ColorOrange";
     colorRGBA[] = {0.85, 0.4, 0, 1};
     description = "The 7th Cavalry Regiment is an air cavalry based unit that focuses on rapid and mobile assaults.";
+    side = SIDE_WEST;
+    wlu = IS_WLU;
     
     class rolelimits 
     {
@@ -579,6 +610,8 @@ class TigerForce
     color = "ColorUNKNOWN";
     colorRGBA[] = {0.7,0.6,0,1};
     description = "Tiger Force is a Long Range Reconnaissance Patrol comprised of 45 Paratroopers from the 1st Battalion 327th Infantry Regiment of the 101st Airborne.";
+    side = SIDE_WEST;
+    wlu = IS_WLU;
     
     class rolelimits 
     {
@@ -610,44 +643,6 @@ class TigerForce
     onLeave = "";
 };
 
-// class Montagnard
-// {
-//     name = "Montagnard [5th SFG]";
-//     icon = "custom\taskroster\montagnard_HL.paa";
-//     shortname = "Montagnard";
-//     unit = "vn_b_men_army_01";
-//     color = "ColorUNKNOWN";
-//     colorRGBA[] = {0.7,0.6,0,1};
-    
-//     class rolelimits 
-//     {
-//         medic = 20;
-//         engineer = 40;
-//         explosiveSpecialist = 40;
-//         vn_artillery = 0;
-//     };
-    
-//     class defaultTraits
-//     {
-//         camouflageCoef = 1;
-//         audibleCoef = 0.3;
-//         loadCoef = 0.5;
-//         engineer = true;
-//         explosiveSpecialist = true;
-//         medic = true;
-//         UAVHacker = false;
-//         vn_artillery = false;
-//         harassable = true;
-//         scout = true;
-//         scout_multiple = true;
-//         increasedBuildRate = true;
-//     };
-
-//     //Function Calls on team Join
-//     onJoin = "";
-//     onLeave = "";
-// };
-
 class SASR
 {
     name = "ANZAC";
@@ -656,7 +651,9 @@ class SASR
     unit = "vn_b_men_army_01";
     color = "ColorUNKNOWN";
     colorRGBA[] = {0.7,0.6,0,1};
-    description = "Bro-Nation ANZAC - 1st Australian Task Force is a whitelisted ground infantry unit that operates in Bro-Nation Mike Force 1 and other Bro-Nation servers. The unit consist of two elements, the ANZAC Mike Force (inspired by 1RAR) and the ANZAC Spike Team (inspired by SASR and NZSAS).";
+    description = "Bro-Nation ANZAC - 1st Australian Task Force is a ground infantry unit. The unit consist of two elements, the ANZAC Mike Force (inspired by 1RAR) and the ANZAC Spike Team (inspired by SASR and NZSAS).";
+    side = SIDE_WEST;
+    wlu = IS_WLU;
     
     class rolelimits 
     {
@@ -697,6 +694,8 @@ class ARVN
     color = "ColorUNKNOWN";
     colorRGBA[] = {0.7,0.6,0,1};
     description = "A light infantry unit with different elements: recon team; armored corps and traditional infantry.";
+    side = SIDE_WEST;
+    wlu = IS_WLU;
 
     class rolelimits 
     {
@@ -737,6 +736,8 @@ class MACV
     color = "ColorYellow";
     colorRGBA[] = {0.85, 0.85, 0, 1};
     description = "Military Assistance Command, Vietnam.";
+    side = SIDE_WEST;
+    wlu = IS_WLU;
     
     class rolelimits 
     {
@@ -775,6 +776,8 @@ class DacCong
     unit = "vn_b_men_army_01";
     color = "ColorOPFOR";
     colorRGBA[] = {1, 0, 0, 1};
+    side = SIDE_EAST;
+    wlu = IS_WLU;
     
     class rolelimits 
     {
@@ -814,6 +817,8 @@ class PressCorp
     color = "ColorCIV";
     colorRGBA[] = {0.4, 0, 0.5, 1};
     description = "The Department of the Army Special Photographic Office was a unit of the United States Department of the Army from 1962 to 1974.";
+    side = SIDE_WEST;
+    wlu = IS_WLU;
 
     class rolelimits 
     {
