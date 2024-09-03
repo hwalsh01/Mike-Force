@@ -1,3 +1,4 @@
+/*
 class support_gh_cas : support_task
 {
 	taskcategory = "SUP";
@@ -44,3 +45,4 @@ class support_gh_cas : support_task
 		taskdesc = "Destroy enemy units in this area.";
 	};
 };
+*/
