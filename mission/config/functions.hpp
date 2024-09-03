@@ -323,6 +323,7 @@ class CfgFunctions
 			file = "functions\systems\sites\create\compositions";
 			class sites_create_compositions_aa {};
 			class sites_create_compositions_camp {};
+			class sites_create_compositions_fuel {};
 			class sites_create_compositions_factory {};
 			class sites_create_compositions_hq {};
 			class sites_create_compositions_mortar {};
@@ -343,6 +344,7 @@ class CfgFunctions
 			class sites_create_site_aa {};
 			class sites_create_site_artillery {};
 			class sites_create_site_camp {};
+			class sites_create_site_fuel {};
 			class sites_create_site_water_supply {};
 			class sites_create_site_tunnel {};
 			class sites_create_site_hq {};
