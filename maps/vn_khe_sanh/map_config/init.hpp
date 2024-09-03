@@ -1,5 +1,6 @@
 class map_config {
-	max_camps_per_zone = 9;
+	max_camps_per_zone = 6;
+	max_wrecks_per_zone = 3;
 	max_aa_per_zone = 10;
 	max_artillery_per_zone = 3;
 	max_fortifications_per_zone = 0;
