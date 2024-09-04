@@ -16,7 +16,7 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=26630;
+		nextID=26734;
 	};
 	class Camera
 	{
@@ -27,7 +27,7 @@ class EditorData
 	};
 };
 binarizationWanted=0;
-sourceName="MikeForce";
+sourceName="MikeForceStartingpoint";
 addons[]=
 {
 	"objects_f_vietnam_c",
@@ -408,8 +408,8 @@ class CustomAttributes
 		name="Multiplayer";
 		class Attribute0
 		{
-			property="ReviveRequiredItems";
-			expression="false";
+			property="SharedObjectives";
+			expression="if (isMultiplayer) then {[_value] spawn bis_fnc_sharedObjectives;};";
 			class Value
 			{
 				class data
@@ -459,8 +459,8 @@ class CustomAttributes
 		};
 		class Attribute4
 		{
-			property="SharedObjectives";
-			expression="if (isMultiplayer) then {[_value] spawn bis_fnc_sharedObjectives;};";
+			property="ReviveRequiredItems";
+			expression="false";
 			class Value
 			{
 				class data
@@ -19211,19 +19211,20 @@ class Mission
 							name="duty_officer_mikeforce";
 							type="mil_dot";
 							colorName="ColorWhite";
-							angle=1.7836125;
+							angle=1.7836124;
 							id=7545;
 							atlOffset=0.49795628;
 						};
 						class Item12
 						{
 							dataType="Marker";
-							position[]={15832.642,14.98,7057.9409};
+							position[]={2704.6267,14.97998,3907.0842};
 							name="starting_point";
 							text="Starting Point";
 							type="Empty";
 							angle=70.846191;
 							id=14092;
+							atlOffset=-14.932863;
 						};
 						class Item13
 						{
@@ -19263,7 +19264,7 @@ class Mission
 						};
 					};
 					id=18319;
-					atlOffset=4.9646492;
+					atlOffset=-37.893559;
 				};
 				class Item3
 				{
@@ -36743,7 +36744,7 @@ class Mission
 				};
 			};
 			id=18339;
-			atlOffset=-1.6750603;
+			atlOffset=-1.6373501;
 		};
 		class Item297
 		{
