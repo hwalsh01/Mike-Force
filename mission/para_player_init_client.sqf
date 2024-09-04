@@ -162,7 +162,7 @@ _loadingTickProgress = [_loadingTickProgress] call _fnc_tick_loading_screen;
 private _lastTeamName = player getVariable ["vn_mf_db_player_group", "MikeForce"];
 _loadingTickProgress = [_loadingTickProgress] call _fnc_tick_loading_screen;
 
-private _respawnMarker = format ["mf_respawn_%1", _lastTeamName];
+private _respawnMarker = format ["mf_respawn_%1", _lastTeamName]; 
 if (side player == east) then 
 {
 	_respawnMarker = format ["mf_dc_respawn_%1", _lastTeamName]; 
@@ -409,3 +409,6 @@ call vn_mf_fnc_display_location_time;
 // monitor "life" of attached light source objects on a player
 // sends a warning when about to run out, and then removes them
 call vn_mf_fnc_attachments_client_battery_monitor_init;
+
+// initialise the emotes wheel menu
+[player] call vn_mf_fnc_emotes_init;

@@ -431,13 +431,51 @@ class CfgNotifications
 		description = "SiteDestroyTaskActionsError: please report this to Dev Team.";
 	};
 
+	class ErrorEmotesBase
+	{
+		title = "Emotes Menu";
+		description = "%1"
+		priority = 1;
+		sound = "";
+		soundClose = "";
+		duration = 3;
+		color[] = NOTIFY_COLOR_RED_HEAVY;
+		iconPicture = "\A3\ui_f\data\map\mapcontrol\taskIconFailed_ca.paa";
+	};
+
+	class ErrorEmotesPlayerIncap: ErrorEmotesBase
+	{
+		description = "Cannot use emotes while incapacitated.";
+	};
+
+	class ErrorEmotesPlayerDead: ErrorEmotesBase
+	{
+		description = "Cannot use emotes while dead.";
+	};
+
+	class ErrorEmotesInVehicle: ErrorEmotesBase
+	{
+		description = "Cannot use emotes while in a vehicle.";
+	};
+
+	class ErrorEmotesInWater: ErrorEmotesBase
+	{
+		description = "Cannot use emotes while swimming.";
+	};
+
+	class ErrorEmotesNotOnGround: ErrorEmotesBase
+	{
+		description = "Cannot use emotes when not on the ground.";
+	};
+
 	class ErrorNotWhitelistedForTeam: Error
 	{
 		title = "Team Whitelisting";
 		description = "Not whitelisted for %1 -- setting team to Mike Force.";
 	};
 
-	class ErrLightsourceAttachChemlightNotPermitted {
+	class ErrLightsourceAttachChemlightNotPermitted
+	{
 		title = "Light Source Attachment";
 		description = "Only Spike Team units can attach chemlights.";
 		priority = 3;
@@ -445,7 +483,8 @@ class CfgNotifications
 		iconPicture = "\A3\ui_f\data\map\mapcontrol\taskIconFailed_ca.paa";
 	};
 
-	class LightsourceAttachLosingEnergy : ErrLightsourceAttachChemlightNotPermitted {
+	class LightsourceAttachLosingEnergy : ErrLightsourceAttachChemlightNotPermitted
+	{
 		title = "Light Source Attachment";
 		description = "Attached light source is running out of battery/energy.";
 		color[] = NOTIFY_COLOR_ORANGE;
