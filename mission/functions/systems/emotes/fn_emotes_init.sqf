@@ -21,6 +21,8 @@
 
 params ["_player"];
 
+private _rgba_color = [40/256, 110/256, 23/256, 1];
+
 uiNamespace setVariable ["vn_mf_bn_emotes_menu_actions", []];
 
 private _fnc_setup_action = {
@@ -28,14 +30,14 @@ private _fnc_setup_action = {
 		"_name",
 		"_method",
 		"_action",
-		["_icon", "\A3\ui_f\data\map\markers\nato\n_unknown.paa"],
+		["_icon", "img\vn_ico_mf_emotes.paa"],
 		["_iconColorCodes", [
-			[0.1,1,1,1],
-			[1,1,1,1]
+			_rgba_color,
+			[1, 1, 1, 1]
 		]],
 		["_selectorColorCodes", [
-			[0.1,1,1,1],
-			[1,1,1,1]
+			_rgba_color,
+			[1, 1, 1, 1]
 		]]
 	];
 	createHashMapFromArray [
@@ -53,19 +55,19 @@ private _fnc_setup_category = {
 	params [
 		"_name",
 		"_data",
-		["_icon", "\A3\ui_f\data\map\markers\nato\n_unknown.paa"]
+		["_icon", "img\vn_ico_mf_emotes.paa"]
 	];
 	createHashMapFromArray [
 		["text", _name],
 		["iconPath", _icon],
 		["submenuActions", _data],
 		["iconColorCodes", [
-			[0.1,1,1,1],
-			[1,1,1,1]
+			_rgba_color,
+			[1, 1, 1, 1]
 		]],
 		["selectorColorCodes", [
-			[0.1,1,1,1],
-			[1,1,1,1]
+			_rgba_color,
+			[1, 1, 1, 1]
 		]]
 	]
 };
@@ -128,7 +130,7 @@ private _actionInitial = [
 	"Stop Animation(s)",
 	"loop", // `switchMove` hard cancel
 	"", 	// `switchMove` to 'nothing' animation
-	"\A3\ui_f\data\map\groupicons\waypoint.paa",
+	"img\vn_ico_mf_emotes.paa",
 	[[1,0,0,1], [1,0,0,1]],
 	[[1,0,0,0.4], [1,0,0,1]]
 ] call _fnc_setup_action;

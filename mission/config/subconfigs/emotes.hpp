@@ -21,12 +21,12 @@ these are executed with switchMove and can only have one animation string. there
 
 class seq {
 
-	title = "Non Looping Animations";
-	icon = "\A3\ui_f\data\map\markers\nato\respawn_motor_ca.paa";
+	title = "One-Shot Animations";
+	icon = "img\vn_ico_mf_emotes.paa";
 
 	class misc {
 		title = "Miscellaneous";
-		icon = "\A3\ui_f\data\map\markers\handdrawn\unknown_CA.paa";
+		icon = "img\vn_ico_mf_emotes.paa";
 		options[] = {
 			{"Drop Weapon", {"Acts_Ambient_Rifle_Drop"}},
 			{"Stretch", {"Acts_Ambient_Stretching"}},
@@ -35,7 +35,8 @@ class seq {
 			{"About this big...", {"Act_Alien_Gesture"}},
 			{"Fly By!", {"Acts_Calling_Out_Jets_in_loop"}},
 			{"Urinate", {"Acts_AidlPercMstpSlowWrflDnon_pissing"}},
-			{"Salute", {"AmovPercMstpSrasWrflDnon_SaluteOut"}},
+			// {"Salute", {"AmovPercMstpSrasWrflDnon_SaluteOut"}},
+			{"Push Ups", {"AmovPercMstpSnonWnonDnon_exercisePushup"}},
 			{"Dramatic Grenade Throw", {
 					"AwopPercMstpSgthWnonDnon_start",
 					"AwopPercMstpSgthWnonDnon_throw",
@@ -47,7 +48,7 @@ class seq {
 
 	class pointing {
 		title = "Pointing";
-		icon = "\A3\ui_f\data\map\markers\handdrawn\start_CA.paa";
+		icon = "img\vn_ico_mf_emotes.paa";
 		options[] = {
 			{"Left", {"Acts_Pointing_Left"}},
 			{"Right", {"Acts_Pointing_Right"}},
@@ -60,7 +61,7 @@ class seq {
 
 	class responses {
 		title = "Responses";
-		icon = "\A3\ui_f\data\map\markers\military\box_CA.paa";
+		icon = "img\vn_ico_mf_emotes.paa";
 		options[] = {
 			{"Agree", {"Acts_Ambient_Agreeing"}},
 			{"Disagree", {"Acts_Ambient_Disagreeing"}},
@@ -73,7 +74,7 @@ class seq {
 
 	class atc {
 		title = "ATC";
-		icon = "\A3\ui_f\data\map\markers\nato\c_plane.paa";
+		icon = "img\vn_ico_mf_emotes.paa";
 		options[] = {
 			{"Left", {
 					"Acts_JetsMarshallingLeft_in",
@@ -137,7 +138,7 @@ class seq {
 
 	class briefings {
 		title = "Briefing Animations";
-		icon = "\A3\ui_f\data\map\markers\handdrawn\warning_CA.paa";
+		icon = "img\vn_ico_mf_emotes.paa";
 		options[] = {
 			{"Long Briefing", {
 					"Acts_A_M01_briefing",
@@ -161,12 +162,12 @@ class seq {
 
 class loop {
 
-	title = "Looping Animations";
-	icon = "\A3\ui_f\data\map\markers\nato\respawn_unknown_ca.paa";
+	title = "Looped Animations";
+	icon = "img\vn_ico_mf_emotes.paa";
 
 	class misc {
 		title = "Miscellaneous";
-		icon = "\A3\ui_f\data\map\markers\handdrawn\unknown_CA.paa";
+		icon = "img\vn_ico_mf_emotes.paa";
 		options[] = {
 			{"Dancing 1", "Acts_Dance_01"},
 			{"Dancing 2", "Acts_Dance_02"},
@@ -181,33 +182,33 @@ class loop {
 
 	class waiting {
 		title = "Idle";
-		icon = "\A3\ui_f\data\map\markers\military\end_CA.paa";
+		icon = "img\vn_ico_mf_emotes.paa";
 		options[] = {
-			{"1", "Acts_AidlPercMstpSloWWrflDnon_warmup_1_loop"},
-			{"2", "Acts_AidlPercMstpSloWWrflDnon_warmup_2_loop"},
-			{"3", "Acts_AidlPercMstpSloWWrflDnon_warmup_3_loop"},
-			{"4", "Acts_AidlPercMstpSloWWrflDnon_warmup_4_loop"},
-			{"5", "Acts_AidlPercMstpSloWWrflDnon_warmup_5_loop"},
-			{"6", "Acts_AidlPercMstpSloWWrflDnon_warmup_6_loop"},
-			{"7", "Acts_AidlPercMstpSloWWrflDnon_warmup_7_loop"},
+			{"Idle 1", "Acts_AidlPercMstpSloWWrflDnon_warmup_1_loop"},
+			{"Idle 2", "Acts_AidlPercMstpSloWWrflDnon_warmup_2_loop"},
+			{"Idle 3", "Acts_AidlPercMstpSloWWrflDnon_warmup_3_loop"},
+			{"Idle 4", "Acts_AidlPercMstpSloWWrflDnon_warmup_4_loop"},
+			{"Idle 5", "Acts_AidlPercMstpSloWWrflDnon_warmup_5_loop"},
+			{"Idle 6", "Acts_AidlPercMstpSloWWrflDnon_warmup_6_loop"},
+			{"Idle 7", "Acts_AidlPercMstpSloWWrflDnon_warmup_7_loop"},
 		};
 	};
 
 
 	class guard {
 		title = "Prison Guards";
-		icon = "\A3\ui_f\data\map\markers\nato\o_installation.paa";
+		icon = "img\vn_ico_mf_emotes.paa";
 		options[] = {
 			{"Squat Down", "Acts_Executioner_Squat"},
 			{"Pistol Whack Forehand", "Acts_Executioner_Forehand"},
-			{"Pistol Whack Forehand", "Acts_Executioner_Backhand"},
+			{"Pistol Whack Backhand", "Acts_Executioner_Backhand"},
 			{"Standing Menacingly", "Acts_Executioner_StandingLoop"},
 		};
 	};
 
 	class pow {
 		title = "Prisoners";
-		icon = "\A3\ui_f\data\map\markers\nato\o_inf.paa";
+		icon = "img\vn_ico_mf_emotes.paa";
 		options[] = {
 			{"Sitting", "Acts_AidlPsitMstpSsurWnonDnon_loop"},
 			{"Kneeling", "Acts_ExecutionVictim_Loop"},
