@@ -313,7 +313,7 @@ class CfgFunctions
 			class sites_remoteactions_destroy_task_dc_respawn {};
 			class sites_remoteactions_destroy_task_object {};
 			class sites_remoteactions_destroy_task_para_building {};
-			// class sites_remoteactions_burn_shelter {}; // @dijksterhuis: TODO
+			class sites_remoteactions_bury_pilot {};
 			class sites_remoteactions_reveal_radiotap {};
 			class sites_remoteactions_reveal_intel {};
 			class sites_remoteactions_reveal_scout {};
@@ -325,7 +325,6 @@ class CfgFunctions
 			file = "functions\systems\sites\create\compositions";
 			class sites_create_compositions_aa {};
 			class sites_create_compositions_camp {};
-			class sites_create_compositions_wreck {};
 			class sites_create_compositions_factory {};
 			class sites_create_compositions_hq {};
 			class sites_create_compositions_mortar {};

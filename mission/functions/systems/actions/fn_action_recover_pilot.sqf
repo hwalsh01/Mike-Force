@@ -1,17 +1,18 @@
 /*
-	File: fn_action_destroy_task.sqf
-	Author: Cerebral
+	File: fn_action_recover_pilot.sqf
+	Author: @dijksterhuis
 	Public: No
 	
 	Description:
-		Pops a task
+		If player is looking at a dead body at ta wreck site then allow them to bury
+		the body with a holdAction.
 	
 	Parameter(s): none
 	
 	Returns:
 	
 	Example(s):
-		call vn_mf_fnc_action_destroy_task;
+		call vn_mf_fnc_action_recover_pilot;
 */
 
 private _objAttachTo = player;
@@ -51,30 +52,7 @@ private _conditionToProgressString = _conditionToShowString;
 private _codeOnStart = {};
 private _codeOnProgressTick = {};
 private _codeOnCompletion =	{
-	[cursorObject, {
-
-		private _startTime = serverTime;
-
-		_this setVariable ["vn_mf_sites_object_zfixer_ignore", true];
-		_this enableSimulationGlobal false;
-
-		while {true} do {
-			private _newPos = [
-				(getPosATL _this) # 0,
-				(getPosATL _this) # 1,
-				((getPosATL _this) # 2) - 0.01
-			];
-			_this setPosATL _newPos;
-			sleep 0.005;
-
-			// should be hidden now (hopefully)
-			// TODO: we can generalise this to other objects by finding the maximum dimension.
-			if ((_newPos # 2) < -1) then {break};
-			// failsafe incase body refuses to clip through the ground
-			if (serverTime > _startTime + 2) then {break};
-		};
-		deleteVehicle _this;
-	}] remoteExec ["spawn", 2];
+	[cursorObject] remoteExec ["vn_mf_fnc_sites_remoteactions_bury_pilot", 2];
 };
 private _codeOnInterrupted = {};
 private _args = [];
