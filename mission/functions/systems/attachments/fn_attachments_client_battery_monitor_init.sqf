@@ -7,7 +7,7 @@
         Initialises a paradigm scheduled job on the client
         checking whether the lightsources have "run out of juice".
 
-        or .... every 60 seconds check if 7 minutes has passed and
+        or .... every 60 seconds check if 10 minutes has passed and
         delete all the attached objects and lightsources if so.
 
     Parameter(s): None
