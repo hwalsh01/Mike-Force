@@ -74,8 +74,8 @@ class vn_tr_disp_requestSupportMap_RHS : vn_mf_RscControlsGroupNoScrollbarHV
 		{
 			idc = VN_TR_SUPREQ_ACCEPT_IDC;
 
-			x = UIX_CL(4.5);
-			y = UIY_CU(-8.5);
+			x = UIW(12);
+			y = UIH(21);
 			w = UIW(6);
 			h = UIH(1.5);
 
@@ -90,8 +90,8 @@ class vn_tr_disp_requestSupportMap_RHS : vn_mf_RscControlsGroupNoScrollbarHV
 		{
 			idc = VN_TR_SUPREQ_ABORT_IDC;
 
-			x = UIX_CL(14.5);
-			y = UIY_CU(-8.5);
+			x = UIW(2);
+			y = UIH(21);
 			w = UIW(6);
 			h = UIH(1.5);
 
@@ -111,7 +111,7 @@ class vn_tr_disp_showRequestSupport
 	name = "vn_tr_disp_showRequestSupport";
 	//If already opened -> Recalling it -> Reloading the Dialog (e.g. like updating the view, without "closing" it)
 	onLoad = "[""onLoad"",_this,""vn_tr_disp_showRequestSupport"",''] call 	(uinamespace getvariable 'BIS_fnc_initDisplay'); call vn_mf_fnc_tr_supportTask_show;";
-	onUnload = "[""onUnload"",_this,""vn_tr_disp_showRequestSupport"",''] call 	(uinamespace getvariable 'BIS_fnc_initDisplay');";
+	onUnload = "[""onUnload"",_this,""vn_tr_disp_showRequestSupport"",''] call 	(uinamespace getvariable 'BIS_fnc_initDisplay'); call vn_mf_fnc_tr_supportTask_map_hide;";
 	idd = -1;
 	movingEnable = 1;
 	enableSimulation = 1;

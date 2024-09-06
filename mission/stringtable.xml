@@ -173,6 +173,9 @@
       <Key ID="STR_vn_mf_repack">
         <Original>Repack</Original>
       </Key>
+      <Key ID="STR_vn_mf_attach">
+        <Original>Attach</Original>
+      </Key>
       <Key ID="STR_vn_mf_drink">
         <Original>Drink</Original>
       </Key>

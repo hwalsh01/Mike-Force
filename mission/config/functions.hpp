@@ -29,6 +29,7 @@ class CfgFunctions
 			class range {};
 			class color_confname_to_rgba {};
 			class sample_positions_circle {};
+			class rExecServerToGlobal_playerHost_or_dedicated {};
 		};
 
 		class core_init
@@ -220,6 +221,25 @@ class CfgFunctions
 			class arsenal_trash_cleanup {};
 		};
 
+		class system_attachments {
+			file = "functions\systems\attachments";
+			class attachments_client_attach_flashlight {};
+			class attachments_client_attach_chemlight {};
+			class attachments_server_attach_flashlight {};
+			class attachments_server_attach_chemlight {};
+			class attachments_global_get_jip_id {};
+			class attachments_global_reset_jip_id {};
+			class attachments_global_delete_objects {};
+			class attachments_client_battery_monitor_init {};
+			class attachments_client_battery_monitor_job {};
+		};
+
+		class system_attachments_lightsources {
+			file = "functions\systems\attachments\lightsources";
+			class attachments_lightsources_flashlight {};
+			class attachments_lightsources_chemlight {};
+		};
+
 		class system_awards {
 			file = "functions\systems\awards";
 			class player_award {};
@@ -263,6 +283,13 @@ class CfgFunctions
 			file = "functions\systems\earplugs";
 			class earplugs {};
 			class earplugs_toggle {};
+		};
+
+		class system_emotes {
+			file = "functions\systems\emotes";
+			class emotes_init {};
+			class emotes_emote_toggle {};
+			class emotes_menu_open {};
 		};
 
 		class system_player_markers
@@ -473,6 +500,7 @@ class CfgFunctions
 			class veh_asset_set_global_variable {};
 			class veh_asset_set_global_variables {};
 			class veh_asset_set_idle {};
+			class veh_asset_set_queued {};
 			class veh_asset_set_repairing {};
 			class veh_asset_set_respawning {};
 			class veh_asset_set_wrecked {};

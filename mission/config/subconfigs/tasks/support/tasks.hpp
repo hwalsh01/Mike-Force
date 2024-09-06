@@ -13,13 +13,14 @@ class support_resupply : support_task
 	};
 	requestgroups[] = {
 		"MACV",
+		"ARVN",
 		"MikeForce",
 		"3rdMEU",
 		"633rdCSG",
 		"MilitaryPolice",
 		"ACAV",
 		"QuarterHorse",
-		"7thCav",
+		"7thCAV",
 		"SpikeTeam",
 		"SASR",
 		"TigerForce",
@@ -118,13 +119,14 @@ class support_transport : support_task
 	taskgroups[] = {"GreenHornets"};
 	requestgroups[] = {
 		"MACV",
+		"ARVN",
 		"MikeForce",
 		"3rdMEU",
 		"633rdCSG",
 		"MilitaryPolice",
 		"ACAV",
 		"QuarterHorse",
-		"7thCav",
+		"7thCAV",
 		"SpikeTeam",
 		"SASR",
 		"TigerForce",

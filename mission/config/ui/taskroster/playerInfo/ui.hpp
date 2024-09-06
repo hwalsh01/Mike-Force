@@ -121,7 +121,7 @@ class vn_tr_disp_showPlayerInfo_rhs : vn_mf_RscControlsGroupNoScrollbarHV
 
 			colorText[] = {0.1,0.1,0.1,0.9};
 			colorBackground[] = {0,0,0,0.0};
-			text = "Walk up to a duty officer and press the 6 key while looking at them. This will bring up a wheel menu where you can click on the role(s) you want. Duty officers can be located by the white dot markers on the map around the main base.";
+			text = "Find a duty officer. Duty officers are shown on map by white dots (press 'M' key). Press the 6 key while looking directly at a Duty Officer. The 'roles' menu will show. Click on the role you want.";
 			size = UIH(0.69);
 			tooltip = "";
 			class Attributes
@@ -233,8 +233,8 @@ class vn_tr_disp_showPlayerInfo
 		class infostats_title: vn_mf_RscText
 		{
 			idc = -1;
-			x = UIW(0);
-			y = UIH(2);
+			x = UIX_CL(17.5);
+			y = UIY_CU(10.5);
 			w = UIW(15);
 			h = UIH(2);
 
@@ -250,8 +250,8 @@ class vn_tr_disp_showPlayerInfo
 		class infostats_txt_playername: vn_mf_RscStructuredText
 		{
 			idc = VN_TR_PLAYERINFO_NAME_IDC;
-			x = UIW(0);
-			y = UIH(4);
+			x = UIX_CL(17.5);
+			y = UIY_CU(8.5);
 			w = UIW(15);
 			h = UIH(0.8);
 
@@ -276,35 +276,35 @@ class vn_tr_disp_showPlayerInfo
 		class infostats_txt_serialnumber: infostats_txt_playername
 		{
 			idc = VN_TR_PLAYERINFO_SNUM_IDC;
-			y = UIH(5);
+			y = UIY_CU(7.5);
 			text = "serialnumber";
 			tooltip = "Serial Number";
 		};
 		class infostats_txt_playeruid: infostats_txt_playername
 		{
 			idc = VN_TR_PLAYERINFO_UID_IDC;
-			y = UIH(6);
+			y = UIY_CU(6.5);
 			text = "playeruid";
 			tooltip = "Player UID";
 		};
 		class infostats_txt_playerrank: infostats_txt_playername
 		{
 			idc = VN_TR_PLAYERINFO_RANK_IDC;
-			y = UIH(7);
+			y = UIY_CU(5.5);
 			text = "playerrank";
 			tooltip = "Player Rank";
 		};
 		class infostats_txt_rankpoints: infostats_txt_playername
 		{
 			idc = VN_TR_PLAYERINFO_POINTS_IDC;
-			y = UIH(8);
+			y = UIY_CU(4.5);
 			text = "-1";
 			tooltip = "Rank Points";
 		};
 		class infostats_txt_rankprogress: infostats_txt_playername
 		{
 			idc = VN_TR_PLAYERINFO_PROGR_IDC;
-			y = UIH(9);
+			y = UIY_CU(3.5);
 			text = "-1";
 			tooltip = "Rank Progress";
 		};
@@ -312,8 +312,8 @@ class vn_tr_disp_showPlayerInfo
 		class infostats_subtitle_medals: vn_mf_RscText
 		{
 			idc = -1;
-			x = UIW(0);
-			y = UIH(11);
+			x = UIX_CL(17.5);
+			y = UIY_CU(2);
 			w = UIW(15);
 			h = UIH(2);
 
@@ -326,9 +326,36 @@ class vn_tr_disp_showPlayerInfo
 			sizeEx = TXT_L;
 		};
 
+		class infostats_helptext_medals: vn_mf_RscStructuredText
+		{
+			idc = -1;
+			x = UIX_CL(17.5);
+			y = UIY_CU(0.5);
+			w = UIW(17);
+			h = UIH(2);
+
+			colorText[] = {0.1,0.1,0.1,0.9};
+			colorBackground[] = {0,0,0,0.0};
+			text = "Medals are earned by completing certain actions in game.";
+			size = UIH(0.69);
+			tooltip = "";
+			class Attributes
+			{
+				align = "left";
+				valign = "middle";
+				color = "#000000";
+				colorLink = "#D09B43";
+				font = USEDFONT;
+				size = 1;
+				shadow = 0;
+			};
+		};
+
+		// this is displaying elements backwards on the X axis.
+		// but it works for now, so it's staying that way.
 		#define RIBBON_POS(X, Y) \
-			x = UIW((((2 + 0.25) * X))); \
-			y = UIH((13 + (((2/3.3333) + 0.25) * Y))); \
+			x = UIX_CL(-3.5 + (((2 + 0.25) * X)) ); \
+			y = UIY_CU(1.5-(((2/3.3333) + 0.25) * Y)); \
 			w = UIW(2); \
 			h = UIH((2/3.3333));
 
@@ -490,8 +517,8 @@ class vn_tr_disp_showPlayerInfo
 		{
 			idc = VN_TR_PLAYERINFO_MEDAL_RIBBON_IDC;
 
-			x = UIW(0.75);
-			y = UIH(18);
+			x = UIX_CL(14.25);
+			y = UIY_CU(-6);
 			w = UIW(1.2);
 			h = UIH(2.5);
 
@@ -506,15 +533,15 @@ class vn_tr_disp_showPlayerInfo
 		{
 			idc = VN_TR_PLAYERINFO_REWARD_TEXT_IDC;
 
-			x = UIW(2.5);
-			y = UIH(18.5);
-			w = UIW(12.5);
+			x = UIX_CL(13);
+			y = UIY_CU(-6);
+			w = UIW(9);
 			h = UIH(3);
 
 			colorText[] = {0.1,0.1,0.1,0.9};
 			colorBackground[] = {0,0,0,0.0};
 			text = "reward";
-			size = TXT_M;
+			size = TXT_L;
 			tooltip = "";
 			class Attributes
 			{
