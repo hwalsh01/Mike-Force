@@ -497,6 +497,7 @@ class CfgFunctions
 			class veh_asset_set_global_variable {};
 			class veh_asset_set_global_variables {};
 			class veh_asset_set_idle {};
+			class veh_asset_set_queued {};
 			class veh_asset_set_repairing {};
 			class veh_asset_set_respawning {};
 			class veh_asset_set_wrecked {};
