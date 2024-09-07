@@ -25,35 +25,43 @@ params ["_pos"];
 private _hmapParams = [
 	createHashMapFromArray [
 		["wreckClass", "vn_air_f4b_wreck"],
-		["maxBodies", 2]
+		["maxBodies", 2],
+		["minBodies", 1]
 	],
 	createHashMapFromArray [
 		["wreckClass", "vn_air_f100d_01_wreck"],
-		["maxBodies", 1]
+		["maxBodies", 1],
+		["minBodies", 1]
 	],
 	createHashMapFromArray [
 		["wreckClass", "vn_air_uh1c_01_wreck"],
-		["maxBodies", 6]
+		["maxBodies", 6],
+		["minBodies", 3]
 	],
 	createHashMapFromArray [
 		["wreckClass", "vn_air_uh1d_01_wreck"],
-		["maxBodies", 6]
+		["maxBodies", 6],
+		["minBodies", 3]
 	],
 	createHashMapFromArray [
 		["wreckClass", "vn_air_uh1d_med_wreck"],
-		["maxBodies", 6]
+		["maxBodies", 6],
+		["minBodies", 3]
 	],
 	createHashMapFromArray [
 		["wreckClass", "vn_air_oh6a_01_wreck"],
-		["maxBodies", 4]
+		["maxBodies", 4],
+		["minBodies", 2]
 	],
 	createHashMapFromArray [
 		["wreckClass", "vn_air_ch34_01_wreck"],
-		["maxBodies", 6]
+		["maxBodies", 6],
+		["minBodies", 3]
 	],
 	createHashMapFromArray [
 		["wreckClass", "vn_air_ah1g_01_wreck"],
-		["maxBodies", 2]
+		["maxBodies", 2],
+		["minBodies", 1]
 	]
 ];
 
@@ -68,8 +76,6 @@ private _hmapParams = [
 		private _siteId = _siteStore getVariable "site_id";
 		private _sitePos = getPos _siteStore;
 		private _spawnPos = _sitePos;
-		// defined externally.
-		private _siteRadius = 8;
 		private _spawnData = selectRandom _hmapParams;
 
 		/////////////////////////////////////////////////////////////////////////////////
@@ -82,11 +88,15 @@ private _hmapParams = [
 		// Spawn Body Objects
 		/////////////////////////////////////////////////////////////////////////////////
 
-		private _bodiesN = ceil random (_spawnData get "maxBodies");
-		// get N positions where we'll spawn some bodies
+		private _bodiesN = (_spawnData get "minBodies") max (
+			ceil random (_spawnData get "maxBodies")
+		);
+
+		// get positions to spawn bodies
 		// spawn in the random body class, also randomising body direction
+		// TODO: radius is half what the site radius is defined as, not sure why we need to do this
 		private _bodyObjs = (
-        	[_pos, _siteRadius, _bodiesN] call vn_mf_fnc_sample_positions_circle
+        	[_pos, 4, _bodiesN] call vn_mf_fnc_sample_positions_circle
         )
 			apply {
 
