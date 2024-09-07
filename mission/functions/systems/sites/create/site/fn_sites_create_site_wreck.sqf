@@ -82,10 +82,11 @@ private _hmapParams = [
 		// Spawn Body Objects
 		/////////////////////////////////////////////////////////////////////////////////
 
+		private _bodiesN = ceil random (_spawnData get "maxBodies");
 		// get N positions where we'll spawn some bodies
 		// spawn in the random body class, also randomising body direction
 		private _bodyObjs = (
-        	[_pos, _siteRadius, _spawnData get "maxBodies"] call vn_mf_fnc_sample_positions_circle
+        	[_pos, _siteRadius, _bodiesN] call vn_mf_fnc_sample_positions_circle
         )
 			apply {
 
