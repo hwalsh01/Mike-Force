@@ -34,8 +34,16 @@ if (isNil "vn_mf_actions_initialized" || vn_mf_actions_player != player) then //
 	call vn_mf_fnc_action_lower_flag;
 	call vn_mf_fnc_action_reraise_flag;
 	"vn_holdActionAdd_layer" cutText ["","PLAIN"];
-	call vn_mf_fnc_action_curator_force_recover_wrecked_vehicle;
-	call vn_mf_fnc_action_curator_force_reset_idle_vehicle;
-	call vn_mf_fnc_action_curator_lock_spawner;
-	call vn_mf_fnc_action_curator_unlock_spawner;
+	// curator / admin / moderator only
+	if (missionNamespace getVariable ['curatorUIDs', []] findIf { _x == getPlayerUID player} > -1) then {
+		call vn_mf_fnc_action_curator_force_recover_wrecked_vehicle;
+		call vn_mf_fnc_action_curator_force_reset_idle_vehicle;
+		call vn_mf_fnc_action_curator_lock_spawner;
+		call vn_mf_fnc_action_curator_unlock_spawner;
+	};
+	// press corp only
+	if (player getVariable ['vn_mf_db_player_group', 'FAILED'] isEqualTo "PressCorp") then {
+		diag_log format ["ajksfhasffssasaffffffffff"];
+		call vn_mf_fnc_action_press_toggle_spectator;
+	};
 };
