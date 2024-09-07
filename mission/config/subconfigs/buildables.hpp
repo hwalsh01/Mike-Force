@@ -3939,37 +3939,6 @@ class Land_vn_bagfence_01_corner_green_f
 	};
 };
 
-class Land_vn_barricade_01_10m_f
-{
-	name = "";
-	type = "walls";
-	categories[] = {"fortifications", "nonAcav", "fences"};
-	rank = 0;
-	SUPPLY_CAPACITY(100, DAYS_TO_SECONDS(1));
-	resupply = "BuildingSupplies";
-	conditions[] = {
-		CONDITION_HAS_RANK,
-		CONDITION_IS_ENGINEER,
-		CONDITION_IS_ON_FOOT,
-		CONDITION_NOT_IN_RESTRICTED_ZONE
-	};
-	class build_states
-	{
-		class initial_state
-		{
-			object_class = "vn_barricade_01_10m_f";
-		};
-		class middle_state
-		{
-			object_class = "Land_vn_barricade_01_10m_f";
-		};
-		class final_state
-		{
-			object_class = "Land_vn_barricade_01_10m_f";
-		};
-	};
-};
-
 class Land_vn_bagfence_01_short_green_f
 {
 	name = "";
