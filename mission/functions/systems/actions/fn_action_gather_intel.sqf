@@ -1,3 +1,25 @@
+/*
+	File: fn_action_gather_intel.sqf
+	Author: Cerebral
+	Modified By: @dijksterhuis
+	Public: No
+
+	Description:
+		"Gather" the intel object at a main supply line site (HQ/Factory)
+		during the capture phase.
+
+		Reveals all the site map markers for that supply line.
+
+	Parameter(s): none
+
+	Returns:
+
+	Example(s):
+		// on the client!
+		call vn_mf_fnc_action_gather_intel;
+*/
+
+
 private _object = player;
 private _title = "Gather Enemy Intel";
 private _iconIdle = "custom\holdactions\holdAction_documents_ca.paa";
@@ -41,11 +63,10 @@ private _codeOnCompleted = {
 };
 private _codeOnInterrupted = {};
 private _scriptArgs = [];
-private _duration = 30;
+private _duration = 60;
 private _priority = 100;
 private _removeWhenCompleted = false;
 private _showWhenUncon = false;
-
 
 [
 	_object,
