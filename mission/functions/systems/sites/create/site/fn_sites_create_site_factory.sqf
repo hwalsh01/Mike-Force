@@ -103,7 +103,9 @@ params ["_pos"];
 		private _markerPos = _spawnPos getPos [20 + random 30, random 360];
 		private _factoryMarker = createMarker [format ["factory_%1", _siteId], _markerPos];
 		_factoryMarker setMarkerType "o_Ordnance";
-		_factoryMarker setMarkerText "Factory";
+		// NOTE: @dijskterhuis: Changed from "Factory"!
+		// TODO: Clean up factory usage across all sites code -- script filenames and variables etc.
+		_factoryMarker setMarkerText "Depot";
 		_factoryMarker setMarkerAlpha 0;
 
 		private _partialMarkerPos = _spawnPos getPos [10 + random 40, random 360];
