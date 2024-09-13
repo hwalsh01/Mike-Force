@@ -37,7 +37,7 @@ private _iconProgress = "custom\holdactions\holdAction_documents_ca.paa";
 
 private _conditionToShow = str {
 	call {
-		private _needToReDrawHoldAction = (serverTime - 5) > (player getVariable ["vn_mf_bn_actions_intel_client_lastcheck", 0]);
+		private _needToReDrawHoldAction = (serverTime - 10) > (player getVariable ["vn_mf_bn_actions_intel_client_lastcheck", 0]);
 		private _actualCondition = (
 			player distance cursorObject < 5
 			&& {typeOf cursorObject in ['Land_Map_unfolded_F','Land_Map_unfolded_Malden_F', 'vn_b_prop_cabinet_02']}
