@@ -99,7 +99,7 @@ vn_mf_sites_compositions_fuel = [
 			["Land_vn_tank_rust_f",[-1.91406,1.28809,0],162.65,1,0,[0,-0],"","",false,false],
 			["Land_cargo_house_slum_F",[-0.701172,-2.38379,0],163.056,1,0,[0,-0],"","",false,false],
 			["Land_vn_tank_rust_f",[-2.81836,4.41846,0],163.176,1,0,[0,-0],"","",false,false],
-			["vn_o_prop_t884_01",[-4.83789,-2.92773,0],81.246,1,0,[0,0],"","",false,false],
+			["vn_b_prop_prc77_01",[-4.83789,-2.92773,0],81.246,1,0,[0,0],"","",false,false],
 			["vn_o_nva_navy_static_m1910_low_01",[-6.96289,-0.313965,-0.0750074],251.73,1,0,[0,0],"","",false,false],
 			["vn_o_nva_navy_static_dshkm_low_01",[4.15625,6.48877,-0.0750008],63.4053,1,0,[0,0],"","",false,false],
 			["vn_o_nva_navy_static_m1910_low_01",[-2.51953,-7.51855,-0.0750074],207.258,1,0,[0,0],"","",false,false],
@@ -121,7 +121,7 @@ vn_mf_sites_compositions_fuel = [
 			["Land_vn_slum_house01_f",[-4.31836,-1.29248,0],88.5042,1,0,[0,0],"","",false,false],
 			["vn_o_nva_65_static_zpu4",[-0.992188,6.56299,-0.0750008],69.7135,1,0,[0,0],"","",false,false],
 			["vn_o_nva_navy_static_dshkm_high_01",[6.71875,0.749023,-0.0750008],95.2579,1,0,[0,-0],"","",false,false],
-			["vn_o_prop_t884_01",[-5.7793,-3.94092,0],0,1,0,[0,0],"","",false,false],
+			["vn_b_prop_prc77_01",[-5.7793,-3.94092,0],0,1,0,[0,0],"","",false,false],
 			["vn_o_nva_navy_static_dshkm_low_01",[-6.74023,3.5708,-0.0750008],313.581,1,0,[0,0],"","",false,false],
 			["vn_o_nva_navy_static_m1910_low_01",[-3.65039,-6.8374,-0.0750074],225.1,1,0,[0,0],"","",false,false],
 			["Land_vn_pine_tree_01",[6.51367,-1.2998,0],0,1,0,[0,0],"","",false,false]
