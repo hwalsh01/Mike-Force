@@ -48,7 +48,7 @@ for "_i" from 1 to (3 + ceil random (vn_mf_s_max_camps_per_zone - 1)) do
 //Create initial artillery emplacements
 for "_i" from 1 to (1 + ceil random (vn_mf_s_max_artillery_per_zone - 1)) do
 {
-	private _artySite = [_center, vn_mf_bn_s_zone_radius, 0, 15, 10, _allTerrainObjects] call vn_mf_fnc_sites_get_safe_location;
+	private _artySite = [_center, vn_mf_bn_s_zone_radius, 0, selectRandom [15, 10, 5], 10, _allTerrainObjects] call vn_mf_fnc_sites_get_safe_location;
 	[_artySite, _zone] call vn_mf_fnc_sites_create_site_artillery;
 };
 
@@ -56,7 +56,8 @@ for "_i" from 1 to (1 + ceil random (vn_mf_s_max_artillery_per_zone - 1)) do
 // create a minimum of 5 AAs
 for "_i" from 1 to (5 + ceil random (vn_mf_s_max_aa_per_zone - 5)) do
 {
-	private _aaSite = [_center, vn_mf_bn_s_zone_radius, 0, 20, 10, _allTerrainObjects] call vn_mf_fnc_sites_get_safe_location;
+	// randomly set a radius to make AA sites more varied.
+	private _aaSite = [_center, vn_mf_bn_s_zone_radius, 0, selectRandom [20, 15, 10, 5], 10, _allTerrainObjects] call vn_mf_fnc_sites_get_safe_location;
 	[_aaSite, _zone] call vn_mf_fnc_sites_create_site_aa;
 };
 
@@ -72,7 +73,11 @@ for "_i" from 1 to (1 + ceil random (vn_mf_s_max_water_supply_per_zone - 1)) do
 	[_tunnelWaterSupply, _zone] call vn_mf_fnc_sites_create_site_water_supply;
 };
 
-// add the "Tap Radio Comms" hold action to all generated radio sets
+/*
+RADIO TAP
+
+add the "Tap Radio Comms" hold action to all generated radio sets
+*/
 private _radios = vn_site_objects select {
 	typeOf _x in ["vn_o_prop_t102e_01", "vn_o_prop_t884_01"];
 };
@@ -80,3 +85,55 @@ private _radios = vn_site_objects select {
 _radios apply {_x call vn_mf_fnc_action_radiotap};
 
 missionNamespace setVariable ["siteRadios", _radios];
+
+/*
+INITIAL STATIC WEAPON AI UNITS/GROUPS
+
+add initial AI on all static weapon emplacements in the AO.
+these are removed from the static weapon when they die,
+allowing paradigm manage AI to come in and mount the statics later.
+*/
+vn_site_objects
+	select {_x isKindOf "StaticWeapon"}
+	apply {
+		// force enable simulation otherwise the AI can't shoot
+		// for some reason
+		_x enableSimulationGlobal true;
+		private _grpCrew = createVehicleCrew _x;
+
+		// TODO: Refactor paradigm fn_loadbal_create_squad.sqf into two functions:
+		// * fn_loadbal_create_squad.sqf
+		// * fn_loadbal_change_group_owner.sqf
+
+		//Set the squad's locality to the headless client with highest FPS
+		// Or the server if no headless clients
+		private _selectedClient = call para_s_fnc_loadbal_suggest_host;
+
+		_grpCrew setGroupOwner _selectedClient;
+		_grpCrew setVariable ["groupClientOwner", _selectedClient];
+
+		(units _grpCrew)
+			apply {
+				_x addEventHandler ["Killed", {
+					params ["_unit", ""];
+					// force eject the crew when killed
+					moveOut _unit;
+					[_unit] call para_s_fnc_cleanup_add_items;
+				}];
+
+				// TODO: Refactor paradigm fn_loadbal_create_squad.sqf into two functions:
+				// * fn_loadbal_create_squad.sqf
+				// * fn_loadbal_change_group_owner.sqf
+
+				// TODO: Possible fix for zeus?
+
+				//Update the owner variable if the group changes locality.
+				//Can't run this on the group itself - need to use the units in it.
+				_x addEventHandler ["Local", {
+					params ["_unit", "_isLocal"];
+					if (_isLocal) then {
+						group _unit setVariable ["groupClientOwner", clientOwner, true];
+					};
+				}];
+			};
+	};
