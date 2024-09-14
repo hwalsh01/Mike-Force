@@ -25,8 +25,8 @@ class capture_zone : task
 
 	class destroy_factory_sites
 	{
-		taskname = "Destroy Factory Supply Line";
-		taskdesc = "Destroy Factory supplies and the sites they're delivered to. You might find intel inside for the locations to the rest of the sites!";
+		taskname = "Destroy Depot Supply Line";
+		taskdesc = "Destroy Depot supplies and the sites they're delivered to. You might find intel inside for the locations to the rest of the sites!";
 	};
 
 	class build_fob
@@ -63,9 +63,9 @@ class capture_zone : task
 class prepare_zone : task
 {
 	taskcategory = "PRI";
-	tasktitle = "Prepare for %1";
-	taskname = "Prepare for %1";
-	taskdesc = "Get ready for %1!";
+	tasktitle = "Prepare for the next zone.";
+	taskname = "Prepare for the next zone.";
+	taskdesc = "Get ready for the next zone!";
 	tasktype = "repair";
 	taskimage = "vn\missions_f_vietnam\data\img\mikeforce\p\vn_ui_mf_task_p1.jpg";
 	rankpoints = 30;
