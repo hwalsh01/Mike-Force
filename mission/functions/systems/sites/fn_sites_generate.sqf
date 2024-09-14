@@ -178,6 +178,15 @@ private _initialMountedAiGroups = vn_site_objects
 				}];
 			};
 
+		// initialise the behaviour system to trick the owner into processing these AI
+		// with the paradigm AI behaviour scripts.
+
+		// see: paradigm/server/ai_objectives/fn_ai_obj_request_defend.sqf
+		_grpCrew setVariable ["orders", ["defend", getPos ((units _grpCrew) select 0)], true];
+
+		// see: paradigm/global/ai_behavior/fn_ai_run_behaviours_all_groups.sqg
+		_grpCrew setVariable ["behaviourEnabled", true];
+
 		_x;
 	};
 
