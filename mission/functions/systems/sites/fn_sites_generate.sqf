@@ -38,11 +38,19 @@ private _hqPosition = [_center, vn_mf_bn_s_zone_radius, 0, 55, 5, _allTerrainObj
 // 	[_radar, _zone] call vn_mf_fnc_sites_create_radar;
 // };
 
+// minimum 3, maximum whatever the config for the map is (6 for cam lao nam)
 for "_i" from 1 to (3 + ceil random (vn_mf_s_max_camps_per_zone - 1)) do
 {
 	//[_zoneData] call vn_mf_fnc_sites_create_camp;
 	private _campSite = [_center, vn_mf_bn_s_zone_radius, 0, 8, 15, _unnaturalObjects] call vn_mf_fnc_sites_get_safe_location;
 	[_campSite, _zone] call vn_mf_fnc_sites_create_site_camp;
+};
+
+// minimum 1, maximum whatever the config for the map is (3 for cam lao nam)
+for "_i" from 1 to (1 + ceil random (vn_mf_s_max_fuel_per_zone - 1)) do
+{
+	private _fuelSite = [_center, vn_mf_bn_s_zone_radius, 0, 5, 10, _allTerrainObjects] call vn_mf_fnc_sites_get_safe_location;
+	[_fuelSite, _zone] call vn_mf_fnc_sites_create_site_fuel;
 };
 
 //Create initial artillery emplacements
