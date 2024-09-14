@@ -199,6 +199,7 @@ class CfgFunctions
 			class action_curator_force_reset_idle_vehicle {};
 			class action_curator_lock_spawner {};
 			class action_curator_unlock_spawner {};
+			class action_press_toggle_spectator {};
 		};
 
 		class system_actives {
