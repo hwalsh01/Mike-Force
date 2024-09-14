@@ -6,6 +6,9 @@
     Description:
 		Creates a new Factory site in the given location.
     
+		TODO: @dijksterhuis: All references to factory need cleaning up at a later date
+		https://github.com/Bro-Nation/Mike-Force/pull/400
+
     Parameter(s):
 		_pos - Position to spawn the HQ site at
     
