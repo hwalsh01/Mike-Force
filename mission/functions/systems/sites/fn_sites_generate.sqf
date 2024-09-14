@@ -49,7 +49,7 @@ for "_i" from 1 to (3 + ceil random (vn_mf_s_max_camps_per_zone - 1)) do
 // minimum 1, maximum whatever the config for the map is (3 for cam lao nam)
 for "_i" from 1 to (1 + ceil random (vn_mf_s_max_fuel_per_zone - 1)) do
 {
-	private _fuelSite = [_center, vn_mf_bn_s_zone_radius, 0, 5, 10, _allTerrainObjects] call vn_mf_fnc_sites_get_safe_location;
+	private _fuelSite = [_center, vn_mf_bn_s_zone_radius, 0, 8, 10, _allTerrainObjects] call vn_mf_fnc_sites_get_safe_location;
 	[_fuelSite, _zone] call vn_mf_fnc_sites_create_site_fuel;
 };
 
