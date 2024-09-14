@@ -181,8 +181,20 @@ private _initialMountedAiGroups = vn_site_objects
 		_x;
 	};
 
-// persist so we can delete easily if there are issues with the AI.
-// in server side debug console
-// (missionNamespace getVariable "siteInitialMountedAiGroups") apply {deleteVehicle _x};
+/*
+persist so we can delete easily if there are issues with the AI.
+
+command below will delete all AI units that were initially spawned
+in on AA/Mortars without deleting the static weapon the AI unit was
+a crew member of.
+
+in server side debug console:
+
+```sqf
+(missionNamespace getVariable "siteInitialMountedAiGroups") apply {
+    (crew _x) apply {deleteVehicle _x}
+}
+```
+*/
 missionNamespace setVariable ["siteInitialMountedAiGroups", _initialMountedAiGroups];
 
