@@ -327,6 +327,7 @@ class CfgFunctions
 			class sites_hide_unsafe_terrain_objects {};
 			class sites_subsystem_client_init {};
 			class sites_discovery_job {};
+			class sites_create_initial_static_ai_crews {};
 		};
 
 		// remote actions that can be performed at sites
