@@ -13,8 +13,8 @@
 		dies, allowing paradigm managed AI to come in and mount the statics
 		later.
 
-		I've nerfed from crewing ALL static weapons to just AA/Arty statics
-		for now. See how they take it.
+		I've nerfed from crewing ALL static weapons to just AA statics for
+		now. See how they take it.
     
     Parameter(s):
 		None
@@ -29,31 +29,6 @@
 private _initialMountedAiGroups = vn_site_objects
 	select {
 		(typeOf _x) in [
-			// mortar / art obj
-			'vn_o_nva_navy_static_mortar_type63',
-			'vn_o_nva_65_static_mortar_type53',
-			'vn_o_nva_static_d44_01',
-			'vn_o_nva_navy_static_mortar_type63',
-			'vn_o_nva_65_static_mortar_type53',
-			'vn_o_nva_static_d44_01',
-			// more mortars?
-			"vn_o_nva_navy_static_mortar_type63",
-			"vn_o_nva_navy_static_mortar_type53",
-			"vn_o_nva_65_static_mortar_type53",
-			"vn_o_nva_65_static_mortar_type63",
-			"vn_o_nva_static_mortar_type53",
-			"vn_o_nva_static_mortar_type63",
-			"vn_o_vc_static_mortar_type53",
-			"vn_o_vc_static_mortar_type63",
-			"vn_o_nva_65_static_d44",
-			"vn_o_nva_65_static_d44_01",
-			"vn_o_nva_navy_static_d44",
-			"vn_o_nva_navy_static_d44_01",
-			"vn_o_nva_static_d44",
-			"vn_o_nva_static_d44_01",
-			"vn_o_vc_static_d44",
-			"vn_o_vc_static_d44_01",
-			// AA
 			'vn_o_nva_navy_static_zpu4',
 			'vn_o_nva_65_static_zpu4',
 			"vn_o_nva_static_zpu4"
@@ -101,6 +76,7 @@ private _initialMountedAiGroups = vn_site_objects
 
 		// initialise the behaviour system to trick the owner into processing these AI
 		// with the paradigm AI behaviour scripts.
+		// NOTE: this is necessary to get mortars firing at players!
 
 		// see: paradigm/server/ai_objectives/fn_ai_obj_request_defend.sqf
 		_grpCrew setVariable ["orders", ["defend", getPos _x], true];
