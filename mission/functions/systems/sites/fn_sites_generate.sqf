@@ -89,12 +89,47 @@ missionNamespace setVariable ["siteRadios", _radios];
 /*
 INITIAL STATIC WEAPON AI UNITS/GROUPS
 
-add initial AI on all static weapon emplacements in the AO.
-these are removed from the static weapon when they die,
-allowing paradigm manage AI to come in and mount the statics later.
+add initial AI on all ZPU/mortars in the prepared zone.
+these get dismounted from the static weapon when the unit dies,
+allowing paradigm managed AI to come in and mount the statics later.
+
+I've nerfed from ALL static weapons to just AA/Arty statics for now.
+
+See how they take it.
 */
 vn_site_objects
-	select {_x isKindOf "StaticWeapon"}
+	select {
+		(typeOf _x) in [
+			// mortar / art obj
+			'vn_o_nva_navy_static_mortar_type63',
+			'vn_o_nva_65_static_mortar_type53',
+			'vn_o_nva_static_d44_01',
+			'vn_o_nva_navy_static_mortar_type63',
+			'vn_o_nva_65_static_mortar_type53',
+			'vn_o_nva_static_d44_01',
+			// more mortars?
+			"vn_o_nva_navy_static_mortar_type63",
+			"vn_o_nva_navy_static_mortar_type53",
+			"vn_o_nva_65_static_mortar_type53",
+			"vn_o_nva_65_static_mortar_type63",
+			"vn_o_nva_static_mortar_type53",
+			"vn_o_nva_static_mortar_type63",
+			"vn_o_vc_static_mortar_type53",
+			"vn_o_vc_static_mortar_type63",
+			"vn_o_nva_65_static_d44",
+			"vn_o_nva_65_static_d44_01",
+			"vn_o_nva_navy_static_d44",
+			"vn_o_nva_navy_static_d44_01",
+			"vn_o_nva_static_d44",
+			"vn_o_nva_static_d44_01",
+			"vn_o_vc_static_d44",
+			"vn_o_vc_static_d44_01",
+			// AA
+			'vn_o_nva_navy_static_zpu4',
+			'vn_o_nva_65_static_zpu4',
+			"vn_o_nva_static_zpu4"
+		];
+	}
 	apply {
 		// force enable simulation otherwise the AI can't shoot
 		// for some reason
@@ -102,8 +137,8 @@ vn_site_objects
 		private _grpCrew = createVehicleCrew _x;
 
 		// TODO: Refactor paradigm fn_loadbal_create_squad.sqf into two functions:
-		// * fn_loadbal_create_squad.sqf
 		// * fn_loadbal_change_group_owner.sqf
+		// * fn_loadbal_create_squad.sqf (calls fn_loadbal_change_group_owner)
 
 		//Set the squad's locality to the headless client with highest FPS
 		// Or the server if no headless clients
@@ -122,10 +157,8 @@ vn_site_objects
 				}];
 
 				// TODO: Refactor paradigm fn_loadbal_create_squad.sqf into two functions:
-				// * fn_loadbal_create_squad.sqf
 				// * fn_loadbal_change_group_owner.sqf
-
-				// TODO: Possible fix for zeus?
+				// * fn_loadbal_create_squad.sqf (calls fn_loadbal_change_group_owner)
 
 				//Update the owner variable if the group changes locality.
 				//Can't run this on the group itself - need to use the units in it.
