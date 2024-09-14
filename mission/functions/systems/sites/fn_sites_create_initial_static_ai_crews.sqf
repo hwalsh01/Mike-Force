@@ -103,7 +103,7 @@ private _initialMountedAiGroups = vn_site_objects
 		// with the paradigm AI behaviour scripts.
 
 		// see: paradigm/server/ai_objectives/fn_ai_obj_request_defend.sqf
-		_grpCrew setVariable ["orders", ["defend", getPos ((units _grpCrew) select 0)], true];
+		_grpCrew setVariable ["orders", ["defend", getPos _x], true];
 
 		// see: paradigm/global/ai_behavior/fn_ai_run_behaviours_all_groups.sqg
 		_grpCrew setVariable ["behaviourEnabled", true];
