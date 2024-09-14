@@ -16,11 +16,16 @@
 
 // TODO: Do we grant moderators access to this instead of zeus?
 
+private _conditionToShow = [
+	"((player getVariable ['vn_mf_db_player_group', 'MikeForce']) isEqualTo 'PressCorp')",
+	"((player distance2D (getMarkerPos 'mf_respawn_presscorp')) < 25)"
+] joinString "&&";
+
 player addAction
 [
 	format [
 		"<t color='#0663A1' size='0.85' font='tt2020base_vn_bold'>%1</t>",
-		"[PRESS] Spectate"
+		"[PRESSCORP] Spectate"
 	],  // title
 	{
 		params ["_target", "_caller", "_actionId", "_arguments"];
@@ -78,11 +83,11 @@ player addAction
 		};
 	},  // script
 	nil,  // arguments
-	1,  // priority
+	-10,  // priority
 	true,  // showWindow
 	true,  // hideOnUse
 	"",  // shortcut
-	"player getVariable ['vn_mf_db_player_group', 'MikeForce'] isEqualTo 'PressCorp'",  // condition
+	_conditionToShow,
 	1,  // radius
 	false,  // unconscious
 	"",  // selection
