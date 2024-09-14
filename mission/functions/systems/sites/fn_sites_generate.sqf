@@ -105,7 +105,7 @@ I've nerfed from ALL static weapons to just AA/Arty statics for now.
 
 See how they take it.
 */
-vn_site_objects
+private _initialMountedAiGroups = vn_site_objects
 	select {
 		(typeOf _x) in [
 			// mortar / art obj
@@ -177,4 +177,12 @@ vn_site_objects
 					};
 				}];
 			};
+
+		_x;
 	};
+
+// persist so we can delete easily if there are issues with the AI.
+// in server side debug console
+// (missionNamespace getVariable "siteInitialMountedAiGroups") apply {deleteVehicle _x};
+missionNamespace setVariable ["siteInitialMountedAiGroups", _initialMountedAiGroups];
+
