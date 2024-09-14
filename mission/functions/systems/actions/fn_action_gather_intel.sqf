@@ -63,7 +63,7 @@ private _codeOnCompleted = {
 };
 private _codeOnInterrupted = {};
 private _scriptArgs = [];
-private _duration = 60;
+private _duration = 45;
 private _priority = 100;
 private _removeWhenCompleted = false;
 private _showWhenUncon = false;
