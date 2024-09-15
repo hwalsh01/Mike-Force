@@ -28,6 +28,7 @@ class CfgFunctions
 			class check_side {};
 			class range {};
 			class color_confname_to_rgba {};
+			class sample_positions_circle {};
 			class rExecServerToGlobal_playerHost_or_dedicated {};
 		};
 
@@ -195,6 +196,7 @@ class CfgFunctions
 			class action_eat_food {};
 			class action_lower_flag {};
 			class action_reraise_flag {};
+			class action_recover_pilot {};
 			class action_curator_force_recover_wrecked_vehicle {};
 			class action_curator_force_reset_idle_vehicle {};
 			class action_curator_lock_spawner {};
@@ -340,7 +342,7 @@ class CfgFunctions
 			class sites_remoteactions_destroy_task_dc_respawn {};
 			class sites_remoteactions_destroy_task_object {};
 			class sites_remoteactions_destroy_task_para_building {};
-			// class sites_remoteactions_burn_shelter {}; // @dijksterhuis: TODO
+			class sites_remoteactions_bury_pilot {};
 			class sites_remoteactions_reveal_radiotap {};
 			class sites_remoteactions_reveal_intel {};
 			class sites_remoteactions_reveal_scout {};
@@ -373,6 +375,7 @@ class CfgFunctions
 			class sites_create_site_aa {};
 			class sites_create_site_artillery {};
 			class sites_create_site_camp {};
+			class sites_create_site_wreck {};
 			class sites_create_site_fuel {};
 			class sites_create_site_water_supply {};
 			class sites_create_site_tunnel {};
