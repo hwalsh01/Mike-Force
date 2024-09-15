@@ -49,7 +49,9 @@ private _traitsTeam = _traitConfigs
 		private _traitIcon = getText (_traitConfig >> "icon");
 		private _traitText = (getText (_traitConfig >> "text") call para_c_fnc_localize);
 		private _traitPlayerCount = count (
-			allPlayers select {_x getUnitTrait _traitName}
+			allPlayers
+				select {(_x getVariable ["vn_mf_db_player_group", "FAILED"]) isEqualTo _groupID}
+				select {_x getUnitTrait _traitName}
 		);
 		private _traitPlayerCountLimit = getNumber (_groupConfig >> "rolelimits" >> _traitName);
 
