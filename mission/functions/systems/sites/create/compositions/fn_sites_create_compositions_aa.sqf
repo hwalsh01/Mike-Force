@@ -39,15 +39,15 @@ vn_mf_aa_compositions = [
 		["vn_o_nva_65_static_zpu4",[2.5,2.5,0],0,0,0,[],"","",true,false],
 		["vn_o_nva_65_static_zpu4",[-2.5,-2.5,0],180,0,0,[],"","",true,false]
 	],
-    [  
-        ["vn_o_nva_65_static_zpu4",[3,3,0],0,0,0,[],"","",true,false],
-		["vn_o_nva_65_static_zpu4",[-3,3,0],90,0,0,[],"","",true,false],
-		["vn_o_nva_65_static_zpu4",[0,-3,0],180,0,0,[],"","",true,false]
+        [  
+                ["vn_o_nva_65_static_zpu4",[5,5,0],0,0,0,[],"","",true,false],
+		["vn_o_nva_65_static_zpu4",[-5,5,0],90,0,0,[],"","",true,false],
+		["vn_o_nva_65_static_zpu4",[0,-5,0],180,0,0,[],"","",true,false]
 	],	
 	[  
-        ["vn_o_nva_navy_static_zpu4",[3,3,0],0,0,0,[],"","",true,false],
-		["vn_o_nva_navy_static_zpu4",[-3,3,0],90,0,0,[],"","",true,false],
-		["vn_o_nva_navy_static_zpu4",[0,-3,0],180,0,0,[],"","",true,false]
+                ["vn_o_nva_navy_static_zpu4",[5,5,0],0,0,0,[],"","",true,false],
+		["vn_o_nva_navy_static_zpu4",[-5,5,0],90,0,0,[],"","",true,false],
+		["vn_o_nva_navy_static_zpu4",[0,-5,0],180,0,0,[],"","",true,false]
 	]		
 ];
 
