@@ -16,7 +16,7 @@
 */
 
 private _objAttachTo = player;
-private _title = "Bury";
+private _title = "Recover Tags";
 private _idleIcon = "custom\holdactions\holdAction_interact_ca.paa";
 private _idleProgress = "custom\holdactions\holdAction_interact_ca.paa";
 
