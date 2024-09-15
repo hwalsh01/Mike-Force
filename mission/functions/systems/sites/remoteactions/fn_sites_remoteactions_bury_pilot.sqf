@@ -26,6 +26,11 @@
 
 params ["_body"];
 
+deleteVehicle _body;
+
+// TODO: @dijksterhuis: This isn't working :/
+
+/*
 _body setVariable ["vn_mf_sites_object_zfixer_ignore", true];
 _body enableSimulationGlobal false;
 
@@ -51,5 +56,6 @@ _body enableSimulationGlobal false;
 	};
 	deleteVehicle _this;
 };
+*/
 
 nil;
