@@ -38,19 +38,25 @@ private _hqPosition = [_center, vn_mf_bn_s_zone_radius, 0, 55, 5, _allTerrainObj
 // 	[_radar, _zone] call vn_mf_fnc_sites_create_radar;
 // };
 
-// minimum 3, maximum whatever the config for the map is (6 for cam lao nam)
-for "_i" from 1 to (3 + ceil random (vn_mf_s_max_camps_per_zone - 1)) do
-{
-	//[_zoneData] call vn_mf_fnc_sites_create_camp;
-	private _campSite = [_center, vn_mf_bn_s_zone_radius, 0, 8, 15, _unnaturalObjects] call vn_mf_fnc_sites_get_safe_location;
-	[_campSite, _zone] call vn_mf_fnc_sites_create_site_camp;
-};
-
 // minimum 1, maximum whatever the config for the map is (3 for cam lao nam)
 for "_i" from 1 to (1 + ceil random (vn_mf_s_max_fuel_per_zone - 1)) do
 {
 	private _fuelSite = [_center, vn_mf_bn_s_zone_radius, 0, 8, 10, _allTerrainObjects] call vn_mf_fnc_sites_get_safe_location;
 	[_fuelSite, _zone] call vn_mf_fnc_sites_create_site_fuel;
+};
+
+// chance to have 0 wrecks
+for "_i" from 0 to (ceil random (vn_mf_s_max_wrecks_per_zone - 1)) do
+{
+	private _wreckSite = [_center, vn_mf_bn_s_zone_radius, 0, 10, 15, _allTerrainObjects] call vn_mf_fnc_sites_get_safe_location;
+	[_wreckSite, _zone] call vn_mf_fnc_sites_create_site_wreck;
+};
+
+// minimum 3, maximum whatever the config for the map is (6 for cam lao nam)
+for "_i" from 1 to (3 + ceil random (vn_mf_s_max_camps_per_zone - 1)) do
+{
+	private _campSite = [_center, vn_mf_bn_s_zone_radius, 0, 8, 15, _unnaturalObjects] call vn_mf_fnc_sites_get_safe_location;
+	[_campSite, _zone] call vn_mf_fnc_sites_create_site_camp;
 };
 
 //Create initial artillery emplacements
@@ -60,8 +66,6 @@ for "_i" from 1 to (1 + ceil random (vn_mf_s_max_artillery_per_zone - 1)) do
 	[_artySite, _zone] call vn_mf_fnc_sites_create_site_artillery;
 };
 
-//Create AA emplacements (ZPUs)
-// create a minimum of 5 AAs
 for "_i" from 1 to (5 + ceil random (vn_mf_s_max_aa_per_zone - 5)) do
 {
 	// randomly set a radius to make AA sites more varied.
