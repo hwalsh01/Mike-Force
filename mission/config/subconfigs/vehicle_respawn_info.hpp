@@ -898,7 +898,7 @@ class spawn_point_types {
 	class blackhorse_statics_105s_custom {
 
 		name = "Artillery (105s) [Blackhorse]";
-		respawnType = SPAWN_TYPE_WRECK;
+		respawnType = SPAWN_TYPE_RESPAWN;
 		time = SPAWN_TIME_LONG;
 		lockTeams[] = LOCKED_BLACKHORSE;
 
