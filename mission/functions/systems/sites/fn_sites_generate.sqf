@@ -69,7 +69,7 @@ for "_i" from 1 to (1 + ceil random (vn_mf_s_max_artillery_per_zone - 1)) do
 for "_i" from 1 to (5 + ceil random (vn_mf_s_max_aa_per_zone - 5)) do
 {
 	// randomly set a radius to make AA sites more varied.
-	private _aaSite = [_center, vn_mf_bn_s_zone_radius, 0, selectRandom [20, 15, 10, 5], 10, _allTerrainObjects] call vn_mf_fnc_sites_get_safe_location;
+	private _aaSite = [_center, vn_mf_bn_s_zone_radius, 0, selectRandom [20, 15, 10], 10, _allTerrainObjects] call vn_mf_fnc_sites_get_safe_location;
 	[_aaSite, _zone] call vn_mf_fnc_sites_create_site_aa;
 };
 
