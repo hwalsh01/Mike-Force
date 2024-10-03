@@ -110,7 +110,7 @@ switch (true) do {
 
 	default {
 		/*
-		tl;dr -- please report to dev team.
+		tl;dr -- please try again.
 		players should not have been able to make this notification appear.
 		if they have, something is wrong in either
 		-- the switch logic above
