@@ -428,7 +428,7 @@ class CfgNotifications
 	class SiteDestroyTaskActionsError: Error
 	{
 		title = "Error";
-		description = "SiteDestroyTaskActionsError: please report this to Dev Team.";
+		description = "SiteDestroyTaskActionsError: please try again.";
 	};
 
 	class ErrorEmotesBase
