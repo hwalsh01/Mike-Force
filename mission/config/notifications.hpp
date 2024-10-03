@@ -428,7 +428,7 @@ class CfgNotifications
 	class SiteDestroyTaskActionsError: Error
 	{
 		title = "Error";
-		description = "SiteDestroyTaskActionsError: please try again.";
+		description = "SiteDestroyTaskActionsError: please try again due to server desync.";
 	};
 
 	class ErrorEmotesBase
