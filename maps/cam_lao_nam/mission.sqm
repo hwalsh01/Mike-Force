@@ -5,10 +5,10 @@ class EditorData
 	angleGridStep=1.5707964;
 	scaleGridStep=0.1;
 	autoGroupingDist=10;
-	toggles=586;
+	toggles=522;
 	class ItemIDProvider
 	{
-		nextID=19281;
+		nextID=19283;
 	};
 	class MarkerIDProvider
 	{
@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=27270;
+		nextID=27384;
 	};
 	class Camera
 	{
-		pos[]={16275.278,32.190884,6289.4912};
-		dir[]={0.60337621,-0.36571503,0.7086584};
-		up[]={0.23708878,0.93072736,0.27845794};
-		aside[]={0.76140344,-1.7695129e-008,-0.64828515};
+		pos[]={16190.369,48.862206,6372.3042};
+		dir[]={0.77211386,-0.3770729,-0.5116235};
+		up[]={0.31437472,0.92616761,-0.20831345};
+		aside[]={-0.55239975,-9.8382588e-007,-0.83364505};
 	};
 };
 binarizationWanted=0;
@@ -408,8 +408,8 @@ class CustomAttributes
 		name="Multiplayer";
 		class Attribute0
 		{
-			property="ReviveRequiredItems";
-			expression="false";
+			property="SharedObjectives";
+			expression="if (isMultiplayer) then {[_value] spawn bis_fnc_sharedObjectives;};";
 			class Value
 			{
 				class data
@@ -459,8 +459,8 @@ class CustomAttributes
 		};
 		class Attribute4
 		{
-			property="SharedObjectives";
-			expression="if (isMultiplayer) then {[_value] spawn bis_fnc_sharedObjectives;};";
+			property="ReviveRequiredItems";
+			expression="false";
 			class Value
 			{
 				class data
@@ -15285,7 +15285,7 @@ class Mission
 							name="duty_officer_mikeforce";
 							type="mil_dot";
 							colorName="ColorWhite";
-							angle=1.7836118;
+							angle=1.7836117;
 							id=7545;
 							atlOffset=0.49795628;
 						};
@@ -26150,7 +26150,7 @@ class Mission
 					name="BlackHorse";
 					class Entities
 					{
-						items=67;
+						items=68;
 						class Item0
 						{
 							dataType="Object";
@@ -26593,7 +26593,7 @@ class Mission
 									};
 									id=18423;
 									type="Land_HelipadEmpty_F";
-									atlOffset=0.011260986;
+									atlOffset=0.013122559;
 								};
 								class Item2
 								{
@@ -28244,9 +28244,54 @@ class Mission
 								nAttributes=2;
 							};
 						};
+						class Item67
+						{
+							dataType="Logic";
+							class PositionInfo
+							{
+								position[]={16266.786,19.816105,6318.6821};
+								angles[]={6.2611938,2.1599672,6.2791882};
+							};
+							areaSize[]={30.806999,0,0.69};
+							areaIsRectangle=1;
+							flags=1;
+							id=19282;
+							type="ModuleHideTerrainObjects_F";
+							atlOffset=0.0081233978;
+							class CustomAttributes
+							{
+								class Attribute0
+								{
+									property="#filter";
+									expression="_this setVariable [""#filter"",_value]";
+									class Value
+									{
+										class data
+										{
+											singleType="SCALAR";
+											value=15;
+										};
+									};
+								};
+								class Attribute1
+								{
+									property="#hideLocally";
+									expression="_this setVariable [""#hideLocally"",_value]";
+									class Value
+									{
+										class data
+										{
+											singleType="BOOL";
+											value=0;
+										};
+									};
+								};
+								nAttributes=2;
+							};
+						};
 					};
 					id=18327;
-					atlOffset=0.11692429;
+					atlOffset=0.15272331;
 				};
 				class Item11
 				{
@@ -32951,7 +32996,7 @@ class Mission
 				};
 			};
 			id=18339;
-			atlOffset=-1.5948391;
+			atlOffset=-1.5496197;
 		};
 		class Item232
 		{
@@ -49606,9 +49651,11 @@ class Mission
 					dataType="Layer";
 					name="Pleiku Airfield_2";
 					id=19160;
+					atlOffset=103.16;
 				};
 			};
 			id=19159;
+			atlOffset=103.16;
 		};
 		class Item476
 		{
@@ -52138,11 +52185,11 @@ class Mission
 					dataType="Layer";
 					name="Pleiku Airfield_3";
 					id=19257;
-					atlOffset=1.9073486e-005;
+					atlOffset=103.16;
 				};
 			};
 			id=19256;
-			atlOffset=1.9073486e-005;
+			atlOffset=103.16;
 		};
 		class Item551
 		{
@@ -52343,18 +52390,17 @@ class Mission
 							dataType="Object";
 							class PositionInfo
 							{
-								position[]={16287.926,20.1236,6302.5869};
-								angles[]={1.569051,0.0010122909,5.6677818};
+								position[]={16263.078,23.908367,6294.7676};
+								angles[]={3.1649768,0.96544057,0.015760776};
 							};
 							side="Empty";
-							flags=4;
 							class Attributes
 							{
 								init="this setObjectTexture [0,""custom\taskroster\militarypolice_HL.paa""];";
 							};
 							id=19280;
 							type="UserTexture10m_F";
-							atlOffset=0.0049972534;
+							atlOffset=3.6815453;
 							class CustomAttributes
 							{
 								class Attribute0
@@ -52375,11 +52421,11 @@ class Mission
 						};
 					};
 					id=19269;
-					atlOffset=2.5718002;
+					atlOffset=4.4549904;
 				};
 			};
 			id=19268;
-			atlOffset=2.5718002;
+			atlOffset=4.4549904;
 		};
 	};
 	class Connections
