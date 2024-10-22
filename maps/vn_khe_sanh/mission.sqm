@@ -11562,7 +11562,7 @@ class Mission
 						class data
 						{
 							singleType="STRING";
-							value="custom\billboards\bn_welcome_1.paa";
+							value="custom\billboards\BN_Welcome_20240621.paa";
 						};
 					};
 				};
