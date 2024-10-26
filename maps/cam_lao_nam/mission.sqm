@@ -16,18 +16,18 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=27954;
+		nextID=28068;
 	};
 	class Camera
 	{
-		pos[]={16121.502,66.920967,6442.4834};
-		dir[]={-0.017410155,-0.38135663,0.92440343};
-		up[]={-0.0071841469,0.92433,0.38153008};
-		aside[]={0.99992919,5.232112e-06,0.01883404};
+		pos[]={15759.317,25.85882,7367.71};
+		dir[]={0.11312477,-0.48790181,-0.86568272};
+		up[]={0.063245498,0.87278086,-0.48399681};
+		aside[]={-0.99167073,5.1117095e-06,-0.12958957};
 	};
 };
 binarizationWanted=0;
-sourceName="MikeForce";
+sourceName="bn_mikeforce_indev";
 addons[]=
 {
 	"objects_f_vietnam_c",
@@ -409,8 +409,8 @@ class CustomAttributes
 		name="Multiplayer";
 		class Attribute0
 		{
-			property="ReviveRequiredItems";
-			expression="false";
+			property="SharedObjectives";
+			expression="if (isMultiplayer) then {[_value] spawn bis_fnc_sharedObjectives;};";
 			class Value
 			{
 				class data
@@ -460,8 +460,8 @@ class CustomAttributes
 		};
 		class Attribute4
 		{
-			property="SharedObjectives";
-			expression="if (isMultiplayer) then {[_value] spawn bis_fnc_sharedObjectives;};";
+			property="ReviveRequiredItems";
+			expression="false";
 			class Value
 			{
 				class data
@@ -15025,17 +15025,18 @@ class Mission
 							dataType="Object";
 							class PositionInfo
 							{
-								position[]={15768.097,16.701904,7348.9165};
-								angles[]={6.2775683,3.1987047,6.2820125};
+								position[]={15768.097,16.702187,7348.917};
+								angles[]={6.2775655,3.1987,6.2820163};
 							};
 							side="Empty";
 							flags=4;
 							class Attributes
 							{
+								init="this setObjectTexture [0,""custom\billboards\sop_bb.paa""];";
 							};
 							id=16870;
 							type="Land_Billboard_F";
-							atlOffset=-0.021282196;
+							atlOffset=-0.020999908;
 							class CustomAttributes
 							{
 								class Attribute0
@@ -15047,7 +15048,7 @@ class Mission
 										class data
 										{
 											singleType="STRING";
-											value="custom\billboards\sop_bb.paa";
+											value="";
 										};
 									};
 								};
@@ -26594,7 +26595,7 @@ class Mission
 									};
 									id=18423;
 									type="Land_HelipadEmpty_F";
-									atlOffset=0.011260986;
+									atlOffset=0.013122559;
 								};
 								class Item2
 								{
@@ -52557,11 +52558,11 @@ class Mission
 						};
 					};
 					id=19269;
-					atlOffset=4.9664097;
+					atlOffset=1.8922768;
 				};
 			};
 			id=19268;
-			atlOffset=4.9664097;
+			atlOffset=1.8922768;
 		};
 		class Item551
 		{
@@ -52739,7 +52740,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={16268.605,20.774874,6322.5093};
-				angles[]={0,2.1496863,-0};
+				angles[]={0,2.1496863,0};
 			};
 			side="Empty";
 			flags=5;
