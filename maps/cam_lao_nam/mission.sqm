@@ -8,7 +8,7 @@ class EditorData
 	toggles=586;
 	class ItemIDProvider
 	{
-		nextID=19312;
+		nextID=19313;
 	};
 	class MarkerIDProvider
 	{
@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=28182;
+		nextID=28296;
 	};
 	class Camera
 	{
-		pos[]={16156.146,43.823402,6319.4063};
-		dir[]={0.88980174,-0.42691407,-0.16138695};
-		up[]={0.42007571,0.904284,-0.076191597};
-		aside[]={-0.17846385,6.4488268e-07,-0.98397046};
+		pos[]={15831.792,59.689362,7009.3882};
+		dir[]={-0.026731579,-0.62936687,0.77669394};
+		up[]={-0.021648403,0.77708983,0.62901807};
+		aside[]={0.99944359,-1.9342406e-07,0.034400221};
 	};
 };
 binarizationWanted=0;
@@ -409,8 +409,8 @@ class CustomAttributes
 		name="Multiplayer";
 		class Attribute0
 		{
-			property="ReviveRequiredItems";
-			expression="false";
+			property="SharedObjectives";
+			expression="if (isMultiplayer) then {[_value] spawn bis_fnc_sharedObjectives;};";
 			class Value
 			{
 				class data
@@ -460,8 +460,8 @@ class CustomAttributes
 		};
 		class Attribute4
 		{
-			property="SharedObjectives";
-			expression="if (isMultiplayer) then {[_value] spawn bis_fnc_sharedObjectives;};";
+			property="ReviveRequiredItems";
+			expression="false";
 			class Value
 			{
 				class data
@@ -4983,7 +4983,7 @@ class Mission
 							};
 							id=16872;
 							type="Land_Billboard_F";
-							atlOffset=-0.67500019;
+							atlOffset=-0.67500114;
 							class CustomAttributes
 							{
 								class Attribute0
@@ -52290,7 +52290,7 @@ class Mission
 					name="Pleiku Airfield_4";
 					class Entities
 					{
-						items=12;
+						items=13;
 						class Item0
 						{
 							dataType="Object";
@@ -52539,13 +52539,30 @@ class Mission
 								nAttributes=1;
 							};
 						};
+						class Item12
+						{
+							dataType="Object";
+							class PositionInfo
+							{
+								position[]={15831.181,14.98,7056.0591};
+								angles[]={1.5693651,0,6.2570052};
+							};
+							side="Empty";
+							flags=4;
+							class Attributes
+							{
+								init="this setObjectTexture [0,""custom\billboards\HelipadBNlogo.paa""];";
+							};
+							id=19312;
+							type="UserTexture10m_F";
+						};
 					};
 					id=19269;
-					atlOffset=1.8922768;
+					atlOffset=2.0753975;
 				};
 			};
 			id=19268;
-			atlOffset=1.8922768;
+			atlOffset=2.0753975;
 		};
 		class Item551
 		{
