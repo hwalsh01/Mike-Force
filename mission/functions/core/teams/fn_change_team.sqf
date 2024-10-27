@@ -19,7 +19,7 @@
 
 params ["_player", "_team", ["_fullTeamBehaviour", "ABORT"]];
 
-private _currentTeam = _player getVariable ["vn_mf_db_player_group", "FAILED"];
+private _currentTeam = _player getVariable ["vn_mf_db_player_group", "MikeForce"];
 if (_currentTeam isEqualTo _team) exitWith { false };
 
 private _inMACV = [_player, "MACV"] call para_g_fnc_db_check_whitelist;
