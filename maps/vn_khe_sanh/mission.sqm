@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=1830;
+		nextID=1862;
 	};
 	class Camera
 	{
-		pos[]={9913.8574,268.72079,6555.4956};
-		dir[]={-0.82651001,-0.54821384,0.12800819};
-		up[]={-0.54177153,0.83632571,0.083908834};
-		aside[]={0.1530581,3.8996222e-07,0.98823947};
+		pos[]={9777.8457,253.98477,6528.5933};
+		dir[]={0.35481206,-0.479287,0.80274802};
+		up[]={0.19376178,0.87765867,0.43837878};
+		aside[]={0.91464734,3.0105002e-07,-0.40427002};
 	};
 };
 binarizationWanted=0;
@@ -11733,18 +11733,18 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={9566.25,233.32426,6510.1787};
-				angles[]={0,3.3162007,0};
+				position[]={9566.25,233.32365,6510.1792};
+				angles[]={0,3.3161952,0};
 			};
 			side="Empty";
 			flags=5;
 			class Attributes
 			{
+				init="this setObjectTexture [0,""custom\billboards\Blackhorse_Base_Sign_2.paa""];";
 				disableSimulation=1;
 			};
 			id=1340;
 			type="Land_Billboard_F";
-			atlOffset=0.00061035156;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -11756,7 +11756,7 @@ class Mission
 						class data
 						{
 							singleType="STRING";
-							value="custom\billboards\Blackhorse_Base_Sign_2.paa";
+							value="";
 						};
 					};
 				};
@@ -11905,6 +11905,7 @@ class Mission
 			flags=1;
 			class Attributes
 			{
+				init="this setObjectTexture [0,""custom\billboards\bronation_bb.paa""];";
 				disableSimulation=1;
 			};
 			id=1356;
@@ -11921,7 +11922,7 @@ class Mission
 						class data
 						{
 							singleType="STRING";
-							value="custom\billboards\bronation_bb.paa";
+							value="";
 						};
 					};
 				};
@@ -11953,6 +11954,7 @@ class Mission
 			flags=5;
 			class Attributes
 			{
+				init="this setObjectTexture [0,""custom\billboards\sop_bb.paa""];";
 				disableSimulation=1;
 			};
 			id=1357;
@@ -11968,7 +11970,7 @@ class Mission
 						class data
 						{
 							singleType="STRING";
-							value="custom\billboards\sop_bb.paa";
+							value="";
 						};
 					};
 				};
@@ -12070,6 +12072,7 @@ class Mission
 			flags=5;
 			class Attributes
 			{
+				init="this setObjectTexture [0,""custom\billboards\sop_bb.paa""];";
 				disableSimulation=1;
 			};
 			id=1382;
@@ -12086,7 +12089,7 @@ class Mission
 						class data
 						{
 							singleType="STRING";
-							value="custom\billboards\sop_bb.paa";
+							value="";
 						};
 					};
 				};
@@ -12111,18 +12114,19 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={9569.4434,230.60387,6816.123};
+				position[]={9569.4434,230.6041,6816.123};
 				angles[]={0,0.06257005,0};
 			};
 			side="Empty";
 			flags=5;
 			class Attributes
 			{
+				init="this setObjectTexture [0,""custom\billboards\tigerforce_sign1.paa""];";
 				disableSimulation=1;
 			};
 			id=1383;
 			type="Land_Billboard_F";
-			atlOffset=-0.76322937;
+			atlOffset=-0.76300049;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -12134,7 +12138,7 @@ class Mission
 						class data
 						{
 							singleType="STRING";
-							value="custom\billboards\tigerforce_sign1.paa";
+							value="";
 						};
 					};
 				};
@@ -30800,18 +30804,19 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={9651.6826,233.34375,6566.8994};
+				position[]={9651.6826,233.34337,6566.8989};
 				angles[]={0,0.16847663,0};
 			};
 			side="Empty";
 			flags=5;
 			class Attributes
 			{
+				init="this setObjectTexture [0,""custom\billboards\supporter_sign.paa""];";
 				disableSimulation=1;
 			};
 			id=3084;
 			type="Land_Billboard_F";
-			atlOffset=0.065368652;
+			atlOffset=0.065002441;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -30823,7 +30828,7 @@ class Mission
 						class data
 						{
 							singleType="STRING";
-							value="custom\billboards\supporter_sign.paa";
+							value="";
 						};
 					};
 				};
@@ -33346,18 +33351,19 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={9763.3516,233.53616,6707.5127};
-				angles[]={0,0.17067643,0};
+				position[]={9763.3516,233.53661,6707.5132};
+				angles[]={0,0.17067575,0};
 			};
 			side="Empty";
 			flags=5;
 			class Attributes
 			{
+				init="this setObjectTexture [0,""custom\billboards\sop_bb.paa""];";
 				disableSimulation=1;
 			};
 			id=3518;
 			type="Land_Billboard_F";
-			atlOffset=-0.00042724609;
+			atlOffset=1.5258789e-05;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -33369,7 +33375,7 @@ class Mission
 						class data
 						{
 							singleType="STRING";
-							value="custom\billboards\sop_bb.paa";
+							value="";
 						};
 					};
 				};
@@ -33489,18 +33495,19 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={10111.094,234.55769,6465.4614};
-				angles[]={0,0.23024084,0};
+				position[]={10111.094,234.5575,6465.4609};
+				angles[]={0,0.23024385,0};
 			};
 			side="Empty";
 			flags=1;
 			class Attributes
 			{
+				init="this setObjectTexture [0,""custom\billboards\militarypolice_bb.paa""];";
 				disableSimulation=1;
 			};
 			id=3535;
 			type="Land_Billboard_F";
-			atlOffset=1.2481995;
+			atlOffset=1.2480011;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -33512,7 +33519,7 @@ class Mission
 						class data
 						{
 							singleType="STRING";
-							value="custom\billboards\militarypolice_bb.paa";
+							value="";
 						};
 					};
 				};
@@ -33537,18 +33544,19 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={9810.165,232.78207,6747.3394};
-				angles[]={0,1.0717025,0};
+				position[]={9810.165,232.78238,6747.3389};
+				angles[]={0,1.071702,0};
 			};
 			side="Empty";
 			flags=5;
 			class Attributes
 			{
+				init="this setObjectTexture [0,""custom\billboards\frogmen_bb.paa""];";
 				disableSimulation=1;
 			};
 			id=3536;
 			type="Land_Billboard_F";
-			atlOffset=-0.50730896;
+			atlOffset=-0.50700378;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -33560,7 +33568,7 @@ class Mission
 						class data
 						{
 							singleType="STRING";
-							value="custom\billboards\frogmen_bb.paa";
+							value="";
 						};
 					};
 				};
@@ -33585,18 +33593,19 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={9480.4375,231.94279,6513.4194};
-				angles[]={0,4.958786,0};
+				position[]={9480.4385,231.94243,6513.4189};
+				angles[]={0,4.958777,0};
 			};
 			side="Empty";
 			flags=5;
 			class Attributes
 			{
+				init="this setObjectTexture [0,""custom\billboards\sop_bb.paa""];";
 				disableSimulation=1;
 			};
 			id=3537;
 			type="Land_Billboard_F";
-			atlOffset=-1.4986267;
+			atlOffset=-1.4989777;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -33608,7 +33617,7 @@ class Mission
 						class data
 						{
 							singleType="STRING";
-							value="custom\billboards\sop_bb.paa";
+							value="";
 						};
 					};
 				};
@@ -37353,18 +37362,19 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={9481.7803,229.1098,6376.8477};
-				angles[]={0,3.3204796,0};
+				position[]={9481.7803,229.11017,6376.8481};
+				angles[]={0,3.3204713,0};
 			};
 			side="Empty";
 			flags=5;
 			class Attributes
 			{
+				init="this setObjectTexture [0,""custom\billboards\31st_meu_bb.paa""];";
 				disableSimulation=1;
 			};
 			id=3692;
 			type="Land_Billboard_F";
-			atlOffset=-0.50337219;
+			atlOffset=-0.50300598;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -37376,7 +37386,7 @@ class Mission
 						class data
 						{
 							singleType="STRING";
-							value="custom\billboards\31st_meu_bb.paa";
+							value="";
 						};
 					};
 				};
@@ -37401,8 +37411,8 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={9811.79,230.94025,6596.939};
-				angles[]={0,0.11241264,0};
+				position[]={9811.79,230.94063,6596.939};
+				angles[]={0,0.11241665,0};
 			};
 			side="Empty";
 			flags=1;
@@ -37411,7 +37421,7 @@ class Mission
 			};
 			id=3700;
 			type="Land_Billboard_03_aan_F";
-			atlOffset=1.0426178;
+			atlOffset=1.0429993;
 		};
 		class Item513
 		{
