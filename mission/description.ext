@@ -118,7 +118,7 @@ class CfgSFX
 
 	class DacWhistle
 	{
-		sound0[] = {"custom\sounds\DacWhistle.ogg", db+2, 1.0, 500, 1, 0, 0, 0};  // path to addon sound
+		sound0[] = {"custom\sounds\whistle.ogg", db+2, 1.0, 500, 1, 0, 0, 0};  // path to addon sound
 		sounds[] = {sound0};
 		empty[] = {"", 0, 0, 0, 0, 0, 0, 0};
 	}

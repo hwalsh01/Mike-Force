@@ -23,7 +23,7 @@ class CfgSounds
 	};
 	class DacWhistle
 	{
-		sound[] = { "custom\sounds\DacWhistle.ogg", 1, 1, 100 };	// file, volume, pitch, maxDistance
+		sound[] = { "custom\sounds\whistle.ogg", 1, 1, 100 };	// file, volume, pitch, maxDistance
 		titles[] = { 0, "*Dac Cong Whistle Blows*" };			// subtitles
 	}
 };
