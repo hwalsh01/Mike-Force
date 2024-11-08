@@ -18,7 +18,7 @@ if (([player, 'DacCong'] call vn_mf_fnc_player_on_team)) then
 {
 	[] spawn
 	{
-		vn_mf_whistle = "DacWhistle" createSoundSource ["", player, [], 0];
+		vn_mf_whistle = createSoundSource ["DacWhistle", player, [], 0];
 		vn_mf_whistle setSoundParams [1, 1, 1, 0];
 		vn_mf_whistle playSound "";
 		sleep 2;
