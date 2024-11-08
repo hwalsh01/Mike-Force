@@ -23,7 +23,7 @@ if (([player, 'DacCong'] call vn_mf_fnc_player_on_team)) then
 		vn_mf_whistle playSound "";
 		sleep 2;
 		deleteVehicle vn_mf_whistle;
-	}
+	};
 };
 
 
