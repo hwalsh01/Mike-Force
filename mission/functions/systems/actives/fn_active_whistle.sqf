@@ -16,14 +16,23 @@
 
 if (([player, 'DacCong'] call vn_mf_fnc_player_on_team)) then
 {
-	[] spawn
-	{
-		vn_mf_whistle = createSoundSource ["DacWhistle", player, [], 0];
-		vn_mf_whistle setSoundParams [1, 1, 1, 0];
-		vn_mf_whistle playSound "";
-		sleep 2;
-		deleteVehicle vn_mf_whistle;
-	};
+	[player] spawn
+    {
+        params ["_player"];
+
+        if (!(isNull vn_mf_whistle)) then
+        {
+            deleteVehicle vn_mf_whistle;
+            vn_mf_whistle = objNull;
+        };
+
+        vn_mf_whistle = createSoundSource ["DacWhistle", _player, [], 0];
+        vn_mf_whistle attachTo [_player];
+
+        sleep 2;
+
+        deleteVehicle vn_mf_whistle;
+    };
 };
 
 
