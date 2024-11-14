@@ -41,26 +41,10 @@ enableItemsDropping = 0;
 briefing = 0;
 debriefing = 0;
 enableDebugConsole[] = {
-	//Spoffy
-	"76561198011383725",
-	//HARRY
-	"76561198140282519",
-	//ferrous
-	"76561198084982129",
-	//leal
-	"76561198173293466",
-	//cerebral
+	//Cerebral
 	"76561199195828749",
-	//zod
-	"76561198808129773",
-	//cypher
-	"76561199175533497",
-	//Nummie
-	"76561197984639361",
-	//Legend
-	"76561198976258425",
-	//phillip
-	"76561198065538409"
+	//Cypher
+	"76561199175533497"
 };
 
 allowFunctionsLog = 1;
