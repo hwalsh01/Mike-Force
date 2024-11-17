@@ -8,7 +8,7 @@ class EditorData
 	toggles=586;
 	class ItemIDProvider
 	{
-		nextID=19315;
+		nextID=19319;
 	};
 	class MarkerIDProvider
 	{
@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=28410;
+		nextID=28524;
 	};
 	class Camera
 	{
-		pos[]={12418.157,468.68384,10632.354};
-		dir[]={0.30646357,-0.086805344,0.94794679};
-		up[]={0.026714742,0.99622512,0.082633562};
-		aside[]={0.9515385,-1.4092075e-07,-0.30762562};
+		pos[]={12093.108,33.43293,17624.816};
+		dir[]={0.81296194,-0.21433125,-0.54147458};
+		up[]={0.1783988,0.97676247,-0.11882307};
+		aside[]={-0.55435824,2.1536835e-07,-0.83230627};
 	};
 };
 binarizationWanted=0;
@@ -409,8 +409,8 @@ class CustomAttributes
 		name="Multiplayer";
 		class Attribute0
 		{
-			property="ReviveRequiredItems";
-			expression="false";
+			property="SharedObjectives";
+			expression="if (isMultiplayer) then {[_value] spawn bis_fnc_sharedObjectives;};";
 			class Value
 			{
 				class data
@@ -460,8 +460,8 @@ class CustomAttributes
 		};
 		class Attribute4
 		{
-			property="SharedObjectives";
-			expression="if (isMultiplayer) then {[_value] spawn bis_fnc_sharedObjectives;};";
+			property="ReviveRequiredItems";
+			expression="false";
 			class Value
 			{
 				class data
@@ -15236,13 +15236,13 @@ class Mission
 						class Item12
 						{
 							dataType="Marker";
-							position[]={13624.121,-0.90063477,13390.223};
+							position[]={15032.911,-0.90063477,5355.0674};
 							name="starting_point";
 							text="Starting Point";
 							type="Empty";
 							angle=70.846191;
 							id=14092;
-							atlOffset=3.8748808;
+							atlOffset=-3.3206348;
 						};
 						class Item13
 						{
@@ -15282,7 +15282,7 @@ class Mission
 						};
 					};
 					id=18319;
-					atlOffset=-36.866337;
+					atlOffset=-5.8704729;
 				};
 				class Item3
 				{
@@ -33051,7 +33051,7 @@ class Mission
 				};
 			};
 			id=18339;
-			atlOffset=-1.5919437;
+			atlOffset=-1.589035;
 		};
 		class Item230
 		{
@@ -52692,15 +52692,15 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={12144.815,6.7091441,17576.783};
+				position[]={12144.815,7.5846171,17576.691};
 			};
 			side="Empty";
 			flags=4;
 			class Attributes
 			{
 			};
-			id=19313;
-			type="B_Heli_Light_01_dynamicLoadout_F";
+			id=19317;
+			type="vn_o_air_mi2_04_01";
 			class CustomAttributes
 			{
 				class Attribute0
@@ -52724,15 +52724,15 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={12163.019,6.7091441,17576.93};
+				position[]={12163.019,7.5846171,17576.838};
 			};
 			side="Empty";
 			flags=4;
 			class Attributes
 			{
 			};
-			id=19314;
-			type="B_Heli_Light_01_dynamicLoadout_F";
+			id=19318;
+			type="vn_o_air_mi2_04_01";
 			class CustomAttributes
 			{
 				class Attribute0
