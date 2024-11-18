@@ -103,7 +103,7 @@ class TeamName
 
 #define SIDE_WEST "west"
 #define SIDE_EAST "east"
-#define IS_WLU 1
+#define IS_WLU 0
 #define NOT_WLU 0
 
 
@@ -124,7 +124,7 @@ class MikeForce
         medic = 40;
         engineer = 40;
         explosiveSpecialist = 10;
-        vn_artillery = 0;
+        vn_artillery = 1;
     };
     
     class defaultTraits

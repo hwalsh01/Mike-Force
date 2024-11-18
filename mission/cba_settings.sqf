@@ -14,10 +14,10 @@ force TFAR_SameLRFrequenciesForSide = true;
 force TFAR_SameSRFrequenciesForSide = true;
 force TFAR_setting_defaultFrequencies_lr_east = "84.1,84.2,84.3,84.4,84.5,84.6,84.7,84.8,84.9";
 force TFAR_setting_defaultFrequencies_lr_independent = "84.1,84.2,84.3,84.4,84.5,84.6,84.7,84.8,84.9";
-force TFAR_setting_defaultFrequencies_lr_west = "84.1,84.2,84.3,84.4,84.5,84.6,84.7,84.8,84.9";
+force TFAR_setting_defaultFrequencies_lr_west = "76,84.2,84.3,84.4,84.5,84.6,84.7,84.8,84.9";
 force TFAR_setting_defaultFrequencies_sr_east = "61.1,61.2,61.3,61.4,61.5,61.6,61.7,61.8,61.9";
 force TFAR_setting_defaultFrequencies_sr_independent = "61.1,61.2,61.3,61.4,61.5,61.6,61.7,61.8,61.9";
-force TFAR_setting_defaultFrequencies_sr_west = "61.1,61.2,61.3,61.4,61.5,61.6,61.7,61.8,61.9";
+force TFAR_setting_defaultFrequencies_sr_west = "75,61.2,61.3,61.4,61.5,61.6,61.7,61.8,61.9";
 
 force TFAR_setting_DefaultRadio_Airborne_east = "";
 force TFAR_setting_DefaultRadio_Airborne_Independent = "";

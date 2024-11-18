@@ -17,18 +17,18 @@
 #define LOCKED_PUBLIC_HELOS {"MACV", "DacCong", "GreenHornets", "3rdMEU", "MilitaryPolice", "QuarterHorse", "Frogmen", "Muskets", "SatansAngels", "633rdCSG", "7thCAV", "TigerForce", "SASR", "ARVN"}
 #define LOCKED_LIMITED_ARMOR {"MACV", "DacCong", "3rdMEU", "QuarterHorse", "ACAV", "ARVN"}
 
-#define LOCKED_MACV_DACCONG {"MACV", "DacCong"}
-#define LOCKED_ANZAC {"MACV", "DacCong", "SASR"}
-#define LOCKED_ARVN {"MACV", "DacCong", "ARVN"}
-#define LOCKED_MILITARY_POLICE {"MACV", "DacCong", "MilitaryPolice"}
-#define LOCKED_MUSKETS {"MACV", "DacCong", "Muskets"}
-#define LOCKED_BLACKHORSE {"MACV", "DacCong", "QuarterHorse"}
-#define LOCKED_SATANS_ANGELS {"MACV", "DacCong", "SatansAngels"}
-#define LOCKED_7THCAV {"MACV", "DacCong", "7thCAV"}
-#define LOCKED_TIGER_FORCE {"MACV", "DacCong", "TigerForce"}
-#define LOCKED_UDT {"MACV", "DacCong", "Frogmen"}
-#define LOCKED_633RD {"MACV", "DacCong", "633rdCSG"}
-#define LOCKED_USMC {"MACV", "DacCong", "3rdMEU"}
+#define LOCKED_MACV_DACCONG {"MACV", "DacCong","GreenHornets", "ACAV"}
+#define LOCKED_ANZAC {"MACV", "DacCong", "SASR","GreenHornets", "ACAV"}
+#define LOCKED_ARVN {"MACV", "DacCong", "ARVN","GreenHornets", "ACAV"}
+#define LOCKED_MILITARY_POLICE {"MACV", "DacCong", "MilitaryPolice","GreenHornets", "ACAV"}
+#define LOCKED_MUSKETS {"MACV", "DacCong", "Muskets","GreenHornets", "ACAV"}
+#define LOCKED_BLACKHORSE {"MACV", "DacCong", "QuarterHorse","GreenHornets", "ACAV"}
+#define LOCKED_SATANS_ANGELS {"MACV", "DacCong", "SatansAngels","GreenHornets", "ACAV"}
+#define LOCKED_7THCAV {"MACV", "DacCong", "7thCAV","GreenHornets", "ACAV"}
+#define LOCKED_TIGER_FORCE {"MACV", "DacCong", "TigerForce","GreenHornets", "ACAV"}
+#define LOCKED_UDT {"MACV", "DacCong", "Frogmen","GreenHornets", "ACAV"}
+#define LOCKED_633RD {"MACV", "DacCong", "633rdCSG","GreenHornets", "ACAV"}
+#define LOCKED_USMC {"MACV", "DacCong", "3rdMEU","GreenHornets", "ACAV"}
 
 // #define LOCKED_SCOUT_MG {"MACV", "DacCong", "7thCAV", "Muskets"}
 // #define LOCKED_ONLY_WLUS {"MACV", "DacCong", "3rdMEU", "MilitaryPolice", "QuarterHorse", "Frogmen", "Muskets", "SatansAngels", "633rdCSG", "7thCAV", "TigerForce", "SASR", "ARVN"}
