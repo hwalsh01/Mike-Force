@@ -75,7 +75,7 @@ class AmmoCrateLight
 
 class AmmoCrateSupport
 {
-	objectClassname = "vn_b_ammobox_supply_01";
+	objectClassname = "vn_b_ammobox_wpn_08";
 	weapons[] = {
 		{"vn_m79",2},
 		{"vn_m127",15},
@@ -139,7 +139,7 @@ class AmmoCrateSupport
 
 class AmmoCrateExplosives
 {
-	objectClassname = "vn_b_ammobox_supply_01";
+	objectClassname = "vn_b_ammobox_full_22";
 	weapons[] = {
 		{"vn_m79",2},
 		{"vn_m72",10},
@@ -188,7 +188,10 @@ class AmmoCrateExplosives
         {"vn_22mm_n94_heat_mag",20}
 	};
 	items[] = {};
-	backpacks[] = {{"vn_b_pack_static_base_01", 5}};
+	backpacks[] = {
+		{"vn_b_pack_static_base_01", 5},
+		{"vn_b_pack_static_m2_01",2}
+	};
 };
 
 class FoodCrate

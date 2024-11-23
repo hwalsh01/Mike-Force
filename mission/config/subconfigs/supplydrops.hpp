@@ -86,14 +86,14 @@ class ammo
 	class SupportSupplies
 	{
 		name = "STR_vn_mf_support_ammo_supplies";
-		className =	"vn_b_ammobox_supply_01";
+		className =	"vn_b_ammobox_wpn_08";
 		icon = "\vn\ui_f_vietnam\ui\wheelmenu\img\icons\vn_ico_mf_sup_ammo_ca.paa";
 		crateConfig = "AmmoCrateSupport";
 	};
 	class ExplosivesSupplies
 	{
 		name = "STR_vn_mf_explosives_supplies";
-		className =	"vn_b_ammobox_supply_01";
+		className =	"vn_b_ammobox_full_22";
 		icon = "\vn\ui_f_vietnam\ui\wheelmenu\img\icons\vn_ico_mf_sup_ammo_ca.paa";
 		crateConfig = "AmmoCrateExplosives";
 	};

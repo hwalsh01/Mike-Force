@@ -25,7 +25,7 @@ params ["_taskDataStore"];
 /*
 Constants
 */
-_taskDataStore setVariable ["holdDuration", 40 * 60];
+_taskDataStore setVariable ["holdDuration", 30 * 60];
 _taskDataStore setVariable ["flagTimerReduction", 10 * 60];
 _taskDataStore setVariable ["failureDuration", 5 * 60];
 

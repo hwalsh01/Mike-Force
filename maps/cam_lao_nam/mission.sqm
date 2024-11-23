@@ -8,7 +8,7 @@ class EditorData
 	toggles=586;
 	class ItemIDProvider
 	{
-		nextID=19329;
+		nextID=19338;
 	};
 	class MarkerIDProvider
 	{
@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=28866;
+		nextID=28980;
 	};
 	class Camera
 	{
-		pos[]={17842.188,18.720877,4815.8301};
-		dir[]={0.00017964638,-0.62490618,0.7807011};
-		up[]={0.00014379607,0.78070003,0.62490672};
-		aside[]={1.0000011,-6.8337158e-10,-0.00023010731};
+		pos[]={16320.693,49.702713,6927.8677};
+		dir[]={-0.31224328,-0.78050178,-0.54164129};
+		up[]={-0.38980693,0.62514514,-0.67618972};
+		aside[]={-0.8663733,-2.9569492e-08,0.49944463};
 	};
 };
 binarizationWanted=0;
@@ -474,8 +474,8 @@ class CustomAttributes
 		name="Multiplayer";
 		class Attribute0
 		{
-			property="ReviveRequiredItems";
-			expression="false";
+			property="SharedObjectives";
+			expression="if (isMultiplayer) then {[_value] spawn bis_fnc_sharedObjectives;};";
 			class Value
 			{
 				class data
@@ -525,8 +525,8 @@ class CustomAttributes
 		};
 		class Attribute4
 		{
-			property="SharedObjectives";
-			expression="if (isMultiplayer) then {[_value] spawn bis_fnc_sharedObjectives;};";
+			property="ReviveRequiredItems";
+			expression="false";
 			class Value
 			{
 				class data
