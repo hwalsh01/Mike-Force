@@ -140,7 +140,7 @@ class MikeForce
         harassable = true;
         scout = true;
         increasedBuildRate = false;
-        canAttachChemlights = false;
+        canAttachChemlights = true;
     };
 
     //Function Calls on team Join
@@ -223,7 +223,7 @@ class ACAV
         harassable = true;
         scout = false;
         increasedBuildRate = false;
-        canAttachChemlights = false;
+        canAttachChemlights = true;
     };
 
     //Function Calls on team Join
